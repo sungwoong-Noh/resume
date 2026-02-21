@@ -16,8 +16,7 @@ export const profile = {
   /** TODO: 실제 GitHub URL 확인 후 수정 (현재 sungwoong-Noh 기준) */
   github: 'https://github.com/sungwoong-Noh',
   githubHandle: 'sungwoong-Noh',
-  /** TODO: LinkedIn URL이 있다면 채워주세요. 없으면 null 유지 */
-  linkedin: null as string | null,
+  linkedin: 'https://www.linkedin.com/in/sunwoongnoh',
   /**
    * intro — 화면에 표시되는 자기소개 본문.
    * 현재는 임팩트 있는 경험 기반으로 작성됨.
@@ -323,15 +322,10 @@ export type Education = {
 
 export const educations: Education[] = [
   {
-    /** TODO: 학교명을 채워주세요 */
-    school: 'TODO: 학교명',
-    /** TODO: 학위를 채워주세요 (예: 학사) */
-    degree: 'TODO: 학위',
-    /** TODO: 전공을 채워주세요 (예: 컴퓨터공학) */
-    major: 'TODO: 전공',
-    /** TODO: 재학/졸업 기간을 채워주세요 (예: 2017.03 ~ 2021.02) */
-    period: 'TODO: 기간',
-    todo: true,
+    school: '목원대학교',
+    degree: '학사',
+    major: '전자공학과',
+    period: '2015.03 ~ 2022.03',
   },
 ]
 
