@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -13,6 +13,43 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  font-family: var(--font-inter);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-inter);
+}
+
+/* Smooth transitions */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Link styles */
+a {
+  @apply text-teal-600 hover:text-teal-700 transition-colors;
+}
+
+/* Selection color */
+::selection {
+  @apply bg-teal-200 text-gray-900;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-teal-400 rounded-full hover:bg-teal-500;
+}
+
 @media print {
   body {
     background: white;
@@ -20,7 +57,7 @@ html {
   }
 
   a {
-    color: #000;
+    color: #0d9488;
     text-decoration: underline;
   }
 
@@ -34,5 +71,15 @@ html {
 
   .section {
     page-break-inside: avoid;
+  }
+
+  /* Optimize for print */
+  .bg-gradient-to-br,
+  .bg-gradient-to-r,
+  .shadow-sm,
+  .shadow-md {
+    box-shadow: none;
+    background: white;
+    border: 1px solid #e5e7eb;
   }
 }

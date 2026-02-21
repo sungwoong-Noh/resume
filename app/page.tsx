@@ -1,123 +1,141 @@
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white">
-      <div className="max-w-4xl mx-auto px-6 py-12 md:py-20">
-        {/* Header */}
-        <header className="mb-12">
-          <h1 className="text-5xl font-bold font-serif mb-2">노성웅</h1>
-          <p className="text-xl text-gray-600 mb-4">백엔드 개발자</p>
-          <div className="flex flex-wrap gap-4 text-sm">
-            <a href="mailto:asdz453@gmail.com" className="text-blue-600 hover:underline">
-              asdz453@gmail.com
-            </a>
-            <span className="text-gray-400">•</span>
-            <span className="text-gray-600">010-8866-3354</span>
-            <span className="text-gray-400">•</span>
-            <a href="https://github.com/sungwoong-noh" className="text-blue-600 hover:underline">
-              GitHub
-            </a>
+    <main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      <div className="max-w-5xl mx-auto px-6 py-12 md:py-16">
+
+        {/* Hero Header */}
+        <header className="mb-16 relative">
+          <div className="absolute -left-4 -right-4 top-0 h-1 bg-gradient-to-r from-teal-500 via-emerald-500 to-cyan-500"></div>
+
+          <div className="pt-8 pb-12">
+            <h1 className="text-6xl font-bold font-serif text-gray-900 mb-2">노성웅</h1>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-1 bg-teal-500"></div>
+              <p className="text-2xl font-medium text-teal-600">Backend Engineer</p>
+            </div>
+
+            <p className="text-lg text-gray-700 font-light mb-6 max-w-2xl leading-relaxed">
+              견고한 시스템 설계와 건강한 개발 문화로 <span className="font-semibold text-teal-600">지속 가능한 안정성</span>을 만드는 개발자입니다.
+            </p>
+
+            <div className="flex flex-wrap gap-6 text-sm">
+              <a href="mailto:asdz453@gmail.com" className="flex items-center gap-2 text-teal-600 hover:text-teal-700 font-medium">
+                <span>📧</span> asdz453@gmail.com
+              </a>
+              <div className="flex items-center gap-2 text-gray-600">
+                <span>📱</span> 010-8866-3354
+              </div>
+              <a href="https://github.com/sungwoong-noh" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-teal-600 hover:text-teal-700 font-medium">
+                <span>🔗</span> GitHub Profile
+              </a>
+            </div>
           </div>
         </header>
 
-        {/* About Section */}
-        <section className="mb-12 border-t pt-8">
-          <h2 className="text-2xl font-bold font-serif mb-4">자기소개</h2>
-          <p className="text-gray-700 leading-relaxed mb-4">
-            견고한 시스템 설계와 건강한 개발 문화로 지속 가능한 안정성을 만드는 개발자 노성웅입니다.
-          </p>
+        {/* Core Values */}
+        <section className="mb-16">
           <div className="grid md:grid-cols-3 gap-6">
-            <div>
-              <h3 className="font-bold text-teal-600 mb-2">성능 집착</h3>
-              <p className="text-sm text-gray-600">
-                0.1초의 응답 속도 개선이 고객 경험의 차이를 만든다고 믿습니다.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold text-teal-600 mb-2">기술 부채 해결</h3>
-              <p className="text-sm text-gray-600">
-                동료가 읽기 좋은 명료한 코드로 협업 비용을 최소화합니다.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold text-teal-600 mb-2">안정성 우선</h3>
-              <p className="text-sm text-gray-600">
-                대규모 트래픽에도 중단 없는 견고한 인프라를 설계합니다.
-              </p>
-            </div>
+            {[
+              { icon: '⚡', title: '성능 집착', desc: '0.1초의 응답 속도 개선이 고객 경험의 큰 차이를 만든다' },
+              { icon: '🧹', title: '기술 부채 해결', desc: '명료한 코드와 리뷰 문화로 협업 비용을 최소화' },
+              { icon: '🛡️', title: '안정성 우선', desc: '대규모 트래픽도 견디는 견고한 인프라 설계' },
+            ].map((value, idx) => (
+              <div key={idx} className="bg-white rounded-lg p-6 border-t-4 border-teal-500 shadow-sm hover:shadow-md transition-shadow">
+                <div className="text-3xl mb-3">{value.icon}</div>
+                <h3 className="font-bold text-gray-900 mb-2 text-lg">{value.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{value.desc}</p>
+              </div>
+            ))}
           </div>
         </section>
 
         {/* Experience Section */}
-        <section className="mb-12 border-t pt-8">
-          <h2 className="text-2xl font-bold font-serif mb-6">경력</h2>
-          <div className="space-y-8">
-            <div>
-              <div className="flex justify-between items-start mb-2">
-                <div>
-                  <h3 className="text-lg font-bold">오케스트로주식회사</h3>
-                  <p className="text-gray-600">선임연구원 • 클라우드 서비스 본부</p>
-                </div>
-                <span className="text-sm text-gray-500 whitespace-nowrap ml-4">2023.10 ~ 현재</span>
-              </div>
-              <p className="text-gray-700 text-sm mb-3">
-                국정자원 업무 효율·안정성 향상을 목표로 요구사항 정제부터 아키텍처/ERD, 공통 모듈·컨벤션, CI/CD·관측성, 운영까지 전 흐름을 일원화해 주도.
-              </p>
-              <ul className="text-sm text-gray-600 space-y-1 ml-4">
-                <li>• 데이터 동기화 2시간 → 10초로 개선 (99% 향상)</li>
-                <li>• p95 응답시간 17초 → 3초로 개선</li>
-                <li>• 인시던트 12건 → 5건/주로 개선</li>
-              </ul>
-            </div>
-
-            <div>
-              <div className="flex justify-between items-start mb-2">
-                <div>
-                  <h3 className="text-lg font-bold">주식회사에이직스</h3>
-                  <p className="text-gray-600">주임 • SI기술개발</p>
-                </div>
-                <span className="text-sm text-gray-500 whitespace-nowrap ml-4">2021.08 ~ 2023.10</span>
-              </div>
-              <p className="text-gray-700 text-sm mb-3">
-                SI 기술개발팀 풀스택 개발자로 합류해 납기 환경을 템플릿·공통·CI/CD로 표준화/자동화하고, 설계–개발–운영 전 주기를 주도해 유지보수성과 성능을 지속 개선.
-              </p>
-              <ul className="text-sm text-gray-600 space-y-1 ml-4">
-                <li>• Jenkins 기반 배포자동화로 배포 빈도 7일 → 1일</li>
-                <li>• Tiles 프레임워크 도입으로 신규 페이지 리드타임 2일 → 0.5일 단축</li>
-              </ul>
-            </div>
+        <section className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <h2 className="text-3xl font-bold text-gray-900">경력</h2>
+            <div className="flex-1 h-1 bg-gradient-to-r from-teal-500 to-transparent"></div>
           </div>
-        </section>
 
-        {/* Skills Section */}
-        <section className="mb-12 border-t pt-8">
-          <h2 className="text-2xl font-bold font-serif mb-6">기술 스택</h2>
           <div className="space-y-6">
-            <div>
-              <h3 className="font-bold text-gray-800 mb-3">Backend</h3>
+            {/* Current Position */}
+            <div className="bg-white rounded-lg p-8 border-l-4 border-teal-500 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">오케스트로주식회사</h3>
+                  <p className="text-teal-600 font-semibold mt-1">선임연구원 • 클라우드 서비스 본부</p>
+                </div>
+                <span className="inline-block px-3 py-1 bg-teal-100 text-teal-700 text-xs font-bold rounded-full">2년 4개월 진행중</span>
+              </div>
+
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                국정자원 3개 시스템(nTOPS, RPMS, 통합포털)의 통합 운영 업무를 담당합니다.
+                요구사항 정제부터 아키텍처 설계, 공통 모듈 표준화, CI/CD 구축, 운영까지 전 흐름을 일원화하여 주도하고 있습니다.
+              </p>
+
+              <div className="bg-gradient-to-r from-teal-50 to-cyan-50 rounded p-4 mb-4">
+                <h4 className="font-bold text-gray-900 mb-3 text-sm">📊 핵심 성과</h4>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-teal-600 font-bold">→</span>
+                    <span><strong>데이터 동기화</strong> 2시간 → 10초 (99% 향상)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-teal-600 font-bold">→</span>
+                    <span><strong>응답 속도</strong> p95 17초 → 3초 (82% 개선)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-teal-600 font-bold">→</span>
+                    <span><strong>인시던트</strong> 월 12건 → 5건/주 (개선)</span>
+                  </li>
+                </ul>
+              </div>
+
               <div className="flex flex-wrap gap-2">
-                {['Spring Boot', 'JPA', 'QueryDSL', 'MariaDB', 'Tibero', 'Redis'].map((skill) => (
-                  <span key={skill} className="px-3 py-1 bg-teal-100 text-teal-700 rounded text-sm">
-                    {skill}
+                {['Spring Boot', 'JPA', 'QueryDSL', 'K8s', 'Vue.js', 'Tibero'].map((tech) => (
+                  <span key={tech} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded font-medium">
+                    {tech}
                   </span>
                 ))}
               </div>
             </div>
-            <div>
-              <h3 className="font-bold text-gray-800 mb-3">Frontend</h3>
-              <div className="flex flex-wrap gap-2">
-                {['Vue 3', 'TypeScript', 'TanStack Query', 'Ant Design', 'ES6'].map((skill) => (
-                  <span key={skill} className="px-3 py-1 bg-blue-100 text-blue-700 rounded text-sm">
-                    {skill}
-                  </span>
-                ))}
+
+            {/* Previous Position */}
+            <div className="bg-white rounded-lg p-8 border-l-4 border-emerald-500 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">주식회사에이직스</h3>
+                  <p className="text-emerald-600 font-semibold mt-1">주임 • SI기술개발</p>
+                </div>
+                <span className="inline-block px-3 py-1 bg-emerald-100 text-emerald-700 text-xs font-bold rounded-full">2년 3개월</span>
               </div>
-            </div>
-            <div>
-              <h3 className="font-bold text-gray-800 mb-3">Infra</h3>
+
+              <p className="text-gray-700 mb-4 leading-relaxed">
+                SI 프로젝트 풀스택 개발자로 다양한 공공 프로젝트를 수행했습니다.
+                운영 환경의 표준화, 배포 자동화, 성능 최적화를 중심으로 개발 프로세스 전체를 개선했습니다.
+              </p>
+
+              <div className="bg-gradient-to-r from-emerald-50 to-cyan-50 rounded p-4 mb-4">
+                <h4 className="font-bold text-gray-900 mb-3 text-sm">📊 주요 개선사항</h4>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-600 font-bold">→</span>
+                    <span><strong>배포 빈도</strong> 7일 → 1일 (Jenkins 자동화)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-600 font-bold">→</span>
+                    <span><strong>페이지 개발 속도</strong> 2일 → 0.5일 (Tiles 프레임워크)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-600 font-bold">→</span>
+                    <span><strong>중복 코드 제거</strong> 65% → 10% (기술 부채 해결)</span>
+                  </li>
+                </ul>
+              </div>
+
               <div className="flex flex-wrap gap-2">
-                {['Kubernetes', 'Docker', 'Jenkins', 'AWS ECS', 'Git'].map((skill) => (
-                  <span key={skill} className="px-3 py-1 bg-orange-100 text-orange-700 rounded text-sm">
-                    {skill}
+                {['eGovFramework', 'MyBatis', 'jQuery', 'MySQL', 'Docker', 'Jenkins'].map((tech) => (
+                  <span key={tech} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded font-medium">
+                    {tech}
                   </span>
                 ))}
               </div>
@@ -125,41 +143,129 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Key Achievements */}
-        <section className="mb-12 border-t pt-8">
-          <h2 className="text-2xl font-bold font-serif mb-6">주요 성과</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="border-l-4 border-teal-600 pl-4">
-              <h3 className="font-bold mb-2">성능 최적화</h3>
-              <p className="text-sm text-gray-600">
-                JPA 동작 원리를 깊이 이해하고 최적화하여 데이터 동기화 작업을 2시간에서 10초로 개선 (99% 향상)
-              </p>
+        {/* Tech Stack */}
+        <section className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <h2 className="text-3xl font-bold text-gray-900">기술 스택</h2>
+            <div className="flex-1 h-1 bg-gradient-to-r from-teal-500 to-transparent"></div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white rounded-lg p-6">
+              <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="text-xl">⚙️</span> Backend
+              </h3>
+              <div className="space-y-2">
+                {['Spring Boot', 'Spring Cloud', 'JPA/Hibernate', 'QueryDSL', 'MariaDB', 'Tibero', 'Redis'].map((skill) => (
+                  <div key={skill} className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-teal-500"></div>
+                    <span className="text-gray-700 text-sm">{skill}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="border-l-4 border-teal-600 pl-4">
-              <h3 className="font-bold mb-2">데이터 무결성</h3>
-              <p className="text-sm text-gray-600">
-                Saga 패턴과 Soft Reservation 도입으로 분산 시스템 환경에서도 데이터 일관성 100% 확보
-              </p>
+
+            <div className="bg-white rounded-lg p-6">
+              <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="text-xl">🎨</span> Frontend
+              </h3>
+              <div className="space-y-2">
+                {['Vue 3', 'TypeScript', 'TanStack Query', 'Ant Design', 'ES6+', 'jQuery'].map((skill) => (
+                  <div key={skill} className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                    <span className="text-gray-700 text-sm">{skill}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="border-l-4 border-teal-600 pl-4">
-              <h3 className="font-bold mb-2">배포 효율화</h3>
-              <p className="text-sm text-gray-600">
-                CI/CD 파이프라인 최적화로 배포 시간 40% 단축 및 팀의 민첩한 서비스 운영 지원
-              </p>
-            </div>
-            <div className="border-l-4 border-teal-600 pl-4">
-              <h3 className="font-bold mb-2">개발 문화</h3>
-              <p className="text-sm text-gray-600">
-                사내 스터디 운영으로 리팩토링, 단위 테스트, 코드 리뷰 문화 정착 및 기술 부채 감소
-              </p>
+
+            <div className="bg-white rounded-lg p-6">
+              <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <span className="text-xl">🚀</span> Infrastructure
+              </h3>
+              <div className="space-y-2">
+                {['Kubernetes (K8s)', 'Docker', 'AWS ECS/ECR', 'Jenkins', 'Git', 'AWS ALB'].map((skill) => (
+                  <div key={skill} className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500"></div>
+                    <span className="text-gray-700 text-sm">{skill}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
+        </section>
+
+        {/* Highlights */}
+        <section className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <h2 className="text-3xl font-bold text-gray-900">주요 성과</h2>
+            <div className="flex-1 h-1 bg-gradient-to-r from-teal-500 to-transparent"></div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            {[
+              {
+                title: '성능 최적화의 달인',
+                items: [
+                  'JPA N+1 문제 해결 및 Bulk Insert로 동기화 성능 99% 개선',
+                  'QueryDSL 도입으로 Native 쿼리 70% 제거 및 타입 안정성 확보'
+                ]
+              },
+              {
+                title: '분산 시스템 설계',
+                items: [
+                  'Saga 패턴과 Soft Reservation으로 100% 데이터 무결성 달성',
+                  'API Gateway 기반 JWT 중앙 인증으로 서비스 간 결합도 완화'
+                ]
+              },
+              {
+                title: '배포 자동화 전문가',
+                items: [
+                  'CI/CD 파이프라인 최적화로 배포 시간 40% 단축',
+                  'GitHub Actions + ECR로 인프라 비용 100% 절감'
+                ]
+              },
+              {
+                title: '팀 문화 리더',
+                items: [
+                  '사내 스터디 운영으로 코드 리뷰 문화 정착',
+                  'JUnit5 단위 테스트 도입으로 런타임 오류 원천 차단'
+                ]
+              },
+            ].map((section, idx) => (
+              <div key={idx} className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-lg p-6 border-l-4 border-teal-500">
+                <h3 className="font-bold text-gray-900 text-lg mb-3">{section.title}</h3>
+                <ul className="space-y-2">
+                  {section.items.map((item, itemIdx) => (
+                    <li key={itemIdx} className="flex gap-3 text-sm text-gray-700">
+                      <span className="text-teal-600 font-bold mt-1">✓</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="mb-12 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-lg p-12 text-center text-white">
+          <h2 className="text-3xl font-bold mb-4">함께 성장하는 팀을 찾고 있습니다</h2>
+          <p className="text-lg opacity-90 mb-6">
+            견고한 아키텍처와 건강한 개발 문화로 만드는 지속 가능한 시스템
+          </p>
+          <a
+            href="mailto:asdz453@gmail.com"
+            className="inline-block px-8 py-3 bg-white text-teal-600 font-bold rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            연락하기
+          </a>
         </section>
 
         {/* Footer */}
-        <section className="text-center py-8 border-t text-gray-600 text-sm">
+        <footer className="text-center py-8 border-t border-gray-200 text-gray-600 text-sm">
           <p>마지막 업데이트: {new Date().toLocaleDateString('ko-KR')}</p>
-        </section>
+        </footer>
       </div>
     </main>
   )
