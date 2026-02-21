@@ -1,22 +1,34 @@
 // ============================================================
 // 이력서 데이터 중앙 관리 파일
-// 이곳에서 모든 이력서 데이터를 수정하면 두 버전에 모두 반영됩니다.
+// 두 버전(라이트/다크) 모두 이 파일을 import합니다.
+// TODO 주석이 달린 항목은 직접 내용을 채워주세요.
 // ============================================================
 
 export const profile = {
   name: '노성웅',
   nameEn: 'Sungwoong Noh',
   title: 'Backend Engineer',
+  /** 총 경력 연수 — 업데이트 시 수동으로 조정 */
+  yearsOfExp: 4,
   tagline: '견고한 시스템 설계와 건강한 개발 문화로 지속 가능한 안정성을 만드는 개발자',
   email: 'asdz453@gmail.com',
   phone: '010-8866-3354',
-  github: 'https://github.com/sungwoong-noh',
+  /** TODO: 실제 GitHub URL 확인 후 수정 (현재 sungwoong-Noh 기준) */
+  github: 'https://github.com/sungwoong-Noh',
   githubHandle: 'sungwoong-Noh',
-  intro: `건강한 개발 문화에서 시작된 좋은 코드가 결국 시스템의 안정성을 결정한다고 믿습니다.
-팀 내 코드리뷰와 테스트 코드를 도입하여 기술 부채를 관리하고, 동료 누구나 구조와 흐름을 쉽게 이해할 수 있는 명료한 코드 베이스를 만드는 데 집중해 왔습니다.
-DB 조회 성능을 최적화하고 WAS 단의 동기화 로직을 개선하는 등 집요하게 성능을 튜닝하여 대용량 데이터 환경에서도 흔들림 없는 시스템을 증명해 왔습니다.`,
+  /** TODO: LinkedIn URL이 있다면 채워주세요. 없으면 null 유지 */
+  linkedin: null as string | null,
+  /**
+   * intro — 화면에 표시되는 자기소개 본문.
+   * 현재는 임팩트 있는 경험 기반으로 작성됨.
+   * 본인의 언어로 더 다듬고 싶은 부분이 있으면 직접 수정.
+   */
+  intro: `2시간이 걸리던 데이터 동기화를 10초로 줄인 경험처럼, 저는 문제의 근본 원인을 찾아 시스템 전체를 바꾸는 것을 즐깁니다.
+단순히 기능을 구현하는 것을 넘어 로그와 실행계획을 분석해 병목을 찾고, JPA 내부 동작을 이해하여 쿼리 구조를 재설계하는 방식으로 성능을 개선해 왔습니다.
+코드 품질도 같은 철학으로 접근합니다. 팀 내 QueryDSL 도입, 단위 테스트 문화 정착, 코드 리뷰 체계 수립을 주도하며 기술 부채를 줄이고 동료 모두가 신뢰할 수 있는 코드베이스를 만드는 데 집중해 왔습니다.`,
 }
 
+// ─── Core Values ──────────────────────────────────────────────
 export type CoreValue = {
   icon: string
   title: string
@@ -45,6 +57,7 @@ export const coreValues: CoreValue[] = [
   },
 ]
 
+// ─── Working Style ────────────────────────────────────────────
 export type WorkingStyle = {
   icon: string
   title: string
@@ -69,6 +82,7 @@ export const workingStyles: WorkingStyle[] = [
   },
 ]
 
+// ─── Key Achievements ─────────────────────────────────────────
 export type Achievement = {
   metric: string
   unit: string
@@ -90,10 +104,10 @@ export const achievements: Achievement[] = [
     detail: 'p95 17초 → 3초 (실행계획·인덱스 최적화)',
   },
   {
-    metric: '40',
+    metric: '90',
     unit: '%',
-    description: 'CI/CD 배포 시간 단축',
-    detail: 'GitHub Actions + ECR 파이프라인 최적화',
+    description: '운영 워크로드 절감',
+    detail: 'Self-Service API 자동화 (월 50건 → 5건)',
   },
   {
     metric: '100',
@@ -103,6 +117,13 @@ export const achievements: Achievement[] = [
   },
 ]
 
+// ─── Experience ───────────────────────────────────────────────
+export type Project = {
+  name: string
+  period: string
+  achievements: string[]
+}
+
 export type Experience = {
   company: string
   position: string
@@ -111,11 +132,7 @@ export type Experience = {
   description: string
   highlights: string[]
   techStack: string[]
-  projects: {
-    name: string
-    period: string
-    achievements: string[]
-  }[]
+  projects: Project[]
 }
 
 export const experiences: Experience[] = [
@@ -123,44 +140,51 @@ export const experiences: Experience[] = [
     company: '오케스트로주식회사',
     position: '선임연구원 · 클라우드 서비스 본부',
     period: '2023.10 ~ 현재',
-    duration: '2년 4개월',
+    duration: '2년 5개월',
     description:
       '국정자원 3개 시스템(nTOPS, RPMS, 통합포털) 통합 운영을 담당합니다. 요구사항 정제부터 아키텍처 설계, CI/CD, 관측성, 운영까지 전 흐름을 일원화하여 주도하고 있습니다.',
     highlights: [
-      '데이터 동기화 2시간 → 10초 (99% 향상)',
-      'p95 응답시간 17초 → 3초 (82% 개선)',
+      '데이터 동기화 2시간 → 10초 (99% 향상, JPA N+1·Bulk Insert)',
+      'p95 응답시간 17초 → 3초 (Tibero 실행계획·인덱스 최적화)',
       '인시던트 12건 → 5건/주 지속 감소',
-      '팀 내 최초 QueryDSL 도입으로 Native 쿼리 70% 제거',
+      '국정자원 업무 리드타임 5일 → 3일 단축',
+      '팀 내 최초 QueryDSL 도입 · Native 쿼리 70% 제거 · 유지보수 비용 50% 절감',
     ],
-    techStack: ['Spring Boot', 'JPA', 'QueryDSL', 'Kubernetes', 'Vue 3', 'Tibero', 'MariaDB', 'Redis', 'Jenkins'],
+    techStack: [
+      'Spring Boot', 'JPA', 'QueryDSL', 'Kubernetes', 'Vue 3',
+      'TanStack Query', 'Ant Design', 'Tibero', 'MariaDB', 'Redis', 'Jenkins',
+    ],
     projects: [
       {
         name: '국정자원 통합 운영유지보수',
         period: '2025.07 ~ 진행중',
         achievements: [
-          'RPMS·통합포털·ITSM 3개 시스템 통합운영 체계화',
-          'Tibero 실행계획·힌트/인덱스 최적화로 p95 17초 → 3초',
-          '월 30건+ 운영 이슈 개선으로 리드타임 단축 및 재발률 감소',
+          'RPMS·통합포털·ITSM 3개 시스템 통합운영 체계화 (End-to-End 운영 체계 정립)',
+          'Tibero 실행계획·힌트/인덱스 최적화로 핵심 조회 p95 17초 → 3초',
+          '월 30건+ 운영 이슈 개선 · 처리 리드타임 단축 및 재발률 감소',
+          'ITSM 오류 개선·신규 기능 개발로 인시던트 12건 → 5건/주',
         ],
       },
       {
         name: 'CSP 멀티테넌트 네트워크 상품 개발 (PPP Cloud)',
         period: '2024.08 ~ 2025.06',
         achievements: [
-          '풀스택 리드 개발자로 참여하여 컨벤션·공통 모듈/에러 표준화에 기여',
-          '보상 트랜잭션(Saga) 적용으로 장비 설정충돌 오류 0건 달성',
-          '팀 내 최초 단위테스트 도입으로 개발 속도 30% 향상',
-          'Self-Service API로 수동 운영 워크로드 90% 절감 (월 50건 → 5건)',
+          '풀스택 리드 개발자로 컨벤션·공통 모듈·에러 표준화 주도',
+          'Saga 패턴 기반 보상 트랜잭션으로 장비 설정충돌 오류 0건 달성',
+          'Self-Service API 전환으로 수동 운영 워크로드 90% 절감 (월 50건 → 5건)',
+          '팀 내 최초 JUnit5 단위테스트 도입 · 개발 속도 30% 향상 · 설정오류 0건',
+          '코드 재사용성 60% 향상 (공통 모듈화)',
         ],
       },
       {
         name: '자산계획 시스템 설계/개발 및 운영 (RPMS)',
         period: '2024.01 ~ 2025.06',
         achievements: [
-          'SpringBoot, JPA, MariaDB, K8s, Vue.js 기반 End-to-End 개발',
-          'JPA N+1, Bulk Insert 최적화로 데이터 동기화 성능 99% 개선',
-          '팀 내 최초 QueryDSL 도입으로 Native 쿼리 70% 이상 제거',
-          '폐쇄망 K8s 개발 클러스터와 미들웨어 재구축 및 배포 자동화',
+          'SpringBoot, JPA, MariaDB, K8s, Vue.js 기반 End-to-End 설계·개발·운영',
+          'JPA N+1 · Bulk Insert 최적화 → 데이터 동기화 99% 개선 (2시간 → 10초)',
+          '업무 리드타임 5일 → 3일 단축',
+          '팀 내 최초 QueryDSL 도입 · Native 쿼리 70%+ 제거 · 유지보수 비용 50% 절감',
+          '폐쇄망 K8s 개발 클러스터·미들웨어 재구축 및 Jenkins·Helm 배포 자동화',
         ],
       },
     ],
@@ -173,44 +197,48 @@ export const experiences: Experience[] = [
     description:
       'SI 기술개발팀 풀스택 개발자로 합류해 납기 환경을 템플릿·공통·CI/CD로 표준화/자동화하고, 설계–개발–운영 전 주기를 주도해 유지보수성과 성능을 지속 개선했습니다.',
     highlights: [
-      'Jenkins 기반 배포 자동화로 배포 빈도 7일 → 1일',
-      'Tiles 프레임워크 도입으로 신규 페이지 리드타임 2일 → 0.5일',
-      '중복 코드 65% → 10% 감소',
-      '데이터 마이그레이션 무결성 100% 유지 (1,000만 건)',
+      'Jenkins 기반 배포 자동화 · 배포 빈도 7일 → 1일',
+      'Tiles 프레임워크 도입 · 중복 코드 65% → 10% · 페이지 리드타임 2일 → 0.5일',
+      'SMS 서비스 DB 이관 · 1,000만 건 무결성 100% 유지 · p95 5초 → 0.9초',
     ],
-    techStack: ['eGovFramework', 'MyBatis', 'MySQL', 'JSP', 'jQuery', 'Docker', 'Jenkins'],
+    techStack: ['eGovFramework', 'MyBatis', 'MySQL', 'JSP', 'jQuery', 'Fast API', 'Docker', 'Jenkins', 'SVN'],
     projects: [
       {
         name: '동구청 과학행사 신청 플랫폼',
         period: '2023.07 ~ 2023.10',
         achievements: [
-          'eGovFramework 기반 3개월 내 Full-stack 개발 및 런칭',
-          '임시예약(Soft Reservation)으로 이중 신청 0건 달성',
-          'NICE 본인인증 + OAuth 2.0 SNS 로그인 구현',
+          'eGovFramework 기반 3개월 내 Full-stack 개발 및 안정적 런칭',
+          '임시예약(Soft Reservation) 전략으로 동시성 이슈 방지 · 이중 신청 0건',
+          'NICE 본인인증 모듈 + OAuth 2.0 SNS 로그인 구현 · 회원관리 표준화',
+          '직관적인 행사 관리 어드민 페이지 구축',
         ],
       },
       {
         name: '충남도청 SMS 서비스 DB 이관',
         period: '2023.03 ~ 2023.05',
         achievements: [
-          'OS 설치 → 데이터 마이그레이션 → 장비 납품까지 전 과정 수행',
-          'p95 5초 → 0.9초, CPU 사용률 65% → 40% 개선',
-          '1,000만 건 데이터 무결성 100% 유지',
+          'OS 설치 → 데이터 마이그레이션 → 장비 납품까지 전 과정 일괄 수행',
+          '1,000만 건 대용량 데이터 무결성 100% 유지',
+          'p95 5초 → 0.9초 · CPU 사용률 65% → 40% 개선',
+          '물리적 장애 포인트 제거 · 시스템 다운타임 발생률 제로화',
         ],
       },
       {
         name: '한전 위험성 평가기반 자율안전 솔루션',
         period: '2022.02 ~ 2023.10',
         achievements: [
-          'GIS 기반 실시간 모니터링 및 메타데이터 관리 백엔드 개발',
-          'Jenkins CI/CD 구축으로 배포 빈도 7일 → 1일',
-          '2022 BIXPO 기술 시연 성공',
+          'GIS 기반 실시간 모니터링 대시보드 · 메타데이터 관리 백엔드 개발',
+          'jsPDF 기반 보고서 생성 API 서비스화 · 모바일/웹 동일 품질 PDF 제공',
+          'Tiles 프레임워크 도입 · 중복 코드 65% → 10%',
+          'Jenkins CI/CD 구축 · 배포 빈도 7일 → 1일 · 휴먼에러 제거',
+          '2022 BIXPO 기술 시연 성공 및 연구과제 성과 기여',
         ],
       },
     ],
   },
 ]
 
+// ─── Skills ───────────────────────────────────────────────────
 export type SkillCategory = {
   category: string
   icon: string
@@ -237,6 +265,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Redis', level: 'proficient' },
       { name: 'eGovFramework', level: 'proficient' },
       { name: 'MyBatis', level: 'proficient' },
+      { name: 'PostgreSQL', level: 'familiar' },
     ],
   },
   {
@@ -265,6 +294,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'GitHub Actions', level: 'proficient' },
       { name: 'Harbor', level: 'familiar' },
       { name: 'HashiCorp Vault', level: 'familiar' },
+      { name: 'Helm', level: 'familiar' },
     ],
   },
   {
@@ -281,6 +311,57 @@ export const skillCategories: SkillCategory[] = [
   },
 ]
 
+// ─── Education ────────────────────────────────────────────────
+export type Education = {
+  school: string
+  degree: string
+  major: string
+  period: string
+  /** TODO 플래그: true면 화면에 "내용을 채워주세요" 표시 */
+  todo?: boolean
+}
+
+export const educations: Education[] = [
+  {
+    /** TODO: 학교명을 채워주세요 */
+    school: 'TODO: 학교명',
+    /** TODO: 학위를 채워주세요 (예: 학사) */
+    degree: 'TODO: 학위',
+    /** TODO: 전공을 채워주세요 (예: 컴퓨터공학) */
+    major: 'TODO: 전공',
+    /** TODO: 재학/졸업 기간을 채워주세요 (예: 2017.03 ~ 2021.02) */
+    period: 'TODO: 기간',
+    todo: true,
+  },
+]
+
+// ─── Certifications / Education Programs ──────────────────────
+export type Certification = {
+  name: string
+  organization: string
+  period: string
+  description: string
+  achievements: string[]
+  todo?: boolean
+}
+
+export const certifications: Certification[] = [
+  {
+    name: 'InnerCircle 백엔드 4기',
+    organization: '패스트캠퍼스',
+    period: '2025.06 ~ 2025.09',
+    description:
+      '커머스, 핀테크, O2O 등 다양한 도메인의 현업 멘토님들과 진행된 백엔드 부트캠프. 프로젝트 기반으로 코드 품질과 문제 해결 능력을 향상했습니다.',
+    achievements: [
+      'CIDR Validator 라이브러리 직접 구현 및 Jitpack 활용한 퍼블리싱',
+      '현업 멘토(핀테크·O2O·커머스)와 요구사항 정제, 핵심 문제 정의 및 우선순위 수립',
+      '도메인 모델링 (유즈케이스·ERD·시퀀스·상태 다이어그램) 및 경계(BC) 설계',
+      'JUnit5·Testcontainers로 단위/통합 테스트 구축, 코드리뷰·리팩토링 사이클 운영',
+    ],
+  },
+]
+
+// ─── Side Projects & Activities ──────────────────────────────
 export type SideProject = {
   name: string
   period: string
@@ -299,24 +380,39 @@ export const sideProjects: SideProject[] = [
       '대규모 트래픽·고성능 검색·동시성·유연한 상품 모델링 요구에 대응하는 통합 커머스 프로젝트 설계 및 개발.',
     achievements: [
       'AWS ECS 기반 MSA Auto-scaling 인프라 설계 및 구축',
-      'GitHub Actions + ECR CI/CD로 배포 시간 40% 단축 및 비용 100% 절감',
-      'JWT 무상태 인증 + API Gateway 중앙 인증으로 서비스 간 결합도 완화',
-      'Zipkin 분산 추적(B3 전파)으로 병목/오류 지점 식별 속도 개선',
-      '토큰 버킷 Rate Limiting으로 스파이크 트래픽 완화',
+      'GitHub Actions + ECR CI/CD 구축 · 배포 시간 40% 단축 · 인프라 비용 100% 절감',
+      'JWT 무상태 인증 + API Gateway 중앙 인증 · 서비스 간 결합도 완화',
+      'Zipkin 분산 추적(B3 전파) · 병목/오류 지점 식별 속도 개선',
+      '토큰 버킷 Rate Limiting · 스파이크 트래픽 완화 및 다운스트림 보호',
     ],
     techStack: ['Spring Boot', 'Spring Cloud', 'JPA', 'PostgreSQL', 'AWS ECS', 'GitHub Actions', 'Zipkin', 'Grafana'],
   },
   {
-    name: 'TechGate (검색엔진 스터디)',
+    name: 'TechGate — 검색엔진 스터디',
     period: '2025.09 ~ 2025.10',
     organization: '개인 프로젝트',
     description:
-      'RDB·Redis·Elasticsearch 비교 벤치마크 후, Elasticsearch 기반으로 10M 상품 데이터 검색 엔진 구현.',
+      'RDB·Redis·Elasticsearch 비교 벤치마크를 통해 Elasticsearch 기반 10M 상품 검색 엔진을 설계·구현. 검색 품질과 응답 속도를 동시에 개선.',
     achievements: [
-      '10M 상품 기준 k6 부하 테스트에서 p95 60,000ms → 130ms',
-      '한국어 형태소 분석(Nori), 오타 허용(fuzziness), 동의어 적용으로 검색 품질 개선',
-      'Nori·prefix·fuzziness·캐시 조합으로 오타/복합어에 강한 자동완성 구현',
+      '10M 상품 기준 k6(10 VU) 테스트에서 p95 60,000ms → 130ms',
+      'Elasticsearch 도입 · MySQL 대비 지연을 임계치(p95 < 600ms, 실패율 < 1%) 이내로 개선',
+      '한국어 형태소 분석(Nori) · 오타 허용(fuzziness) · 동의어 적용 · 검색 품질 향상',
+      'Nori·prefix·fuzziness·부스팅·캐시 조합 · 오타/복합어에 강한 자동완성 구현',
     ],
     techStack: ['Spring Boot', 'MySQL', 'Redis', 'ElasticSearch', 'Docker', 'Grafana', 'Prometheus', 'k6'],
+  },
+  {
+    name: '오케스트로 사내 스터디 기획·운영',
+    period: '2025.05 ~ 2025.08',
+    organization: '오케스트로주식회사 사내',
+    description:
+      '성능 개선 사례 공유·알고리즘 실습·개발 서적 리딩을 정례화. 현업 개선 사례를 표준 지식으로 전파해 팀 생산성과 코드 품질을 향상했습니다.',
+    achievements: [
+      '주 1회(4개월) · 평균 참여율 75% · 발표자 순환제 운영',
+      '\'데이터 동기화 2시간 → 10초\' 등 성능 개선 사례를 RCA → 해결 전략 → 벤치마크 → 체크리스트로 문서화 · 유사 과제 리드타임 50% 단축',
+      '이펙티브 자바·JPA 서적 리딩 결과를 규약·코딩 컨벤션·리뷰 체크리스트로 정립',
+      '노션/위키 저장소 구축 (가이드·체크리스트·런북) · 검색·재사용성 향상',
+    ],
+    techStack: [],
   },
 ]
