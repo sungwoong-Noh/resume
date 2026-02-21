@@ -136,9 +136,30 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
+    company: '플랜아이(PlanAI)',
+    position: 'System Engineer',
+    period: '2026.02 ~ 현재',
+    duration: '신입',
+    description:
+      'System Engineer로 입사하여 인프라 및 시스템 운영 업무를 담당하고 있습니다.',
+    highlights: [
+      '✏️ 현업에서 성과를 쌓는 중입니다. 기여 사항이 생기면 업데이트 예정',
+    ],
+    techStack: [],
+    projects: [
+      {
+        name: '✏️ 진행 중인 프로젝트',
+        period: '2026.02 ~',
+        achievements: [
+          '구체적인 성과는 추후 추가될 예정입니다.',
+        ],
+      },
+    ],
+  },
+  {
     company: '오케스트로주식회사',
     position: '선임연구원 · 클라우드 서비스 본부',
-    period: '2023.10 ~ 현재',
+    period: '2023.10 ~ 2026.02',
     duration: '2년 5개월',
     description:
       '국정자원 3개 시스템(nTOPS, RPMS, 통합포털) 통합 운영을 담당합니다. 요구사항 정제부터 아키텍처 설계, CI/CD, 관측성, 운영까지 전 흐름을 일원화하여 주도하고 있습니다.',
