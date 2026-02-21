@@ -1,6 +1,18 @@
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      {/* Version switcher */}
+      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-gray-200">
+        <div className="max-w-5xl mx-auto px-6 h-12 flex items-center justify-between">
+          <span className="text-sm font-semibold text-gray-700">노성웅 이력서</span>
+          <a
+            href="/creative"
+            className="text-xs px-3 py-1.5 bg-gray-900 text-white rounded-lg hover:bg-gray-700 transition font-medium"
+          >
+            ✨ 화려한 버전 보기
+          </a>
+        </div>
+      </div>
       <div className="max-w-5xl mx-auto px-6 py-12 md:py-16">
 
         {/* Hero Header */}

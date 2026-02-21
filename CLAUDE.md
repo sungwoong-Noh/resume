@@ -3,95 +3,110 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## 프로젝트 개요
-Vercel에 배포되는 개인 이력서 포트폴리오 프로젝트. Next.js 기반의 정적 사이트로 빠른 로딩, SEO 최적화, 간편한 배포를 지원합니다.
 
-## 개발 환경 설정
+Vercel에 배포되는 개인 이력서 포트폴리오 (Next.js 14 App Router + TypeScript + Tailwind CSS).
+두 가지 버전의 이력서가 존재하며 하나의 데이터 파일에서 공통으로 관리된다.
 
-### 필수 요구사항
-- Node.js 18.17 이상
-- npm 또는 yarn
+## 두 가지 이력서 버전
 
-### 개발 서버 실행
-```bash
-npm run dev
-# localhost:3000에서 실시간 확인
+| URL | 파일 | 특징 |
+|-----|------|------|
+| `/` | `app/page.tsx` | 밝은 배경, 클린한 레이아웃, PDF 출력 최적화 |
+| `/creative` | `app/creative/page.tsx` | 다크 테마, 수치 강조, 화려한 UI, 인터랙티브 |
+
+## 데이터 중앙 관리
+
+**`data/resume.ts`** 에서 모든 이력서 데이터를 관리한다.
+두 페이지 모두 이 파일을 import하므로, **내용 수정은 이 파일만 수정하면 된다.**
+
+```
+data/resume.ts
+  └── profile          // 기본 정보 (이름, 이메일, GitHub 등)
+  └── coreValues       // 핵심 가치관 3가지
+  └── workingStyles    // 업무 스타일
+  └── achievements     // 주요 수치 성과
+  └── experiences      // 경력 및 프로젝트 상세
+  └── skillCategories  // 기술 스택 (카테고리 + 레벨)
+  └── sideProjects     // 사이드 프로젝트 / 대외활동
 ```
 
-### 프로덕션 빌드
+## 개발 명령어
+
 ```bash
-npm run build
-npm start
+npm run dev      # 개발 서버 (localhost:3000)
+npm run build    # 프로덕션 빌드
+npm run lint     # ESLint 검사
 ```
 
-### 배포 (Vercel)
-```bash
-# Vercel CLI 설치 (처음 한 번만)
-npm i -g vercel
+## 배포 (Vercel)
 
-# 배포
-vercel deploy --prod
+```bash
+npm i -g vercel          # Vercel CLI 설치 (최초 1회)
+vercel deploy --prod     # 프로덕션 배포
 ```
-GitHub 연결 시 자동 배포 가능.
+
+GitHub push 시 Vercel 자동 배포 가능 (권장).
 
 ## 프로젝트 구조
 
 ```
 resume/
-├── app/                    # Next.js App Router
-│   ├── page.tsx           # 메인 이력서 페이지
-│   ├── layout.tsx         # 전체 레이아웃
-│   └── globals.css        # 전역 스타일
-├── components/            # 재사용 가능한 컴포넌트
-│   ├── Header.tsx         # 상단 헤더/네비게이션
-│   ├── Experience.tsx     # 경력 섹션
-│   ├── Skills.tsx         # 기술 스택 섹션
-│   └── Projects.tsx       # 프로젝트 섹션
-├── public/                # 정적 자산 (이미지, 문서)
-├── package.json
-├── tsconfig.json
-├── next.config.js
-├── vercel.json            # Vercel 배포 설정
-└── README.md
+├── app/
+│   ├── page.tsx           # 클린 버전 이력서 (라이트 테마)
+│   ├── creative/
+│   │   └── page.tsx       # 화려한 버전 이력서 (다크 테마)
+│   ├── layout.tsx         # 루트 레이아웃 + SEO 메타데이터
+│   └── globals.css        # 전역 스타일 (Tailwind + 커스텀)
+├── data/
+│   └── resume.ts          # 이력서 데이터 + 타입 정의 (단일 진실 소스)
+├── components/            # 재사용 컴포넌트 (추후 분리 시 활용)
+├── public/                # 정적 자산 (이미지, PDF 등)
+├── tailwind.config.js
+├── tsconfig.json          # @/* path alias 설정됨
+└── vercel.json
 ```
 
-## 이력서 데이터 구조
+## 기술 스택
 
-이력서 데이터는 다음과 같이 구성:
-- **개인정보**: 이름, 이메일, 전화, 위치, 링크 (GitHub, LinkedIn, 포트폴리오)
-- **경력**: 회사명, 직책, 기간, 주요 업무
-- **기술 스택**: 언어, 프레임워크, 도구 (태그 형식)
-- **프로젝트**: 프로젝트명, 설명, 기술 스택, 링크
-- **교육**: 학교, 학위, 전공, 졸업 연도
+| 영역 | 기술 |
+|------|------|
+| Framework | Next.js 14 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v3 |
+| 폰트 | Google Fonts (Inter) |
+| 배포 | Vercel |
 
-데이터는 컴포넌트 내 상수로 관리하거나, 별도의 `data/resume.ts` 파일에서 중앙관리 가능.
+## 스킬 레벨 정의 (data/resume.ts)
 
-## 디자인 및 스타일링
+`skillCategories` 배열의 각 스킬에 `level` 속성으로 숙련도를 정의한다.
 
-- **CSS 프레임워크**: Tailwind CSS (기본 설정)
-- **글꼴**: Google Fonts 추천 (예: Inter, Playfair Display)
-- **색상 팔레트**: 전문성 있는 톤 (검정/흰색/강조색)
-- **인쇄 최적화**: CSS `@media print` 활용하여 PDF 출력 시 깔끔한 레이아웃 보장
-- **반응형 디자인**: 모바일/태블릿/데스크톱 모두 지원
+| level | 표시 | 의미 |
+|-------|------|------|
+| `expert` | `[주력]` | 업무에서 적극 활용, 깊은 이해 보유 |
+| `proficient` | `[활용]` | 실무 프로젝트에서 사용 |
+| `familiar` | `[경험]` | 경험 보유, 필요 시 활용 가능 |
+| (없음) | — | 단순 나열 |
 
-## 이력서 검토 및 배포 워크플로우
+## 주요 수정 시나리오
 
-1. **로컬 개발**: `npm run dev`로 변경사항 실시간 확인
-2. **인쇄 미리보기**: 브라우저 인쇄 기능(Ctrl+P)으로 PDF 확인
-3. **변경사항 저장**: 주요 업데이트 후 커밋
-4. **Vercel 배포**: `vercel deploy --prod`로 라이브 배포
-5. **URL 공유**: Vercel 자동 생성 URL(예: resume-xxx.vercel.app)로 이력서 공유
+### 이력서 내용 수정
+`data/resume.ts` 수정 → 두 페이지에 자동 반영
 
-## 주요 고려사항
+### 라이트 버전 레이아웃 변경
+`app/page.tsx` 수정
 
-- **파일 크기**: 이미지는 최적화하여 로딩 속도 유지
-- **SEO**: meta 태그, Open Graph 설정으로 공유 시 미리보기 제공
-- **접근성**: 적절한 heading 계층, alt 텍스트, 충분한 색상 대비
-- **다크 모드**: 선택적으로 dark mode 지원 고려
-- **PDF 다운로드**: 이력서 PDF 다운로드 기능 구현 가능 (html2pdf 라이브러리)
+### 다크 버전 레이아웃 변경
+`app/creative/page.tsx` 수정
+
+### PDF 출력 스타일 조정
+`app/globals.css` → `@media print` 블록 수정
+
+### SEO/메타데이터 변경
+`app/layout.tsx` → `metadata` 객체 수정
 
 ## 배포 후 확인 사항
 
-- 모든 링크 정상 작동 확인
-- 이미지 로딩 확인
-- 모바일 환경 테스트
-- 인쇄/PDF 출력 레이아웃 확인
+- `/` 와 `/creative` 페이지 양쪽 모두 확인
+- 버전 전환 링크 정상 작동 확인
+- 모바일 환경 레이아웃 확인
+- 인쇄(Ctrl+P) 시 `/` 라이트 버전 레이아웃 확인

@@ -17,6 +17,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@/*": ["./*"]
+    },
     "incremental": true,
     "plugins": [
       {
