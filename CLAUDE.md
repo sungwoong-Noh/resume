@@ -7,17 +7,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Vercel에 배포되는 개인 이력서 포트폴리오 (Next.js 14 App Router + TypeScript + Tailwind CSS).
 두 가지 버전의 이력서가 존재하며 하나의 데이터 파일에서 공통으로 관리된다.
 
-## 두 가지 이력서 버전
+## 이력서 버전
 
 | URL | 파일 | 특징 |
 |-----|------|------|
-| `/` | `app/page.tsx` | 밝은 배경, 클린한 레이아웃, PDF 출력 최적화 |
-| `/creative` | `app/creative/page.tsx` | 다크 테마, 수치 강조, 화려한 UI, 인터랙티브 |
+| `/` | `app/page.tsx` | 다크 테마, 수치 강조, 화려한 UI, 인터랙티브 |
 
 ## 데이터 중앙 관리
 
 **`data/resume.ts`** 에서 모든 이력서 데이터를 관리한다.
-두 페이지 모두 이 파일을 import하므로, **내용 수정은 이 파일만 수정하면 된다.**
+**내용 수정은 이 파일만 수정하면 된다.**
 
 ```
 data/resume.ts
@@ -40,21 +39,41 @@ npm run lint     # ESLint 검사
 
 ## 배포 (Vercel)
 
+### ⚠️ 루트 디렉토리 설정
+**저장소 루트 디렉토리를 그대로 유지하세요.** `app/` 디렉토리로 변경하면 안 됩니다.
+- `app/` 는 Next.js App Router 디렉토리일 뿐, 프로젝트 루트가 아님
+- Vercel은 `package.json`과 `next.config.js` 위치로 프로젝트 루트를 자동 감지
+
+### Vercel CLI로 배포
 ```bash
 npm i -g vercel          # Vercel CLI 설치 (최초 1회)
 vercel deploy --prod     # 프로덕션 배포
 ```
 
-GitHub push 시 Vercel 자동 배포 가능 (권장).
+### GitHub 연동 배포 (권장)
+1. GitHub에 저장소 push
+2. https://vercel.com → "New Project" 클릭
+3. GitHub 리포지토리 선택 → Import
+4. **Root Directory: 자동 감지** (수정하지 않음)
+5. Deploy 클릭
+
+### vercel.json 설명
+현재 설정:
+```json
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install"
+}
+```
+이 설정이 맞으므로 수정 불필요합니다.
 
 ## 프로젝트 구조
 
 ```
 resume/
 ├── app/
-│   ├── page.tsx           # 클린 버전 이력서 (라이트 테마)
-│   ├── creative/
-│   │   └── page.tsx       # 화려한 버전 이력서 (다크 테마)
+│   ├── page.tsx           # 이력서 페이지 (다크 테마, 화려한 UI)
 │   ├── layout.tsx         # 루트 레이아웃 + SEO 메타데이터
 │   └── globals.css        # 전역 스타일 (Tailwind + 커스텀)
 ├── data/
@@ -90,13 +109,10 @@ resume/
 ## 주요 수정 시나리오
 
 ### 이력서 내용 수정
-`data/resume.ts` 수정 → 두 페이지에 자동 반영
+`data/resume.ts` 수정 → 페이지에 자동 반영
 
-### 라이트 버전 레이아웃 변경
+### 레이아웃 변경
 `app/page.tsx` 수정
-
-### 다크 버전 레이아웃 변경
-`app/creative/page.tsx` 수정
 
 ### PDF 출력 스타일 조정
 `app/globals.css` → `@media print` 블록 수정
@@ -106,7 +122,6 @@ resume/
 
 ## 배포 후 확인 사항
 
-- `/` 와 `/creative` 페이지 양쪽 모두 확인
-- 버전 전환 링크 정상 작동 확인
+- `/` 페이지 정상 렌더링 확인
 - 모바일 환경 레이아웃 확인
-- 인쇄(Ctrl+P) 시 `/` 라이트 버전 레이아웃 확인
+- 인쇄(Ctrl+P) 시 레이아웃 확인
