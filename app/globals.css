@@ -55,22 +55,17 @@ a {
     transition: none !important;
   }
 
-  body,
-  main {
-    background: white !important;
-    color: #000 !important;
-  }
-
-  a {
-    color: #0d9488 !important;
-    text-decoration: underline;
-  }
-
-  .no-print,
+  /* Hide nav and decorative blurs */
   nav {
     display: none !important;
   }
 
+  .blur-3xl,
+  .blur-2xl {
+    display: none !important;
+  }
+
+  /* Page break control */
   h1, h2, h3 {
     page-break-after: avoid;
   }
@@ -79,68 +74,11 @@ a {
     page-break-inside: avoid;
   }
 
-  /* Reset all dark backgrounds to white */
-  [class*="bg-gray-"],
-  [class*="bg-teal-"],
-  [class*="bg-cyan-"],
-  [class*="bg-emerald-"],
-  [class*="bg-amber-"],
-  [class*="bg-gradient"] {
-    background: white !important;
-    box-shadow: none !important;
-  }
-
-  /* Borders: keep subtle for structure */
-  [class*="border-gray-"],
-  [class*="border-teal-"] {
-    border-color: #e5e7eb !important;
-  }
-
-  /* All text to dark for readability */
-  [class*="text-gray-"],
-  [class*="text-white"] {
-    color: #111 !important;
-  }
-
-  /* Accent text stays teal for visual hierarchy */
-  [class*="text-teal-"],
-  [class*="text-cyan-"],
-  [class*="text-emerald-"] {
-    color: #0d9488 !important;
-  }
-
-  /* Gradient text (name) needs solid color for print */
-  .bg-clip-text {
-    -webkit-text-fill-color: #0d9488 !important;
-    color: #0d9488 !important;
-  }
-
-  /* Blur decorations hidden */
-  .blur-3xl,
-  .blur-2xl {
-    display: none !important;
-  }
-
-  /* Skill badges */
-  [class*="bg-teal-400"] {
-    background: #ccfbf1 !important;
-    color: #0d9488 !important;
-  }
-
-  [class*="bg-teal-900"] {
-    background: #f0fdfa !important;
-    color: #0d9488 !important;
-  }
-
-  /* Tech stack tags */
-  [class*="bg-gray-700"] {
-    background: #f3f4f6 !important;
-    color: #374151 !important;
-  }
-
-  /* Teal dots */
-  [class*="bg-teal-500"] {
-    background: #0d9488 !important;
+  /* Print-safe colors: -webkit-print-color-adjust ensures backgrounds print */
+  body,
+  main {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   /* Print padding adjustments */

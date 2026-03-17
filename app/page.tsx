@@ -59,7 +59,7 @@ export default function Home() {
         <div className="relative max-w-6xl mx-auto">
           <div className="flex flex-wrap items-center gap-3 mb-4">
             <p className="text-teal-400 font-mono text-sm tracking-widest uppercase">Backend Engineer</p>
-            <span className="px-3 py-1 bg-teal-500/10 border border-teal-500/30 rounded-full text-teal-300 text-xs font-bold">
+            <span className="px-3 py-1 bg-teal-500/10 border border-teal-500/30 rounded-full text-teal-400 text-xs font-bold">
               {profile.yearsOfExp}년차
             </span>
           </div>
