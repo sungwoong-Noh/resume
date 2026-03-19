@@ -51,20 +51,21 @@ a {
 }
 
 @media print {
-  body {
-    background: white;
-    color: #000;
+  * {
+    transition: none !important;
   }
 
-  a {
-    color: #0d9488;
-    text-decoration: underline;
-  }
-
-  .no-print {
+  /* Hide nav and decorative blurs */
+  nav {
     display: none !important;
   }
 
+  .blur-3xl,
+  .blur-2xl {
+    display: none !important;
+  }
+
+  /* Page break control */
   h1, h2, h3 {
     page-break-after: avoid;
   }
@@ -73,13 +74,21 @@ a {
     page-break-inside: avoid;
   }
 
-  /* Optimize for print */
-  .bg-gradient-to-br,
-  .bg-gradient-to-r,
-  .shadow-sm,
-  .shadow-md {
-    box-shadow: none;
-    background: white;
-    border: 1px solid #e5e7eb;
+  /* Print-safe colors: -webkit-print-color-adjust ensures backgrounds print */
+  body,
+  main {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Print padding adjustments */
+  header {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  section {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
   }
 }

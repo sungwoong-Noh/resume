@@ -1,7 +1,6 @@
 // ============================================================
 // 이력서 데이터 중앙 관리 파일
 // 두 버전(라이트/다크) 모두 이 파일을 import합니다.
-// TODO 주석이 달린 항목은 직접 내용을 채워주세요.
 // ============================================================
 
 export const profile = {
@@ -9,11 +8,10 @@ export const profile = {
   nameEn: 'Sungwoong Noh',
   title: 'Backend Engineer',
   /** 총 경력 연수 — 업데이트 시 수동으로 조정 */
-  yearsOfExp: 4,
-  tagline: '견고한 시스템 설계와 건강한 개발 문화로 지속 가능한 안정성을 만드는 개발자',
+  yearsOfExp: 5,
+  tagline: '성능 병목을 끝까지 추적하고 팀이 신뢰할 수 있는 코드를 만드는 백엔드 개발자',
   email: 'asdz453@gmail.com',
   phone: '010-8866-3354',
-  /** TODO: 실제 GitHub URL 확인 후 수정 (현재 sungwoong-Noh 기준) */
   github: 'https://github.com/sungwoong-Noh',
   githubHandle: 'sungwoong-Noh',
   linkedin: 'https://www.linkedin.com/in/sunwoongnoh',
@@ -22,9 +20,10 @@ export const profile = {
    * 현재는 임팩트 있는 경험 기반으로 작성됨.
    * 본인의 언어로 더 다듬고 싶은 부분이 있으면 직접 수정.
    */
-  intro: `2시간이 걸리던 데이터 동기화를 10초로 줄인 경험처럼, 저는 문제의 근본 원인을 찾아 시스템 전체를 바꾸는 것을 즐깁니다.
+  intro: `레거시 시스템의 병목을 분석해 성능을 99% 개선한 경험처럼, 저는 문제의 근본 원인을 찾아 시스템 전체를 바꾸는 것을 즐깁니다.
 단순히 기능을 구현하는 것을 넘어 로그와 실행계획을 분석해 병목을 찾고, JPA 내부 동작을 이해하여 쿼리 구조를 재설계하는 방식으로 성능을 개선해 왔습니다.
-코드 품질도 같은 철학으로 접근합니다. 팀 내 QueryDSL 도입, 단위 테스트 문화 정착, 코드 리뷰 체계 수립을 주도하며 기술 부채를 줄이고 동료 모두가 신뢰할 수 있는 코드베이스를 만드는 데 집중해 왔습니다.`,
+코드 품질도 같은 철학으로 접근합니다. 팀 내 QueryDSL 도입, 단위 테스트 문화 정착, 코드 리뷰 체계 수립을 주도하며 기술 부채를 줄이고 동료 모두가 신뢰할 수 있는 코드베이스를 만드는 데 집중해 왔습니다.
+CSP 클라우드 개발과 AWS 기반 시스템 설계를 경험하며 인프라·운영 관점의 필요성을 체감했고, 현재는 System Engineer로서 그 시야를 넓히고 있습니다. 이 경험을 백엔드 개발에 다시 녹여 서비스 전체를 이해하는 개발자로 성장하고자 합니다.`,
 }
 
 // ─── Core Values ──────────────────────────────────────────────
@@ -139,19 +138,24 @@ export const experiences: Experience[] = [
     company: '플랜아이(PlanAI)',
     position: 'System Engineer',
     period: '2026.02 ~ 현재',
-    duration: '신입',
+    duration: '2개월',
     description:
-      'System Engineer로 입사하여 인프라 및 시스템 운영 업무를 담당하고 있습니다.',
+      'MSP 사업부에서 고객사 인프라 모니터링 체계 구축 및 시스템 운영 자동화를 담당하고 있습니다.',
     highlights: [
-      '✏️ 현업에서 성과를 쌓는 중입니다. 기여 사항이 생기면 업데이트 예정',
+      '기관별 모니터링 서버 구축 · CMP 보고서 자동 생성 연계',
+      'VictoriaMetrics 도입으로 Prometheus 수집 기간 30일 → 1년 확장',
+      'Ansible 기반 Exporter 설치·시스템 자원 조회 자동화',
     ],
-    techStack: [],
+    techStack: ['Prometheus', 'Grafana', 'VictoriaMetrics', 'Ansible'],
     projects: [
       {
-        name: '✏️ 진행 중인 프로젝트',
-        period: '2026.02 ~',
+        name: 'MSP 고객사 모니터링 체계 구축',
+        period: '2026.02 ~ 진행 중',
         achievements: [
-          '구체적인 성과는 추후 추가될 예정입니다.',
+          '기관별 Prometheus + Grafana 모니터링 서버 구축 · CMP 개발팀과 보고서 자동 생성 기능 연계',
+          'VictoriaMetrics 적용으로 Prometheus 메트릭 수집·보존 기간 30일 → 1년 확장',
+          'Ansible 활용 Exporter 일괄 설치 및 시스템 자원 조회 자동화로 운영 효율화',
+          'Claude MCP 기반 WAF 유해 IP 차단 요청 자동화 · 메일 수동 답장 → 단일 명령으로 처리',
         ],
       },
     ],
@@ -160,15 +164,15 @@ export const experiences: Experience[] = [
     company: '오케스트로주식회사',
     position: '선임연구원 · 클라우드 서비스 본부',
     period: '2023.10 ~ 2026.02',
-    duration: '2년 5개월',
+    duration: '2년 4개월',
     description:
-      '국정자원 3개 시스템(nTOPS, RPMS, 통합포털) 통합 운영을 담당합니다. 요구사항 정제부터 아키텍처 설계, CI/CD, 관측성, 운영까지 전 흐름을 일원화하여 주도하고 있습니다.',
+      '국정자원 3개 시스템(nTOPS, RPMS, 통합포털) 통합 운영을 담당했습니다. 요구사항 정제부터 아키텍처 설계, CI/CD, 관측성, 운영까지 전 흐름을 일원화하여 주도했습니다.',
     highlights: [
-      '데이터 동기화 2시간 → 10초 (99% 향상, JPA N+1·Bulk Insert)',
-      'p95 응답시간 17초 → 3초 (Tibero 실행계획·인덱스 최적화)',
+      '데이터 동기화 99% 개선 (2시간 → 10초)',
+      '핵심 조회 p95 응답시간 82% 개선 (17초 → 3초)',
       '인시던트 12건 → 5건/주 지속 감소',
       '국정자원 업무 리드타임 5일 → 3일 단축',
-      '팀 내 최초 QueryDSL 도입 · Native 쿼리 70% 제거 · 유지보수 비용 50% 절감',
+      'QueryDSL 도입 주도 · Native 쿼리 70% 제거',
     ],
     techStack: [
       'Spring Boot', 'JPA', 'QueryDSL', 'Kubernetes', 'Vue 3',
@@ -177,11 +181,11 @@ export const experiences: Experience[] = [
     projects: [
       {
         name: '국정자원 통합 운영유지보수',
-        period: '2025.07 ~ 진행중',
+        period: '2025.07 ~ 2026.02',
         achievements: [
           'RPMS·통합포털·ITSM 3개 시스템 통합운영 체계화 (End-to-End 운영 체계 정립)',
           'Tibero 실행계획·힌트/인덱스 최적화로 핵심 조회 p95 17초 → 3초',
-          '월 30건+ 운영 이슈 개선 · 처리 리드타임 단축 및 재발률 감소',
+          '월 30건+ 운영 이슈를 분류·우선순위화하여 재발률 감소 체계 구축',
           'ITSM 오류 개선·신규 기능 개발로 인시던트 12건 → 5건/주',
         ],
       },
@@ -193,24 +197,24 @@ export const experiences: Experience[] = [
           'Saga 패턴 기반 보상 트랜잭션으로 장비 설정충돌 오류 0건 달성',
           'Self-Service API 전환으로 수동 운영 워크로드 90% 절감 (월 50건 → 5건)',
           '팀 내 최초 JUnit5 단위테스트 도입 · 개발 속도 30% 향상 · 설정오류 0건',
-          '코드 재사용성 60% 향상 (공통 모듈화)',
+          '중복 코드 산재 문제를 공통 모듈로 통합하여 재사용성 60% 향상',
         ],
       },
       {
         name: '자산계획 시스템 설계/개발 및 운영 (RPMS)',
         period: '2024.01 ~ 2025.06',
         achievements: [
-          'SpringBoot, JPA, MariaDB, K8s, Vue.js 기반 End-to-End 설계·개발·운영',
+          'Spring Boot, JPA, MariaDB, Kubernetes(K8s), Vue.js 기반 End-to-End 설계·개발·운영',
           'JPA N+1 · Bulk Insert 최적화 → 데이터 동기화 99% 개선 (2시간 → 10초)',
-          '업무 리드타임 5일 → 3일 단축',
+          '요구사항 정제·반복 배포 자동화로 업무 리드타임 5일 → 3일 단축',
           '팀 내 최초 QueryDSL 도입 · Native 쿼리 70%+ 제거 · 유지보수 비용 50% 절감',
-          '폐쇄망 K8s 개발 클러스터·미들웨어 재구축 및 Jenkins·Helm 배포 자동화',
+          '폐쇄망 Kubernetes 개발 클러스터·미들웨어 재구축 및 Jenkins·Helm 배포 자동화',
         ],
       },
     ],
   },
   {
-    company: '주식회사에이직스',
+    company: '주식회사 에이직스',
     position: '주임 · SI기술개발',
     period: '2021.08 ~ 2023.10',
     duration: '2년 3개월',
@@ -221,16 +225,16 @@ export const experiences: Experience[] = [
       'Tiles 프레임워크 도입 · 중복 코드 65% → 10% · 페이지 리드타임 2일 → 0.5일',
       'SMS 서비스 DB 이관 · 1,000만 건 무결성 100% 유지 · p95 5초 → 0.9초',
     ],
-    techStack: ['eGovFramework', 'MyBatis', 'MySQL', 'JSP', 'jQuery', 'Fast API', 'Docker', 'Jenkins', 'SVN'],
+    techStack: ['eGovFramework', 'MyBatis', 'MySQL', 'JSP', 'jQuery', 'FastAPI', 'Docker', 'Jenkins', 'SVN'],
     projects: [
       {
         name: '동구청 과학행사 신청 플랫폼',
         period: '2023.07 ~ 2023.10',
         achievements: [
-          'eGovFramework 기반 3개월 내 Full-stack 개발 및 안정적 런칭',
+          'eGovFramework 기반 3개월 내 풀스택 개발 및 안정적 런칭',
           '임시예약(Soft Reservation) 전략으로 동시성 이슈 방지 · 이중 신청 0건',
           'NICE 본인인증 모듈 + OAuth 2.0 SNS 로그인 구현 · 회원관리 표준화',
-          '직관적인 행사 관리 어드민 페이지 구축',
+          '행사 등록·참가자 관리·통계 조회를 통합한 어드민 페이지 구축',
         ],
       },
       {
@@ -240,7 +244,7 @@ export const experiences: Experience[] = [
           'OS 설치 → 데이터 마이그레이션 → 장비 납품까지 전 과정 일괄 수행',
           '1,000만 건 대용량 데이터 무결성 100% 유지',
           'p95 5초 → 0.9초 · CPU 사용률 65% → 40% 개선',
-          '물리적 장애 포인트 제거 · 시스템 다운타임 발생률 제로화',
+          '노후 장비 교체로 물리적 장애 포인트 제거 · 이관 후 다운타임 0건',
         ],
       },
       {
@@ -251,7 +255,7 @@ export const experiences: Experience[] = [
           'jsPDF 기반 보고서 생성 API 서비스화 · 모바일/웹 동일 품질 PDF 제공',
           'Tiles 프레임워크 도입 · 중복 코드 65% → 10%',
           'Jenkins CI/CD 구축 · 배포 빈도 7일 → 1일 · 휴먼에러 제거',
-          '2022 BIXPO 기술 시연 성공 및 연구과제 성과 기여',
+          '2022 BIXPO 기술 시연 성공 · 한전 연구과제 최종 평가 통과에 기여',
         ],
       },
     ],
@@ -325,7 +329,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Prometheus', level: 'proficient' },
       { name: 'Grafana', level: 'proficient' },
       { name: 'Zipkin', level: 'proficient' },
-      { name: 'ElasticSearch', level: 'familiar' },
+      { name: 'Elasticsearch', level: 'familiar' },
       { name: 'k6', level: 'familiar' },
     ],
   },
@@ -395,9 +399,9 @@ export const sideProjects: SideProject[] = [
       '대규모 트래픽·고성능 검색·동시성·유연한 상품 모델링 요구에 대응하는 통합 커머스 프로젝트 설계 및 개발.',
     achievements: [
       'AWS ECS 기반 MSA Auto-scaling 인프라 설계 및 구축',
-      'GitHub Actions + ECR CI/CD 구축 · 배포 시간 40% 단축 · 인프라 비용 100% 절감',
+      'GitHub Actions + ECR CI/CD 구축 · 배포 시간 40% 단축 · 무료 tier 활용으로 CI/CD 비용 제로화',
       'JWT 무상태 인증 + API Gateway 중앙 인증 · 서비스 간 결합도 완화',
-      'Zipkin 분산 추적(B3 전파) · 병목/오류 지점 식별 속도 개선',
+      'Zipkin 분산 추적(B3 전파) · 병목/오류 지점 식별 시간 단축',
       '토큰 버킷 Rate Limiting · 스파이크 트래픽 완화 및 다운스트림 보호',
     ],
     techStack: ['Spring Boot', 'Spring Cloud', 'JPA', 'PostgreSQL', 'AWS ECS', 'GitHub Actions', 'Zipkin', 'Grafana'],
@@ -414,7 +418,7 @@ export const sideProjects: SideProject[] = [
       '한국어 형태소 분석(Nori) · 오타 허용(fuzziness) · 동의어 적용 · 검색 품질 향상',
       'Nori·prefix·fuzziness·부스팅·캐시 조합 · 오타/복합어에 강한 자동완성 구현',
     ],
-    techStack: ['Spring Boot', 'MySQL', 'Redis', 'ElasticSearch', 'Docker', 'Grafana', 'Prometheus', 'k6'],
+    techStack: ['Spring Boot', 'MySQL', 'Redis', 'Elasticsearch', 'Docker', 'Grafana', 'Prometheus', 'k6'],
   },
   {
     name: '오케스트로 사내 스터디 기획·운영',
