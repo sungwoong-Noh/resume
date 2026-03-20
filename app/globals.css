@@ -55,8 +55,12 @@ a {
     transition: none !important;
   }
 
-  /* Hide nav and decorative blurs */
+  /* Hide nav and print button */
   nav {
+    display: none !important;
+  }
+
+  .no-print {
     display: none !important;
   }
 
