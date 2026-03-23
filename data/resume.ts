@@ -9,7 +9,7 @@ export const profile = {
   title: 'Backend Engineer',
   /** 총 경력 연수 — 업데이트 시 수동으로 조정 */
   yearsOfExp: 5,
-  tagline: '성능 병목을 끝까지 추적하고 팀이 신뢰할 수 있는 코드를 만드는 백엔드 개발자',
+  tagline: '슬로우 쿼리를 직접 추적해 성능을 99% 개선하고, QueryDSL·테스트 문화를 팀에 정착시킨 백엔드 개발자',
   email: 'asdz453@gmail.com',
   phone: '010-8866-3354',
   github: 'https://github.com/sungwoong-Noh',
@@ -20,10 +20,9 @@ export const profile = {
    * 현재는 임팩트 있는 경험 기반으로 작성됨.
    * 본인의 언어로 더 다듬고 싶은 부분이 있으면 직접 수정.
    */
-  intro: `레거시 시스템의 병목을 분석해 성능을 99% 개선한 경험처럼, 저는 문제의 근본 원인을 찾아 시스템 전체를 바꾸는 것을 즐깁니다.
-단순히 기능을 구현하는 것을 넘어 로그와 실행계획을 분석해 병목을 찾고, JPA 내부 동작을 이해하여 쿼리 구조를 재설계하는 방식으로 성능을 개선해 왔습니다.
-코드 품질도 같은 철학으로 접근합니다. 팀 내 QueryDSL 도입, 단위 테스트 문화 정착, 코드 리뷰 체계 수립을 주도하며 기술 부채를 줄이고 동료 모두가 신뢰할 수 있는 코드베이스를 만드는 데 집중해 왔습니다.
-CSP 클라우드 개발과 AWS 기반 시스템 설계를 경험하며 인프라·운영 관점의 필요성을 체감했고, 현재는 System Engineer로서 그 시야를 넓히고 있습니다. 이 경험을 백엔드 개발에 다시 녹여 서비스 전체를 이해하는 개발자로 성장하고자 합니다.`,
+  intro: `로그와 실행계획을 분석해 병목을 스스로 발굴하고, JPA 내부 동작을 이해하여 쿼리 구조를 재설계했습니다. 데이터 동기화 성능을 2시간에서 10초로 단축한 것처럼, 지시받은 기능 구현보다 문제를 먼저 찾아 근본 원인을 해결하는 방식으로 일해왔습니다.
+팀 내 QueryDSL 도입, 단위 테스트 문화 정착, 사내 스터디 운영까지 팀 전체의 생산성을 높이는 변화를 제안하고 이끌었습니다.
+클라우드 상품 개발부터 MSP 인프라 운영까지 경험하며, 시스템 전체를 이해하는 백엔드 개발자로 성장했습니다.`,
 }
 
 // ─── Core Values ──────────────────────────────────────────────
@@ -93,13 +92,13 @@ export const achievements: Achievement[] = [
     metric: '99',
     unit: '%',
     description: '데이터 동기화 성능 개선',
-    detail: '2시간 → 10초 (JPA N+1 해결, Bulk Insert)',
+    detail: 'N+1로 14만 건 동기화에 2시간 소요 → Fetch Join + Bulk Insert로 10초',
   },
   {
     metric: '82',
     unit: '%',
     description: 'DB 조회 성능 향상',
-    detail: 'p95 17초 → 3초 (실행계획·인덱스 최적화)',
+    detail: '130만 건 Tibero DB · p95 17초 → 3초 (실행계획·인덱스 최적화)',
   },
   {
     metric: '90',
@@ -184,7 +183,7 @@ export const experiences: Experience[] = [
         period: '2025.07 ~ 2026.02',
         achievements: [
           'RPMS·통합포털·ITSM 3개 시스템 통합운영 체계화 (End-to-End 운영 체계 정립)',
-          'Tibero 실행계획·힌트/인덱스 최적화로 핵심 조회 p95 17초 → 3초',
+          '130만 건 규모 Tibero DB에서 실행계획·힌트/인덱스 최적화로 핵심 조회 p95 17초 → 3초 (82% 개선)',
           '월 30건+ 운영 이슈를 분류·우선순위화하여 재발률 감소 체계 구축',
           'ITSM 오류 개선·신규 기능 개발로 인시던트 12건 → 5건/주',
         ],
@@ -196,7 +195,7 @@ export const experiences: Experience[] = [
           '풀스택 리드 개발자로 컨벤션·공통 모듈·에러 표준화 주도',
           'Saga 패턴 기반 보상 트랜잭션으로 장비 설정충돌 오류 0건 달성',
           'Self-Service API 전환으로 수동 운영 워크로드 90% 절감 (월 50건 → 5건)',
-          '팀 내 최초 JUnit5 단위테스트 도입 · 개발 속도 30% 향상 · 설정오류 0건',
+          '\'어차피 손으로 눌러보면 된다\'는 팀 문화 속에서 핵심 기능 점진 적용을 제안·합의 → JUnit5 단위테스트 문화 정착 · 설정오류 0건 · 개발 속도 30% 향상',
           '중복 코드 산재 문제를 공통 모듈로 통합하여 재사용성 60% 향상',
         ],
       },
@@ -204,10 +203,10 @@ export const experiences: Experience[] = [
         name: '자산계획 시스템 설계/개발 및 운영 (RPMS)',
         period: '2024.01 ~ 2025.06',
         achievements: [
-          'Spring Boot, JPA, MariaDB, Kubernetes(K8s), Vue.js 기반 End-to-End 설계·개발·운영',
-          'JPA N+1 · Bulk Insert 최적화 → 데이터 동기화 99% 개선 (2시간 → 10초)',
+          '폐쇄망 환경에서 요구사항 정제부터 설계·개발·운영까지 전 주기를 단독 리드',
+          'N+1로 인해 14만 건 동기화에 2시간이 소요되던 배치를 Fetch Join + Bulk Insert로 재설계 → 10초 단축 (99% 개선)',
           '요구사항 정제·반복 배포 자동화로 업무 리드타임 5일 → 3일 단축',
-          '팀 내 최초 QueryDSL 도입 · Native 쿼리 70%+ 제거 · 유지보수 비용 50% 절감',
+          'Native 쿼리 남용으로 인한 유지보수 문제를 인식, 팀의 초기 회의론을 파일럿 적용으로 설득하여 QueryDSL 도입 주도 → Native 쿼리 70%+ 제거 · 유지보수 비용 50% 절감',
           '폐쇄망 Kubernetes 개발 클러스터·미들웨어 재구축 및 Jenkins·Helm 배포 자동화',
         ],
       },
@@ -253,8 +252,8 @@ export const experiences: Experience[] = [
         achievements: [
           'GIS 기반 실시간 모니터링 대시보드 · 메타데이터 관리 백엔드 개발',
           'jsPDF 기반 보고서 생성 API 서비스화 · 모바일/웹 동일 품질 PDF 제공',
-          'Tiles 프레임워크 도입 · 중복 코드 65% → 10%',
-          'Jenkins CI/CD 구축 · 배포 빈도 7일 → 1일 · 휴먼에러 제거',
+          'JSP 중복 레이아웃 문제를 인식, Tiles 프레임워크 도입 제안 → 중복 코드 65% → 10% · 페이지 개발 리드타임 2일 → 0.5일',
+          '수동 배포로 인한 휴먼에러·7일 배포 주기 개선을 위해 Jenkins CI/CD 직접 구축 → 배포 빈도 7일 → 1일',
           '2022 BIXPO 기술 시연 성공 · 한전 연구과제 최종 평가 통과에 기여',
         ],
       },
@@ -301,8 +300,8 @@ export const skillCategories: SkillCategory[] = [
       { name: 'TypeScript', level: 'proficient' },
       { name: 'TanStack Query', level: 'proficient' },
       { name: 'Ant Design', level: 'proficient' },
-      { name: 'ES6+', level: 'expert' },
-      { name: 'jQuery', level: 'expert' },
+      { name: 'ES6+', level: 'proficient' },
+      { name: 'jQuery', level: 'familiar' },
     ],
   },
   {
@@ -314,7 +313,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Docker', level: 'expert' },
       { name: 'AWS ECS / ECR', level: 'proficient' },
       { name: 'AWS CloudMap / ALB', level: 'familiar' },
-      { name: 'Jenkins', level: 'expert' },
+      { name: 'Jenkins', level: 'proficient' },
       { name: 'GitHub Actions', level: 'proficient' },
       { name: 'Harbor', level: 'familiar' },
       { name: 'HashiCorp Vault', level: 'familiar' },
@@ -350,7 +349,7 @@ export const educations: Education[] = [
     school: '목원대학교',
     degree: '학사',
     major: '전자공학과',
-    period: '2015.03 ~ 2022.03',
+    period: '2022.03 졸업',
   },
 ]
 
@@ -399,9 +398,7 @@ export const sideProjects: SideProject[] = [
       '대규모 트래픽·고성능 검색·동시성·유연한 상품 모델링 요구에 대응하는 통합 커머스 프로젝트 설계 및 개발.',
     achievements: [
       'AWS ECS 기반 MSA Auto-scaling 인프라 설계 및 구축',
-      'GitHub Actions + ECR CI/CD 구축 · 배포 시간 40% 단축 · 무료 tier 활용으로 CI/CD 비용 제로화',
       'JWT 무상태 인증 + API Gateway 중앙 인증 · 서비스 간 결합도 완화',
-      'Zipkin 분산 추적(B3 전파) · 병목/오류 지점 식별 시간 단축',
       '토큰 버킷 Rate Limiting · 스파이크 트래픽 완화 및 다운스트림 보호',
     ],
     techStack: ['Spring Boot', 'Spring Cloud', 'JPA', 'PostgreSQL', 'AWS ECS', 'GitHub Actions', 'Zipkin', 'Grafana'],
@@ -414,9 +411,7 @@ export const sideProjects: SideProject[] = [
       'RDB·Redis·Elasticsearch 비교 벤치마크를 통해 Elasticsearch 기반 10M 상품 검색 엔진을 설계·구현. 검색 품질과 응답 속도를 동시에 개선.',
     achievements: [
       '10M 상품 기준 k6(10 VU) 테스트에서 p95 60,000ms → 130ms',
-      'Elasticsearch 도입 · MySQL 대비 지연을 임계치(p95 < 600ms, 실패율 < 1%) 이내로 개선',
-      '한국어 형태소 분석(Nori) · 오타 허용(fuzziness) · 동의어 적용 · 검색 품질 향상',
-      'Nori·prefix·fuzziness·부스팅·캐시 조합 · 오타/복합어에 강한 자동완성 구현',
+      'Nori·형태소 분석·fuzziness·부스팅·캐시 조합으로 오타/복합어에 강한 자동완성 구현',
     ],
     techStack: ['Spring Boot', 'MySQL', 'Redis', 'Elasticsearch', 'Docker', 'Grafana', 'Prometheus', 'k6'],
   },
@@ -425,7 +420,7 @@ export const sideProjects: SideProject[] = [
     period: '2025.05 ~ 2025.08',
     organization: '오케스트로주식회사 사내',
     description:
-      '성능 개선 사례 공유·알고리즘 실습·개발 서적 리딩을 정례화. 현업 개선 사례를 표준 지식으로 전파해 팀 생산성과 코드 품질을 향상했습니다.',
+      '데이터 동기화 개선 사례를 팀에 공유하다 "이런 사례를 정기적으로 나누면 어떨까"는 제안이 스터디로 이어졌습니다. 성능 개선 RCA, 알고리즘 실습, 개발 서적 리딩을 정례화해 현업 경험을 팀 공유 지식으로 전환했습니다.',
     achievements: [
       '주 1회(4개월) · 평균 참여율 75% · 발표자 순환제 운영',
       '\'데이터 동기화 2시간 → 10초\' 등 성능 개선 사례를 RCA → 해결 전략 → 벤치마크 → 체크리스트로 문서화 · 유사 과제 리드타임 50% 단축',

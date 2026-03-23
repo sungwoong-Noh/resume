@@ -3,7 +3,6 @@ import { profile } from '@/data/resume'
 import PrintButton from '@/components/PrintButton'
 import HeroSection from '@/components/HeroSection'
 import AchievementsSection from '@/components/AchievementsSection'
-import CoreValuesSection from '@/components/CoreValuesSection'
 import ExperienceSection from '@/components/ExperienceSection'
 import SkillsSection from '@/components/SkillsSection'
 import SideProjectsSection from '@/components/SideProjectsSection'
@@ -32,7 +31,6 @@ export default function Home() {
 
       <HeroSection />
       <AchievementsSection />
-      <CoreValuesSection />
       <ExperienceSection />
       <SkillsSection />
       <SideProjectsSection />
