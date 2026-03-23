@@ -300,8 +300,8 @@ export const skillCategories: SkillCategory[] = [
       { name: 'TypeScript', level: 'proficient' },
       { name: 'TanStack Query', level: 'proficient' },
       { name: 'Ant Design', level: 'proficient' },
-      { name: 'ES6+', level: 'expert' },
-      { name: 'jQuery', level: 'expert' },
+      { name: 'ES6+', level: 'proficient' },
+      { name: 'jQuery', level: 'familiar' },
     ],
   },
   {
