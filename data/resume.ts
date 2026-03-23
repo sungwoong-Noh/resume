@@ -313,7 +313,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Docker', level: 'expert' },
       { name: 'AWS ECS / ECR', level: 'proficient' },
       { name: 'AWS CloudMap / ALB', level: 'familiar' },
-      { name: 'Jenkins', level: 'expert' },
+      { name: 'Jenkins', level: 'proficient' },
       { name: 'GitHub Actions', level: 'proficient' },
       { name: 'Harbor', level: 'familiar' },
       { name: 'HashiCorp Vault', level: 'familiar' },
