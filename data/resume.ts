@@ -92,13 +92,13 @@ export const achievements: Achievement[] = [
     metric: '99',
     unit: '%',
     description: '데이터 동기화 성능 개선',
-    detail: '2시간 → 10초 (JPA N+1 해결, Bulk Insert)',
+    detail: 'N+1로 14만 건 동기화에 2시간 소요 → Fetch Join + Bulk Insert로 10초',
   },
   {
     metric: '82',
     unit: '%',
     description: 'DB 조회 성능 향상',
-    detail: 'p95 17초 → 3초 (실행계획·인덱스 최적화)',
+    detail: '130만 건 Tibero DB · p95 17초 → 3초 (실행계획·인덱스 최적화)',
   },
   {
     metric: '90',
@@ -183,7 +183,7 @@ export const experiences: Experience[] = [
         period: '2025.07 ~ 2026.02',
         achievements: [
           'RPMS·통합포털·ITSM 3개 시스템 통합운영 체계화 (End-to-End 운영 체계 정립)',
-          'Tibero 실행계획·힌트/인덱스 최적화로 핵심 조회 p95 17초 → 3초',
+          '130만 건 규모 Tibero DB에서 실행계획·힌트/인덱스 최적화로 핵심 조회 p95 17초 → 3초 (82% 개선)',
           '월 30건+ 운영 이슈를 분류·우선순위화하여 재발률 감소 체계 구축',
           'ITSM 오류 개선·신규 기능 개발로 인시던트 12건 → 5건/주',
         ],
@@ -204,7 +204,7 @@ export const experiences: Experience[] = [
         period: '2024.01 ~ 2025.06',
         achievements: [
           '폐쇄망 환경에서 요구사항 정제부터 설계·개발·운영까지 전 주기를 단독 리드',
-          '모니터링 로그에서 슬로우 쿼리를 자발적으로 발견, JUnit으로 재현·진단 후 JPA N+1 구조를 Bulk Insert로 재설계 → 데이터 동기화 99% 개선 (2시간 → 10초)',
+          'N+1로 인해 14만 건 동기화에 2시간이 소요되던 배치를 Fetch Join + Bulk Insert로 재설계 → 10초 단축 (99% 개선)',
           '요구사항 정제·반복 배포 자동화로 업무 리드타임 5일 → 3일 단축',
           'Native 쿼리 남용으로 인한 유지보수 문제를 인식, 팀의 초기 회의론을 파일럿 적용으로 설득하여 QueryDSL 도입 주도 → Native 쿼리 70%+ 제거 · 유지보수 비용 50% 절감',
           '폐쇄망 Kubernetes 개발 클러스터·미들웨어 재구축 및 Jenkins·Helm 배포 자동화',
@@ -397,9 +397,9 @@ export const sideProjects: SideProject[] = [
     description:
       '대규모 트래픽·고성능 검색·동시성·유연한 상품 모델링 요구에 대응하는 통합 커머스 프로젝트 설계 및 개발.',
     achievements: [
-      'AWS ECS 기반 MSA Auto-scaling 인프라 설계 및 구축 · GitHub Actions CI/CD 비용 제로화',
-      'JWT 무상태 인증 + API Gateway 중앙 인증으로 서비스 간 결합도 완화',
-      'Zipkin 분산 추적(B3 전파) + 토큰 버킷 Rate Limiting · 병목 식별 및 스파이크 트래픽 완화',
+      'AWS ECS 기반 MSA Auto-scaling 인프라 설계 및 구축',
+      'JWT 무상태 인증 + API Gateway 중앙 인증 · 서비스 간 결합도 완화',
+      '토큰 버킷 Rate Limiting · 스파이크 트래픽 완화 및 다운스트림 보호',
     ],
     techStack: ['Spring Boot', 'Spring Cloud', 'JPA', 'PostgreSQL', 'AWS ECS', 'GitHub Actions', 'Zipkin', 'Grafana'],
   },
@@ -410,8 +410,8 @@ export const sideProjects: SideProject[] = [
     description:
       'RDB·Redis·Elasticsearch 비교 벤치마크를 통해 Elasticsearch 기반 10M 상품 검색 엔진을 설계·구현. 검색 품질과 응답 속도를 동시에 개선.',
     achievements: [
-      'RDB·Redis·Elasticsearch 벤치마크로 기술 선택 근거 수립 · p95 60,000ms → 130ms',
-      'Nori·fuzziness·동의어·부스팅·캐시 조합 · 오타/복합어에 강한 자동완성 구현',
+      '10M 상품 기준 k6(10 VU) 테스트에서 p95 60,000ms → 130ms',
+      'Nori·형태소 분석·fuzziness·부스팅·캐시 조합으로 오타/복합어에 강한 자동완성 구현',
     ],
     techStack: ['Spring Boot', 'MySQL', 'Redis', 'Elasticsearch', 'Docker', 'Grafana', 'Prometheus', 'k6'],
   },
