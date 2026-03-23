@@ -9,7 +9,7 @@ export const profile = {
   title: 'Backend Engineer',
   /** 총 경력 연수 — 업데이트 시 수동으로 조정 */
   yearsOfExp: 5,
-  tagline: '성능 병목을 끝까지 추적하고 팀이 신뢰할 수 있는 코드를 만드는 백엔드 개발자',
+  tagline: '슬로우 쿼리를 직접 추적해 성능을 99% 개선하고, QueryDSL·테스트 문화를 팀에 정착시킨 백엔드 개발자',
   email: 'asdz453@gmail.com',
   phone: '010-8866-3354',
   github: 'https://github.com/sungwoong-Noh',
@@ -22,7 +22,7 @@ export const profile = {
    */
   intro: `로그와 실행계획을 분석해 병목을 스스로 발굴하고, JPA 내부 동작을 이해하여 쿼리 구조를 재설계했습니다. 데이터 동기화 성능을 2시간에서 10초로 단축한 것처럼, 지시받은 기능 구현보다 문제를 먼저 찾아 근본 원인을 해결하는 방식으로 일해왔습니다.
 팀 내 QueryDSL 도입, 단위 테스트 문화 정착, 사내 스터디 운영까지 팀 전체의 생산성을 높이는 변화를 제안하고 이끌었습니다.
-인프라 운영 경험을 병행하며 서비스 전체를 이해하는 시야를 갖춘 백엔드 개발자로 일해왔습니다.`,
+인프라·운영까지 직접 경험하며 시스템 전체 흐름을 이해하는 백엔드 개발자로 일해왔습니다.`,
 }
 
 // ─── Core Values ──────────────────────────────────────────────
@@ -195,7 +195,7 @@ export const experiences: Experience[] = [
           '풀스택 리드 개발자로 컨벤션·공통 모듈·에러 표준화 주도',
           'Saga 패턴 기반 보상 트랜잭션으로 장비 설정충돌 오류 0건 달성',
           'Self-Service API 전환으로 수동 운영 워크로드 90% 절감 (월 50건 → 5건)',
-          '테스트 부재로 설정 오류가 반복되는 문제를 파악, 핵심 모듈부터 점진 도입을 팀에 제안·합의하여 JUnit5 단위테스트 문화 정착 → 개발 속도 30% 향상 · 설정오류 0건',
+          '\'어차피 손으로 눌러보면 된다\'는 팀 문화 속에서 핵심 기능 점진 적용을 제안·합의 → JUnit5 단위테스트 문화 정착 · 설정오류 0건 · 개발 속도 30% 향상',
           '중복 코드 산재 문제를 공통 모듈로 통합하여 재사용성 60% 향상',
         ],
       },
@@ -203,7 +203,7 @@ export const experiences: Experience[] = [
         name: '자산계획 시스템 설계/개발 및 운영 (RPMS)',
         period: '2024.01 ~ 2025.06',
         achievements: [
-          'Spring Boot, JPA, MariaDB, Kubernetes(K8s), Vue.js 기반 End-to-End 설계·개발·운영',
+          '폐쇄망 환경에서 요구사항 정제부터 설계·개발·운영까지 전 주기를 단독 리드',
           '모니터링 로그에서 슬로우 쿼리를 자발적으로 발견, JUnit으로 재현·진단 후 JPA N+1 구조를 Bulk Insert로 재설계 → 데이터 동기화 99% 개선 (2시간 → 10초)',
           '요구사항 정제·반복 배포 자동화로 업무 리드타임 5일 → 3일 단축',
           'Native 쿼리 남용으로 인한 유지보수 문제를 인식, 팀의 초기 회의론을 파일럿 적용으로 설득하여 QueryDSL 도입 주도 → Native 쿼리 70%+ 제거 · 유지보수 비용 50% 절감',
@@ -252,8 +252,8 @@ export const experiences: Experience[] = [
         achievements: [
           'GIS 기반 실시간 모니터링 대시보드 · 메타데이터 관리 백엔드 개발',
           'jsPDF 기반 보고서 생성 API 서비스화 · 모바일/웹 동일 품질 PDF 제공',
-          'Tiles 프레임워크 도입 · 중복 코드 65% → 10%',
-          'Jenkins CI/CD 구축 · 배포 빈도 7일 → 1일 · 휴먼에러 제거',
+          'JSP 중복 레이아웃 문제를 인식, Tiles 프레임워크 도입 제안 → 중복 코드 65% → 10% · 페이지 개발 리드타임 2일 → 0.5일',
+          '수동 배포로 인한 휴먼에러·7일 배포 주기 개선을 위해 Jenkins CI/CD 직접 구축 → 배포 빈도 7일 → 1일',
           '2022 BIXPO 기술 시연 성공 · 한전 연구과제 최종 평가 통과에 기여',
         ],
       },
@@ -397,11 +397,9 @@ export const sideProjects: SideProject[] = [
     description:
       '대규모 트래픽·고성능 검색·동시성·유연한 상품 모델링 요구에 대응하는 통합 커머스 프로젝트 설계 및 개발.',
     achievements: [
-      'AWS ECS 기반 MSA Auto-scaling 인프라 설계 및 구축',
-      'GitHub Actions + ECR CI/CD 구축 · 배포 시간 40% 단축 · 무료 tier 활용으로 CI/CD 비용 제로화',
-      'JWT 무상태 인증 + API Gateway 중앙 인증 · 서비스 간 결합도 완화',
-      'Zipkin 분산 추적(B3 전파) · 병목/오류 지점 식별 시간 단축',
-      '토큰 버킷 Rate Limiting · 스파이크 트래픽 완화 및 다운스트림 보호',
+      'AWS ECS 기반 MSA Auto-scaling 인프라 설계 및 구축 · GitHub Actions CI/CD 비용 제로화',
+      'JWT 무상태 인증 + API Gateway 중앙 인증으로 서비스 간 결합도 완화',
+      'Zipkin 분산 추적(B3 전파) + 토큰 버킷 Rate Limiting · 병목 식별 및 스파이크 트래픽 완화',
     ],
     techStack: ['Spring Boot', 'Spring Cloud', 'JPA', 'PostgreSQL', 'AWS ECS', 'GitHub Actions', 'Zipkin', 'Grafana'],
   },
@@ -412,10 +410,8 @@ export const sideProjects: SideProject[] = [
     description:
       'RDB·Redis·Elasticsearch 비교 벤치마크를 통해 Elasticsearch 기반 10M 상품 검색 엔진을 설계·구현. 검색 품질과 응답 속도를 동시에 개선.',
     achievements: [
-      '10M 상품 기준 k6(10 VU) 테스트에서 p95 60,000ms → 130ms',
-      'Elasticsearch 도입 · MySQL 대비 지연을 임계치(p95 < 600ms, 실패율 < 1%) 이내로 개선',
-      '한국어 형태소 분석(Nori) · 오타 허용(fuzziness) · 동의어 적용 · 검색 품질 향상',
-      'Nori·prefix·fuzziness·부스팅·캐시 조합 · 오타/복합어에 강한 자동완성 구현',
+      'RDB·Redis·Elasticsearch 벤치마크로 기술 선택 근거 수립 · p95 60,000ms → 130ms',
+      'Nori·fuzziness·동의어·부스팅·캐시 조합 · 오타/복합어에 강한 자동완성 구현',
     ],
     techStack: ['Spring Boot', 'MySQL', 'Redis', 'Elasticsearch', 'Docker', 'Grafana', 'Prometheus', 'k6'],
   },
