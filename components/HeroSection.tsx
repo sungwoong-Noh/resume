@@ -18,7 +18,7 @@ export default function HeroSection() {
             {profile.name}
           </span>
         </h1>
-        <p className="text-xl text-gray-400 max-w-2xl leading-relaxed mb-4">{profile.tagline}</p>
+        <p className="text-xl text-gray-400 max-w-3xl leading-relaxed mb-4">{profile.tagline}</p>
 
         {/* 자기소개 */}
         <div className="max-w-3xl mb-10 p-5 rounded-xl bg-gray-900/60 border border-gray-800">
@@ -44,6 +44,11 @@ export default function HeroSection() {
           >
             🔗 {profile.githubHandle}
           </a>
+          {profile.desiredSalary && (
+            <div className="flex items-center gap-2 px-4 py-2 bg-teal-500/10 border border-teal-500/30 rounded-lg text-teal-300 text-sm">
+              💰 희망 연봉 {profile.desiredSalary}
+            </div>
+          )}
           {profile.linkedin && (
             <a
               href={profile.linkedin}
@@ -52,6 +57,16 @@ export default function HeroSection() {
               className="flex items-center gap-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 text-sm hover:border-teal-500 transition"
             >
               💼 LinkedIn
+            </a>
+          )}
+          {profile.blog && (
+            <a
+              href={profile.blog}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 text-sm hover:border-teal-500 transition"
+            >
+              ✍️ {profile.blogHandle}
             </a>
           )}
         </div>

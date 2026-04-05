@@ -15,6 +15,9 @@ export const profile = {
   github: 'https://github.com/sungwoong-Noh',
   githubHandle: 'sungwoong-Noh',
   linkedin: 'https://www.linkedin.com/in/sunwoongnoh',
+  blog: 'https://sw-noh.tistory.com',
+  blogHandle: 'sw-noh.tistory.com',
+  desiredSalary: '',
   /**
    * intro — 화면에 표시되는 자기소개 본문.
    * 현재는 임팩트 있는 경험 기반으로 작성됨.
@@ -49,7 +52,7 @@ export const coreValues: CoreValue[] = [
   {
     icon: '🛡️',
     title: '안정성 우선주의',
-    description: '대규모 트래픽에도 중단 없는 견고한 인프라를 설계합니다.',
+    description: '모니터링 지표와 로그로 이상 징후를 사전에 감지하고 장애를 근본부터 해결합니다.',
     hashtag: '#안정성_우선주의',
   },
 ]
@@ -135,7 +138,7 @@ export type Experience = {
 export const experiences: Experience[] = [
   {
     company: '플랜아이(PlanAI)',
-    position: 'System Engineer',
+    position: 'Cloud Engineer',
     period: '2026.02 ~ 현재',
     duration: '2개월',
     description:
@@ -145,13 +148,14 @@ export const experiences: Experience[] = [
       'VictoriaMetrics 도입으로 Prometheus 수집 기간 30일 → 1년 확장',
       'Ansible 기반 Exporter 설치·시스템 자원 조회 자동화',
     ],
-    techStack: ['Prometheus', 'Grafana', 'VictoriaMetrics', 'Ansible'],
+    techStack: ['Prometheus', 'Grafana', 'VictoriaMetrics', 'Ansible', 'KT Cloud'],
     projects: [
       {
         name: 'MSP 고객사 모니터링 체계 구축',
         period: '2026.02 ~ 진행 중',
         achievements: [
           '기관별 Prometheus + Grafana 모니터링 서버 구축 · CMP 개발팀과 보고서 자동 생성 기능 연계',
+          'KT Cloud 기반 고객사 인프라 모니터링 환경 구축 · 멀티테넌트 자원 가시성 확보',
           'VictoriaMetrics 적용으로 Prometheus 메트릭 수집·보존 기간 30일 → 1년 확장',
           'Ansible 활용 Exporter 일괄 설치 및 시스템 자원 조회 자동화로 운영 효율화',
           'Claude MCP 기반 WAF 유해 IP 차단 요청 자동화 · 메일 수동 답장 → 단일 명령으로 처리',
@@ -165,7 +169,7 @@ export const experiences: Experience[] = [
     period: '2023.10 ~ 2026.02',
     duration: '2년 4개월',
     description:
-      '국정자원 3개 시스템(nTOPS, RPMS, 통합포털) 통합 운영을 담당했습니다. 요구사항 정제부터 아키텍처 설계, CI/CD, 관측성, 운영까지 전 흐름을 일원화하여 주도했습니다.',
+      '국정자원 3개 백오피스 시스템(nTOPS, RPMS, 통합포털) 통합 운영을 담당했습니다. 요구사항 정제부터 아키텍처 설계, CI/CD, 관측성, 운영까지 전 흐름을 일원화하여 주도했습니다.',
     highlights: [
       '데이터 동기화 99% 개선 (2시간 → 10초)',
       '핵심 조회 p95 응답시간 82% 개선 (17초 → 3초)',
@@ -192,10 +196,15 @@ export const experiences: Experience[] = [
         name: 'CSP 멀티테넌트 네트워크 상품 개발 (PPP Cloud)',
         period: '2024.08 ~ 2025.06',
         achievements: [
+          'KT Cloud 협력 기반 CSP 플랫폼 구축 · KT Cloud 기술팀과 API 연동 및 네트워크 장비 제어 협업',
           '풀스택 리드 개발자로 컨벤션·공통 모듈·에러 표준화 주도',
           'Saga 패턴 기반 보상 트랜잭션으로 장비 설정충돌 오류 0건 달성',
           'Self-Service API 전환으로 수동 운영 워크로드 90% 절감 (월 50건 → 5건)',
+<<<<<<< HEAD
           '\'어차피 손으로 눌러보면 된다\'는 팀 문화 속에서 핵심 기능 점진 적용을 제안·합의 → JUnit5 단위테스트 문화 정착 · 설정오류 0건 · 개발 속도 30% 향상',
+=======
+          '팀 내 최초 JUnit5 단위테스트 도입 주도 · 테스트 커버리지 체계 수립 · 개발 속도 30% 향상 · 설정오류 0건',
+>>>>>>> 1e3a7ca (Add light theme version and update common resume content)
           '중복 코드 산재 문제를 공통 모듈로 통합하여 재사용성 60% 향상',
         ],
       },
@@ -278,17 +287,50 @@ export const skillCategories: SkillCategory[] = [
     icon: '⚙️',
     color: 'teal',
     skills: [
+      { name: 'Java', level: 'expert' },
+      { name: 'RESTful API', level: 'expert' },
       { name: 'Spring Boot', level: 'expert' },
       { name: 'Spring Cloud', level: 'proficient' },
       { name: 'Spring Security', level: 'proficient' },
       { name: 'JPA / Hibernate', level: 'expert' },
       { name: 'QueryDSL', level: 'expert' },
-      { name: 'MariaDB', level: 'expert' },
+      { name: 'MariaDB / MySQL', level: 'expert' },
       { name: 'Tibero', level: 'proficient' },
       { name: 'Redis', level: 'proficient' },
       { name: 'eGovFramework', level: 'proficient' },
       { name: 'MyBatis', level: 'proficient' },
       { name: 'PostgreSQL', level: 'familiar' },
+    ],
+  },
+  {
+    category: 'Observability',
+    icon: '📊',
+    color: 'purple',
+    skills: [
+      { name: 'Prometheus', level: 'proficient' },
+      { name: 'Grafana', level: 'proficient' },
+      { name: 'VictoriaMetrics', level: 'proficient' },
+      { name: 'Zipkin', level: 'proficient' },
+      { name: 'Elasticsearch', level: 'familiar' },
+      { name: 'k6', level: 'familiar' },
+    ],
+  },
+  {
+    category: 'Infrastructure',
+    icon: '🚀',
+    color: 'orange',
+    skills: [
+      { name: 'Kubernetes (K8s)', level: 'proficient' },
+      { name: 'Docker', level: 'expert' },
+      { name: 'AWS ECS / ECR', level: 'proficient' },
+      { name: 'AWS CloudMap / ALB', level: 'familiar' },
+      { name: 'KT Cloud', level: 'proficient' },
+      { name: 'Ansible', level: 'proficient' },
+      { name: 'Jenkins', level: 'expert' },
+      { name: 'GitHub Actions', level: 'proficient' },
+      { name: 'Harbor', level: 'familiar' },
+      { name: 'HashiCorp Vault', level: 'familiar' },
+      { name: 'Helm', level: 'familiar' },
     ],
   },
   {
@@ -304,6 +346,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'jQuery', level: 'familiar' },
     ],
   },
+<<<<<<< HEAD
   {
     category: 'Infrastructure',
     icon: '🚀',
@@ -332,6 +375,8 @@ export const skillCategories: SkillCategory[] = [
       { name: 'k6', level: 'familiar' },
     ],
   },
+=======
+>>>>>>> 1e3a7ca (Add light theme version and update common resume content)
 ]
 
 // ─── Education ────────────────────────────────────────────────
