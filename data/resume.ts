@@ -9,7 +9,7 @@ export const profile = {
   title: 'Backend Engineer',
   /** 총 경력 연수 — 업데이트 시 수동으로 조정 */
   yearsOfExp: 5,
-  tagline: '슬로우 쿼리를 직접 추적해 성능을 99% 개선하고, QueryDSL·테스트 문화를 팀에 정착시킨 백엔드 개발자',
+  tagline: '성능 병목을 스스로 발굴해 99% 개선한, 팀의 개발 문화를 바꾸는 백엔드 개발자',
   email: 'asdz453@gmail.com',
   phone: '010-8866-3354',
   github: 'https://github.com/sungwoong-Noh',
