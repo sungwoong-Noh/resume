@@ -342,34 +342,6 @@ export const skillCategories: SkillCategory[] = [
       { name: 'jQuery', level: 'familiar' },
     ],
   },
-  {
-    category: 'Infrastructure',
-    icon: '🚀',
-    color: 'orange',
-    skills: [
-      { name: 'Kubernetes (K8s)', level: 'proficient' },
-      { name: 'Docker', level: 'expert' },
-      { name: 'AWS ECS / ECR', level: 'proficient' },
-      { name: 'AWS CloudMap / ALB', level: 'familiar' },
-      { name: 'Jenkins', level: 'proficient' },
-      { name: 'GitHub Actions', level: 'proficient' },
-      { name: 'Harbor', level: 'familiar' },
-      { name: 'HashiCorp Vault', level: 'familiar' },
-      { name: 'Helm', level: 'familiar' },
-    ],
-  },
-  {
-    category: 'Observability',
-    icon: '📊',
-    color: 'purple',
-    skills: [
-      { name: 'Prometheus', level: 'proficient' },
-      { name: 'Grafana', level: 'proficient' },
-      { name: 'Zipkin', level: 'proficient' },
-      { name: 'Elasticsearch', level: 'familiar' },
-      { name: 'k6', level: 'familiar' },
-    ],
-  },
 ]
 
 // ─── Education ────────────────────────────────────────────────
