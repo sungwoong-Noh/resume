@@ -346,7 +346,6 @@ export const skillCategories: SkillCategory[] = [
       { name: 'jQuery', level: 'familiar' },
     ],
   },
-<<<<<<< HEAD
   {
     category: 'Infrastructure',
     icon: '🚀',
@@ -375,8 +374,6 @@ export const skillCategories: SkillCategory[] = [
       { name: 'k6', level: 'familiar' },
     ],
   },
-=======
->>>>>>> 1e3a7ca (Add light theme version and update common resume content)
 ]
 
 // ─── Education ────────────────────────────────────────────────
