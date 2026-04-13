@@ -9,7 +9,7 @@ export const profile = {
   title: 'Backend Engineer',
   /** 총 경력 연수 — 업데이트 시 수동으로 조정 */
   yearsOfExp: 5,
-  tagline: 'Elasticsearch 검색 엔진을 직접 설계·벤치마크하고, 대용량 트래픽 환경에서 성능 병목을 근본부터 해결하는 백엔드 개발자',
+  tagline: '성능 병목을 스스로 발굴해 99% 개선한, 팀의 개발 문화를 바꾸는 백엔드 개발자',
   email: 'asdz453@gmail.com',
   phone: '010-8866-3354',
   github: 'https://github.com/sungwoong-Noh',
@@ -23,9 +23,9 @@ export const profile = {
    * 현재는 임팩트 있는 경험 기반으로 작성됨.
    * 본인의 언어로 더 다듬고 싶은 부분이 있으면 직접 수정.
    */
-  intro: `10M 상품 데이터를 대상으로 RDB·Redis·Elasticsearch를 직접 벤치마크해 검색 엔진을 설계했고, p95 60,000ms → 130ms를 달성한 5년 차 백엔드 엔지니어입니다.
-단순 기술 적용을 넘어 형태소 분석·fuzziness·부스팅 조합으로 검색 정확도와 재현율을 함께 높이는 품질 개선을 경험했습니다. 커머스 MSA 환경에서 서비스별 독립 스케일링과 API Gateway 기반 인증 아키텍처를 설계한 경험도 보유하고 있습니다.
-업무에서는 130만 건 DB p95를 17초에서 3초로 단축하는 등 여러 선택지를 비교·검증해 근본 원인을 파고드는 방식으로 일해왔으며, QueryDSL 도입과 사내 스터디 운영으로 팀 전체의 기술 역량을 높이는 변화를 이끌었습니다.`,
+  intro: `14만 건 배치 동기화를 2시간에서 10초로, 130만 건 대용량 DB p95를 17초에서 3초로 단축한 5년 차 백엔드 엔지니어입니다.
+기능 구현에 그치지 않고 JPA IDENTITY 전략의 구조적 한계를 직접 발굴해 JDBC Bulk Insert로 전환하고, WHERE 절 타입 불일치가 인덱스를 무력화하는 근본 원인을 DBA와 함께 파고드는 방식으로 일해왔습니다. 여러 선택지를 비교·검증한 뒤 현재 상황에 맞는 방법을 고르는 의사결정 과정을 중시합니다.
+팀 내 QueryDSL 도입과 단위 테스트 문화 정착을 주도하며, 개인 성과를 넘어 팀 전체의 생산성을 높이는 변화를 이끌어왔습니다.`,
 }
 
 // ─── Core Values ──────────────────────────────────────────────
@@ -497,31 +497,11 @@ export type SideProject = {
 
 export const sideProjects: SideProject[] = [
   {
-    name: 'TechGate — Elasticsearch 검색엔진 설계',
-    period: '2025.09 ~ 2025.10',
-    organization: '개인 프로젝트',
-    description:
-      'RDB·Redis·Elasticsearch 세 엔진을 k6로 직접 벤치마크해 10M 상품 검색 엔진을 설계·구현. 응답 속도와 검색 품질(Precision/Recall)을 동시에 개선.',
-    achievements: [
-      {
-        problem: '10M 상품 데이터에서 RDB LIKE 쿼리 p95 60,000ms로 실서비스 불가, Redis는 형태소 분석·오타 허용 등 검색 품질 개선 기능 미지원',
-        analyze: 'RDB·Redis·Elasticsearch 세 엔진을 k6(10 VU)로 직접 벤치마크 비교. ES가 성능(p95 130ms)과 Precision/Recall 모두 개선 가능한 유일한 선택지임을 확인',
-        result: 'Elasticsearch 도입 · p95 60,000ms → 130ms',
-      },
-      {
-        problem: '단순 키워드 매칭만으로는 복합어·오타·동의어에서 Recall이 떨어져 실사용자 검색 만족도 저하',
-        analyze: 'Nori 형태소 분석으로 복합어 분해, fuzziness로 오타 허용 범위 조정, 필드별 부스팅으로 Precision과 Recall 균형 튜닝',
-        result: '오타·복합어에 강한 자동완성 구현 · 캐시 조합으로 반복 쿼리 응답 속도 추가 개선',
-      },
-    ],
-    techStack: ['Spring Boot', 'MySQL', 'Redis', 'Elasticsearch', 'Docker', 'Grafana', 'Prometheus', 'k6'],
-  },
-  {
     name: 'InnerCircle Commerce 프로젝트',
     period: '2025.07 ~ 2025.09',
     organization: '패스트캠퍼스',
     description:
-      '대규모 트래픽·동시성·유연한 상품 모델링 요구에 대응하는 커머스 MSA 프로젝트 설계 및 개발.',
+      '대규모 트래픽·고성능 검색·동시성·유연한 상품 모델링 요구에 대응하는 통합 커머스 프로젝트 설계 및 개발.',
     achievements: [
       {
         problem: '커머스에서 주문·재고·결제 등 도메인별 트래픽 집중 패턴이 달라 모놀리식은 전체를 스케일링해야 하는 비효율 발생',
@@ -539,6 +519,24 @@ export const sideProjects: SideProject[] = [
       },
     ],
     techStack: ['Spring Boot', 'Spring Cloud', 'JPA', 'PostgreSQL', 'AWS ECS', 'GitHub Actions', 'Zipkin', 'Grafana'],
+  },
+  {
+    name: 'TechGate — 검색엔진 스터디',
+    period: '2025.09 ~ 2025.10',
+    organization: '개인 프로젝트',
+    description:
+      'RDB·Redis·Elasticsearch 비교 벤치마크를 통해 Elasticsearch 기반 10M 상품 검색 엔진을 설계·구현. 검색 품질과 응답 속도를 동시에 개선.',
+    achievements: [
+      {
+        problem: '10M 상품 데이터에서 RDB LIKE 쿼리 p95 60,000ms로 실서비스 불가, Redis는 형태소 분석·오타 허용 등 전문 검색 기능 미지원',
+        analyze: 'RDB·Redis·Elasticsearch 세 엔진을 k6(10 VU)로 직접 벤치마크 비교 → ES가 성능(p95 130ms)과 검색 품질 모두 우위 확인',
+        result: 'Elasticsearch 도입 · p95 60,000ms → 130ms',
+      },
+      {
+        result: 'Nori·형태소 분석·fuzziness·부스팅·캐시 조합으로 오타/복합어에 강한 자동완성 구현',
+      },
+    ],
+    techStack: ['Spring Boot', 'MySQL', 'Redis', 'Elasticsearch', 'Docker', 'Grafana', 'Prometheus', 'k6'],
   },
   {
     name: '오케스트로 사내 스터디 기획·운영',
