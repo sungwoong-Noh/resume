@@ -1,5 +1,6 @@
 import { sideProjects } from '@/data/resume'
 import SectionLabel from './SectionLabel'
+import PARAccordion from '../PARAccordion'
 
 export default function SideProjectsSection() {
   return (
@@ -25,10 +26,7 @@ export default function SideProjectsSection() {
               <div className="p-6 space-y-4">
                 <ul className="space-y-2">
                   {p.achievements.map((a, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-gray-600">
-                      <span className="text-teal-500 mt-0.5 flex-shrink-0">→</span>
-                      <span>{a}</span>
-                    </li>
+                    <PARAccordion key={j} item={a} />
                   ))}
                 </ul>
                 {p.techStack.length > 0 && (

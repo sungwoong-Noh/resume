@@ -491,7 +491,7 @@ export type SideProject = {
   period: string
   organization: string
   description: string
-  achievements: string[]
+  achievements: PARItem[]
   techStack: string[]
 }
 
@@ -503,9 +503,20 @@ export const sideProjects: SideProject[] = [
     description:
       '대규모 트래픽·고성능 검색·동시성·유연한 상품 모델링 요구에 대응하는 통합 커머스 프로젝트 설계 및 개발.',
     achievements: [
-      'AWS ECS 기반 MSA Auto-scaling 인프라 설계 및 구축',
-      'JWT 무상태 인증 + API Gateway 중앙 인증 · 서비스 간 결합도 완화',
-      '토큰 버킷 Rate Limiting · 스파이크 트래픽 완화 및 다운스트림 보호',
+      {
+        problem: '커머스에서 주문·재고·결제 등 도메인별 트래픽 집중 패턴이 달라 모놀리식은 전체를 스케일링해야 하는 비효율 발생',
+        analyze: 'K8s는 관리 복잡도가 높고, AWS ECS는 관리형 오케스트레이션으로 Auto-scaling 구성이 단순 → MSA + ECS 조합 선택',
+        result: 'AWS ECS 기반 MSA Auto-scaling 인프라 설계 및 구축',
+      },
+      {
+        problem: 'MSA 환경에서 각 서비스마다 인증 로직이 중복되면 변경 시 전 서비스 수정 필요',
+        result: 'JWT 무상태 인증 + API Gateway 중앙 인증 · 서비스 간 결합도 완화',
+      },
+      {
+        problem: '스파이크 트래픽 시 다운스트림 서비스 과부하 위험',
+        analyze: '고정 윈도우·슬라이딩 윈도우는 순간 버스트를 허용하지 못함. 토큰 버킷은 일정 버스트를 허용하면서 평균 속도를 제한하고 Redis 연동 구현이 단순해 선택',
+        result: '토큰 버킷 Rate Limiting · 스파이크 트래픽 완화 및 다운스트림 보호',
+      },
     ],
     techStack: ['Spring Boot', 'Spring Cloud', 'JPA', 'PostgreSQL', 'AWS ECS', 'GitHub Actions', 'Zipkin', 'Grafana'],
   },
@@ -516,8 +527,14 @@ export const sideProjects: SideProject[] = [
     description:
       'RDB·Redis·Elasticsearch 비교 벤치마크를 통해 Elasticsearch 기반 10M 상품 검색 엔진을 설계·구현. 검색 품질과 응답 속도를 동시에 개선.',
     achievements: [
-      '10M 상품 기준 k6(10 VU) 테스트에서 p95 60,000ms → 130ms',
-      'Nori·형태소 분석·fuzziness·부스팅·캐시 조합으로 오타/복합어에 강한 자동완성 구현',
+      {
+        problem: '10M 상품 데이터에서 RDB LIKE 쿼리 p95 60,000ms로 실서비스 불가, Redis는 형태소 분석·오타 허용 등 전문 검색 기능 미지원',
+        analyze: 'RDB·Redis·Elasticsearch 세 엔진을 k6(10 VU)로 직접 벤치마크 비교 → ES가 성능(p95 130ms)과 검색 품질 모두 우위 확인',
+        result: 'Elasticsearch 도입 · p95 60,000ms → 130ms',
+      },
+      {
+        result: 'Nori·형태소 분석·fuzziness·부스팅·캐시 조합으로 오타/복합어에 강한 자동완성 구현',
+      },
     ],
     techStack: ['Spring Boot', 'MySQL', 'Redis', 'Elasticsearch', 'Docker', 'Grafana', 'Prometheus', 'k6'],
   },
@@ -528,10 +545,19 @@ export const sideProjects: SideProject[] = [
     description:
       '데이터 동기화 개선 사례를 팀에 공유하다 "이런 사례를 정기적으로 나누면 어떨까"는 제안이 스터디로 이어졌습니다. 성능 개선 RCA, 알고리즘 실습, 개발 서적 리딩을 정례화해 현업 경험을 팀 공유 지식으로 전환했습니다.',
     achievements: [
-      '주 1회(4개월) · 평균 참여율 75% · 발표자 순환제 운영',
-      '\'데이터 동기화 2시간 → 10초\' 등 성능 개선 사례를 RCA → 해결 전략 → 벤치마크 → 체크리스트로 문서화 · 유사 과제 리드타임 50% 단축',
-      '이펙티브 자바·JPA 서적 리딩 결과를 규약·코딩 컨벤션·리뷰 체크리스트로 정립',
-      '노션/위키 저장소 구축 (가이드·체크리스트·런북) · 검색·재사용성 향상',
+      {
+        result: '주 1회(4개월) · 평균 참여율 75% · 발표자 순환제 운영',
+      },
+      {
+        problem: '성능 개선 사례가 담당자 개인 지식으로 남아 팀 공유 및 재활용이 안 되는 문제',
+        result: '성능 개선 사례를 RCA → 해결 전략 → 벤치마크 → 체크리스트로 문서화 · 유사 과제 리드타임 50% 단축',
+      },
+      {
+        result: '이펙티브 자바·JPA 서적 리딩 결과를 규약·코딩 컨벤션·리뷰 체크리스트로 정립',
+      },
+      {
+        result: '노션/위키 저장소 구축 (가이드·체크리스트·런북) · 검색·재사용성 향상',
+      },
     ],
     techStack: [],
   },
