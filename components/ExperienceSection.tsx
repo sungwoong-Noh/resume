@@ -1,5 +1,6 @@
 import { experiences } from '@/data/resume'
 import SectionLabel from './SectionLabel'
+import PARAccordion from './PARAccordion'
 
 export default function ExperienceSection() {
   return (
@@ -49,12 +50,9 @@ export default function ExperienceSection() {
                           <h5 className="font-semibold text-white">{proj.name}</h5>
                           <span className="text-xs text-gray-500 font-mono">{proj.period}</span>
                         </div>
-                        <ul className="space-y-1.5">
+                        <ul className="space-y-2">
                           {proj.achievements.map((a, l) => (
-                            <li key={l} className="flex items-start gap-2 text-sm text-gray-400">
-                              <span className="text-teal-500 mt-0.5 flex-shrink-0">→</span>
-                              <span>{a}</span>
-                            </li>
+                            <PARAccordion key={l} item={a} />
                           ))}
                         </ul>
                       </div>
