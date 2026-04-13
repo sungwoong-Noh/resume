@@ -263,16 +263,9 @@ export const experiences: Experience[] = [
         period: '2024.01 ~ 2025.06',
         achievements: [
           {
-            result: '폐쇄망 환경에서 요구사항 정제부터 설계·개발·운영까지 전 주기를 단독 리드',
-          },
-          {
             problem: '배치 동기화에서 N+1 쿼리로 14만 건 처리에 2시간 소요, 야간 배치 완료 전 업무 시작으로 데이터 정합성 이슈 발생',
             analyze: '조회 측 N+1은 Fetch Join으로 해결. INSERT 측은 JPA IDENTITY 전략이 영속성 컨텍스트 PK 확보를 위해 단건 INSERT를 강제하는 구조적 한계 확인 → JDBC Template Bulk Insert로 전환',
             result: '로컬 테스트 코드로 실행 시간 측정, 배치 처리 10초로 단축 (99% 개선)',
-          },
-          {
-            problem: '요구사항 불명확으로 인한 재작업과 수동 배포 대기 시간이 업무 리드타임을 늘리는 주요 원인',
-            result: '요구사항 정제 프로세스 도입과 Jenkins 배포 자동화 병행 적용 · 업무 리드타임 5일 → 3일 단축',
           },
           {
             problem: 'Native 쿼리 남용으로 조건 변경 시마다 SQL 직접 수정이 필요해 유지보수 비용 급증',
