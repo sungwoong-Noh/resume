@@ -34,7 +34,7 @@ function SideProjectCard({ project }: { project: PortfolioSideProject }) {
           <img
             src={project.screenshotSrc}
             alt={project.name}
-            className="w-full h-full object-cover opacity-75"
+            className="w-full h-full object-contain opacity-75"
           />
         ) : null}
         <div className="absolute top-3 left-1/2 -translate-x-1/2">
