@@ -180,7 +180,7 @@ export const portfolioProjects: PortfolioProject[] = [
     overviewContributions: [
       'GIS 기반 대시보드 및 실시간 스트리밍 연동을 위한 백엔드 API 설계 및 대규모 메타데이터 DB 스키마 구축',
       '서버 사이드 헤드리스 렌더링 기반 보고서 생성 API 서비스화로 모바일/웹 동일 품질의 보고서 제공 및 운영 효율성 제고',
-      'Tiles 프레임워크 도입으로 페이지 중복 코드 55% 절감 및 Jenkins CI/CD 파이프라인 구축으로 배포 빈도 7일 → 1일 단축',
+      'Tiles 프레임워크 도입으로 페이지 중복 코드 65% → 10% 절감 및 Jenkins CI/CD 파이프라인 구축으로 배포 빈도 7일 → 1일 단축',
     ],
     detailParagraphs: [
       'GIS와 모빌리티 게이트웨이를 결합해 작업 현장을 실시간 관제하고, 산업재해를 예방하는 플랫폼을 구축했습니다.',
@@ -196,7 +196,7 @@ export const portfolioProjects: PortfolioProject[] = [
         result: 'jsPDF를 활용한 보고서 생성 기능 구현, 서버사이드 헤드리스 렌더 API로 서비스화하여 앱에서도 동일 품질 PDF 제공',
       },
       {
-        result: 'Tiles 프레임워크 도입으로 페이지당 중복 코드 55% 감소, 신규 페이지 제작 리드타임 단축',
+        result: 'Tiles 프레임워크 도입으로 페이지당 중복 코드 65% → 10% 감소, 신규 페이지 제작 리드타임 단축',
         problem: 'JSP 화면마다 공통 헤더·푸터·메뉴를 반복 포함해 레이아웃 변경 시 전체 페이지를 수정해야 하는 구조',
         analyze: 'JSP include 방식은 중복 제거 효과 제한적 → Tiles 레이아웃 템플릿화로 전체 페이지 재사용 구조 가능, 변경 지점 1곳으로 통일',
       },
