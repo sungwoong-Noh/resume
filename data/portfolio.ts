@@ -74,7 +74,7 @@ export const portfolioProjects: PortfolioProject[] = [
       backend: ['Spring Boot', 'JPA', 'QueryDSL', 'MariaDB'],
       infra: ['K8s', 'Jenkins', 'Citrix ADC', 'AhnLab TrusGuard'],
     },
-    screenshotSrc: '/portfolio/PPP_메인.jpg',
+
     gradientClass: 'from-slate-700 via-slate-600 to-slate-800',
   },
   {
@@ -124,7 +124,6 @@ export const portfolioProjects: PortfolioProject[] = [
       ],
       infra: ['K8s', 'Jenkins', 'JBoss'],
     },
-    screenshotSrc: '/portfolio/통합포털.png',
     gradientClass: 'from-blue-900 via-blue-800 to-slate-800',
   },
   {
@@ -170,7 +169,6 @@ export const portfolioProjects: PortfolioProject[] = [
       backend: ['Spring Boot', 'JPA', 'QueryDSL', 'MariaDB', 'Redis'],
       infra: ['K8s', 'Docker', 'Jenkins', 'HashCorp Vault', 'Harbor'],
     },
-    screenshotSrc: '/portfolio/RPMS.png',
     gradientClass: 'from-indigo-900 via-indigo-800 to-blue-900',
   },
   {
@@ -216,7 +214,6 @@ export const portfolioProjects: PortfolioProject[] = [
       backend: ['eGovFramework', 'Fast API', 'MyBatis', 'MySQL', 'JSP'],
       infra: ['Docker', 'Jenkins'],
     },
-    screenshotSrc: '/portfolio/한전_대시보드.png',
     gradientClass: 'from-sky-700 via-blue-700 to-cyan-800',
   },
 ]
@@ -327,7 +324,6 @@ export const portfolioSideProjects: PortfolioSideProject[] = [
         'Grafana',
       ],
     },
-    screenshotSrc: '/portfolio/이너써클_1.png',
     gradientClass: 'from-gray-900 via-gray-800 to-gray-900',
   },
 ]

@@ -26,7 +26,13 @@ export default function Home() {
           <span className="font-bold text-teal-400 tracking-widest text-sm uppercase">
             {profile.nameEn}
           </span>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 print:hidden">
+            <Link
+              href="/portfolio"
+              className="!text-gray-400 hover:!text-teal-400 text-xs font-mono transition-colors"
+            >
+              포트폴리오 →
+            </Link>
             <Link
               href="/light"
               className="!text-gray-400 hover:!text-teal-400 text-xs font-mono transition-colors"
