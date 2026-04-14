@@ -11,28 +11,19 @@ export default function CareerOverview() {
           <div className="w-12 h-px bg-teal-500" />
         </div>
 
-        <div className="space-y-14">
+        <div className="grid md:grid-cols-2 gap-6">
           {portfolioProjects.map((project) => (
-            <div key={project.id}>
-              {/* 이미지 배너 */}
-              <div className={`relative w-full h-52 rounded-2xl overflow-hidden bg-gradient-to-br ${project.gradientClass}`}>
-                {project.screenshotSrc && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={project.screenshotSrc}
-                    alt={project.name}
-                    className="w-full h-full object-cover object-top opacity-70"
-                  />
-                )}
-                {/* 하단 페이드 */}
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-900/90" />
-              </div>
+            <div
+              key={project.id}
+              className="rounded-2xl bg-gray-800 border border-gray-700 hover:border-teal-500/40 transition-colors overflow-hidden"
+            >
+              {/* 상단 컬러 액센트 */}
+              <div className={`h-1 bg-gradient-to-r ${project.gradientClass}`} />
 
-              {/* 카드 — 이미지 위에 겹침 */}
-              <div className="-mt-10 mx-4 md:mx-10 relative z-10 rounded-2xl bg-gray-800/95 border border-gray-700 p-5 backdrop-blur-sm shadow-xl">
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <h3 className="font-bold text-white text-base">{project.name}</h3>
-                  <span className="text-xs font-mono text-gray-400 whitespace-nowrap flex-shrink-0 mt-0.5">
+              <div className="p-6">
+                <div className="flex items-start justify-between gap-2 mb-3">
+                  <h3 className="font-bold text-white text-base leading-snug">{project.name}</h3>
+                  <span className="text-xs font-mono text-gray-500 whitespace-nowrap flex-shrink-0 mt-0.5">
                     {project.period}
                   </span>
                 </div>
@@ -40,7 +31,7 @@ export default function CareerOverview() {
                   {project.overviewDescription}
                 </p>
                 <p className="text-xs font-mono text-teal-400 uppercase tracking-wider mb-2">기여도</p>
-                <ul className="space-y-1.5">
+                <ul className="space-y-2">
                   {project.overviewContributions.map((c, i) => (
                     <li key={i} className="flex items-start gap-2 text-xs text-gray-300">
                       <span className="mt-0.5 w-1.5 h-1.5 rounded-full bg-teal-500 flex-shrink-0" />
