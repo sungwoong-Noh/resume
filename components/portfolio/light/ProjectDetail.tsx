@@ -24,7 +24,7 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
   const { frontend, backend, infra } = project.techStack
 
   return (
-    <div className="print:break-inside-avoid">
+    <div className="">
       <div className={`h-1 w-full rounded-full bg-gradient-to-r ${project.gradientClass} mb-6`} />
 
       <div className="grid md:grid-cols-2 gap-10">

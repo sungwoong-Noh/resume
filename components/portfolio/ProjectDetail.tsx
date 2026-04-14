@@ -24,7 +24,7 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
   const { frontend, backend, infra } = project.techStack
 
   return (
-    <div className="print:break-inside-avoid">
+    <div className="">
       {/* 상단 액센트 + 프로젝트명 */}
       <div className={`h-1 w-full rounded-full bg-gradient-to-r ${project.gradientClass} mb-6`} />
 
