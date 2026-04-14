@@ -19,6 +19,10 @@ export type PortfolioProject = {
   gradientClass: string
 }
 
+export type PortfolioSideProject = PortfolioProject & {
+  organization: string
+}
+
 export const portfolioProjects: PortfolioProject[] = [
   {
     id: 'ppp-cloud',
@@ -52,55 +56,6 @@ export const portfolioProjects: PortfolioProject[] = [
       infra: ['K8s', 'Jenkins', 'Citrix ADC', 'AhnLab TrusGuard'],
     },
     gradientClass: 'from-slate-700 via-slate-600 to-slate-800',
-  },
-  {
-    id: 'commerce',
-    name: '통합 커머스 프로젝트',
-    period: '2025.07 ~ 2025.09',
-    overviewDescription:
-      '패스트캠퍼스 부트캠프를 통해 진행된 통합 커머스 구현 프로젝트에 참여하였습니다. 고효율, 확장성을 고려한 MSA 시스템 설계 및 인프라 구축과 JWT 기반 중앙 인증과 커머스 회원 기능 구현에 기여했습니다.',
-    overviewContributions: [
-      '대규모 트래픽 부하 분산을 위한 AWS ECS 기반 오토 스케일링 인프라 설계 및 구축',
-      '대규모 트래픽 대응을 위한 도메인 중심 MSA 설계 및 Service Discovery 기반 가용성 확보',
-      'API Gateway 기반 중앙인증 아키텍처 도입으로 서비스 간 결합도 완화 및 개발 효율성 극대화',
-    ],
-    detailParagraphs: [
-      '대량 트래픽 환경에서도 안정적인 서비스를 제공하기 위해 상품, 주문, 결제 도메인을 MSA 아키텍처로 설계했습니다.',
-      '특히 AWS ECS 기반의 Auto-scaling 구조를 직접 설계하여, 급격한 트래픽 변동에도 서비스 가용성을 끊임 없이 유지할 수 있는 인프라 확장성을 확보했습니다.',
-      '분산 환경에서의 복잡한 인증 문제를 해결하고자 API Gateway 중심의 JWT 무상태(Stateless) 인증 체계를 수립했습니다. 이를 통해 서비스 간 결합도를 낮추고 수평적 확장이 용이한 구조를 완성했습니다.',
-      '단순 기능 구현을 넘어, 대량의 데이터 처리 시 발생할 수 있는 병목 현상을 사전에 고려하여 응답 속도와 데이터 정합성 사이의 최적의 균형을 맞춘 설계를 지향했습니다.',
-    ],
-    keyResponsibilities: [
-      'AWS ECS 기반 고가용성 MSA 인프라 아키텍처 설계 및 오토 스케일링 체계 구축',
-      'GitHub Actions 및 AWS ECR 기반의 CI/CD 파이프라인 구축을 통한 배포 프로세스 자동화 및 인프라 운영 비용 최적화',
-      '분산 추적 시스템(Zipkin) 도입으로 마이크로서비스 간 호출 흐름 가시화 및 장애 원인 식별/진단 효율성 제고',
-      'JWT 무상태 인증 및 API Gateway 중앙 인증 아키텍처 적용으로 서비스 간 결합도 완화 및 확장 가능한 인증 체계 수립',
-      'API Gateway 토큰 버킷 기반 Rate Limiting 구현으로 스파이크 트래픽 대응 및 다운스트림 서비스 보호 기반의 안정성 강화',
-    ],
-    techStack: {
-      backend: [
-        'Spring Boot',
-        'Spring Boot Cloud',
-        'JPA',
-        'Gradle kts',
-        'JUnit5',
-        'Spring Security',
-        'Zipkin',
-        'PostgreSQL',
-      ],
-      infra: [
-        'AWS ECS',
-        'AWS ECR',
-        'Oracle Cloud',
-        'Docker',
-        'Github Actions',
-        'AWS S3',
-        'AWS CloudMap',
-        'Prometheus',
-        'Grafana',
-      ],
-    },
-    gradientClass: 'from-gray-900 via-gray-800 to-gray-900',
   },
   {
     id: 'ntops',
@@ -244,8 +199,61 @@ export const portfolioProfile = {
     },
   ],
   introduction: [
-    '건강한 개발 문화에서 시작된 좋은 코드가 결국 시스템의 안정성을 결정한다고 믿습니다. 이를 위해 팀 내 코드리뷰와 테스트 코드를 도입하여 기술 부채를 관리하고, 동료 누구나 구조와 흐름을 쉽게 이해할 수 있는 명료한 코드 베이스를 만드는 데 집중해 왔습니다. 이러한 노력은 단순히 코드의 질을 높이는 것에 그치지 않고, 시스템 운영 전반의 유지보수성과 신뢰도를 높이는 단단한 밑거름이 되었습니다.',
-    '이러한 철학을 바탕으로 실무에서는 시스템 안정성을 저해하는 병목 현상을 해결하는 데 주력했습니다. DB 조회 성능을 최적화하고 WAS 단의 동기화 로직을 개선하는 등 집요하게 성능을 튜닝하여 대용량 데이터를 처리하는 환경에서도 흔들림 없는 시스템을 증명해 왔습니다. 또한, 통합 커머스 프로젝트를 통해 대규모 트래픽을 가정한 Auto-scaling 아키텍처를 설계하며, 비즈니스 확장성에 유연하게 대응할 수 있는 시스템 구조에 대해 깊이 고민했습니다.',
-    '좋은 설계와 건강한 문화가 만났을 때 시스템은 비로소 지속 가능해집니다. 저의 이러한 고집과 경험을 바탕으로, 함께 성장하는 개발 문화를 구축하고, 동료들이 신뢰할 수 있는 단단한 시스템 아키텍처를 만들어 나가겠습니다.',
+    'N+1 문제로 2시간이 걸리던 동기화를 10초로 단축하고, 130만 건 DB의 p95를 17초에서 3초로 개선했습니다. 지시받은 기능을 구현하는 것보다 시스템 병목을 먼저 발굴해 실행계획과 JPA 동작 원리로 근본 원인을 해결하는 방식으로 일해왔습니다.',
+    'RPMS, PPP Cloud처럼 요구사항 정제부터 설계·개발·운영까지 전 주기를 리드하면서, Self-Service API 전환으로 월 50건 수동 운영을 5건으로 줄이고 Saga 패턴으로 분산 환경의 데이터 정합성을 확보했습니다.',
+    '성과에 그치지 않고 팀이 지속 가능하도록 변화를 이끌었습니다. 초기 회의론을 파일럿으로 설득해 QueryDSL을 도입하고 Native 쿼리 70%를 제거했으며, 단위 테스트 문화 정착과 사내 스터디 운영으로 팀 전체의 유지보수 비용을 낮췄습니다.',
   ],
 }
+
+export const portfolioSideProjects: PortfolioSideProject[] = [
+  {
+    id: 'commerce',
+    name: '통합 커머스 프로젝트',
+    organization: '패스트캠퍼스 부트캠프',
+    period: '2025.07 ~ 2025.09',
+    overviewDescription:
+      '패스트캠퍼스 부트캠프를 통해 진행된 통합 커머스 구현 프로젝트입니다. 고효율, 확장성을 고려한 MSA 시스템 설계 및 인프라 구축과 JWT 기반 중앙 인증과 커머스 회원 기능 구현에 기여했습니다.',
+    overviewContributions: [
+      '대규모 트래픽 부하 분산을 위한 AWS ECS 기반 오토 스케일링 인프라 설계 및 구축',
+      '대규모 트래픽 대응을 위한 도메인 중심 MSA 설계 및 Service Discovery 기반 가용성 확보',
+      'API Gateway 기반 중앙인증 아키텍처 도입으로 서비스 간 결합도 완화',
+    ],
+    detailParagraphs: [
+      '대량 트래픽 환경에서도 안정적인 서비스를 제공하기 위해 상품, 주문, 결제 도메인을 MSA 아키텍처로 설계했습니다.',
+      '특히 AWS ECS 기반의 Auto-scaling 구조를 직접 설계하여, 급격한 트래픽 변동에도 서비스 가용성을 끊임 없이 유지할 수 있는 인프라 확장성을 확보했습니다.',
+      '분산 환경에서의 복잡한 인증 문제를 해결하고자 API Gateway 중심의 JWT 무상태(Stateless) 인증 체계를 수립했습니다. 이를 통해 서비스 간 결합도를 낮추고 수평적 확장이 용이한 구조를 완성했습니다.',
+      '단순 기능 구현을 넘어, 대량의 데이터 처리 시 발생할 수 있는 병목 현상을 사전에 고려하여 응답 속도와 데이터 정합성 사이의 최적의 균형을 맞춘 설계를 지향했습니다.',
+    ],
+    keyResponsibilities: [
+      'AWS ECS 기반 고가용성 MSA 인프라 아키텍처 설계 및 오토 스케일링 체계 구축',
+      'GitHub Actions 및 AWS ECR 기반의 CI/CD 파이프라인 구축을 통한 배포 프로세스 자동화 및 인프라 운영 비용 최적화',
+      '분산 추적 시스템(Zipkin) 도입으로 마이크로서비스 간 호출 흐름 가시화 및 장애 원인 식별/진단 효율성 제고',
+      'JWT 무상태 인증 및 API Gateway 중앙 인증 아키텍처 적용으로 서비스 간 결합도 완화 및 확장 가능한 인증 체계 수립',
+      'API Gateway 토큰 버킷 기반 Rate Limiting 구현으로 스파이크 트래픽 대응 및 다운스트림 서비스 보호 기반의 안정성 강화',
+    ],
+    techStack: {
+      backend: [
+        'Spring Boot',
+        'Spring Boot Cloud',
+        'JPA',
+        'Gradle kts',
+        'JUnit5',
+        'Spring Security',
+        'Zipkin',
+        'PostgreSQL',
+      ],
+      infra: [
+        'AWS ECS',
+        'AWS ECR',
+        'Oracle Cloud',
+        'Docker',
+        'Github Actions',
+        'AWS S3',
+        'AWS CloudMap',
+        'Prometheus',
+        'Grafana',
+      ],
+    },
+    gradientClass: 'from-gray-900 via-gray-800 to-gray-900',
+  },
+]
