@@ -58,7 +58,7 @@ function ProjectCard({ project }: { project: (typeof portfolioProjects)[number] 
           <img
             src={project.screenshotSrc}
             alt={project.name}
-            className="w-full h-full object-cover opacity-80"
+            className="w-full h-full object-contain opacity-80"
           />
         ) : null}
         <div className="absolute inset-0 flex items-end p-4">
