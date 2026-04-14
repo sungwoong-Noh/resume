@@ -10,7 +10,7 @@ export default function SideProjectsSection() {
           </p>
           <div className="w-12 h-px bg-teal-500" />
         </div>
-        <div className="space-y-20 print:space-y-12">
+        <div className="space-y-16 print:space-y-12">
           {portfolioSideProjects.map((project) => (
             <SideProjectCard key={project.id} project={project} />
           ))}
@@ -25,37 +25,19 @@ function SideProjectCard({ project }: { project: PortfolioSideProject }) {
 
   return (
     <div className="print:break-inside-avoid">
-      {/* 상단 배너 */}
-      <div
-        className={`w-full h-52 rounded-2xl overflow-hidden bg-gradient-to-br ${project.gradientClass} relative mb-8 print:h-28`}
-      >
-        {project.screenshotSrc ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={project.screenshotSrc}
-            alt={project.name}
-            className="w-full h-full object-contain opacity-75"
-          />
-        ) : null}
-        <div className="absolute top-3 left-1/2 -translate-x-1/2">
-          <span className="text-xs font-mono tracking-widest text-white/50 uppercase">
-            Side Project
-          </span>
-        </div>
-        {/* Organization badge */}
-        <div className="absolute bottom-3 left-4">
-          <span className="text-xs font-mono text-teal-300 bg-black/40 px-3 py-1 rounded-full">
-            {project.organization}
-          </span>
-        </div>
-      </div>
+      {/* 상단 액센트 + 프로젝트명 */}
+      <div className={`h-1 w-full rounded-full bg-gradient-to-r ${project.gradientClass} mb-6`} />
 
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="grid md:grid-cols-2 gap-10">
         {/* Left — description */}
         <div>
-          <h3 className="text-2xl font-bold text-white mb-1">{project.name}</h3>
-          <p className="text-xs font-mono text-teal-400 mb-1">{project.period}</p>
-          <p className="text-xs font-mono text-gray-500 mb-4">{project.organization}</p>
+          <div className="flex items-center gap-3 mb-1">
+            <h3 className="text-2xl font-bold text-white">{project.name}</h3>
+            <span className="text-xs font-mono text-gray-500 bg-gray-800 border border-gray-700 px-2 py-0.5 rounded-full">
+              {project.organization}
+            </span>
+          </div>
+          <p className="text-xs font-mono text-teal-400 mb-5">{project.period}</p>
           <div className="space-y-3">
             {project.detailParagraphs.map((para, i) => (
               <p key={i} className="text-sm text-gray-300 leading-relaxed">
@@ -65,7 +47,7 @@ function SideProjectCard({ project }: { project: PortfolioSideProject }) {
           </div>
 
           {/* Tech Stack */}
-          <div className="mt-6">
+          <div className="mt-7">
             <p className="text-xs font-mono tracking-widest text-teal-400 uppercase mb-3">
               Tech Stack
             </p>
@@ -85,7 +67,7 @@ function SideProjectCard({ project }: { project: PortfolioSideProject }) {
 
         {/* Right — Key Responsibilities */}
         <div>
-          <p className="text-xs font-mono tracking-widest text-teal-400 uppercase mb-4">
+          <p className="text-xs font-mono tracking-widest text-teal-400 uppercase mb-5">
             Key Responsibilities
           </p>
           <ul className="space-y-4">
@@ -96,7 +78,8 @@ function SideProjectCard({ project }: { project: PortfolioSideProject }) {
         </div>
       </div>
 
-      <div className="mt-12 border-b border-gray-800" />
+      {/* 구분선 */}
+      <div className="mt-14 border-b border-gray-800" />
     </div>
   )
 }
