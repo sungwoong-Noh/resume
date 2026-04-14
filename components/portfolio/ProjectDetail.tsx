@@ -1,4 +1,4 @@
-import { portfolioProjects, type PortfolioProject } from '@/data/portfolio'
+import { portfolioProjects, type PortfolioProject, type PortfolioPARItem } from '@/data/portfolio'
 
 export default function ProjectDetail() {
   return (
@@ -81,12 +81,9 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
           <p className="text-xs font-mono tracking-widest text-teal-400 uppercase mb-4">
             Key Responsibilities
           </p>
-          <ul className="space-y-3">
-            {project.keyResponsibilities.map((r, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-teal-500 flex-shrink-0" />
-                <span className="text-sm text-gray-300 leading-relaxed">{r}</span>
-              </li>
+          <ul className="space-y-4">
+            {project.keyResponsibilities.map((item, i) => (
+              <PARItem key={i} item={item} />
             ))}
           </ul>
         </div>
@@ -95,6 +92,34 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
       {/* 구분선 */}
       <div className="mt-12 border-b border-gray-800" />
     </div>
+  )
+}
+
+function PARItem({ item }: { item: PortfolioPARItem }) {
+  const hasPAR = item.problem || item.analyze
+  return (
+    <li className="space-y-2">
+      <div className="flex items-start gap-3">
+        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-teal-500 flex-shrink-0" />
+        <span className="text-sm text-white font-medium leading-relaxed">{item.result}</span>
+      </div>
+      {hasPAR && (
+        <div className="ml-4 pl-4 border-l border-gray-700 space-y-1.5">
+          {item.problem && (
+            <p className="text-xs text-gray-400 leading-relaxed">
+              <span className="text-teal-500 font-mono mr-2">문제</span>
+              {item.problem}
+            </p>
+          )}
+          {item.analyze && (
+            <p className="text-xs text-gray-400 leading-relaxed">
+              <span className="text-teal-500 font-mono mr-2">분석</span>
+              {item.analyze}
+            </p>
+          )}
+        </div>
+      )}
+    </li>
   )
 }
 
