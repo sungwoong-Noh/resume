@@ -22,6 +22,12 @@ export default function PortfolioPage() {
           </span>
           <div className="flex items-center gap-4">
             <Link
+              href="/portfolio/light"
+              className="!text-gray-400 hover:!text-teal-400 text-xs font-mono transition-colors"
+            >
+              라이트 버전 →
+            </Link>
+            <Link
               href="/"
               className="!text-gray-400 hover:!text-teal-400 text-xs font-mono transition-colors"
             >
