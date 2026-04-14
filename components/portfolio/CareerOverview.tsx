@@ -19,20 +19,24 @@ export default function CareerOverview() {
             {portfolioProjects.map((project, i) => {
               const isLeft = i % 2 === 0
               return (
-                <div key={project.id} className="relative grid md:grid-cols-2 gap-6 items-start">
+                <div key={project.id} className="relative grid md:grid-cols-2 gap-6 items-center">
                   {/* 타임라인 점 */}
-                  <div className="hidden md:block absolute left-1/2 top-5 w-3 h-3 rounded-full bg-teal-500 border-2 border-gray-900 -translate-x-1/2 z-10" />
+                  <div className="hidden md:block absolute left-1/2 top-1/2 w-3 h-3 rounded-full bg-teal-500 border-2 border-gray-900 -translate-x-1/2 -translate-y-1/2 z-10" />
 
                   {isLeft ? (
                     <>
                       <div className="md:pr-8">
                         <ProjectCard project={project} />
                       </div>
-                      <div className="hidden md:block" />
+                      <div className="hidden md:flex md:pl-8 items-center justify-center">
+                        <ProjectImage project={project} />
+                      </div>
                     </>
                   ) : (
                     <>
-                      <div className="hidden md:block" />
+                      <div className="hidden md:flex md:pr-8 items-center justify-center">
+                        <ProjectImage project={project} />
+                      </div>
                       <div className="md:pl-8">
                         <ProjectCard project={project} />
                       </div>
@@ -48,28 +52,33 @@ export default function CareerOverview() {
   )
 }
 
+function ProjectImage({ project }: { project: (typeof portfolioProjects)[number] }) {
+  if (!project.screenshotSrc) return null
+  return (
+    <div className="w-full rounded-xl overflow-hidden border border-gray-700 shadow-xl bg-gray-800">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={project.screenshotSrc}
+        alt={project.name}
+        className="w-full object-contain"
+      />
+    </div>
+  )
+}
+
 function ProjectCard({ project }: { project: (typeof portfolioProjects)[number] }) {
   return (
     <div className="rounded-2xl bg-gray-800 border border-gray-700 hover:border-teal-500/30 overflow-hidden transition">
-      {/* 배너 */}
-      <div className={`h-28 bg-gradient-to-br ${project.gradientClass} relative`}>
-        {project.screenshotSrc ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={project.screenshotSrc}
-            alt={project.name}
-            className="w-full h-full object-contain opacity-80"
-          />
-        ) : null}
-        <div className="absolute inset-0 flex items-end p-4">
-          <span className="text-xs font-mono text-white/70 bg-black/30 px-2 py-0.5 rounded">
+      {/* 상단 컬러 배너 (gradient only, 이미지 없음) */}
+      <div className={`h-2 bg-gradient-to-r ${project.gradientClass}`} />
+
+      <div className="p-5">
+        <div className="flex items-start justify-between gap-2 mb-2">
+          <h3 className="font-bold text-white text-base">{project.name}</h3>
+          <span className="text-xs font-mono text-gray-400 whitespace-nowrap flex-shrink-0 mt-0.5">
             {project.period}
           </span>
         </div>
-      </div>
-
-      <div className="p-5">
-        <h3 className="font-bold text-white text-base mb-2">{project.name}</h3>
         <p className="text-xs text-gray-400 leading-relaxed mb-4">
           {project.overviewDescription}
         </p>
