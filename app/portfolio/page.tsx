@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import PortfolioHero from '@/components/portfolio/PortfolioHero'
 import CareerOverview from '@/components/portfolio/CareerOverview'
 import ProjectDetail from '@/components/portfolio/ProjectDetail'
@@ -13,12 +14,29 @@ export const metadata = {
 export default function PortfolioPage() {
   return (
     <main className="min-h-screen bg-gray-900">
+      {/* ── Navigation ──────────────────────────────────── */}
+      <nav className="sticky top-0 z-50 bg-gray-900/80 backdrop-blur border-b border-gray-800 print:hidden">
+        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+          <span className="font-bold text-teal-400 tracking-widest text-sm uppercase">
+            Portfolio
+          </span>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/"
+              className="!text-gray-400 hover:!text-teal-400 text-xs font-mono transition-colors"
+            >
+              ← 이력서
+            </Link>
+            <PrintButton />
+          </div>
+        </div>
+      </nav>
+
       <PortfolioHero />
       <CareerOverview />
       <ProjectDetail />
       <SideProjectsSection />
       <PortfolioContact />
-      <PrintButton />
     </main>
   )
 }
