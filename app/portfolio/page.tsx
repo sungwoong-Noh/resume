@@ -1,6 +1,7 @@
 import PortfolioHero from '@/components/portfolio/PortfolioHero'
 import CareerOverview from '@/components/portfolio/CareerOverview'
 import ProjectDetail from '@/components/portfolio/ProjectDetail'
+import SideProjectsSection from '@/components/portfolio/SideProjectsSection'
 import PortfolioContact from '@/components/portfolio/PortfolioContact'
 import PrintButton from '@/components/portfolio/PrintButton'
 
@@ -11,10 +12,11 @@ export const metadata = {
 
 export default function PortfolioPage() {
   return (
-    <main className="min-h-screen bg-[#f5f0e8]">
+    <main className="min-h-screen bg-gray-900">
       <PortfolioHero />
       <CareerOverview />
       <ProjectDetail />
+      <SideProjectsSection />
       <PortfolioContact />
       <PrintButton />
     </main>

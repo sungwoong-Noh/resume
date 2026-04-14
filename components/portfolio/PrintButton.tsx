@@ -4,7 +4,7 @@ export default function PrintButton() {
   return (
     <button
       onClick={() => window.print()}
-      className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2.5 bg-[#2a6041] text-white text-sm font-medium rounded-full shadow-lg hover:bg-[#1e4a30] transition-colors print:hidden"
+      className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2.5 bg-teal-600 text-white text-sm font-medium rounded-full shadow-lg hover:bg-teal-700 transition-colors print:hidden"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

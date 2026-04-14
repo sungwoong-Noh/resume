@@ -1,18 +1,18 @@
-import { portfolioProjects, type PortfolioProject } from '@/data/portfolio'
+import { portfolioSideProjects, type PortfolioSideProject } from '@/data/portfolio'
 
-export default function ProjectDetail() {
+export default function SideProjectsSection() {
   return (
     <section className="bg-gray-900 py-16 px-6 print:py-10">
       <div className="max-w-5xl mx-auto">
         <div className="mb-14">
           <p className="text-xs font-mono tracking-widest text-teal-400 uppercase mb-3">
-            Project Detail
+            Side Project
           </p>
           <div className="w-12 h-px bg-teal-500" />
         </div>
         <div className="space-y-20 print:space-y-12">
-          {portfolioProjects.map((project) => (
-            <ProjectDetailCard key={project.id} project={project} />
+          {portfolioSideProjects.map((project) => (
+            <SideProjectCard key={project.id} project={project} />
           ))}
         </div>
       </div>
@@ -20,7 +20,7 @@ export default function ProjectDetail() {
   )
 }
 
-function ProjectDetailCard({ project }: { project: PortfolioProject }) {
+function SideProjectCard({ project }: { project: PortfolioSideProject }) {
   const { frontend, backend, infra } = project.techStack
 
   return (
@@ -39,7 +39,13 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
         ) : null}
         <div className="absolute top-3 left-1/2 -translate-x-1/2">
           <span className="text-xs font-mono tracking-widest text-white/50 uppercase">
-            Project Detail
+            Side Project
+          </span>
+        </div>
+        {/* Organization badge */}
+        <div className="absolute bottom-3 left-4">
+          <span className="text-xs font-mono text-teal-300 bg-black/40 px-3 py-1 rounded-full">
+            {project.organization}
           </span>
         </div>
       </div>
@@ -48,7 +54,8 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
         {/* Left — description */}
         <div>
           <h3 className="text-2xl font-bold text-white mb-1">{project.name}</h3>
-          <p className="text-xs font-mono text-teal-400 mb-4">{project.period}</p>
+          <p className="text-xs font-mono text-teal-400 mb-1">{project.period}</p>
+          <p className="text-xs font-mono text-gray-500 mb-4">{project.organization}</p>
           <div className="space-y-3">
             {project.detailParagraphs.map((para, i) => (
               <p key={i} className="text-sm text-gray-300 leading-relaxed">
@@ -92,7 +99,6 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
         </div>
       </div>
 
-      {/* 구분선 */}
       <div className="mt-12 border-b border-gray-800" />
     </div>
   )

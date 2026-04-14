@@ -19,6 +19,10 @@ export type PortfolioProject = {
   gradientClass: string
 }
 
+export type PortfolioSideProject = PortfolioProject & {
+  organization: string
+}
+
 export const portfolioProjects: PortfolioProject[] = [
   {
     id: 'ppp-cloud',
@@ -29,18 +33,18 @@ export const portfolioProjects: PortfolioProject[] = [
     overviewContributions: [
       '확장성을 고려한 백엔드 설계 및 RESTful API 인터페이스 표준화',
       '멀티테넌트 고가용성 네트워크 상품 기획 및 구현',
-      '수동 프로세스의 Self-Service API 기반 자동화 전환으로 운영 리소스 90% 이상 절감',
+      '수동 프로세스의 Self-Service API 기반 자동화 전환으로 수동 운영 워크로드 90% 절감 (월 50건 → 5건)',
       '코드 리뷰 및 JUnit5 기반 단위 테스트 도입으로 런타임 오류 원천 차단',
     ],
     detailParagraphs: [
       '국정자원 클라우드 전환을 위해 이기종 인프라 설정을 자동화하는 로드밸런서(L4) 및 포트포워딩 셀프서비스 개발을 주도했습니다.',
-      '기존의 수동 설정 방식을 API 기반 자동화 체계로 전환하여 운영 워크로드를 90% 이상 절감하였으며, 인프라 지식이 부족한 사용자도 안전하게 트래픽 제어 규칙을 관리할 수 있도록 설정을 추상화했습니다.',
+      '기존의 수동 설정 방식을 API 기반 자동화 체계로 전환하여 수동 운영 워크로드를 90% 절감 (월 50건 → 5건)하였으며, 인프라 지식이 부족한 사용자도 안전하게 트래픽 제어 규칙을 관리할 수 있도록 설정을 추상화했습니다.',
       '특히 장비 간 설정 불일치를 방지하기 위해 Saga 패턴 기반의 분산 트랜잭션을 설계하여, 장애 상황에서도 자동 롤백을 통한 100%의 데이터 정합성을 확보했습니다.',
       '또한 JUnit5 기반 테스트와 코드 리뷰를 주도하여 런타임 오류를 최소화하고 코드 재사용성을 60% 향상시키는 등 대규모 인프라 운영의 안정성을 강화했습니다.',
     ],
     keyResponsibilities: [
       '멀티테넌트 환경의 고가용성 네트워크(L4/L7) 상품 설계 및 자동화 로직 구현',
-      'Managed 설정 방식을 자동화 기반 Self-Service로 전환하여 운영 효율성 90% 향상',
+      'Managed 설정 방식을 자동화 기반 Self-Service로 전환하여 수동 운영 워크로드 90% 절감 (월 50건 → 5건)',
       'Saga 패턴 기반 보상 트랜잭션 설계로 분산 환경 내 데이터 정합성 및 원자적 적용 보장',
       '컨벤션, 공통 모듈, 응답/에러 표준화에 기여',
       'JUnit5 기반 단위 테스트 및 시나리오 검증 도입으로 배포 안정성 확보 및 런타임 오류 원천 차단',
@@ -54,55 +58,6 @@ export const portfolioProjects: PortfolioProject[] = [
     gradientClass: 'from-slate-700 via-slate-600 to-slate-800',
   },
   {
-    id: 'commerce',
-    name: '통합 커머스 프로젝트',
-    period: '2025.07 ~ 2025.09',
-    overviewDescription:
-      '패스트캠퍼스 부트캠프를 통해 진행된 통합 커머스 구현 프로젝트에 참여하였습니다. 고효율, 확장성을 고려한 MSA 시스템 설계 및 인프라 구축과 JWT 기반 중앙 인증과 커머스 회원 기능 구현에 기여했습니다.',
-    overviewContributions: [
-      '대규모 트래픽 부하 분산을 위한 AWS ECS 기반 오토 스케일링 인프라 설계 및 구축',
-      '대규모 트래픽 대응을 위한 도메인 중심 MSA 설계 및 Service Discovery 기반 가용성 확보',
-      'API Gateway 기반 중앙인증 아키텍처 도입으로 서비스 간 결합도 완화 및 개발 효율성 극대화',
-    ],
-    detailParagraphs: [
-      '대량 트래픽 환경에서도 안정적인 서비스를 제공하기 위해 상품, 주문, 결제 도메인을 MSA 아키텍처로 설계했습니다.',
-      '특히 AWS ECS 기반의 Auto-scaling 구조를 직접 설계하여, 급격한 트래픽 변동에도 서비스 가용성을 끊임 없이 유지할 수 있는 인프라 확장성을 확보했습니다.',
-      '분산 환경에서의 복잡한 인증 문제를 해결하고자 API Gateway 중심의 JWT 무상태(Stateless) 인증 체계를 수립했습니다. 이를 통해 서비스 간 결합도를 낮추고 수평적 확장이 용이한 구조를 완성했습니다.',
-      '단순 기능 구현을 넘어, 대량의 데이터 처리 시 발생할 수 있는 병목 현상을 사전에 고려하여 응답 속도와 데이터 정합성 사이의 최적의 균형을 맞춘 설계를 지향했습니다.',
-    ],
-    keyResponsibilities: [
-      'AWS ECS 기반 고가용성 MSA 인프라 아키텍처 설계 및 오토 스케일링 체계 구축',
-      'GitHub Actions 및 AWS ECR 기반의 CI/CD 파이프라인 구축을 통한 배포 프로세스 자동화 및 인프라 운영 비용 최적화',
-      '분산 추적 시스템(Zipkin) 도입으로 마이크로서비스 간 호출 흐름 가시화 및 장애 원인 식별/진단 효율성 제고',
-      'JWT 무상태 인증 및 API Gateway 중앙 인증 아키텍처 적용으로 서비스 간 결합도 완화 및 확장 가능한 인증 체계 수립',
-      'API Gateway 토큰 버킷 기반 Rate Limiting 구현으로 스파이크 트래픽 대응 및 다운스트림 서비스 보호 기반의 안정성 강화',
-    ],
-    techStack: {
-      backend: [
-        'Spring Boot',
-        'Spring Boot Cloud',
-        'JPA',
-        'Gradle kts',
-        'JUnit5',
-        'Spring Security',
-        'Zipkin',
-        'PostgreSQL',
-      ],
-      infra: [
-        'AWS ECS',
-        'AWS ECR',
-        'Oracle Cloud',
-        'Docker',
-        'Github Actions',
-        'AWS S3',
-        'AWS CloudMap',
-        'Prometheus',
-        'Grafana',
-      ],
-    },
-    gradientClass: 'from-gray-900 via-gray-800 to-gray-900',
-  },
-  {
     id: 'ntops',
     name: '국정자원 시스템 통합운영',
     period: '2025.07 ~ 2026.01',
@@ -110,18 +65,18 @@ export const portfolioProjects: PortfolioProject[] = [
       '국정자원 업무 수행을 위한 통합포털, RPMS, ITSM 3개의 시스템 통합 운영업무를 수행중입니다. 국정자원 업무 효율·안정성 향상을 목표로 오류 개선, 성능 최적화를 통해 시스템 안정성에 기여했습니다.',
     overviewContributions: [
       '이기종 시스템(통합포털, RPMS, ITSM) 간 운영 프로세스 표준화 및 요구사항 정제부터 릴리스까지의 End-to-End 운영 체계 정립',
-      '실행계획 분석 및 힌트·인덱스 최적화를 통한 핵심 업무 조회 성능 82% 향상',
+      'Tibero 실행계획 분석 및 힌트·인덱스 최적화로 핵심 업무 조회 p95 17초 → 3초 (82% 개선)',
       '월 30건 이상의 운영 이슈 적기 개선으로 서비스 리드타임 단축 및 시스템 안정성 확보',
     ],
     detailParagraphs: [
       '국가정보자원관리원의 핵심 업무 시스템을 운영하며 이기종 인프라 간의 프로세스를 표준화하고, 요구사항 정제부터 릴리스까지 이어지는 End-to-End 운영 체계를 정립하여 서비스 신뢰도를 높였습니다.',
-      '특히 대규모 데이터 조회 시 발생하는 병목 현상을 해결하기 위해 Tibero 실행계획 분석 및 인덱스 튜닝을 주도하였으며, 그 결과 핵심 업무 성능을 82% 향상시켜 시스템 가용성을 확보했습니다.',
+      '특히 대규모 데이터 조회 시 발생하는 병목 현상을 해결하기 위해 Tibero 실행계획 분석 및 인덱스 튜닝을 주도하였으며, DBA와 협업해 WHERE 절 타입 불일치가 인덱스를 무력화하는 근본 원인을 확인하고 수정하여 p95 17초 → 3초 (82% 개선)를 달성했습니다.',
       '또한, 매월 30건 이상의 이슈를 처리함에 있어 단순 수정을 넘어 근본적인 원인을 분석하고 재발 방지 로직을 구현하는 등, 중단 없는 서비스를 제공하기 위한 실질적인 운영 안정화 역량을 입증해 왔습니다.',
     ],
     keyResponsibilities: [
       '국정자원 nTOPS, RPMS, 통합포털 3가지 업무시스템 통합운영 담당자로 참여',
       '클라이언트와 직접 소통하며 요구사항 정제부터 개선 릴리스까지 End-to-End 운영 체계화',
-      'Tibero 실행계획 힌트/인덱스 최적화로 핵심 조회 성능 82% 향상',
+      'DBA 협업으로 WHERE 절 타입 불일치 근본 원인 확인 → Tibero 힌트/인덱스 최적화로 핵심 조회 p95 17초 → 3초 (82% 개선)',
       '월 30건 이상 운영 이슈 개선으로 처리 리드타임 단축 및 재발률 감소',
     ],
     techStack: {
@@ -149,21 +104,21 @@ export const portfolioProjects: PortfolioProject[] = [
       '국정자원 자원통합 사업을 위한 전산 시스템 구축에 참여하였습니다. 시스템 설계부터 개발, 운영까지 모든 과정에 기여하였습니다.',
     overviewContributions: [
       '대규모 자산 관리 도메인 모델링 및 확장성을 고려한 RESTful API 아키텍처 구현',
-      '이기종 시스템 간 데이터 동기화 병목 현상 해결을 통한 API 처리 성능 90% 향상',
-      'QueryDSL 도입을 통한 타입 안정성 확보 및 코드 리뷰 문화 정착을 통한 기술 부채 해결 주도',
+      'N+1 쿼리 Fetch Join · JDBC Bulk Insert 전환으로 배치 처리 10초로 단축 (99% 개선)',
+      'QueryDSL 최초 도입으로 Native 쿼리 70% 제거 및 유지보수 비용 50% 절감',
       '운영 효율화를 위한 관리 서비스 CMS 구축 및 고객 요구사항 기반 지속적인 성능 고도화',
     ],
     detailParagraphs: [
       '분산되어 있던 수기 자산 설계 프로세스를 전산화하여 이력 관리의 투명성과 데이터 정합성을 확보했습니다.',
       '복잡한 비즈니스 로직을 체계적으로 모델링함과 동시에, 사내 최초로 QueryDSL 도입을 주도하여 Native 쿼리의 70%를 리팩토링함으로써 시스템의 타입 안정성과 유지보수성을 획기적으로 높였습니다.',
-      '또한, JPA 성능 튜닝 및 Bulk Insert를 적용해 데이터 동기화 병목을 해소하였으며, 결과적으로 처리 성능을 90% 이상 향상시켜 대규모 국정자원 데이터를 실시간에 가깝게 관리할 수 있는 안정적인 운영 기반을 마련했습니다.',
+      '또한, JPA N+1 쿼리를 Fetch Join으로 해결하고, INSERT 병목은 JPA IDENTITY 전략의 단건 INSERT 강제 한계를 파악해 JDBC Template Bulk Insert로 전환하여 배치 처리를 10초로 단축 (99% 개선)하였습니다.',
     ],
     keyResponsibilities: [
-      '시스템 설계/개발 단계부터 운영 업무부터 End-to-End 참여',
+      '시스템 설계/개발 단계부터 운영까지 End-to-End 참여',
       '국정자원 자원통합 업무 프로세스 개선, 리드타임 50% 단축',
-      'JPA N+1, bulk insert 적용 등 시스템 성능 개선, 데이터 동기화 속도 99% 단축',
-      'QueryDSL 최초 도입으로 타입 안정성 확보 및 native 쿼리 70% 이상 제거하여 유지보수 비용 50% 절감',
-      '폐쇄망 K8s 개발 클러스터와 미들웨어 재구축 및 Jenkins, Helm chart 활용한 배포 자동화 파이프라인 구축',
+      'JPA N+1 Fetch Join 해결 + JDBC Bulk Insert 전환으로 배치 처리 10초 단축 (99% 개선)',
+      'QueryDSL 최초 도입으로 타입 안정성 확보 및 Native 쿼리 70% 이상 제거하여 유지보수 비용 50% 절감',
+      '폐쇄망 K8s 개발 클러스터·미들웨어 재구축 및 Jenkins·Helm 배포 자동화 파이프라인 구축',
     ],
     techStack: {
       frontend: ['Vue.js', 'HTML', 'ES6'],
@@ -171,65 +126,6 @@ export const portfolioProjects: PortfolioProject[] = [
       infra: ['K8s', 'Docker', 'Jenkins', 'HashCorp Vault', 'Harbor'],
     },
     gradientClass: 'from-indigo-900 via-indigo-800 to-blue-900',
-  },
-  {
-    id: 'science',
-    name: '과학문화체험 플랫폼',
-    period: '2023.07 ~ 2023.10',
-    overviewDescription:
-      '대전 동구청 주민을 대상으로 진행되는 과학문화체험 신청 플랫폼 구축에 참여하였습니다. 클라이언트 인터뷰부터 시스템 설계/구현 및 배포까지 모든 과정을 주도적으로 진행하여 성공적으로 런칭하였습니다.',
-    overviewContributions: [
-      '사용자 편의성을 고려한 도메인 모델링 및 확장 가능한 RESTful API 설계/구현',
-      '운영 효율화를 위한 관리자 대시보드 및 행사 관리 CMS 구축·유지보수',
-      '신청 플랫폼의 동시성 이슈 방지를 위한 예약 로직 최적화 및 eGov 프레임워크 기반 단기 런칭 주도',
-    ],
-    detailParagraphs: [
-      '대전 동구청 주민을 위한 과학문화체험 행사 정보 제공 및 예약 플랫폼을 단기간에 성공적으로 구축했습니다.',
-      'eGovFramework를 기반으로 시스템 아키텍처를 커스텀하여 3개월이라는 제한된 기간 내에 SNS 연동 로그인, 행사 신청 시스템, 관리자 페이지를 포함한 전체 플랫폼을 안정적으로 런칭했습니다.',
-      "특히 선착순 행사 신청 시 발생하는 동시성 이슈를 해결하기 위해 '임시 예약 전략'을 설계하여 도입했습니다. 이를 통해 트래픽이 몰리는 시점에도 DB 부하를 분산시키고 중복 신청을 방지하여 사용자에게 끊김 없는 예약 경험을 제공했습니다.",
-      '또한, NICE 본인인증 모듈을 연동하여 회원 관리 시스템의 표준화와 데이터 신뢰성을 확보하는 데 기여했습니다.',
-    ],
-    keyResponsibilities: [
-      'eGovFramework 커스텀을 통한 3개월 내 Full-stack 기능 구현 및 안정적 서비스 런칭',
-      'NICE 본인인증 모듈을 활용하여 실명·연령 검증 및 회원관리 표준화',
-      '임시예약(Soft Reservation) 전략을 통해 신청 동시성 이슈 방지, 이중신청 0건 달성',
-      'OAuth 2.0 기반 SNS 로그인 도입 및 직관적인 행사 관리 어드민 페이지 구현',
-    ],
-    techStack: {
-      frontend: ['HTML', 'ES6', 'CSS'],
-      backend: ['eGovFramework', 'MyBatis', 'MySQL', 'JSP'],
-      infra: ['Docker', 'Jenkins'],
-    },
-    gradientClass: 'from-pink-700 via-purple-700 to-indigo-700',
-  },
-  {
-    id: 'sms',
-    name: '충남도청 SMS 서비스 유지보수',
-    period: '2023.03 ~ 2023.05',
-    overviewDescription:
-      '누적 데이터 1,000건 이상의 충남도청 SMS 서비스가 지속적으로 다운되는 문제를 해결하기 위해 물리적인 장애 포인트를 제거하고, DB 서버 교체 작업을 통해 서비스 성능 개선 및 정상화에 기여했습니다.',
-    overviewContributions: [
-      '1,000만 건 이상의 대용량 데이터 부하로 인한 서비스 병목 지점 진단 및 물리적 장애 포인트 제거',
-      '가용성 확보를 위한 DB 서버 교체 주도 및 1,000만건 데이터 규모의 데이터 무결성 마이그레이션 수행',
-    ],
-    detailParagraphs: [
-      '1,000만 건 이상의 데이터를 보유한 SMS 서비스의 고질적인 다운타임 문제를 인프라와 애플리케이션 전반의 진단을 통해 해결했습니다.',
-      '특히 노후화된 DB 서버를 장애의 핵심 원인으로 식별하여 서버 교체 및 안정화 사업을 주도했습니다.',
-      'OS 설치부터 DB 마이그레이션, 장비 납품까지 전 과정에 참여하며 데이터 유실 없는 무결성 이관을 완수했습니다.',
-      '이를 통해 물리적 장애 포인트를 근본적으로 제거하고, 대규모 공공 서비스를 안정적으로 운영할 수 있는 견고한 인프라 기반을 마련했습니다.',
-    ],
-    keyResponsibilities: [
-      '서비스의 물리적인 장애 포인트를 제거하여 서비스 가용성 확보 및 안정적인 운영 기반 마련, 모든 페이지 조회 성능 80% 향상',
-      '노후화된 서버 장비의 사양을 증설하여 OS 설치, MySQL 마이그레이션, 서버 납품까지 전 과정에 참여하여 서비스 정상화에 기여',
-      '물리적 장애 포인트 제거를 통해 시스템 다운타임 발생률 제로화 및 운영 안정성 확보',
-      '대량 데이터베이스 이관 시 정합성 검증을 통한 무결성 100% 유지',
-    ],
-    techStack: {
-      frontend: ['HTML', 'jQuery', 'CSS'],
-      backend: ['eGovFramework', 'iBatis', 'MySQL', 'JSP'],
-      infra: ['Linux (Debian)'],
-    },
-    gradientClass: 'from-orange-700 via-red-700 to-rose-800',
   },
   {
     id: 'kepco',
@@ -240,7 +136,7 @@ export const portfolioProjects: PortfolioProject[] = [
     overviewContributions: [
       'GIS 기반 대시보드 및 실시간 스트리밍 연동을 위한 백엔드 API 설계 및 대규모 메타데이터 DB 스키마 구축',
       '서버 사이드 헤드리스 렌더링 기반 보고서 생성 API 서비스화로 모바일/웹 동일 품질의 보고서 제공 및 운영 효율성 제고',
-      'Tiles 프레임워크 도입으로 페이지 중복 코드 55% 절감 및 Jenkins 기반 배포 파이프라인 구축으로 안정성 확보',
+      'Tiles 프레임워크 도입으로 페이지 중복 코드 55% 절감 및 Jenkins CI/CD 파이프라인 구축으로 배포 빈도 7일 → 1일 단축',
     ],
     detailParagraphs: [
       'GIS와 모빌리티 게이트웨이를 결합해 작업 현장을 실시간 관제하고, 산업재해를 예방하는 플랫폼을 구축했습니다.',
@@ -251,9 +147,9 @@ export const portfolioProjects: PortfolioProject[] = [
     keyResponsibilities: [
       '현장 메타데이터 수집을 위한 현장 작업 관리페이지 및 관리자 페이지 기능 개발',
       'jsPDF를 활용한 보고서 생성 기능 구현, 서버사이드 헤드리스 렌더 API로 서비스화하여 앱에서도 동일 품질 PDF 제공',
-      'Tiles 프레임워크 도입으로 페이지당 중복 코드 감소, 신규 페이지 제작 리드타임 감소',
-      '수동배포로 인한 지연·휴먼에러를 해소하기 위해 Jenkins 기반 배포자동화 파이프라인 구축, 배포 빈도 단축',
-      '2022 BIXPO 기술 시연 주도 및 연구과제 성과 기여',
+      'Tiles 프레임워크 도입으로 페이지당 중복 코드 55% 감소, 신규 페이지 제작 리드타임 단축',
+      'SI 폐쇄망 특성상 자체 구축 Jenkins 선택해 배포 자동화 파이프라인 구성, 배포 빈도 7일 → 1일 단축',
+      '2022 BIXPO 기술 시연 주도 및 한전 연구과제 최종 평가 통과에 기여',
     ],
     techStack: {
       frontend: ['HTML', 'ES6', 'CSS'],
@@ -303,8 +199,61 @@ export const portfolioProfile = {
     },
   ],
   introduction: [
-    '건강한 개발 문화에서 시작된 좋은 코드가 결국 시스템의 안정성을 결정한다고 믿습니다. 이를 위해 팀 내 코드리뷰와 테스트 코드를 도입하여 기술 부채를 관리하고, 동료 누구나 구조와 흐름을 쉽게 이해할 수 있는 명료한 코드 베이스를 만드는 데 집중해 왔습니다. 이러한 노력은 단순히 코드의 질을 높이는 것에 그치지 않고, 시스템 운영 전반의 유지보수성과 신뢰도를 높이는 단단한 밑거름이 되었습니다.',
-    '이러한 철학을 바탕으로 실무에서는 시스템 안정성을 저해하는 병목 현상을 해결하는 데 주력했습니다. DB 조회 성능을 최적화하고 WAS 단의 동기화 로직을 개선하는 등 집요하게 성능을 튜닝하여 대용량 데이터를 처리하는 환경에서도 흔들림 없는 시스템을 증명해 왔습니다. 또한, 통합 커머스 프로젝트를 통해 대규모 트래픽을 가정한 Auto-scaling 아키텍처를 설계하며, 비즈니스 확장성에 유연하게 대응할 수 있는 시스템 구조에 대해 깊이 고민했습니다.',
-    '좋은 설계와 건강한 문화가 만났을 때 시스템은 비로소 지속 가능해집니다. 저의 이러한 고집과 경험을 바탕으로, 함께 성장하는 개발 문화를 구축하고, 동료들이 신뢰할 수 있는 단단한 시스템 아키텍처를 만들어 나가겠습니다.',
+    'N+1 문제로 2시간이 걸리던 동기화를 10초로 단축하고, 130만 건 DB의 p95를 17초에서 3초로 개선했습니다. 지시받은 기능을 구현하는 것보다 시스템 병목을 먼저 발굴해 실행계획과 JPA 동작 원리로 근본 원인을 해결하는 방식으로 일해왔습니다.',
+    'RPMS, PPP Cloud처럼 요구사항 정제부터 설계·개발·운영까지 전 주기를 리드하면서, Self-Service API 전환으로 월 50건 수동 운영을 5건으로 줄이고 Saga 패턴으로 분산 환경의 데이터 정합성을 확보했습니다.',
+    '성과에 그치지 않고 팀이 지속 가능하도록 변화를 이끌었습니다. 초기 회의론을 파일럿으로 설득해 QueryDSL을 도입하고 Native 쿼리 70%를 제거했으며, 단위 테스트 문화 정착과 사내 스터디 운영으로 팀 전체의 유지보수 비용을 낮췄습니다.',
   ],
 }
+
+export const portfolioSideProjects: PortfolioSideProject[] = [
+  {
+    id: 'commerce',
+    name: '통합 커머스 프로젝트',
+    organization: '패스트캠퍼스 부트캠프',
+    period: '2025.07 ~ 2025.09',
+    overviewDescription:
+      '패스트캠퍼스 부트캠프를 통해 진행된 통합 커머스 구현 프로젝트입니다. 고효율, 확장성을 고려한 MSA 시스템 설계 및 인프라 구축과 JWT 기반 중앙 인증과 커머스 회원 기능 구현에 기여했습니다.',
+    overviewContributions: [
+      '대규모 트래픽 부하 분산을 위한 AWS ECS 기반 오토 스케일링 인프라 설계 및 구축',
+      '대규모 트래픽 대응을 위한 도메인 중심 MSA 설계 및 Service Discovery 기반 가용성 확보',
+      'API Gateway 기반 중앙인증 아키텍처 도입으로 서비스 간 결합도 완화',
+    ],
+    detailParagraphs: [
+      '대량 트래픽 환경에서도 안정적인 서비스를 제공하기 위해 상품, 주문, 결제 도메인을 MSA 아키텍처로 설계했습니다.',
+      '특히 AWS ECS 기반의 Auto-scaling 구조를 직접 설계하여, 급격한 트래픽 변동에도 서비스 가용성을 끊임 없이 유지할 수 있는 인프라 확장성을 확보했습니다.',
+      '분산 환경에서의 복잡한 인증 문제를 해결하고자 API Gateway 중심의 JWT 무상태(Stateless) 인증 체계를 수립했습니다. 이를 통해 서비스 간 결합도를 낮추고 수평적 확장이 용이한 구조를 완성했습니다.',
+      '단순 기능 구현을 넘어, 대량의 데이터 처리 시 발생할 수 있는 병목 현상을 사전에 고려하여 응답 속도와 데이터 정합성 사이의 최적의 균형을 맞춘 설계를 지향했습니다.',
+    ],
+    keyResponsibilities: [
+      'AWS ECS 기반 고가용성 MSA 인프라 아키텍처 설계 및 오토 스케일링 체계 구축',
+      'GitHub Actions 및 AWS ECR 기반의 CI/CD 파이프라인 구축을 통한 배포 프로세스 자동화 및 인프라 운영 비용 최적화',
+      '분산 추적 시스템(Zipkin) 도입으로 마이크로서비스 간 호출 흐름 가시화 및 장애 원인 식별/진단 효율성 제고',
+      'JWT 무상태 인증 및 API Gateway 중앙 인증 아키텍처 적용으로 서비스 간 결합도 완화 및 확장 가능한 인증 체계 수립',
+      'API Gateway 토큰 버킷 기반 Rate Limiting 구현으로 스파이크 트래픽 대응 및 다운스트림 서비스 보호 기반의 안정성 강화',
+    ],
+    techStack: {
+      backend: [
+        'Spring Boot',
+        'Spring Boot Cloud',
+        'JPA',
+        'Gradle kts',
+        'JUnit5',
+        'Spring Security',
+        'Zipkin',
+        'PostgreSQL',
+      ],
+      infra: [
+        'AWS ECS',
+        'AWS ECR',
+        'Oracle Cloud',
+        'Docker',
+        'Github Actions',
+        'AWS S3',
+        'AWS CloudMap',
+        'Prometheus',
+        'Grafana',
+      ],
+    },
+    gradientClass: 'from-gray-900 via-gray-800 to-gray-900',
+  },
+]
