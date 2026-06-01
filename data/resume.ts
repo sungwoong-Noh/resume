@@ -9,7 +9,7 @@ export const profile = {
   title: 'Backend Engineer',
   /** 총 경력 연수 — 업데이트 시 수동으로 조정 */
   yearsOfExp: 5,
-  tagline: '성능 병목을 스스로 발굴해 99% 개선한, 팀의 개발 문화를 바꾸는 백엔드 개발자',
+  tagline: '백엔드 엔지니어 | 성능 병목 진단부터 팀 개발 문화 개선까지',
   email: 'asdz453@gmail.com',
   phone: '010-8866-3354',
   github: 'https://github.com/sungwoong-Noh',
@@ -24,8 +24,8 @@ export const profile = {
    * 본인의 언어로 더 다듬고 싶은 부분이 있으면 직접 수정.
    */
   intro: `14만 건 배치 동기화를 2시간에서 10초로, 130만 건 대용량 DB p95를 17초에서 3초로 단축한 5년 차 백엔드 엔지니어입니다.
-기능 구현에 그치지 않고 JPA IDENTITY 전략의 구조적 한계를 직접 발굴해 JDBC Bulk Insert로 전환하고, WHERE 절 타입 불일치가 인덱스를 무력화하는 근본 원인을 DBA와 함께 파고드는 방식으로 일해왔습니다. 여러 선택지를 비교·검증한 뒤 현재 상황에 맞는 방법을 고르는 의사결정 과정을 중시합니다.
-팀 내 QueryDSL 도입과 단위 테스트 문화 정착을 주도하며, 개인 성과를 넘어 팀 전체의 생산성을 높이는 변화를 이끌어왔습니다.`,
+기능 구현에 그치지 않고 JPA IDENTITY 전략의 구조적 한계를 직접 발굴해 JDBC Bulk Insert로 전환하고, WHERE 절 타입 불일치가 인덱스를 무력화하는 근본 원인을 DBA와 함께 파고드는 방식으로 일해왔습니다.
+QueryDSL 도입 주도로 팀 내 Native 쿼리 70%를 제거하고, 단위 테스트 문화 정착으로 설정 오류 0건을 달성했습니다.`,
 }
 
 // ─── Core Values ──────────────────────────────────────────────
@@ -40,20 +40,20 @@ export const coreValues: CoreValue[] = [
   {
     icon: '⚡',
     title: '성능 집착',
-    description: '0.1초의 응답 속도 개선이 고객 경험의 차이를 만든다고 믿습니다.',
-    hashtag: '#성능_집착',
+    description: '응답 지연 1초가 쌓이면 운영 병목이 됩니다. 실행계획 분석부터 아키텍처까지 병목의 근본 원인을 파고듭니다.',
+    hashtag: '',
   },
   {
     icon: '🧹',
     title: '기술 부채 해결사',
     description: '동료가 읽기 좋은 명료한 코드로 협업 비용을 최소화합니다.',
-    hashtag: '#기술_부채_해결사',
+    hashtag: '',
   },
   {
     icon: '🛡️',
     title: '안정성 우선주의',
     description: '모니터링 지표로 이상 징후를 사전에 감지하고 장애를 근본부터 해결합니다.',
-    hashtag: '#안정성_우선주의',
+    hashtag: '',
   },
 ]
 
@@ -95,7 +95,7 @@ export const achievements: Achievement[] = [
     metric: '99',
     unit: '%',
     description: '데이터 동기화 성능 개선',
-    detail: 'N+1로 14만 건 동기화에 2시간 소요 → Fetch Join + Bulk Insert로 10초',
+    detail: 'N+1로 14만 건 동기화에 2시간 소요 → Fetch Join + JDBC Template Bulk Insert로 10초',
   },
   {
     metric: '82',
@@ -110,10 +110,10 @@ export const achievements: Achievement[] = [
     detail: 'Self-Service API 자동화 (월 50건 → 5건)',
   },
   {
-    metric: '100',
+    metric: '70',
     unit: '%',
-    description: '분산 환경 데이터 무결성',
-    detail: 'Saga 패턴 + Soft Reservation 도입',
+    description: 'Native 쿼리 제거율',
+    detail: 'QueryDSL 전사 도입 · 타입 안전 쿼리로 유지보수 비용 50% 절감',
   },
 ]
 
@@ -145,10 +145,10 @@ export const experiences: Experience[] = [
   {
     company: '플랜아이(PlanAI)',
     position: 'Cloud Engineer',
-    period: '2026.02 ~ 현재',
-    duration: '2개월',
+    period: '2026.02 ~ 2026.05',
+    duration: '3개월',
     description:
-      'MSP 사업부에서 고객사 인프라 모니터링 체계 구축 및 시스템 운영 자동화를 담당하고 있습니다.',
+      'MSP 사업부에서 고객사 인프라 모니터링 체계 구축 및 시스템 운영 자동화를 담당했습니다.',
     highlights: [
       '기관별 모니터링 서버 구축 · CMP 보고서 자동 생성 연계',
       'VictoriaMetrics 도입으로 Prometheus 수집 기간 30일 → 1년 확장',
@@ -158,7 +158,7 @@ export const experiences: Experience[] = [
     projects: [
       {
         name: 'MSP 고객사 모니터링 체계 구축',
-        period: '2026.02 ~ 진행 중',
+        period: '2026.02 ~ 2026.05',
         achievements: [
           {
             problem: '고객사마다 별도 모니터링 체계가 없어 장애 발생 후에야 인지하는 구조적 문제',
@@ -195,7 +195,7 @@ export const experiences: Experience[] = [
       '데이터 동기화 99% 개선 (2시간 → 10초)',
       '핵심 조회 p95 응답시간 82% 개선 (17초 → 3초)',
       '인시던트 12건 → 5건/주 지속 감소',
-      '국정자원 업무 리드타임 5일 → 3일 단축',
+      'RPMS 단독 운영·개발·고객 대응 전담 · ITSM 오류 개선·배포 참여',
       'QueryDSL 도입 주도 · Native 쿼리 70% 제거',
     ],
     techStack: [
@@ -209,7 +209,7 @@ export const experiences: Experience[] = [
         achievements: [
           {
             problem: '3개 시스템이 별도 담당자 없이 분산 운영되어 이슈 발생 시 책임 소재 불명확·대응 지연 반복',
-            result: 'RPMS·통합포털·ITSM 전 흐름을 단독 인수 · 분류 체계·에스컬레이션 기준·배포 절차 표준화',
+            result: 'RPMS 단독 담당 · ITSM 개발·오류 개선 참여 · 분류 체계·에스컬레이션 기준·배포 절차 표준화',
           },
           {
             problem: '130만 건 Tibero DB 핵심 조회 p95 17초로 현업 업무 지연 반복 발생',
@@ -231,7 +231,7 @@ export const experiences: Experience[] = [
         period: '2024.08 ~ 2025.06',
         achievements: [
           {
-            result: 'KT Cloud 기술팀과 API 연동 및 네트워크 장비 제어 협업 · CSP 플랫폼 풀스택 리드',
+            result: '5인 개발팀 풀스택 리드 · KT Cloud 기술팀과 API 연동 및 네트워크 장비 제어 협업',
           },
           {
             problem: '신규 CSP 플랫폼 초기 개발에서 컨벤션·공통 모듈·에러 처리 기준 없어 팀원마다 구현 방식 달라 통합 시 충돌 빈번',
@@ -250,11 +250,11 @@ export const experiences: Experience[] = [
           {
             problem: "'어차피 손으로 눌러보면 된다'는 팀 문화로 테스트 코드 없이 수동 검증에만 의존",
             analyze: '핵심 기능에 점진적 적용을 제안·합의해 JUnit5 단위테스트 문화 정착 유도',
-            result: '설정오류 0건 · 개발 속도 30% 향상',
+            result: '설정오류 0건 · 장비 API 스펙 불일치·IP 충돌 검증을 테스트 코드로 대체해 서버 재실행 반복 제거',
           },
           {
-            problem: '유사 기능이 여러 모듈에 중복 구현되어 수정 시 전 모듈 개별 패치 필요',
-            result: '공통 모듈로 통합·의존 관계 단방향 정리 · 재사용성 60% 향상',
+            problem: '외부 연동 서비스와 내부 도메인 서비스가 한 모듈로 혼재해 변경 시 전체 영향 범위 파악 불가',
+            result: '외부 연동 API 모듈·내부 도메인 서비스 모듈 분리 · 의존성 단방향 정리로 외부 연동 모듈 재사용성 확보',
           },
         ],
       },
@@ -263,14 +263,17 @@ export const experiences: Experience[] = [
         period: '2024.01 ~ 2025.06',
         achievements: [
           {
+            result: '4인 팀(선임 1·신입 2)에서 핵심 설계·개발 주도 · 팀원 이탈 후 단독 운영 및 고객 컨택 전담',
+          },
+          {
             problem: '배치 동기화에서 N+1 쿼리로 14만 건 처리에 2시간 소요, 야간 배치 완료 전 업무 시작으로 데이터 정합성 이슈 발생',
             analyze: '조회 측 N+1은 Fetch Join으로 해결. INSERT 측은 JPA IDENTITY 전략이 영속성 컨텍스트 PK 확보를 위해 단건 INSERT를 강제하는 구조적 한계 확인 → JDBC Template Bulk Insert로 전환',
-            result: '로컬 테스트 코드로 실행 시간 측정, 배치 처리 10초로 단축 (99% 개선)',
+            result: '배치 처리 2시간 → 10초로 단축 (99% 개선) — Fetch Join + JDBC Bulk Insert 전환 후 실행 시간 측정',
           },
           {
             problem: 'Native 쿼리 남용으로 조건 변경 시마다 SQL 직접 수정이 필요해 유지보수 비용 급증',
             analyze: 'QueryDSL을 검토, 조회 복잡도가 높은 자산 현황 모듈로 파일럿 적용 후 실측 데이터로 팀의 초기 회의론 설득. 전사 도입 주도',
-            result: 'Native 쿼리 70%+ 제거 · 유지보수 비용 50% 절감',
+            result: 'Native 쿼리 70% 제거 · 유지보수 비용 50% 절감',
           },
           {
             result: '폐쇄망 Kubernetes 개발 클러스터·미들웨어 재구축 및 Jenkins·Helm 배포 자동화',
@@ -285,10 +288,10 @@ export const experiences: Experience[] = [
     period: '2021.08 ~ 2023.10',
     duration: '2년 3개월',
     description:
-      'SI 기술개발팀 풀스택 개발자로 합류해 납기 환경을 템플릿·공통·CI/CD로 표준화/자동화하고, 설계–개발–운영 전 주기를 주도해 유지보수성과 성능을 지속 개선했습니다.',
+      '3~4인 SI 기술개발팀 풀스택 개발자로 합류해 납기 환경을 템플릿·공통·CI/CD로 표준화/자동화하고, 설계–개발–운영 전 주기를 주도해 유지보수성과 성능을 지속 개선했습니다.',
     highlights: [
       'Jenkins 기반 배포 자동화 · 배포 빈도 7일 → 1일',
-      'Tiles 프레임워크 도입 · 중복 코드 65% → 10% · 페이지 리드타임 2일 → 0.5일',
+      'Tiles 프레임워크 도입 · 중복 코드 65% → 10% · 페이지 개발 리드타임 2일 → 0.5일',
       'SMS 서비스 DB 이관 · 1,000만 건 무결성 100% 유지 · p95 5초 → 0.9초',
     ],
     techStack: ['eGovFramework', 'MyBatis', 'MySQL', 'JSP', 'jQuery', 'FastAPI', 'Docker', 'Jenkins', 'SVN'],
@@ -341,6 +344,8 @@ export const experiences: Experience[] = [
             result: 'GIS 기반 실시간 모니터링 대시보드 · 메타데이터 관리 백엔드 개발',
           },
           {
+            problem: 'Spring에서 jsPDF JS 함수를 직접 실행할 수 없어 앱에서 웹과 동일한 PDF 보고서 생성 불가',
+            analyze: '브라우저 렌더링이 필요한 jsPDF 실행을 위해 FastAPI 크롤링 서버를 별도 구축해 JS 실행 환경 확보',
             result: 'jsPDF 기반 보고서 생성 API 서비스화 · 모바일/웹 동일 품질 PDF 제공',
           },
           {
@@ -412,7 +417,7 @@ export const skillCategories: SkillCategory[] = [
     icon: '🚀',
     color: 'orange',
     skills: [
-      { name: 'Kubernetes (K8s)', level: 'proficient' },
+      { name: 'Kubernetes', level: 'proficient' },
       { name: 'Docker', level: 'expert' },
       { name: 'AWS ECS / ECR', level: 'proficient' },
       { name: 'AWS CloudMap / ALB', level: 'familiar' },
@@ -470,6 +475,13 @@ export type Certification = {
 }
 
 export const certifications: Certification[] = [
+  {
+    name: '정보처리기사',
+    organization: '한국산업인력공단',
+    period: '2024.09',
+    description: '소프트웨어 개발, 데이터베이스 구축, 시스템 분석 설계 등 정보처리 직무 국가기술자격',
+    achievements: [],
+  },
   {
     name: 'InnerCircle 백엔드 4기',
     organization: '패스트캠퍼스',
