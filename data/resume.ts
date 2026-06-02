@@ -23,9 +23,8 @@ export const profile = {
    * 현재는 임팩트 있는 경험 기반으로 작성됨.
    * 본인의 언어로 더 다듬고 싶은 부분이 있으면 직접 수정.
    */
-  intro: `14만 건 배치 동기화를 2시간에서 10초로, 130만 건 대용량 DB p95를 17초에서 3초로 단축한 5년 차 백엔드 엔지니어입니다.
-기능 구현에 그치지 않고 JPA IDENTITY 전략의 구조적 한계를 직접 발굴해 JDBC Bulk Insert로 전환하고, WHERE 절 타입 불일치가 인덱스를 무력화하는 근본 원인을 DBA와 함께 파고드는 방식으로 일해왔습니다.
-QueryDSL 도입 주도로 팀 내 Native 쿼리 70%를 제거하고, 단위 테스트 문화 정착으로 설정 오류 0건을 달성했습니다.`,
+  intro: `성능 병목을 인프라가 아닌 코드 구조에서 찾는 5년 차 백엔드 엔지니어입니다.
+JPA IDENTITY 전략 한계를 직접 발굴해 14만 건 배치 동기화를 2시간→10초로, 인덱스 무력화 원인을 추적해 130만 건 DB p95를 17초→3초로 단축했습니다. 2PC 적용 불가 환경에서는 Saga 패턴으로 보상 로직을 직접 설계했습니다. QueryDSL 전사 도입으로 팀 Native 쿼리 70%를 제거하는 등 개인 성과에 그치지 않고 팀 개발 방식을 바꿔온 방향으로 일해왔습니다.`,
 }
 
 // ─── Core Values ──────────────────────────────────────────────
@@ -113,7 +112,7 @@ export const achievements: Achievement[] = [
     metric: '70',
     unit: '%',
     description: 'Native 쿼리 제거율',
-    detail: 'QueryDSL 전사 도입 · 타입 안전 쿼리로 유지보수 비용 50% 절감',
+    detail: 'QueryDSL 전사 도입 · 타입 안전 쿼리로 조건 변경 시 SQL 직접 수정 불필요',
   },
 ]
 
@@ -177,9 +176,6 @@ export const experiences: Experience[] = [
             analyze: '쉘 스크립트 대비 Ansible이 멱등성 보장·호스트 그룹 관리에 유리해 선택',
             result: 'Exporter 일괄 설치 및 자원 조회 자동화로 반복 운영 작업 제거',
           },
-          {
-            result: 'Claude MCP 기반 WAF 유해 IP 차단 요청 자동화 · 메일 수동 답장 → 단일 명령으로 처리',
-          },
         ],
       },
     ],
@@ -190,7 +186,7 @@ export const experiences: Experience[] = [
     period: '2023.10 ~ 2026.02',
     duration: '2년 4개월',
     description:
-      '국정자원 3개 백오피스 시스템(nTOPS, RPMS, 통합포털) 통합 운영을 담당했습니다. 요구사항 정제부터 아키텍처 설계, CI/CD, 관측성, 운영까지 전 흐름을 일원화하여 주도했습니다.',
+      '국정자원 3개 백오피스 시스템(nTOPS, RPMS, 통합포털) 통합 운영을 담당했습니다.',
     highlights: [
       '데이터 동기화 99% 개선 (2시간 → 10초)',
       '핵심 조회 p95 응답시간 82% 개선 (17초 → 3초)',
@@ -273,7 +269,7 @@ export const experiences: Experience[] = [
           {
             problem: 'Native 쿼리 남용으로 조건 변경 시마다 SQL 직접 수정이 필요해 유지보수 비용 급증',
             analyze: 'QueryDSL을 검토, 조회 복잡도가 높은 자산 현황 모듈로 파일럿 적용 후 실측 데이터로 팀의 초기 회의론 설득. 전사 도입 주도',
-            result: 'Native 쿼리 70% 제거 · 유지보수 비용 50% 절감',
+            result: 'Native 쿼리 70% 제거 · 조건 변경 시 SQL 직접 수정 불필요',
           },
           {
             result: '폐쇄망 Kubernetes 개발 클러스터·미들웨어 재구축 및 Jenkins·Helm 배포 자동화',
@@ -513,7 +509,7 @@ export const sideProjects: SideProject[] = [
     period: '2025.07 ~ 2025.09',
     organization: '패스트캠퍼스',
     description:
-      '대규모 트래픽·고성능 검색·동시성·유연한 상품 모델링 요구에 대응하는 통합 커머스 프로젝트 설계 및 개발.',
+      '고트래픽 시나리오를 가정한 고성능 검색·동시성·유연한 상품 모델링 요구에 대응하는 통합 커머스 프로젝트 설계 및 개발.',
     achievements: [
       {
         problem: '커머스에서 주문·재고·결제 등 도메인별 트래픽 집중 패턴이 달라 모놀리식은 전체를 스케일링해야 하는 비효율 발생',
@@ -562,7 +558,7 @@ export const sideProjects: SideProject[] = [
       },
       {
         problem: '성능 개선 사례가 담당자 개인 지식으로 남아 팀 공유 및 재활용이 안 되는 문제',
-        result: '성능 개선 사례를 RCA → 해결 전략 → 벤치마크 → 체크리스트로 문서화 · 유사 과제 리드타임 50% 단축',
+        result: '성능 개선 사례를 RCA → 해결 전략 → 벤치마크 → 체크리스트로 문서화해 팀 공유 지식으로 전환',
       },
       {
         result: '이펙티브 자바·JPA 서적 리딩 결과를 규약·코딩 컨벤션·리뷰 체크리스트로 정립',
