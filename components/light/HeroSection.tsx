@@ -69,6 +69,16 @@ export default function HeroSection() {
               ✍️ {profile.blogHandle}
             </a>
           )}
+          {profile.website && (
+            <a
+              href={profile.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg !text-gray-600 text-sm hover:border-teal-400 transition"
+            >
+              🌐 {profile.websiteHandle}
+            </a>
+          )}
         </div>
       </div>
     </header>

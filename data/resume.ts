@@ -17,6 +17,8 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/sunwoongnoh',
   blog: 'https://sw-noh.tistory.com',
   blogHandle: 'sw-noh.tistory.com',
+  website: 'https://swnoh.pe.kr',
+  websiteHandle: 'swnoh.pe.kr',
   desiredSalary: '',
   /**
    * intro — 화면에 표시되는 자기소개 본문.
