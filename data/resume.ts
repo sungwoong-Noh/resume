@@ -501,6 +501,7 @@ export type SideProject = {
   description: string
   achievements: PARItem[]
   techStack: string[]
+  url?: string
 }
 
 export const sideProjects: SideProject[] = [
@@ -527,6 +528,7 @@ export const sideProjects: SideProject[] = [
       },
     ],
     techStack: ['Spring Boot', 'Spring Cloud', 'JPA', 'PostgreSQL', 'AWS ECS', 'GitHub Actions', 'Zipkin', 'Grafana'],
+    url: 'https://github.com/INNER-CIRCLE-ICD4/Project-3.-Commerce',
   },
   {
     name: 'TechGate — 검색엔진 스터디',
@@ -545,6 +547,7 @@ export const sideProjects: SideProject[] = [
       },
     ],
     techStack: ['Spring Boot', 'MySQL', 'Redis', 'Elasticsearch', 'Docker', 'Grafana', 'Prometheus', 'k6'],
+    url: 'https://github.com/Tech-Gate-Step/search-system-evolution',
   },
   {
     name: '오케스트로 사내 스터디 기획·운영',
