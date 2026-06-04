@@ -207,7 +207,7 @@ export const experiences: Experience[] = [
         achievements: [
           {
             problem: '3개 시스템이 별도 담당자 없이 분산 운영되어 이슈 발생 시 책임 소재 불명확·대응 지연 반복',
-            result: 'RPMS 단독 담당 · ITSM 개발·오류 개선 참여 · 에스컬레이션 기준 제안 · 배포 절차 준수 체계 수립 참여',
+            result: 'RPMS 단독 전담으로 대응 창구 단일화 · ITSM 개발·오류 개선 참여',
           },
           {
             problem: '130만 건 Tibero DB 핵심 조회 p95 17초로 현업 업무 지연 반복 발생',
