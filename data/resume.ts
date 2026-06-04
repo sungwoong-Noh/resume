@@ -114,7 +114,7 @@ export const achievements: Achievement[] = [
     metric: '70',
     unit: '%',
     description: 'Native 쿼리 제거율',
-    detail: 'QueryDSL 전사 도입 · 타입 안전 쿼리로 조건 변경 시 SQL 직접 수정 불필요',
+    detail: 'QueryDSL 전사 도입 · SQL 문자열 대신 타입 안전 Java 코드로 전환 · 런타임 SQL 오류 제거',
   },
 ]
 
@@ -271,7 +271,7 @@ export const experiences: Experience[] = [
           {
             problem: 'Native 쿼리 남용으로 조건 변경 시마다 SQL 직접 수정이 필요해 유지보수 비용 급증',
             analyze: 'QueryDSL을 검토, 조회 복잡도가 높은 자산 현황 모듈로 파일럿 적용 후 실측 데이터로 팀의 초기 회의론 설득. 전사 도입 주도',
-            result: 'Native 쿼리 70% 제거 · 조건 변경 시 SQL 직접 수정 불필요',
+            result: 'Native 쿼리 70% 제거 · SQL 문자열 대신 타입 안전 Java 코드로 전환 · 런타임 SQL 오류 제거',
           },
           {
             result: '폐쇄망 Kubernetes 개발 클러스터·미들웨어 재구축 및 Jenkins·Helm 배포 자동화',
