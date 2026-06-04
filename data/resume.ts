@@ -188,7 +188,7 @@ export const experiences: Experience[] = [
     period: '2023.10 ~ 2026.02',
     duration: '2년 4개월',
     description:
-      '국정자원 3개 백오피스 시스템(nTOPS, RPMS, 통합포털) 통합 운영을 담당했습니다.',
+      '자산계획 시스템(RPMS) 설계·개발, CSP 멀티테넌트 네트워크 상품(PPP Cloud) 풀스택 개발 리드, 국정자원 3개 백오피스 시스템 통합 운영유지보수를 담당했습니다.',
     highlights: [
       '데이터 동기화 99% 개선 (2시간 → 10초)',
       '핵심 조회 p95 응답시간 82% 개선 (17초 → 3초)',
