@@ -13,7 +13,7 @@ export default function CoreValuesSection() {
               className="rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 p-8 hover:border-teal-500/50 transition"
             >
               <div className="text-4xl mb-4">{v.icon}</div>
-              <p className="text-xs font-mono text-teal-400 mb-2">{v.hashtag}</p>
+              {v.hashtag && <p className="text-xs font-mono text-teal-400 mb-2">{v.hashtag}</p>}
               <h3 className="text-lg font-bold text-white mb-3">{v.title}</h3>
               <p className="text-sm text-gray-400 leading-relaxed">{v.description}</p>
             </div>

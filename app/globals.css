@@ -108,4 +108,22 @@ a {
     padding-bottom: 2rem !important;
     padding-top: 2rem !important;
   }
+
+  /* 경력 카드 페이지 중간 분할 방지 */
+  .rounded-2xl,
+  .rounded-xl {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* 다크 버전 인쇄 시 흰 배경 강제 */
+  .bg-gray-950 { background-color: #ffffff !important; }
+  .bg-gray-900 { background-color: #f9fafb !important; }
+  .bg-gray-800 { background-color: #f3f4f6 !important; }
+  .bg-gray-700 { background-color: #e5e7eb !important; }
+  .text-white  { color: #111827 !important; }
+  .text-gray-100, .text-gray-200 { color: #1f2937 !important; }
+  .text-gray-300, .text-gray-400 { color: #4b5563 !important; }
+  .text-gray-500, .text-gray-600 { color: #6b7280 !important; }
+  .border-gray-700, .border-gray-800 { border-color: #d1d5db !important; }
 }
