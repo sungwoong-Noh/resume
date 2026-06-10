@@ -270,7 +270,7 @@ export const experiences: Experience[] = [
           },
           {
             problem: 'Native 쿼리 남용으로 조건 변경 시마다 SQL 직접 수정이 필요해 유지보수 비용 급증',
-            analyze: 'QueryDSL을 검토, 조회 복잡도가 높은 자산 현황 모듈로 파일럿 적용 후 실측 데이터로 팀의 초기 회의론 설득. 지사 내 3개 프로젝트 도입 주도',
+            analyze: 'QueryDSL을 검토, 조회 복잡도가 높은 자산 현황 모듈로 파일럿 적용 후 팀원들에게 직접 시연해 회의적이던 팀원들을 설득. 지사 내 3개 프로젝트 도입 주도',
             result: 'Native 쿼리 70% 제거 · 지사 내 3개 프로젝트 도입 주도 · SQL 문자열 대신 타입 안전 Java 코드로 전환',
           },
           {
