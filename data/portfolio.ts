@@ -31,6 +31,46 @@ export type PortfolioSideProject = PortfolioProject & {
 
 export const portfolioProjects: PortfolioProject[] = [
   {
+    id: 'planai-monitoring',
+    name: 'MSP 고객사 모니터링 체계 구축',
+    period: '2026.02 ~ 2026.05',
+    overviewDescription:
+      'KT Cloud 공식 MSP 파트너사에서 40개 고객사의 클라우드 인프라 모니터링 체계 구축을 담당했습니다. Prometheus + Grafana 기반 모니터링 스택 설계부터 운영 자동화까지 전담하며 MSP 운영 효율화에 기여했습니다.',
+    overviewContributions: [
+      '40개 고객사 Prometheus + Grafana 모니터링 서버 구축 · Google Chat 알람 연동으로 장애 사후 파악 → 실시간 감지 전환',
+      'CMP 개발팀과 Prometheus 연동으로 월간 보고서 자동 생성 활성화 · 수기 작성 2시간 → 10분 단축',
+      'VictoriaMetrics 도입으로 제한된 서버 사양에서 메트릭 보존 기간 30일 → 1년 확장',
+      'Ansible 기반 Exporter 일괄 설치 자동화 · WAF 유해 IP 차단 요청 워크플로우 반자동화',
+    ],
+    detailParagraphs: [
+      '고객사 40개 이상의 클라우드 인프라를 모니터링 시스템 없이 KT Cloud Watch에만 의존하던 환경에서, 장애 추적과 월간 보고서 작성이 모두 수작업이었습니다. 일주일 이상 지난 장애는 추적 자체가 불가능했고, 보고서 작성은 서버마다 직접 접속해 리소스를 확인하는 방식으로 서버 20개 기준 2시간 이상 소요됐습니다.',
+      '이를 해결하기 위해 Prometheus + Grafana + VictoriaMetrics 스택을 선정해 40개 고객사 전체에 직접 구축하고 Google Chat 알람 연동까지 완료했습니다. 모니터링 서버 사양이 제한적인 환경에서 Prometheus 단독 장기 보존 시 용량 부족 위험이 있어, 압축 효율이 높은 VictoriaMetrics를 함께 도입해 1년치 메트릭을 안정적으로 보존할 수 있도록 했습니다.',
+      'CMP 개발팀과 사전 협의한 Prometheus 연동을 통해 기존에 구현돼 있으나 연동 환경이 없어 미활용되던 보고서 자동 생성 기능을 활성화했습니다. 이를 통해 서버마다 직접 SSH 접속해 수기로 확인하던 2시간짜리 월간 보고서 작업이 10분으로 단축됐습니다.',
+      'WAF 유해 IP 차단 요청 업무는 Gmail API + MCP 서버를 구성해 이벤트 메일 자동 파싱 → 차단 요청 메일 초안 자동 생성 → 담당자 승인 후 발송하는 반자동화 워크플로우로 전환했습니다.',
+    ],
+    keyResponsibilities: [
+      {
+        problem: '모니터링 체계 전무로 장애 인지가 사후에만 가능하고, 보고서 수기 작성에 서버 20개 기준 2시간 소요',
+        analyze: 'Thanos·Cortex는 S3 연동 승인 필요 및 러닝커브 → 단일 바이너리·PromQL 호환·즉시 적용 가능한 VictoriaMetrics 선택',
+        result: '40개 고객사 모니터링 구축 · 장애 실시간 감지 · 월간 보고서 작성 2시간 → 10분',
+      },
+      {
+        problem: '다수 고객사 서버에 Exporter를 수동 SSH로 설치 시 누락·버전 불일치 위험',
+        analyze: '멱등성 보장 및 호스트 그룹 관리에 유리한 Ansible 선택',
+        result: 'Exporter 일괄 설치 및 자원 조회 자동화로 반복 운영 공수 제거',
+      },
+      {
+        problem: 'WAF 유해 IP 이벤트 발생 시 담당자가 메일 확인부터 차단 요청 메일 작성·발송까지 수동 처리',
+        analyze: 'Gmail API + MCP 서버로 이벤트 메일 자동 파싱 · 보안 사고 방지를 위해 최종 발송은 담당자 승인 구조로 설계',
+        result: '차단 요청 워크플로우 반자동화 · 담당자는 검토 후 발송 명령만 실행',
+      },
+    ],
+    techStack: {
+      infra: ['Prometheus', 'Grafana', 'VictoriaMetrics', 'Ansible', 'KT Cloud'],
+    },
+    gradientClass: 'from-emerald-900 via-teal-800 to-slate-800',
+  },
+  {
     id: 'ppp-cloud',
     name: 'PPP Cloud',
     period: '2024.08 ~ 2025.07',

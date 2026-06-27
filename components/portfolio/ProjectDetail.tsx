@@ -2,15 +2,15 @@ import { portfolioProjects, type PortfolioProject, type PortfolioPARItem } from 
 
 export default function ProjectDetail() {
   return (
-    <section className="bg-gray-900 py-16 px-6 print:py-10">
+    <section className="bg-gray-900 py-10 px-6 print:py-6">
       <div className="max-w-5xl mx-auto">
-        <div className="mb-14">
+        <div className="mb-8">
           <p className="text-xs font-mono tracking-widest text-teal-400 uppercase mb-3">
             Project Detail
           </p>
           <div className="w-12 h-px bg-teal-500" />
         </div>
-        <div className="space-y-16 print:space-y-12">
+        <div className="space-y-10 print:space-y-8">
           {portfolioProjects.map((project) => (
             <ProjectDetailCard key={project.id} project={project} />
           ))}
@@ -74,7 +74,7 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
       </div>
 
       {/* 구분선 */}
-      <div className="mt-14 border-b border-gray-800" />
+      <div className="mt-8 border-b border-gray-800" />
     </div>
   )
 }

@@ -2,9 +2,9 @@ import { portfolioProjects } from '@/data/portfolio'
 
 export default function CareerOverview() {
   return (
-    <section className="bg-gray-900 py-16 px-6 print:py-10">
+    <section className="bg-gray-900 py-10 px-6 print:py-6">
       <div className="max-w-5xl mx-auto">
-        <div className="mb-12">
+        <div className="mb-8">
           <p className="text-xs font-mono tracking-widest text-teal-400 uppercase mb-3">
             Career Overview
           </p>
