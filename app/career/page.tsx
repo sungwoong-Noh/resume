@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { profile } from '@/data/resume'
 import PrintButton from '@/components/PrintButton'
-import HeroSection from '@/components/HeroSection'
-import AchievementsSection from '@/components/AchievementsSection'
+import ResumeHeader from '@/components/resume/ResumeHeader'
 import ExperienceSection from '@/components/ExperienceSection'
 import SkillsSection from '@/components/SkillsSection'
 import SideProjectsSection from '@/components/SideProjectsSection'
@@ -50,8 +49,7 @@ export default function CareerPage() {
         </div>
       </nav>
 
-      <HeroSection />
-      <AchievementsSection />
+      <ResumeHeader />
       <ExperienceSection />
       <SkillsSection />
       <SideProjectsSection />

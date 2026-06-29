@@ -4,30 +4,30 @@ import PARAccordion from './PARAccordion'
 
 export default function ExperienceSection() {
   return (
-    <section className="py-20 px-6 bg-gray-900">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-10 px-6 bg-gray-950 print:py-4">
+      <div className="max-w-4xl mx-auto">
         <SectionLabel>Experience</SectionLabel>
-        <div className="space-y-8">
+        <div className="space-y-8 print:space-y-4">
           {experiences.map((exp, i) => (
             <div
               key={i}
               className="rounded-2xl bg-gray-800 border border-gray-700 hover:border-teal-500/30 overflow-hidden transition"
             >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 border-b border-gray-700">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 border-b border-gray-700 print:p-4 print:pb-3">
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-1">{exp.company}</h3>
-                  <p className="text-teal-400 font-medium">{exp.position}</p>
+                  <h3 className="text-2xl font-bold text-white mb-1 print:text-lg">{exp.company}</h3>
+                  <p className="text-teal-400 font-medium print:text-sm">{exp.position}</p>
                 </div>
                 <div className="text-right">
                   <p className="text-gray-300 font-mono text-sm">{exp.period}</p>
-                  <span className="inline-block mt-1 px-3 py-0.5 bg-teal-500/10 border border-teal-500/30 rounded-full text-teal-300 text-xs">
+                  <span className="inline-block mt-1 px-3 py-0.5 bg-teal-500/10 border border-teal-500/30 rounded-full text-teal-300 text-xs print:hidden">
                     {exp.duration}
                   </span>
                 </div>
               </div>
 
-              <div className="p-8 space-y-8">
-                <p className="text-gray-400 leading-relaxed">{exp.description}</p>
+              <div className="p-8 space-y-8 print:p-4 print:space-y-4">
+                <p className="text-gray-400 leading-relaxed">{exp.careerDescription ?? exp.description}</p>
 
                 <div>
                   <h4 className="text-xs font-mono text-teal-400 uppercase tracking-widest mb-4">Key Achievements</h4>
@@ -43,9 +43,9 @@ export default function ExperienceSection() {
 
                 <div>
                   <h4 className="text-xs font-mono text-teal-400 uppercase tracking-widest mb-4">Projects</h4>
-                  <div className="space-y-4">
+                  <div className="space-y-4 print:space-y-2">
                     {exp.projects.map((proj, k) => (
-                      <div key={k} className="rounded-xl bg-gray-900 border border-gray-700 p-5">
+                      <div key={k} className="rounded-xl bg-gray-900 border border-gray-700 p-5 print:p-3">
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-3">
                           <h5 className="font-semibold text-white">{proj.name}</h5>
                           <span className="text-xs text-gray-500 font-mono">{proj.period}</span>

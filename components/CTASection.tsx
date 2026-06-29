@@ -4,7 +4,7 @@ export default function CTASection() {
   return (
     <section className="py-28 px-6 relative overflow-hidden print:hidden">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-teal-500/10 via-cyan-500/5 to-transparent" />
-      <div className="relative max-w-6xl mx-auto text-center">
+      <div className="relative max-w-4xl mx-auto text-center">
         <p className="text-teal-400 font-mono text-xs tracking-widest uppercase mb-6">/ Contact</p>
         <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
           함께 성장하는 팀을 찾고 있습니다

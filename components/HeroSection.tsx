@@ -1,4 +1,5 @@
 import { profile } from '@/data/resume'
+import { parseBold } from '@/lib/parseBold'
 
 export default function HeroSection() {
   return (
@@ -22,7 +23,9 @@ export default function HeroSection() {
 
         {/* 자기소개 */}
         <div className="max-w-3xl mb-10 p-5 rounded-xl bg-gray-900/60 border border-gray-800">
-          <p className="text-gray-300 text-sm leading-relaxed whitespace-pre-line">{profile.intro}</p>
+          {profile.intro.split('\n').filter(Boolean).map((para, i) => (
+            <p key={i} className="text-gray-300 text-sm leading-relaxed">{parseBold(para)}</p>
+          ))}
         </div>
 
         {/* 연락처 */}

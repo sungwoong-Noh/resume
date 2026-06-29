@@ -2,8 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { profile } from '@/data/resume'
 import PrintButton from '@/components/PrintButton'
-import HeroSection from '@/components/light/HeroSection'
-import AchievementsSection from '@/components/light/AchievementsSection'
+import ResumeHeader from '@/components/resume/light/ResumeHeader'
 import ExperienceSection from '@/components/light/ExperienceSection'
 import SkillsSection from '@/components/light/SkillsSection'
 import SideProjectsSection from '@/components/light/SideProjectsSection'
@@ -38,8 +37,7 @@ export default function CareerLightPage() {
         </div>
       </nav>
 
-      <HeroSection />
-      <AchievementsSection />
+      <ResumeHeader />
       <ExperienceSection />
       <SkillsSection />
       <SideProjectsSection />

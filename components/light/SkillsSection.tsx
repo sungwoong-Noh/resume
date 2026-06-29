@@ -16,7 +16,7 @@ const levelColor: Record<string, string> = {
 export default function SkillsSection() {
   return (
     <section className="py-20 px-6 bg-white">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <SectionLabel>Skills</SectionLabel>
         <div className="flex gap-5 mb-8 text-xs text-gray-400 font-mono">
           <span className="flex items-center gap-1.5">
