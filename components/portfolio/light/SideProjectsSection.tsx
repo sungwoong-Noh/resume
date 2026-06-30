@@ -1,4 +1,6 @@
+import Image from 'next/image'
 import { portfolioSideProjects, type PortfolioSideProject, type PortfolioPARItem } from '@/data/portfolio'
+import { parseBold } from '@/lib/parseBold'
 
 export default function SideProjectsSection() {
   return (
@@ -27,6 +29,28 @@ function SideProjectCard({ project }: { project: PortfolioSideProject }) {
     <div className="">
       <div className={`h-1 w-full rounded-full bg-gradient-to-r ${project.gradientClass} mb-6`} />
 
+      {(() => {
+        const images = project.screenshotSrcs ?? (project.screenshotSrc ? [project.screenshotSrc] : [])
+        if (images.length === 0) return null
+        const [first, ...rest] = images
+        return (
+          <div className="mb-6 space-y-4 max-w-3xl mx-auto">
+            <div className="rounded-xl overflow-hidden border border-gray-200">
+              <Image src={first} alt={`${project.name} 1`} width={1200} height={675} className="w-full object-contain bg-gray-50" />
+            </div>
+            {rest.length > 0 && (
+              <div className="grid grid-cols-2 gap-4">
+                {rest.map((src, i) => (
+                  <div key={i} className="rounded-xl overflow-hidden border border-gray-200 h-52">
+                    <Image src={src} alt={`${project.name} ${i + 2}`} width={800} height={450} className="w-full h-full object-contain bg-gray-50" />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )
+      })()}
+
       <div className="grid md:grid-cols-2 gap-10">
         <div>
           <div className="flex items-center gap-3 mb-1">
@@ -39,7 +63,7 @@ function SideProjectCard({ project }: { project: PortfolioSideProject }) {
           <div className="space-y-3">
             {project.detailParagraphs.map((para, i) => (
               <p key={i} className="text-sm text-gray-600 leading-relaxed">
-                {para}
+                {parseBold(para, 'font-semibold text-gray-900')}
               </p>
             ))}
           </div>
@@ -79,20 +103,20 @@ function PARItem({ item }: { item: PortfolioPARItem }) {
     <li className="space-y-2">
       <div className="flex items-start gap-3">
         <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-teal-500 flex-shrink-0" />
-        <span className="text-sm text-gray-800 font-medium leading-relaxed">{item.result}</span>
+        <span className="text-sm text-gray-800 font-medium leading-relaxed">{parseBold(item.result, 'font-semibold text-gray-900')}</span>
       </div>
       {hasPAR && (
         <div className="ml-4 pl-4 border-l border-gray-200 space-y-1.5">
           {item.problem && (
             <p className="text-xs text-gray-500 leading-relaxed">
-              <span className="text-teal-600 font-mono mr-2">문제</span>
-              {item.problem}
+              <span className="text-amber-500 font-mono font-semibold mr-2">문제</span>
+              {parseBold(item.problem, 'font-semibold text-gray-700')}
             </p>
           )}
           {item.analyze && (
             <p className="text-xs text-gray-500 leading-relaxed">
-              <span className="text-teal-600 font-mono mr-2">분석</span>
-              {item.analyze}
+              <span className="text-sky-500 font-mono font-semibold mr-2">분석</span>
+              {parseBold(item.analyze, 'font-semibold text-gray-700')}
             </p>
           )}
         </div>

@@ -1,16 +1,15 @@
+import Image from 'next/image'
 import { portfolioProjects, type PortfolioProject, type PortfolioPARItem } from '@/data/portfolio'
+import { parseBold } from '@/lib/parseBold'
 
 export default function ProjectDetail() {
   return (
     <section className="bg-white py-10 px-6 print:py-6">
       <div className="max-w-5xl mx-auto">
-        <div className="mb-8">
-          <p className="text-xs font-mono tracking-widest text-teal-600 uppercase mb-3">
-            Project Detail
-          </p>
-          <div className="w-12 h-px bg-teal-500" />
-        </div>
-        <div className="space-y-10 print:space-y-8">
+        <p className="text-xs font-mono tracking-widest text-teal-600 uppercase mb-8 pb-2 border-b border-gray-200 print:mb-4">
+          Project Detail
+        </p>
+        <div className="space-y-16 print:space-y-10">
           {portfolioProjects.map((project) => (
             <ProjectDetailCard key={project.id} project={project} />
           ))}
@@ -24,22 +23,33 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
   const { frontend, backend, infra } = project.techStack
 
   return (
-    <div className="">
-      <div className={`h-1 w-full rounded-full bg-gradient-to-r ${project.gradientClass} mb-6`} />
+    <div className="print:break-inside-avoid">
+      <div className={`h-1 w-full rounded-full bg-gradient-to-r ${project.gradientClass} mb-5`} />
+      <div className="flex items-baseline justify-between mb-4">
+        <h3 className="text-xl font-bold text-gray-900">{project.name}</h3>
+        <span className="text-xs font-mono text-teal-600">{project.period}</span>
+      </div>
 
-      <div className="grid md:grid-cols-2 gap-10">
+      {(project.screenshotSrcs ?? (project.screenshotSrc ? [project.screenshotSrc] : [])).map((src, i) => (
+        <div key={i} className="mb-4 max-w-3xl mx-auto rounded-xl overflow-hidden border border-gray-200">
+          <Image
+            src={src}
+            alt={`${project.name} ${i + 1}`}
+            width={1200}
+            height={675}
+            className="w-full object-contain bg-gray-50"
+          />
+        </div>
+      ))}
+
+      <div className="grid md:grid-cols-2 gap-8 print:gap-6">
         <div>
-          <h3 className="text-2xl font-bold text-gray-900 mb-1">{project.name}</h3>
-          <p className="text-xs font-mono text-teal-600 mb-5">{project.period}</p>
-          <div className="space-y-3">
+          <div className="space-y-3 mb-6">
             {project.detailParagraphs.map((para, i) => (
-              <p key={i} className="text-sm text-gray-600 leading-relaxed">
-                {para}
-              </p>
+              <p key={i} className="text-sm text-gray-600 leading-relaxed">{parseBold(para, 'font-semibold text-gray-900')}</p>
             ))}
           </div>
-
-          <div className="mt-7">
+          <div>
             <p className="text-xs font-mono tracking-widest text-teal-600 uppercase mb-3">
               Tech Stack
             </p>
@@ -63,7 +73,7 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
         </div>
       </div>
 
-      <div className="mt-8 border-b border-gray-200" />
+      <div className="mt-8 border-b border-gray-200 print:mt-6" />
     </div>
   )
 }
@@ -74,20 +84,20 @@ function PARItem({ item }: { item: PortfolioPARItem }) {
     <li className="space-y-2">
       <div className="flex items-start gap-3">
         <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-teal-500 flex-shrink-0" />
-        <span className="text-sm text-gray-800 font-medium leading-relaxed">{item.result}</span>
+        <span className="text-sm text-gray-800 font-medium leading-relaxed">{parseBold(item.result, 'font-semibold text-gray-900')}</span>
       </div>
       {hasPAR && (
         <div className="ml-4 pl-4 border-l border-gray-200 space-y-1.5">
           {item.problem && (
             <p className="text-xs text-gray-500 leading-relaxed">
-              <span className="text-teal-600 font-mono mr-2">문제</span>
-              {item.problem}
+              <span className="text-amber-500 font-mono font-semibold mr-2">문제</span>
+              {parseBold(item.problem, 'font-semibold text-gray-700')}
             </p>
           )}
           {item.analyze && (
             <p className="text-xs text-gray-500 leading-relaxed">
-              <span className="text-teal-600 font-mono mr-2">분석</span>
-              {item.analyze}
+              <span className="text-sky-500 font-mono font-semibold mr-2">분석</span>
+              {parseBold(item.analyze, 'font-semibold text-gray-700')}
             </p>
           )}
         </div>

@@ -3,9 +3,9 @@ import { parseBold } from '@/lib/parseBold'
 
 export default function ResumeExperience() {
   return (
-    <section className="bg-gray-950 py-6 px-6 print:py-4">
+    <section className="bg-white py-6 px-6 print:py-4">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-sm font-bold text-white uppercase tracking-widest mb-6 pb-2 border-b border-gray-800">
+        <h2 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-6 pb-2 border-b border-gray-200">
           경력
         </h2>
         <div className="space-y-12 print:space-y-8">
@@ -24,10 +24,10 @@ function ExperienceBlock({ exp }: { exp: Experience }) {
       {/* 회사 헤더 */}
       <div className="mb-4">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
-          <span className="text-lg font-bold text-white">{exp.company}</span>
-          <span className="text-gray-500 text-sm">|</span>
-          <span className="text-gray-300 text-sm font-medium">{exp.position}</span>
-          <span className="text-gray-500 text-xs font-mono ml-auto">{exp.period}</span>
+          <span className="text-lg font-bold text-gray-900">{exp.company}</span>
+          <span className="text-gray-400 text-sm">|</span>
+          <span className="text-gray-700 text-sm font-medium">{exp.position}</span>
+          <span className="text-gray-400 text-xs font-mono ml-auto">{exp.period}</span>
         </div>
         <p className="text-xs text-gray-500 leading-relaxed">{exp.description.replace(/\\n/g, ' ')}</p>
       </div>
@@ -46,12 +46,12 @@ function SummaryMode({ exp }: { exp: Experience }) {
   return (
     <div className="space-y-2 ml-1">
       {exp.resumeParagraphs!.map((para, i) => (
-        <p key={i} className="text-sm text-gray-300 leading-relaxed">{parseBold(para)}</p>
+        <p key={i} className="text-sm text-gray-600 leading-relaxed">{parseBold(para, 'font-semibold text-gray-900')}</p>
       ))}
       <div className="mt-3 space-y-1.5">
         {exp.highlights.map((h, i) => (
-          <p key={i} className="text-sm text-gray-400">
-            <span className="text-teal-500 mr-2">→</span>{parseBold(h, 'font-semibold text-gray-200')}
+          <p key={i} className="text-sm text-gray-500">
+            <span className="text-teal-600 mr-2">→</span>{parseBold(h, 'font-semibold text-gray-800')}
           </p>
         ))}
       </div>
@@ -76,17 +76,17 @@ function ProjectBlock({ project }: { project: Project }) {
       return (
         <div className="space-y-6">
           {project.resumeContent.map((rc, i) => (
-            <ResumeContentBlock key={i} content={rc} titleClass="text-sm font-bold text-teal-400" />
+            <ResumeContentBlock key={i} content={rc} titleClass="text-sm font-bold text-teal-600" />
           ))}
         </div>
       )
     }
     return (
       <div>
-        <h3 className="text-sm font-bold text-teal-400 mb-4">{project.name}</h3>
+        <h3 className="text-sm font-bold text-teal-600 mb-4">{project.name}</h3>
         <div className="space-y-6 ml-1">
           {project.resumeContent.map((rc, i) => (
-            <ResumeContentBlock key={i} content={rc} titleClass="text-sm font-bold text-white" />
+            <ResumeContentBlock key={i} content={rc} titleClass="text-sm font-bold text-gray-900" />
           ))}
         </div>
       </div>
@@ -94,7 +94,7 @@ function ProjectBlock({ project }: { project: Project }) {
   }
   return (
     <div>
-      <h3 className="text-sm font-bold text-teal-400 mb-3">{project.name}</h3>
+      <h3 className="text-sm font-bold text-teal-600 mb-3">{project.name}</h3>
       <div className="space-y-4 ml-1">
         {project.achievements.map((item, i) => (
           <AchievementItem key={i} item={item} />
@@ -107,15 +107,15 @@ function ProjectBlock({ project }: { project: Project }) {
 function ResumeContentBlock({ content, titleClass }: { content: ResumeContent; titleClass?: string }) {
   return (
     <div>
-      <h4 className={`mb-2 ${titleClass ?? 'text-sm font-bold text-white'}`}>{content.subtitle}</h4>
+      <h4 className={`mb-2 ${titleClass ?? 'text-sm font-bold text-gray-900'}`}>{content.subtitle}</h4>
       <div className="space-y-2 mb-2">
         {content.body.map((para, i) => (
-          <p key={i} className="text-sm text-gray-300 leading-relaxed">{parseBold(para)}</p>
+          <p key={i} className="text-sm text-gray-600 leading-relaxed">{parseBold(para, 'font-semibold text-gray-900')}</p>
         ))}
       </div>
-      <p className="text-sm text-gray-400">
-        <span className="text-teal-500 mr-2">→</span>
-        {parseBold(content.result, 'font-semibold text-gray-200')}
+      <p className="text-sm text-gray-500">
+        <span className="text-teal-600 mr-2">→</span>
+        {parseBold(content.result, 'font-semibold text-gray-800')}
       </p>
     </div>
   )
@@ -128,16 +128,16 @@ function AchievementItem({ item }: { item: PARItem }) {
       {hasContext && (
         <div className="space-y-2 mb-2">
           {item.problem && (
-            <p className="text-sm text-gray-300 leading-relaxed">{parseBold(item.problem)}</p>
+            <p className="text-sm text-gray-600 leading-relaxed">{parseBold(item.problem, 'font-semibold text-gray-900')}</p>
           )}
           {item.analyze && (
-            <p className="text-sm text-gray-300 leading-relaxed">{parseBold(item.analyze)}</p>
+            <p className="text-sm text-gray-600 leading-relaxed">{parseBold(item.analyze, 'font-semibold text-gray-900')}</p>
           )}
         </div>
       )}
-      <p className="text-sm text-gray-400">
-        <span className="text-teal-500 mr-2">→</span>
-        {parseBold(item.result, 'font-semibold text-gray-200')}
+      <p className="text-sm text-gray-500">
+        <span className="text-teal-600 mr-2">→</span>
+        {parseBold(item.result, 'font-semibold text-gray-800')}
       </p>
     </div>
   )

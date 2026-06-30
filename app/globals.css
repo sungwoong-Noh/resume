@@ -88,6 +88,12 @@ a {
     padding-bottom: 1rem !important;
   }
 
+  /* 연락처 푸터 상단 공백 */
+  .contact-footer {
+    padding-top: 5rem !important;
+    padding-bottom: 3rem !important;
+  }
+
   /* 섹션 레이블 여백 축소 + 다음 요소와 분리 방지 */
   p[class*="tracking-widest"] {
     margin-bottom: 0.5rem !important;
