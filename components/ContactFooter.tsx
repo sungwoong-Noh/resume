@@ -1,11 +1,11 @@
-import { portfolioProfile } from '@/data/portfolio'
+import { profile } from '@/data/resume'
 
-export default function PortfolioContact() {
-  const { name, email, phone } = portfolioProfile
+export default function ContactFooter() {
+  const { name, email, phone } = profile
 
   return (
-    <section className="bg-white py-24 px-6 print:py-12 border-t border-gray-200">
-      <div className="max-w-5xl mx-auto">
+    <section className="contact-footer bg-white py-24 px-6 border-t border-gray-200">
+      <div className="max-w-4xl mx-auto">
         <div className="flex items-center gap-6 mb-6">
           <div className="flex-1 h-px bg-gray-300" />
           <svg
@@ -24,7 +24,7 @@ export default function PortfolioContact() {
             <polyline points="12 5 19 12 12 19" />
           </svg>
           <div className="flex-shrink-0">
-            <p className="text-sm text-teal-600 mb-0.5">저와 인터뷰, 어떠신가요?</p>
+            <p className="text-sm text-teal-600 mb-0.5">함께 일할 기회를 기다립니다</p>
             <h2 className="text-5xl font-bold text-gray-900 leading-tight">
               CONTACT
               <br />

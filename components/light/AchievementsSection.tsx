@@ -4,7 +4,7 @@ import SectionLabel from './SectionLabel'
 export default function AchievementsSection() {
   return (
     <section className="py-20 px-6 bg-white">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <SectionLabel>Achievements</SectionLabel>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
           {achievements.map((a, i) => (

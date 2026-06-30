@@ -1,16 +1,18 @@
+import Image from 'next/image'
 import { portfolioSideProjects, type PortfolioSideProject, type PortfolioPARItem } from '@/data/portfolio'
+import { parseBold } from '@/lib/parseBold'
 
 export default function SideProjectsSection() {
   return (
-    <section className="bg-gray-50 py-16 px-6 print:py-10">
+    <section className="bg-gray-50 py-10 px-6 print:py-6">
       <div className="max-w-5xl mx-auto">
-        <div className="mb-14">
+        <div className="mb-8">
           <p className="text-xs font-mono tracking-widest text-teal-600 uppercase mb-3">
             Side Project
           </p>
           <div className="w-12 h-px bg-teal-500" />
         </div>
-        <div className="space-y-16 print:space-y-12">
+        <div className="space-y-10 print:space-y-8">
           {portfolioSideProjects.map((project) => (
             <SideProjectCard key={project.id} project={project} />
           ))}
@@ -27,6 +29,28 @@ function SideProjectCard({ project }: { project: PortfolioSideProject }) {
     <div className="">
       <div className={`h-1 w-full rounded-full bg-gradient-to-r ${project.gradientClass} mb-6`} />
 
+      {(() => {
+        const images = project.screenshotSrcs ?? (project.screenshotSrc ? [project.screenshotSrc] : [])
+        if (images.length === 0) return null
+        const [first, ...rest] = images
+        return (
+          <div className="mb-6 space-y-4 max-w-3xl mx-auto">
+            <div className="rounded-xl overflow-hidden border border-gray-200">
+              <Image src={first} alt={`${project.name} 1`} width={1200} height={675} className="w-full object-contain bg-gray-50" />
+            </div>
+            {rest.length > 0 && (
+              <div className="grid grid-cols-2 gap-4">
+                {rest.map((src, i) => (
+                  <div key={i} className="rounded-xl overflow-hidden border border-gray-200 h-52">
+                    <Image src={src} alt={`${project.name} ${i + 2}`} width={800} height={450} className="w-full h-full object-contain bg-gray-50" />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )
+      })()}
+
       <div className="grid md:grid-cols-2 gap-10">
         <div>
           <div className="flex items-center gap-3 mb-1">
@@ -39,7 +63,7 @@ function SideProjectCard({ project }: { project: PortfolioSideProject }) {
           <div className="space-y-3">
             {project.detailParagraphs.map((para, i) => (
               <p key={i} className="text-sm text-gray-600 leading-relaxed">
-                {para}
+                {parseBold(para, 'font-semibold text-gray-900')}
               </p>
             ))}
           </div>
@@ -68,7 +92,7 @@ function SideProjectCard({ project }: { project: PortfolioSideProject }) {
         </div>
       </div>
 
-      <div className="mt-14 border-b border-gray-200" />
+      <div className="mt-8 border-b border-gray-200" />
     </div>
   )
 }
@@ -79,20 +103,20 @@ function PARItem({ item }: { item: PortfolioPARItem }) {
     <li className="space-y-2">
       <div className="flex items-start gap-3">
         <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-teal-500 flex-shrink-0" />
-        <span className="text-sm text-gray-800 font-medium leading-relaxed">{item.result}</span>
+        <span className="text-sm text-gray-800 font-medium leading-relaxed">{parseBold(item.result, 'font-semibold text-gray-900')}</span>
       </div>
       {hasPAR && (
         <div className="ml-4 pl-4 border-l border-gray-200 space-y-1.5">
           {item.problem && (
             <p className="text-xs text-gray-500 leading-relaxed">
-              <span className="text-teal-600 font-mono mr-2">문제</span>
-              {item.problem}
+              <span className="text-amber-500 font-mono font-semibold mr-2">문제</span>
+              {parseBold(item.problem, 'font-semibold text-gray-700')}
             </p>
           )}
           {item.analyze && (
             <p className="text-xs text-gray-500 leading-relaxed">
-              <span className="text-teal-600 font-mono mr-2">분석</span>
-              {item.analyze}
+              <span className="text-sky-500 font-mono font-semibold mr-2">분석</span>
+              {parseBold(item.analyze, 'font-semibold text-gray-700')}
             </p>
           )}
         </div>

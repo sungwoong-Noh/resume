@@ -1,4 +1,5 @@
 import { profile } from '@/data/resume'
+import { parseBold } from '@/lib/parseBold'
 
 export default function HeroSection() {
   return (
@@ -6,7 +7,7 @@ export default function HeroSection() {
       <div className="pointer-events-none absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-teal-500/5 blur-3xl" />
       <div className="pointer-events-none absolute top-20 right-0 w-[400px] h-[400px] rounded-full bg-cyan-500/5 blur-3xl" />
 
-      <div className="relative max-w-6xl mx-auto">
+      <div className="relative max-w-4xl mx-auto">
         <div className="flex flex-wrap items-center gap-3 mb-4">
           <p className="text-teal-600 font-mono text-sm tracking-widest uppercase">Backend Engineer</p>
           <span className="px-3 py-1 bg-teal-50 border border-teal-200 rounded-full text-teal-700 text-xs font-bold">
@@ -22,7 +23,9 @@ export default function HeroSection() {
 
         {/* 자기소개 */}
         <div className="max-w-3xl mb-10 p-5 rounded-xl bg-gray-50 border border-gray-200">
-          <p className="text-gray-600 text-sm leading-relaxed whitespace-pre-line">{profile.intro}</p>
+          {profile.intro.split('\n').filter(Boolean).map((para, i) => (
+            <p key={i} className="text-gray-600 text-sm leading-relaxed">{parseBold(para, 'font-semibold text-gray-800')}</p>
+          ))}
         </div>
 
         {/* 연락처 */}

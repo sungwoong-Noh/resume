@@ -4,7 +4,7 @@ import SectionLabel from './SectionLabel'
 export default function EducationSection() {
   return (
     <section className="py-20 px-6 bg-white">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <SectionLabel>Education</SectionLabel>
         <div className="space-y-4">
           {educations.map((edu, i) => (

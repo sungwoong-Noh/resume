@@ -55,68 +55,72 @@ a {
     transition: none !important;
   }
 
-  /* Hide nav and print button */
-  nav {
-    display: none !important;
+  body, main {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    height: auto !important;
+    min-height: unset !important;
   }
 
+  /* 네비게이션, 버튼 숨김 */
+  nav,
   .no-print,
-  .print\:hidden {
-    display: none !important;
-  }
-
+  .print\:hidden,
   .blur-3xl,
   .blur-2xl {
     display: none !important;
   }
 
-  /* Page break control */
-  h1, h2, h3 {
+  /* 섹션 여백 통일 */
+  section {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  header {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  /* 이력서/경력기술서 첫 페이지 상단 공백 */
+  .resume-header {
+    padding-top: 4rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  /* 연락처 푸터 상단 공백 */
+  .contact-footer {
+    padding-top: 5rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  /* 섹션 레이블 여백 축소 + 다음 요소와 분리 방지 */
+  p[class*="tracking-widest"] {
+    margin-bottom: 0.5rem !important;
+    break-after: avoid;
     page-break-after: avoid;
   }
 
-  .section {
-    page-break-inside: avoid;
+  /* 회사 카드: 내부에서 자연스럽게 페이지 넘어가도록 허용 */
+  .rounded-2xl {
+    break-inside: auto;
+    page-break-inside: auto;
+    overflow: visible !important;
   }
 
-  /* Print-safe colors: -webkit-print-color-adjust ensures backgrounds print */
-  body,
-  main {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+  /* 회사 헤더 다음 페이지 break 방지 */
+  .rounded-2xl > div:first-child {
+    break-after: avoid;
+    page-break-after: avoid;
   }
 
-  /* Print padding adjustments */
-  header {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
-  }
-
-  section {
-    padding-top: 1.5rem !important;
-    padding-bottom: 1.5rem !important;
-  }
-
-  /* Remove extra space at bottom of last page */
-  body {
-    height: auto !important;
-    min-height: unset !important;
-  }
-
-  main > *:last-child {
-    margin-bottom: 0 !important;
-    padding-bottom: 2rem !important;
-    padding-top: 2rem !important;
-  }
-
-  /* 경력 카드 페이지 중간 분할 방지 */
-  .rounded-2xl,
+  /* 프로젝트 카드: 통째로 유지 */
   .rounded-xl {
     break-inside: avoid;
     page-break-inside: avoid;
   }
 
-  /* 다크 버전 인쇄 시 흰 배경 강제 */
+  /* 다크 버전 → 흰 배경 */
   .bg-gray-950 { background-color: #ffffff !important; }
   .bg-gray-900 { background-color: #f9fafb !important; }
   .bg-gray-800 { background-color: #f3f4f6 !important; }
