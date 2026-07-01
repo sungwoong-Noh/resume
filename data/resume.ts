@@ -164,7 +164,7 @@ export const experiences: Experience[] = [
     position: 'Cloud Engineer',
     period: '2026.02 ~ 2026.05',
     duration: '3개월',
-    description: `플랜아이는 기업과 공공기관을 대상으로 클라우드 환경 구축·운영(MSP)을 제공하는 KT Cloud 공식 파트너사입니다.\n\n고객사 40개 이상의 클라우드 인프라를 운영하며, 클라우드 사업 3년 만에 지방 최초 KT Cloud 골드 등급을 달성했습니다.`,
+    description: `기업과 공공기관에 클라우드 환경 구축·운영(MSP)을 제공하는 KT Cloud 파트너사로, 40개 이상 고객사의 클라우드 인프라를 운영합니다.`,
     careerDescription: 'MSP 사업부 Cloud Engineer로, 40개 이상 고객사의 클라우드 인프라 모니터링 체계 구축·운영 자동화 및 WAF 차단 프로세스 반자동화 담당',
     highlights: [
       '40개 고객사 Prometheus + Grafana 모니터링 구축 · CMP 연동으로 월간 보고서 수작업 2시간 → 10분',
@@ -228,7 +228,7 @@ export const experiences: Experience[] = [
     period: '2023.10 ~ 2026.02',
     duration: '2년 4개월',
     description:
-      '프라이빗·퍼블릭 클라우드 인프라 구축부터 CSP 제공까지 클라우드 전 영역을 담당하는 B2B 클라우드 기업입니다. 약 530명 규모로, 국가정보자원관리원 등 공공기관 클라우드 사업과 기업 고객을 대상으로 클라우드 네이티브 플랫폼을 개발·운영하고 있습니다.',
+      '프라이빗·퍼블릭 클라우드부터 CSP까지 담당하는 B2B 클라우드 기업입니다. 국가정보자원관리원 공공 클라우드 사업에서 클라우드 네이티브 플랫폼을 개발·운영합니다.',
     careerDescription: '자산계획 시스템(RPMS) 설계·개발, CSP 멀티테넌트 네트워크 상품(PPP Cloud) 풀스택 개발 리드, 국정자원 3개 백오피스 시스템 통합 운영유지보수 담당',
     highlights: [
       '데이터 동기화 99% 개선 (2시간 → 10초)',
@@ -368,7 +368,7 @@ export const experiences: Experience[] = [
     period: '2021.08 ~ 2023.10',
     duration: '2년 3개월',
     description:
-      '대용량 이미지 3D 시각화 기술(이미지캣 특허 보유) 기반 IT 기업으로, 공공기관 SI 프로젝트(한전 등)를 수행합니다. 약 17명 규모의 기업입니다.',
+      '대용량 이미지 3D 시각화 기술 기반 IT 기업으로, 한전 등 공공기관 SI 프로젝트를 수행합니다.',
     careerDescription: '3~4인 SI 기술개발팀 풀스택 개발. 템플릿·공통 모듈·CI/CD 구축으로 납기 환경 표준화·자동화, 설계–개발–운영 전 주기 담당',
     highlights: [
       'Jenkins 기반 배포 자동화 · 배포 빈도 7일 → 1일',
