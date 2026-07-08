@@ -37,6 +37,7 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
             alt={`${project.name} ${i + 1}`}
             width={1200}
             height={675}
+            loading="eager"
             className="w-full object-contain bg-gray-50"
           />
         </div>

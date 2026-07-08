@@ -5,14 +5,11 @@ export default function ResumeSummary() {
   const paragraphs = profile.intro.split('\n').filter(Boolean)
 
   return (
-    <section className="bg-white py-6 px-6 print:py-4">
+    <section className="bg-white pt-3 pb-12 px-6 print:pt-2 print:pb-8">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-4 pb-2 border-b border-gray-200">
-          자기소개
-        </h2>
-        <div className="space-y-3">
+        <div className="space-y-1.5">
           {paragraphs.map((para, i) => (
-            <p key={i} className="text-sm text-gray-600 leading-relaxed">
+            <p key={i} className="text-base text-gray-800 leading-relaxed tracking-tight">
               {parseBold(para, 'font-semibold text-gray-900')}
             </p>
           ))}

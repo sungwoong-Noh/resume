@@ -36,13 +36,13 @@ function SideProjectCard({ project }: { project: PortfolioSideProject }) {
         return (
           <div className="mb-6 space-y-4 max-w-3xl mx-auto">
             <div className="rounded-xl overflow-hidden border border-gray-200">
-              <Image src={first} alt={`${project.name} 1`} width={1200} height={675} className="w-full object-contain bg-gray-50" />
+              <Image src={first} alt={`${project.name} 1`} width={1200} height={675} loading="eager" className="w-full object-contain bg-gray-50" />
             </div>
             {rest.length > 0 && (
               <div className="grid grid-cols-2 gap-4">
                 {rest.map((src, i) => (
                   <div key={i} className="rounded-xl overflow-hidden border border-gray-200 h-52">
-                    <Image src={src} alt={`${project.name} ${i + 2}`} width={800} height={450} className="w-full h-full object-contain bg-gray-50" />
+                    <Image src={src} alt={`${project.name} ${i + 2}`} width={800} height={450} loading="eager" className="w-full h-full object-contain bg-gray-50" />
                   </div>
                 ))}
               </div>

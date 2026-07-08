@@ -77,6 +77,57 @@ export const portfolioProjects: PortfolioProject[] = [
     gradientClass: 'from-emerald-900 via-teal-800 to-slate-800',
   },
   {
+    id: 'ntops',
+    name: '국정자원 시스템 통합운영',
+    period: '2025.07 ~ 2026.02',
+    overviewDescription:
+      '국정자원 업무 수행을 위한 통합포털, RPMS, ITSM 3개의 시스템 통합 운영업무를 수행했습니다. 국정자원 업무 효율·안정성 향상을 목표로 오류 개선, 성능 최적화를 통해 시스템 안정성에 기여했습니다.',
+    overviewContributions: [
+      '이기종 시스템(통합포털, RPMS, ITSM) 간 운영 프로세스 표준화 및 요구사항 정제부터 릴리스까지의 End-to-End 운영 체계 정립',
+      'Tibero 실행계획 분석 및 힌트·인덱스 최적화로 핵심 업무 조회 p95 17초 → 3초 (82% 개선)',
+      '운영 이슈 유형화·재발 빈도 기반 우선순위화로 주간 인시던트 12건 → 5건 감소',
+    ],
+    detailParagraphs: [
+      '국가정보자원관리원의 핵심 업무 시스템을 운영하며 이기종 인프라 간의 프로세스를 표준화하고, 요구사항 정제부터 릴리스까지 이어지는 **End-to-End 운영 체계**를 정립하여 서비스 신뢰도를 높였습니다.',
+      '특히 대규모 데이터 조회 시 발생하는 병목 현상을 해결하기 위해 Tibero 실행계획 분석 및 인덱스 튜닝을 주도하였으며, DBA와 협업해 **WHERE 절 타입 불일치가 인덱스를 무력화하는 근본 원인**을 확인하고 수정하여 **p95 17초 → 3초 (82% 개선)**를 달성했습니다.',
+      '또한, **매월 30건 이상의 운영 이슈**를 유형별로 분류하고 재발 빈도로 우선순위를 매겨, 증상 패치 대신 고빈도 원인부터 근본적으로 제거하는 방식으로 전환해 **주간 인시던트를 12건에서 5건으로** 줄였습니다.',
+    ],
+    keyResponsibilities: [
+      {
+        result: '국정자원 nTOPS, RPMS, 통합포털 3가지 업무시스템 통합운영 담당자로 참여',
+      },
+      {
+        result: '클라이언트와 직접 소통하며 요구사항 정제부터 개선 릴리스까지 End-to-End 운영 체계화',
+      },
+      {
+        result: 'DBA 협업으로 WHERE 절 타입 불일치 근본 원인 확인 → Tibero 힌트/인덱스 최적화로 **핵심 조회 p95 17초 → 3초 (82% 개선)**',
+        problem: '**130만 건 Tibero DB 핵심 조회 p95 17초**로 현업 업무 지연 반복 발생',
+        analyze: 'DBA와 협업해 EXPLAIN으로 인덱스 미사용 원인 분석 → 힌트 강제 설정 시도했으나 미동작 → **WHERE 절 타입 불일치(문자열 파싱)가 인덱스를 무력화하는 근본 원인** 확인 → 타입 정합성 수정 후 인덱스 적용',
+      },
+      {
+        result: '운영 이슈 유형화·우선순위화로 **주간 인시던트 12건 → 5건** 감소',
+        problem: '동일 오류가 반복 접수돼도 **즉각 패치 후 종결하는 관행**으로 근본 원인이 누적되어 인시던트가 줄지 않는 구조',
+        analyze: '월 30건 이상의 운영 이슈를 **유형별로 분류하고 재발 빈도로 우선순위화** → 증상 패치 대신 고빈도 원인부터 순차적으로 근본 제거',
+      },
+    ],
+    techStack: {
+      frontend: ['jQuery', 'Vue.js'],
+      backend: [
+        'eGovFramework',
+        'SpringBoot',
+        'MyBatis',
+        'JPA',
+        'JSP',
+        'QueryDSL',
+        'MariaDB',
+        'Tibero',
+        'Redis',
+      ],
+      infra: ['K8s', 'Jenkins', 'JBoss'],
+    },
+    gradientClass: 'from-blue-900 via-blue-800 to-slate-800',
+  },
+  {
     id: 'ppp-cloud',
     name: 'PPP Cloud',
     period: '2024.08 ~ 2025.06',
@@ -123,55 +174,6 @@ export const portfolioProjects: PortfolioProject[] = [
 
     screenshotSrc: '/portfolio_image/PPP_Saga.png',
     gradientClass: 'from-slate-700 via-slate-600 to-slate-800',
-  },
-  {
-    id: 'ntops',
-    name: '국정자원 시스템 통합운영',
-    period: '2025.07 ~ 2026.02',
-    overviewDescription:
-      '국정자원 업무 수행을 위한 통합포털, RPMS, ITSM 3개의 시스템 통합 운영업무를 수행했습니다. 국정자원 업무 효율·안정성 향상을 목표로 오류 개선, 성능 최적화를 통해 시스템 안정성에 기여했습니다.',
-    overviewContributions: [
-      '이기종 시스템(통합포털, RPMS, ITSM) 간 운영 프로세스 표준화 및 요구사항 정제부터 릴리스까지의 End-to-End 운영 체계 정립',
-      'Tibero 실행계획 분석 및 힌트·인덱스 최적화로 핵심 업무 조회 p95 17초 → 3초 (82% 개선)',
-      '월 30건 이상의 운영 이슈 적기 개선으로 서비스 리드타임 단축 및 시스템 안정성 확보',
-    ],
-    detailParagraphs: [
-      '국가정보자원관리원의 핵심 업무 시스템을 운영하며 이기종 인프라 간의 프로세스를 표준화하고, 요구사항 정제부터 릴리스까지 이어지는 **End-to-End 운영 체계**를 정립하여 서비스 신뢰도를 높였습니다.',
-      '특히 대규모 데이터 조회 시 발생하는 병목 현상을 해결하기 위해 Tibero 실행계획 분석 및 인덱스 튜닝을 주도하였으며, DBA와 협업해 **WHERE 절 타입 불일치가 인덱스를 무력화하는 근본 원인**을 확인하고 수정하여 **p95 17초 → 3초 (82% 개선)**를 달성했습니다.',
-      '또한, **매월 30건 이상의 이슈**를 처리함에 있어 단순 수정을 넘어 근본적인 원인을 분석하고 재발 방지 로직을 구현하는 등, 중단 없는 서비스를 제공하기 위한 실질적인 운영 안정화 역량을 입증해 왔습니다.',
-    ],
-    keyResponsibilities: [
-      {
-        result: '국정자원 nTOPS, RPMS, 통합포털 3가지 업무시스템 통합운영 담당자로 참여',
-      },
-      {
-        result: '클라이언트와 직접 소통하며 요구사항 정제부터 개선 릴리스까지 End-to-End 운영 체계화',
-      },
-      {
-        result: 'DBA 협업으로 WHERE 절 타입 불일치 근본 원인 확인 → Tibero 힌트/인덱스 최적화로 **핵심 조회 p95 17초 → 3초 (82% 개선)**',
-        problem: '**130만 건 Tibero DB 핵심 조회 p95 17초**로 현업 업무 지연 반복 발생',
-        analyze: 'DBA와 협업해 EXPLAIN으로 인덱스 미사용 원인 분석 → 힌트 강제 설정 시도했으나 미동작 → **WHERE 절 타입 불일치(문자열 파싱)가 인덱스를 무력화하는 근본 원인** 확인 → 타입 정합성 수정 후 인덱스 적용',
-      },
-      {
-        result: '월 30건 이상 운영 이슈 개선으로 처리 리드타임 단축 및 재발률 감소',
-      },
-    ],
-    techStack: {
-      frontend: ['jQuery', 'Vue.js'],
-      backend: [
-        'eGovFramework',
-        'SpringBoot',
-        'MyBatis',
-        'JPA',
-        'JSP',
-        'QueryDSL',
-        'MariaDB',
-        'Tibero',
-        'Redis',
-      ],
-      infra: ['K8s', 'Jenkins', 'JBoss'],
-    },
-    gradientClass: 'from-blue-900 via-blue-800 to-slate-800',
   },
   {
     id: 'rpms',

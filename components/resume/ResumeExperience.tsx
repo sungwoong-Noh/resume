@@ -8,7 +8,7 @@ export default function ResumeExperience() {
         <h2 className="text-sm font-bold text-gray-900 uppercase tracking-widest mb-6 pb-2 border-b border-gray-200">
           경력
         </h2>
-        <div className="space-y-12 print:space-y-8">
+        <div className="space-y-[4.5rem] print:space-y-14">
           {experiences.map((exp) => (
             <ExperienceBlock key={exp.company} exp={exp} />
           ))}
@@ -20,9 +20,9 @@ export default function ResumeExperience() {
 
 function ExperienceBlock({ exp }: { exp: Experience }) {
   return (
-    <div>
+    <div className={exp.company === '오케스트로 클라우드' ? 'print:break-before-page' : undefined}>
       {/* 회사 헤더 */}
-      <div className="mb-4">
+      <div className="mb-4 exp-header">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
           <span className="text-lg font-bold text-gray-900">{exp.company}</span>
           <span className="text-gray-400 text-sm">|</span>

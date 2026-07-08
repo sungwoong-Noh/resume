@@ -114,6 +114,12 @@ a {
     page-break-after: avoid;
   }
 
+  /* 경력 섹션 회사 헤더: 헤더만 남고 본문이 다음 페이지로 넘어가는 현상 방지 */
+  .exp-header {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
   /* 프로젝트 카드: 통째로 유지 */
   .rounded-xl {
     break-inside: avoid;
