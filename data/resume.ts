@@ -55,7 +55,7 @@ export const coreValues: CoreValue[] = [
   {
     icon: '🛡️',
     title: '안정성 우선주의',
-    description: '모니터링 지표로 이상 징후를 사전에 감지하고 장애를 근본부터 해결합니다.',
+    description: '여러 시스템이 얽힌 흐름도 실패 지점마다 자원이 깨지지 않도록 구조로 설계해 시스템을 안정적으로 유지합니다.',
     hashtag: '',
   },
 ]
@@ -75,8 +75,8 @@ export const workingStyles: WorkingStyle[] = [
   },
   {
     icon: '📚',
-    title: '지속 가능한 개발 문화',
-    description: '의사결정을 문서화하고 코드 리뷰를 통해 팀의 성장을 도모합니다.',
+    title: '유지보수하기 쉬운 코드',
+    description: '만든 사람이 아니어도 읽고 이어가기 쉽도록, 구현 방식을 표준화하고 명료하게 씁니다.',
   },
   {
     icon: '💼',
@@ -98,7 +98,7 @@ export const achievements: Achievement[] = [
     metric: '99',
     unit: '%',
     description: '데이터 동기화 성능 개선',
-    detail: 'N+1로 14만 건 동기화에 2시간 소요 → Fetch Join + JDBC Template Bulk Insert로 10초',
+    detail: '건별 조회를 HashMap 캐싱으로, JPA IDENTITY의 Bulk Insert 제약을 JDBC Bulk Insert로 해결 (14만 건 2시간 → 10초)',
   },
   {
     metric: '82',
@@ -109,8 +109,8 @@ export const achievements: Achievement[] = [
   {
     metric: '90',
     unit: '%',
-    description: '운영 워크로드 절감',
-    detail: 'Self-Service API 자동화 (월 50건 → 5건)',
+    description: '수동 운영을 API로 자동화',
+    detail: 'Self-Service API 신규 개발로 수동 처리 티켓 월 50건 → 5건',
   },
   {
     metric: '70',
