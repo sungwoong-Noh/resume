@@ -46,10 +46,13 @@ export default function ExperienceSection() {
                   <div className="space-y-4 print:space-y-2">
                     {exp.projects.map((proj, k) => (
                       <div key={k} className="rounded-xl bg-gray-100 p-5 print:p-3">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-3">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
                           <h5 className="font-semibold text-gray-800">{proj.name}</h5>
                           <span className="text-xs text-gray-400 font-mono">{proj.period}</span>
                         </div>
+                        {proj.serviceOverview && (
+                          <p className="text-xs text-gray-500 leading-relaxed mb-3">{proj.serviceOverview}</p>
+                        )}
                         <ul className="space-y-2">
                           {proj.achievements.map((a, l) => (
                             <PARAccordion key={l} item={a} />

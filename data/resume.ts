@@ -141,6 +141,8 @@ export type Project = {
   resumeContent?: ResumeContent[]
   /** 이력서에서 project.name을 숨기고 subtitle을 teal로 표시 (플랜아이처럼 계층 없는 경우) */
   hideNameInResume?: boolean
+  /** 서비스/도메인 배경 — 무슨 시스템인지·누가 쓰는지·규모. 프로젝트명 아래, 성과 앞에 표시 */
+  serviceOverview?: string
 }
 
 export type Experience = {
@@ -220,6 +222,7 @@ export const experiences: Experience[] = [
       {
         name: 'ITSM 자산 조회 성능 최적화',
         period: '2025.07 ~ 2026.02',
+        serviceOverview: '국정자원 공무원들이 IT 자산을 조회·관리하는 백오피스 시스템(ITSM)입니다. 130만 건 규모의 자산을 다양한 조건으로 검색하는 조회 성능이 실무 효율에 직결됩니다.',
         resumeContent: [
           {
             subtitle: 'Tibero DB 쿼리 최적화 · p95 17초 → 3초',
@@ -241,6 +244,7 @@ export const experiences: Experience[] = [
       {
         name: 'CSP 멀티테넌트 네트워크 상품 개발 (PPP Cloud)',
         period: '2024.08 ~ 2025.06',
+        serviceOverview: '공공기관에 프라이빗 클라우드(AWS 같은 CSP)를 제공하는 플랫폼으로, 기관(테넌트)마다 격리된 네트워크 환경을 자동 프로비저닝합니다. 이 중 방화벽·로드밸런서(L4) 등 네트워크 상품을 담당했습니다.',
         resumeContent: [
           {
             subtitle: 'Self-Service 전환으로 수동 운영 90% 절감',
@@ -275,6 +279,7 @@ export const experiences: Experience[] = [
       {
         name: '자산계획 시스템(RPMS) 설계/개발',
         period: '2024.01 ~ 2025.06',
+        serviceOverview: '국가정보자원관리원이 보유한 수십만 건의 IT 자산을 관리하는 시스템입니다. 자산 현황이 최신이어야 신규 도입·폐기·교체 결정을 정확히 내릴 수 있어, 데이터 동기화·조회 정확성이 핵심입니다.',
         resumeContent: [
           {
             subtitle: '자산 데이터 동기화 성능 개선 (2시간 → 10초)',

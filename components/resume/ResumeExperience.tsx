@@ -83,7 +83,10 @@ function ProjectBlock({ project }: { project: Project }) {
     }
     return (
       <div>
-        <h3 className="text-sm font-bold text-teal-600 mb-4">{project.name}</h3>
+        <h3 className="text-sm font-bold text-teal-600 mb-2">{project.name}</h3>
+        {project.serviceOverview && (
+          <p className="text-xs text-gray-500 leading-relaxed mb-4 ml-1">{project.serviceOverview}</p>
+        )}
         <div className="space-y-6 ml-1">
           {project.resumeContent.map((rc, i) => (
             <ResumeContentBlock key={i} content={rc} titleClass="text-sm font-bold text-gray-900" />
@@ -94,7 +97,10 @@ function ProjectBlock({ project }: { project: Project }) {
   }
   return (
     <div>
-      <h3 className="text-sm font-bold text-teal-600 mb-3">{project.name}</h3>
+      <h3 className="text-sm font-bold text-teal-600 mb-2">{project.name}</h3>
+      {project.serviceOverview && (
+        <p className="text-xs text-gray-500 leading-relaxed mb-3 ml-1">{project.serviceOverview}</p>
+      )}
       <div className="space-y-4 ml-1">
         {project.achievements.map((item, i) => (
           <AchievementItem key={i} item={item} />
