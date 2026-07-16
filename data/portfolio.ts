@@ -25,6 +25,8 @@ export type PortfolioProject = {
   screenshotSrcs?: string[]
   /** Tailwind gradient 클래스 (스크린샷 없을 때 폴백) */
   gradientClass: string
+  /** 고용 형태 뱃지 (예: '계약직'). 정규직이면 생략 */
+  employmentType?: string
 }
 
 export type PortfolioSideProject = PortfolioProject & {
@@ -33,41 +35,188 @@ export type PortfolioSideProject = PortfolioProject & {
 
 export const portfolioProjects: PortfolioProject[] = [
   {
-    id: 'planai-monitoring',
-    name: 'MSP 고객사 모니터링 체계 구축',
-    period: '2026.02 ~ 2026.05',
+    id: 'ppp-cloud',
+    name: 'PPP Cloud — CSP 멀티테넌트 네트워크 상품',
+    period: '2024.08 ~ 2025.06',
     overviewDescription:
-      'KT Cloud 공식 MSP 파트너사에서 40개 고객사의 클라우드 인프라 모니터링 체계 구축을 담당했습니다. Prometheus + Grafana 기반 모니터링 스택 설계부터 운영 자동화까지 전담하며 MSP 운영 효율화에 기여했습니다.',
+      '국가정보자원관리원에 프라이빗 클라우드(AWS 같은 CSP)를 제공하는 플랫폼입니다. 백엔드 5인 팀에서 방화벽·로드밸런서(L4)·포트포워딩 네트워크 상품을 담당하며, 여러 벤더 장비를 조율하는 프로비저닝 자동화와 멀티테넌트 데이터 모델을 설계했습니다.',
     overviewContributions: [
-      '40개 고객사 Prometheus + Grafana 모니터링 서버 구축 · Google Chat 알람 연동 및 통합 관제 대시보드 구축',
-      'CMP 개발팀과 Prometheus 연동으로 월간 보고서 자동 생성 활성화 · 수기 작성 2시간 → 10분 단축',
-      'VictoriaMetrics 도입으로 제한된 서버 사양에서 메트릭 보존 기간 30일 → 1년 확장',
-      'Ansible 기반 Exporter 일괄 설치 자동화 · WAF 유해 IP 차단 요청 워크플로우 반자동화',
+      '운영자가 대신 처리하던 매니지드 방식을 고객 셀프서비스 API로 전환',
+      '서로 다른 벤더 장비 API의 다단계 프로비저닝을 11개 예외 타입 기반 차등 롤백 구조로 설계',
+      '상품 도메인별 특성에 맞춘 멀티테넌트 데이터 모델(정규화 그래프 / 비정규화 + 2단 격리) 설계',
+      '장비 API를 실제 호출하는 통합 테스트로 스펙 불일치·IP 충돌을 배포 전 검증',
     ],
     detailParagraphs: [
-      '**고객사 40개 이상**의 클라우드 인프라가 기본 지표를 **7일만 보존하는 KT Cloud Watch**에만 의존하던 환경에서, 장애 추적과 월간 보고서 작성이 모두 수작업이었습니다. 일주일 이상 지난 장애는 지표가 사라져 추적 자체가 불가능했고, 40개 고객사를 한눈에 보는 통합 관제도 없었으며, 보고서 작성은 서버마다 직접 접속해 리소스를 확인하는 방식으로 **서버 20개 기준 2시간 이상** 소요됐습니다.',
-      '이를 해결하기 위해 **Prometheus + Grafana + VictoriaMetrics 스택**을 선정해 40개 고객사 전체에 직접 구축하고 Google Chat 알람 연동까지 완료했습니다. 모니터링 서버 사양이 제한적인 환경에서 Prometheus 단독 장기 보존 시 용량 부족 위험이 있어, **압축 효율이 높은 VictoriaMetrics를 함께 도입해 1년치 메트릭을 안정적으로 보존**할 수 있도록 했습니다.',
-      'CMP 개발팀과 사전 협의한 Prometheus 연동을 통해 기존에 구현돼 있으나 연동 환경이 없어 미활용되던 보고서 자동 생성 기능을 활성화했습니다. 이를 통해 서버마다 직접 SSH 접속해 수기로 확인하던 **2시간짜리 월간 보고서 작업이 10분으로 단축**됐습니다.',
-      'WAF 유해 IP 차단 요청 업무는 **Gmail API + MCP 서버**를 구성해 이벤트 메일 자동 파싱 → 차단 요청 메일 초안 자동 생성 → **담당자 승인 후 발송하는 반자동화 워크플로우**로 전환했습니다.',
+      '고객은 자기 자원을 직접 만들 수 없고, 신청하면 운영자가 대신 생성해주는 **매니지드 방식**이었습니다. 방화벽 정책 하나, 포트포워딩 하나를 바꾸려 해도 요청을 넣고 담당자가 처리해줄 때까지 기다려야 했습니다. **네트워크 장비가 이미 멀티테넌트 기능을 제공한다는 점에 착안**해, 이 기능을 외부에 안전하게 노출하는 별도 API 서버를 신규 개발하고, 고객이 자기 테넌트 범위 안에서 직접 자원을 신청하면 즉시 처리되는 셀프서비스 구조로 전환했습니다.',
+      '가장 까다로웠던 건 프로비저닝 흐름이었습니다. 네트워크 환경 하나를 만들려면 방화벽 계정 생성부터 VS·인터페이스·라우트 설정, ACI 초기화, OpenStack 네트워크 생성까지 **서로 다른 벤더의 장비 API를 정해진 순서로** 호출해야 했는데, 이들은 전부 외부 시스템이라 **DB 트랜잭션은 물론 Spring @Transactional로도 묶을 수 없었습니다.** 중간 단계가 실패하면 앞 단계에서 만든 자원이 그대로 남았고, 예를 들어 포트포워딩의 출발지 객체만 생성된 채 실패하면 다음 시도에서 "이미 존재한다"며 재시도조차 막혔습니다. 게다가 이 흐름 전체가 150~250줄짜리 한 서비스 메서드에 몰려 있고 롤백도 단계마다 흩어져 있었습니다.',
+      '벤더 호출 순서를 조율하는 **Integration 계층을 신설**해 순수 DB 로직(도메인 서비스)과 벤더 어댑터(external 서비스)를 분리하고, 엔티티 조립은 별도 Builder로 떼어냈습니다. 그리고 프로비저닝 7단계마다 실패 지점별로 롤백 범위가 달라야 한다고 판단해 **단계별로 세분화한 11개 예외 타입 체계**를 설계했습니다. 공통 예외는 상속으로 재사용하고 하위 예외마다 롤백에 필요한 컨텍스트만 얹어, 각 도메인 담당자는 자기 단계의 롤백만 정의하면 되도록 공통 구조와 도메인 지식을 분리했습니다.',
+      '멀티테넌트 데이터 모델은 상품 특성에 맞춰 다르게 설계했습니다. 각 벤더 장비가 실시간 상태 조회 API를 제공해 DB가 장비 전체 상태를 복제할 필요가 없었고, 테넌트-자원 매핑과 오케스트레이션에 필요한 최소 데이터만 저장하면 됐기에 단일 스키마 논리 격리를 택했습니다. **방화벽**은 Zone(테넌트)을 루트로 하는 FK 그래프로, zone_idx(Zone PK)를 경계 루트인 FireWallVs에만 두고 하위 엔티티는 상위로 조인해 테넌트를 식별하도록 정규화했습니다. **로드밸런서**는 LoadbalancerEntity에 zone_idx(DB 식별자)와 lb_partition(장비 Citrix의 Partition 이름)을 나란히 저장하는 비정규화로, DB 조회와 장비 API 호출에 각각 맞는 키를 바로 쓰게 했습니다. 여기에 DB는 FK 논리 격리, 물리 장비는 TrusGuard의 VS·Citrix의 Partition으로 테넌트별 물리 격리하는 **2단 구조**를 구성했습니다.',
     ],
     keyResponsibilities: [
       {
-        problem: '지표가 **7일만 보존**돼 장애 사후 분석·장기 추세 확인이 불가능하고 **40개 고객사 통합 관제 부재**, 보고서 수기 작성에 **서버 20개 기준 2시간 소요**',
-        analyze: 'Thanos·Cortex는 S3 연동 승인 필요 및 러닝커브 → **단일 바이너리·PromQL 호환·즉시 적용 가능한 VictoriaMetrics** 선택',
-        result: '**40개 고객사 통합 관제 대시보드 구축** · 지표 보존 **30일 → 1년** · **월간 보고서 작성 2시간 → 10분**',
+        result: '운영자가 대신 처리하던 매니지드 방식을 **고객 셀프서비스 API로 전환** · 반복 처리 요청을 한 자릿수 수준으로 감소',
+        problem: '고객이 자원을 직접 제어할 수 없고 운영자가 대신 생성해주는 매니지드 방식이라, 방화벽·포트포워딩 변경마다 요청·대기가 반복(체감상 월 50건 안팎)되는 반쪽짜리 CSP 구조',
+        analyze: '네트워크 장비가 이미 제공하는 멀티테넌트 기능을 외부에 안전하게 노출하는 별도 API 서버를 신규 개발 → 고객이 자기 테넌트 범위에서 직접 자원을 신청·즉시 처리',
       },
       {
-        problem: '다수 고객사 서버에 Exporter를 수동 SSH로 설치 시 누락·버전 불일치 위험',
-        analyze: '멱등성 보장 및 호스트 그룹 관리에 유리한 Ansible 선택',
-        result: 'Exporter 일괄 설치 및 자원 조회 자동화로 반복 운영 공수 제거',
+        result: '다단계 벤더 프로비저닝을 **11개 예외 타입 기반 차등 롤백 구조**로 설계 · 실패 지점 무관 자원 고아 상태 구조적 방지, 벤더 추가 시 예외 타입·핸들러만 추가하는 확장 구조',
+        problem: '방화벽·VS·라우트·ACI·OpenStack 등 서로 다른 벤더 API의 순차 호출이 외부 시스템이라 DB 트랜잭션·@Transactional로 묶을 수 없어, 중간 실패 시 자원이 고아로 남고 재시도조차 막힘',
+        analyze: '벤더 호출을 조율하는 Integration 계층 분리(도메인 서비스 / 벤더 어댑터 / Builder) + 프로비저닝 7단계마다 실패 지점별 롤백 범위가 다른 11개 예외 타입 체계 설계(공통 예외 상속, 하위 예외는 컨텍스트만 추가)',
       },
       {
-        problem: 'WAF 유해 IP 이벤트 발생 시 담당자가 메일 확인부터 차단 요청 메일 작성·발송까지 수동 처리',
-        analyze: '**Gmail API + MCP 서버**로 이벤트 메일 자동 파싱 · 보안 사고 방지를 위해 **최종 발송은 담당자 승인 구조**로 설계',
-        result: '**차단 요청 워크플로우 반자동화** · 담당자는 검토 후 발송 명령만 실행',
+        result: '상품 도메인별 특성에 맞춘 **멀티테넌트 데이터 모델**(방화벽 정규화 FK 그래프 / LB 비정규화) + DB 논리 격리·장비 물리 격리 2단 구조 설계',
+        problem: '고객(테넌트)마다 독립 네트워크 환경을 보장해야 하는데 상품(방화벽·LB)마다 격리 특성이 달라 단일 방식으로 모델링 불가',
+        analyze: '장비가 상태 조회 API를 제공해 DB는 얇은 매핑 레이어로 충분 → 단일 스키마 논리 격리. 방화벽은 Zone 루트 FK 그래프로 정규화, LB는 DB·장비 식별자를 함께 저장하는 비정규화로 조인 없이 각자 필요한 키 사용',
+      },
+      {
+        result: '장비 API를 실제 호출하는 **통합 테스트**로 스펙 불일치·IP 충돌을 배포 전 검증',
       },
     ],
     techStack: {
+      frontend: ['Vue 3', 'TypeScript', 'TanStack Query', 'Ant Design'],
+      backend: ['Spring Boot', 'JPA', 'QueryDSL', 'MariaDB', 'JUnit5'],
+      infra: ['K8s', 'Jenkins', 'Citrix ADC', 'AhnLab TrusGuard', 'OpenStack'],
+    },
+    screenshotSrc: '/portfolio_image/PPP_Saga.png',
+    gradientClass: 'from-slate-700 via-slate-600 to-slate-800',
+  },
+  {
+    id: 'rpms',
+    name: 'RPMS — 자산계획 관리 시스템',
+    period: '2024.01 ~ 2025.06',
+    overviewDescription:
+      '국가정보자원관리원의 IT 자산을 계획·관리하는 시스템으로, 예산심사·감사 대응이 걸려 있어 자산 데이터의 정확성과 변경 이력 추적이 핵심입니다. 5인 팀(PL·선임·신입 2)에서 핵심 기능인 자산 동기화와 심사 도메인 로직을 담당했습니다.',
+    overviewContributions: [
+      '14만 건 동기화 배치 2시간 → 10초 (HashMap 캐싱 + JDBC Bulk Insert)',
+      '예산심사 감사 요구를 반영한 diff 기반 변경 이력 및 사업유형별 검증 규칙 설계',
+      '사내 최초 QueryDSL 도입으로 혼재된 쿼리 방식 통일 · Native 쿼리 70% 제거',
+    ],
+    detailParagraphs: [
+      '자산 동기화는 원래 **연 2회 설계 시즌에만 도는 스케줄러 배치**라 다소 느려도 문제가 없었는데, 기획이 "사용자가 버튼으로 즉시 실행"하는 방식으로 바뀌면서 문제가 드러났습니다. 배치를 직접 실행해보니 **14만 건 처리에 2시간**이 걸려, 버튼을 누른 사용자가 결과를 볼 때까지 2시간을 기다려야 하는 사실상 못 쓰는 구조였습니다. 코드를 뜯어보니 두 가지 병목이 있었습니다. 기존 데이터와 건마다 비교하며 조회하는 로직은 **전체를 한 번에 조회해 HashMap으로 캐싱하고 인메모리에서 비교**하도록 바꿨고, **JPA IDENTITY 전략이 INSERT 시점에 DB에서 ID를 즉시 발급받아야 해 Bulk Insert가 불가능한 구조**임을 확인해 **JDBC Template Bulk Insert로 전환**했습니다. 결과적으로 2시간이 10초로 줄었습니다.',
+      'RPMS는 공공 예산심사 시스템이라 **"누가 언제 무엇을 변경했는지" 추적 가능해야 하는 감사 요구사항**이 있었습니다. 단순히 "수정 요청이 오면 이력을 남긴다"로 구현하면 값 변경이 없는 저장에도 이력이 쌓여 심사자가 봐야 할 변경 내역이 노이즈에 묻힙니다. 그래서 서버·스토리지·네트워크·백업·보안장비 등 **7종 자원 각각을 요청 값과 기존 데이터로 필드 단위(자원당 20여 개)로 비교해 실제 변경이 있을 때만 이력을 적재**하는 로직을 설계 단계부터 반영했고, 폼 입력값(문자열)과 엔티티 값(숫자·boolean) 간 타입 차이로 생기는 오탐도 걸러냈습니다.',
+      '같은 맥락에서 심사 규정 자체도 도메인 모델에 반영했습니다. 사업유형(신규·증설·추가·노후·폐기)마다 요구 항목이 달랐는데, 예를 들어 폐기 예정 자산은 CPU·메모리 스펙이 필요 없는데도 시스템은 신규 도입과 동일한 필수값을 요구하는 구조라 실무자 혼란·설계 오류로 이어질 수 있었습니다. **Bean Validation의 Validation Group을 사업유형별로 분리**해 사업유형 코드에 따라 런타임에 검증 규칙 자체가 다르게 적용되도록 했습니다(폐기는 최소 식별 정보만, 신규는 스펙까지 엄격 검증).',
+      '유지보수 측면에서는 단순 조회는 Data JPA, 복잡한 조건은 Criteria API, 더 복잡하면 Native Query를 쓰는 세 방식이 혼재해 "이건 어떤 방식으로 짰지"부터 파악해야 하는 부담이 있었습니다. **사내 최초로 QueryDSL 도입을 제안**하고, 회의적인 팀을 자산 현황 모듈 파일럿으로 설득해 지사 내 3개 프로젝트로 확산시켰습니다. 컴파일 단계에서 쿼리 오류를 잡고 영속성 컨텍스트를 그대로 활용할 수 있어, Native 쿼리를 70% 제거했습니다.',
+    ],
+    keyResponsibilities: [
+      {
+        result: '**배치 처리 2시간 → 10초 (99% 개선)** — HashMap 캐싱 + JDBC Bulk Insert 전환',
+        problem: '연 2회 스케줄러 배치였으나 버튼 즉시 실행으로 기획 변경 후, 14만 건 처리에 2시간이 걸려 사용자가 결과를 볼 때까지 대기해야 하는 사실상 못 쓰는 구조',
+        analyze: '건별 비교 조회를 전체 조회 + HashMap 인메모리 비교로 개선. INSERT 병목은 JPA IDENTITY 전략이 단건 INSERT를 강제하는 구조적 한계를 확인해 JDBC Template Bulk Insert로 전환',
+      },
+      {
+        result: '**감사 요구·심사 규정을 도메인 모델·검증 구조로 정확히 반영** — 심사자·실무자 모두 신뢰할 수 있는 시스템 설계',
+        problem: '감사 대응상 변경 이력 추적이 필요하나 단순 적재 시 값 변경 없는 저장도 이력이 쌓여 노이즈. 또 사업유형마다 심사 규정(요구 항목)이 다른데 동일 검증을 걸면 폐기 자산에도 불필요한 스펙을 요구',
+        analyze: '7종 자원을 필드 단위로 비교해 실제 변경 시에만 이력 적재(타입 차이 오탐 처리) + Bean Validation Group을 사업유형별로 분리해 런타임에 검증 규칙 분기',
+      },
+      {
+        result: '**사내 최초 QueryDSL 도입**으로 혼재된 쿼리 방식 통일 · **Native 쿼리 70% 제거** · 컴파일 단계 쿼리 오류 사전 감지',
+        problem: 'Data JPA·Criteria API·Native Query 세 방식이 혼재해 유지보수 시 구현 방식 파악이 부담이고, Native Query는 오타가 런타임에야 발견됨',
+        analyze: '팀의 초기 회의론을 자산 현황 모듈 파일럿으로 설득 → 타입 안정성·가독성 개선을 직접 시연 후 지사 내 3개 프로젝트로 확산',
+      },
+    ],
+    techStack: {
+      frontend: ['Vue.js', 'ES6'],
+      backend: ['Spring Boot', 'JPA', 'QueryDSL', 'Bean Validation', 'MariaDB', 'Redis'],
+      infra: ['K8s', 'Docker', 'Jenkins', 'HashiCorp Vault', 'Harbor'],
+    },
+    gradientClass: 'from-indigo-900 via-indigo-800 to-blue-900',
+  },
+  {
+    id: 'itsm',
+    name: 'ITSM — 국정자원 자산 조회 성능 최적화',
+    period: '2025.07 ~ 2026.02',
+    overviewDescription:
+      '국정자원 공무원들이 IT 자산을 조회·관리하는 백오피스 시스템(ITSM)입니다. 130만 건 규모의 자산을 다양한 조건으로 검색하는 조회 성능이 실무 효율에 직결되어, Tibero DB의 조회 병목을 실행계획 레벨에서 진단·해결했습니다.',
+    overviewContributions: [
+      '실행계획 분석으로 인덱스 무력화 근본 원인 규명',
+      'WHERE절 타입 정합성 수정으로 핵심 자산 조회 p95 17초 → 3초 (82% 개선)',
+    ],
+    detailParagraphs: [
+      '공무원들이 자산을 조회하는 기능에서 이상한 증상이 있었습니다. **ID로 검색하면 순식간에 나오는데, 관리번호나 상태 같은 조건을 하나 추가하면 응답이 급격히 느려졌습니다.** 130만 건 규모에서 p95가 17초까지 치솟아, 실무자들이 조건을 걸어 자산을 찾을 때마다 매번 십수 초씩 화면이 멈췄습니다.',
+      'ID 검색만 빠르다는 건 인덱스 자체는 정상인데 조건을 추가할 때만 안 탄다는 뜻이라, **실행계획을 떠서** 확인했습니다. 원인은 **WHERE절 컬럼 타입과 파라미터 타입 불일치**였습니다. 타입이 다르니 DB가 컬럼 쪽에 형변환을 걸었고, 그 순간 인덱스가 무력화돼 풀스캔으로 떨어지고 있었습니다. 타입 정합성을 맞춰 인덱스를 다시 타도록 수정해 p95를 17초에서 3초로 줄였습니다.',
+    ],
+    keyResponsibilities: [
+      {
+        result: '**핵심 자산 조회 p95 17초 → 3초 (82% 개선)** — 실행계획 분석으로 인덱스 무력화 원인 제거',
+        problem: 'ID 검색은 빠른데 조건 추가 시 급격히 느려지는 문제. 130만 건 규모에서 p95 17초로 현업 공무원 업무 지연 발생',
+        analyze: '실행계획 분석으로 WHERE절 컬럼 타입과 파라미터 타입 불일치가 컬럼 형변환을 유발해 인덱스를 무력화(풀스캔)시키는 근본 원인 확인 → 타입 정합성 수정',
+      },
+    ],
+    techStack: {
+      backend: ['Spring Boot', 'JPA', 'QueryDSL', 'Tibero', 'MyBatis'],
+      infra: ['K8s', 'Jenkins', 'JBoss'],
+    },
+    gradientClass: 'from-blue-900 via-blue-800 to-slate-800',
+  },
+  {
+    id: 'kepco',
+    name: '한전 위험성 평가기반 자율안전 솔루션',
+    period: '2022.02 ~ 2023.10',
+    overviewDescription:
+      '한전과 진행한 위험성 평가기반 자율안전 솔루션 개발에 SI 풀스택으로 참여했습니다. GIS 기반 현장 관제, 메타데이터 관리, 보고서 생성 기능을 개발하고, 반복 비효율을 직접 발견해 템플릿화·배포 자동화로 개선했습니다.',
+    overviewContributions: [
+      'GIS 실시간 관제 대시보드 및 메타데이터 관리 백엔드 개발',
+      'jsPDF 보고서를 FastAPI 헤드리스 렌더 서버로 서비스화 (앱/웹 동일 품질 PDF)',
+      'Tiles 프레임워크 도입으로 중복 코드 65% → 10% · Jenkins 파이프라인으로 배포 7일 → 1일',
+    ],
+    detailParagraphs: [
+      'GIS와 모빌리티 게이트웨이를 결합해 작업 현장을 실시간 관제하고 산업재해를 예방하는 플랫폼에서, 현장 작업 관리·관리자 페이지와 메타데이터 관리 백엔드를 개발했습니다.',
+      '앱과 웹에서 동일한 PDF 보고서를 생성해야 했는데, jsPDF는 브라우저 렌더링 환경이 필요해 Spring에서 직접 실행할 수 없었습니다. 앱팀과 논의 끝에 **브라우저 렌더링이 되는 별도 크롤링 서버를 두는 방식**을 택했고, 빠른 구현이 가능한 FastAPI로 헤드리스 렌더 서버를 구축해 보고서 생성을 API로 서비스화했습니다.',
+      'JSP 화면마다 헤더·푸터·네비게이션을 반복 복붙하는 구조라 레이아웃 변경 시 전 페이지를 손봐야 했습니다. include 방식은 중복 제거 효과가 제한적이라 **레이아웃 템플릿화가 가능한 Tiles 프레임워크 도입을 직접 제안·적용**해 중복 코드를 65%에서 10%로 줄였고, 폐쇄망·온프레미스라 관리형 CI를 쓸 수 없어 **자체 구축 가능한 Jenkins로 배포 파이프라인을 구성**해 배포 주기를 7일에서 1일로 줄였습니다.',
+    ],
+    keyResponsibilities: [
+      {
+        result: '현장 메타데이터 수집을 위한 작업 관리·관리자 페이지 및 GIS 관제 대시보드 개발',
+      },
+      {
+        result: 'jsPDF 보고서를 **FastAPI 헤드리스 렌더 서버로 서비스화** — 앱/웹 동일 품질 PDF 제공',
+        problem: 'jsPDF는 브라우저 렌더링 환경이 필요해 Spring에서 직접 실행 불가, 앱에서 웹과 동일한 PDF 생성 불가',
+        analyze: '브라우저 렌더링이 필요한 실행을 위해 별도 크롤링 서버 방식 선택 → 빠른 구현이 가능한 FastAPI로 헤드리스 렌더 환경 구축',
+      },
+      {
+        result: '**Tiles 프레임워크 도입으로 중복 코드 65% → 10%**, 신규 페이지 리드타임 2일 → 0.5일',
+        problem: 'JSP 화면마다 공통 레이아웃을 반복 포함해 변경 시 전체 페이지를 수정해야 하는 구조',
+        analyze: 'include 방식은 중복 제거 효과 제한적 → Tiles 레이아웃 템플릿화로 변경 지점을 1곳으로 통일',
+      },
+      {
+        result: '**Jenkins 배포 파이프라인 구성으로 배포 7일 → 1일** · 2022 BIXPO 시연 및 한전 연구과제 평가 통과 기여',
+      },
+    ],
+    techStack: {
+      frontend: ['JSP', 'jQuery', 'ES6'],
+      backend: ['eGovFramework', 'MyBatis', 'MySQL', 'FastAPI'],
+      infra: ['Docker', 'Jenkins'],
+    },
+    gradientClass: 'from-sky-700 via-blue-700 to-cyan-800',
+  },
+  {
+    id: 'planai',
+    name: 'MSP WAF 차단 프로세스 AI 반자동화',
+    period: '2026.02 ~ 2026.05',
+    employmentType: '계약직',
+    overviewDescription:
+      'KT Cloud MSP 파트너사(3개월 계약)에서 40개 이상 고객사의 클라우드 인프라 운영을 담당했습니다. 반복 운영 업무를 자동화·표준화하는 데 집중해, WAF 차단 요청 처리를 AI 에이전트로 반자동화하고 고객사 모니터링 체계를 구축했습니다.',
+    overviewContributions: [
+      'WAF 유해 IP 차단 요청을 Gmail API·MCP·Claude Code로 반자동화 (기관별 예외 규칙 인코딩 + 사람 승인 게이트)',
+      '40개 고객사 Prometheus·Grafana 모니터링 구축 · VictoriaMetrics로 지표 보존 30일 → 1년',
+    ],
+    detailParagraphs: [
+      'WAF에서 유해 IP 이벤트가 발생할 때마다 담당자가 수동으로 메일을 확인하고 차단 요청을 작성해야 했는데, **기관마다 규칙이 달라 단순 자동화가 어려웠습니다.** 어떤 기관은 특정 국가 IP는 차단하면 안 되고, 어떤 기관은 회신 시 특정 담당자를 참조에 넣어야 하며, 관리 업체도 여러 곳이라 기관에 맞는 업체로 보내야 했습니다.',
+      '**Gmail API·MCP 서버를 구성하고 Claude Code skill을 작성**해 기관별 예외 규칙을 지침에 인코딩했습니다. 명령 한 번이면 이벤트 메일을 파싱해 유해 IP를 추리고 기관에 맞는 업체로 보낼 회신까지 작성합니다. 초기에 AI가 담당 업체를 잘못 분류하거나 메일을 잘못 읽어 회신을 틀리는 경우가 있어, 이 **실패 모드를 관측하고 완전 자동 발송 대신 임시저장 → 사람 검토 → 발송하는 승인 게이트**를 두는 구조로 설계해 자동화 효율과 오발송 방지를 동시에 확보했습니다.',
+      '또한 40개 고객사의 인프라가 기본 지표를 7일만 보존하는 환경이라 장애 사후 추적이 어려웠던 문제를, Prometheus·Grafana 기반 모니터링 체계로 해결했습니다. 제한된 서버 사양에서 장기 보존을 위해 압축 효율이 높은 VictoriaMetrics를 도입해 지표 보존을 30일에서 1년으로 늘렸습니다.',
+    ],
+    keyResponsibilities: [
+      {
+        result: '**WAF 차단 요청을 AI 에이전트로 반자동화** — 반복 메일 확인·분류·작성 자동화 + 관측된 AI 실패 모드를 사람 승인 게이트로 차단',
+        problem: '기관마다 예외 규칙(특정 국가 IP 차단 금지, 회신 참조 대상, 담당 업체 상이)이 달라 단순 자동화 불가',
+        analyze: 'Gmail API·MCP + Claude Code skill에 기관별 예외 규칙을 인코딩해 파싱·분류·회신 작성을 자동화. 관측된 AI 오분류·오독을 근거로 임시저장 → 사람 검토 → 발송 승인 게이트 설계',
+      },
+      {
+        result: '40개 고객사 Prometheus·Grafana 모니터링 구축 · **VictoriaMetrics로 지표 보존 30일 → 1년**',
+      },
+    ],
+    techStack: {
+      backend: ['Gmail API', 'MCP', 'Claude Code'],
       infra: ['Prometheus', 'Grafana', 'VictoriaMetrics', 'Ansible', 'KT Cloud'],
     },
     screenshotSrcs: [
@@ -76,197 +225,11 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     gradientClass: 'from-emerald-900 via-teal-800 to-slate-800',
   },
-  {
-    id: 'ntops',
-    name: '국정자원 시스템 통합운영',
-    period: '2025.07 ~ 2026.02',
-    overviewDescription:
-      '국정자원 업무 수행을 위한 통합포털, RPMS, ITSM 3개의 시스템 통합 운영업무를 수행했습니다. 국정자원 업무 효율·안정성 향상을 목표로 오류 개선, 성능 최적화를 통해 시스템 안정성에 기여했습니다.',
-    overviewContributions: [
-      '이기종 시스템(통합포털, RPMS, ITSM) 간 운영 프로세스 표준화 및 요구사항 정제부터 릴리스까지의 End-to-End 운영 체계 정립',
-      'Tibero 실행계획 분석 및 힌트·인덱스 최적화로 핵심 업무 조회 p95 17초 → 3초 (82% 개선)',
-      '운영 이슈 유형화·재발 빈도 기반 우선순위화로 주간 인시던트 12건 → 5건 감소',
-    ],
-    detailParagraphs: [
-      '국가정보자원관리원의 핵심 업무 시스템을 운영하며 이기종 인프라 간의 프로세스를 표준화하고, 요구사항 정제부터 릴리스까지 이어지는 **End-to-End 운영 체계**를 정립하여 서비스 신뢰도를 높였습니다.',
-      '특히 대규모 데이터 조회 시 발생하는 병목 현상을 해결하기 위해 Tibero 실행계획 분석 및 인덱스 튜닝을 주도하였으며, DBA와 협업해 **WHERE 절 타입 불일치가 인덱스를 무력화하는 근본 원인**을 확인하고 수정하여 **p95 17초 → 3초 (82% 개선)**를 달성했습니다.',
-      '또한, **매월 30건 이상의 운영 이슈**를 유형별로 분류하고 재발 빈도로 우선순위를 매겨, 증상 패치 대신 고빈도 원인부터 근본적으로 제거하는 방식으로 전환해 **주간 인시던트를 12건에서 5건으로** 줄였습니다.',
-    ],
-    keyResponsibilities: [
-      {
-        result: '국정자원 nTOPS, RPMS, 통합포털 3가지 업무시스템 통합운영 담당자로 참여',
-      },
-      {
-        result: '클라이언트와 직접 소통하며 요구사항 정제부터 개선 릴리스까지 End-to-End 운영 체계화',
-      },
-      {
-        result: 'DBA 협업으로 WHERE 절 타입 불일치 근본 원인 확인 → Tibero 힌트/인덱스 최적화로 **핵심 조회 p95 17초 → 3초 (82% 개선)**',
-        problem: '**130만 건 Tibero DB 핵심 조회 p95 17초**로 현업 업무 지연 반복 발생',
-        analyze: 'DBA와 협업해 EXPLAIN으로 인덱스 미사용 원인 분석 → 힌트 강제 설정 시도했으나 미동작 → **WHERE 절 타입 불일치(문자열 파싱)가 인덱스를 무력화하는 근본 원인** 확인 → 타입 정합성 수정 후 인덱스 적용',
-      },
-      {
-        result: '운영 이슈 유형화·우선순위화로 **주간 인시던트 12건 → 5건** 감소',
-        problem: '동일 오류가 반복 접수돼도 **즉각 패치 후 종결하는 관행**으로 근본 원인이 누적되어 인시던트가 줄지 않는 구조',
-        analyze: '월 30건 이상의 운영 이슈를 **유형별로 분류하고 재발 빈도로 우선순위화** → 증상 패치 대신 고빈도 원인부터 순차적으로 근본 제거',
-      },
-    ],
-    techStack: {
-      frontend: ['jQuery', 'Vue.js'],
-      backend: [
-        'eGovFramework',
-        'SpringBoot',
-        'MyBatis',
-        'JPA',
-        'JSP',
-        'QueryDSL',
-        'MariaDB',
-        'Tibero',
-        'Redis',
-      ],
-      infra: ['K8s', 'Jenkins', 'JBoss'],
-    },
-    gradientClass: 'from-blue-900 via-blue-800 to-slate-800',
-  },
-  {
-    id: 'ppp-cloud',
-    name: 'PPP Cloud',
-    period: '2024.08 ~ 2025.06',
-    overviewDescription:
-      'KT Cloud와 진행된 CSP 플랫폼 구축 프로젝트에 Third-party 파트로 참여하였습니다. 파티셔닝 네트워크 환경의 완전 자동화 문제를 구현하며 사용자에게 CSP 경험을 제공하는데 기여했습니다.',
-    overviewContributions: [
-      '확장성을 고려한 백엔드 설계 및 RESTful API 인터페이스 표준화',
-      '멀티테넌트 고가용성 네트워크 상품 기획 및 구현',
-      '수동 프로세스의 Self-Service API 기반 자동화 전환으로 수동 운영 워크로드 90% 절감 (월 50건 → 5건)',
-      '코드 리뷰 및 JUnit5 기반 단위 테스트 도입으로 런타임 오류 원천 차단',
-    ],
-    detailParagraphs: [
-      '국정자원 클라우드 전환을 위해 이기종 인프라 설정을 자동화하는 프로젝트에서, 백엔드 5인 팀 중 **로드밸런서(L4) 및 포트포워딩 셀프서비스** 개발을 담당했습니다.',
-      '기존의 수동 설정 방식을 API 기반 자동화 체계로 전환하여 **수동 운영 워크로드를 90% 절감 (월 50건 → 5건)**하였으며, 인프라 지식이 부족한 사용자도 안전하게 트래픽 제어 규칙을 관리할 수 있도록 설정을 추상화했습니다.',
-      '특히 장비 간 설정 불일치를 방지하기 위해 **Saga 패턴 기반의 분산 트랜잭션**을 설계하여, 장애 상황에서도 자동 롤백으로 **장비 설정 충돌 오류 0건**을 달성했습니다.',
-      '또한 JUnit5 기반 테스트와 코드 리뷰를 주도하여 런타임 오류를 최소화하고 대규모 인프라 운영의 안정성을 강화했습니다.',
-    ],
-    keyResponsibilities: [
-      {
-        result: '멀티테넌트 환경의 고가용성 네트워크(L4/L7) 상품 설계 및 자동화 로직 구현',
-      },
-      {
-        result: 'Managed 설정 방식을 자동화 기반 Self-Service로 전환하여 **수동 운영 워크로드 90% 절감 (월 50건 → 5건)**',
-        problem: '네트워크 엔지니어가 Cisco ADC·방화벽 장비를 **수동으로 설정하던 방식으로 월 50건 처리** 필요, 인적 오류 및 설정 지연 위험 존재',
-        analyze: 'Managed 방식은 장비별 설정 API를 직접 호출하는 구조적 한계 → **Spring 서비스 레이어에서 장비 API를 추상화**하여 사용자 입력만으로 설정이 완성되는 Self-Service 구조로 전환',
-      },
-      {
-        result: '**Saga 패턴 기반 보상 트랜잭션** 설계로 분산 환경 내 데이터 정합성 및 원자적 적용 보장',
-        problem: '공인IP·방화벽·스위치·OpenStack 등 **다단계 장비 설정이 순차 실행**되어 중간 실패 시 부분 설정 잔존 문제 발생',
-        analyze: '장비 API 트랜잭션과 Spring 트랜잭션이 서로 다른 도메인이라 **2PC 적용 불가** → 각 단계별 보상 로직을 구현하는 **Saga 패턴** 선택',
-      },
-      {
-        result: 'JUnit5 기반 단위 테스트 및 시나리오 검증 도입으로 배포 안정성 확보 및 런타임 오류 원천 차단',
-      },
-      {
-        result: '선임 개발자와 함께 코딩 컨벤션·공통 모듈·에러 처리 표준 수립 · 코드 리뷰 문화 주도',
-      },
-    ],
-    techStack: {
-      frontend: ['Vue 3', 'Typescript', 'Tanstack Query', 'Ant Design'],
-      backend: ['Spring Boot', 'JPA', 'QueryDSL', 'MariaDB'],
-      infra: ['K8s', 'Jenkins', 'Citrix ADC', 'AhnLab TrusGuard'],
-    },
-
-    screenshotSrc: '/portfolio_image/PPP_Saga.png',
-    gradientClass: 'from-slate-700 via-slate-600 to-slate-800',
-  },
-  {
-    id: 'rpms',
-    name: 'RPMS',
-    period: '2024.01 ~ 2025.06',
-    overviewDescription:
-      '국정자원 자원통합 사업을 위한 전산 시스템 구축에 참여하였습니다. 시스템 설계부터 개발, 운영까지 모든 과정에 기여하였습니다.',
-    overviewContributions: [
-      '대규모 자산 관리 도메인 모델링 및 확장성을 고려한 RESTful API 아키텍처 구현',
-      'N+1 쿼리 Fetch Join · JDBC Bulk Insert 전환으로 배치 처리 10초로 단축 (99% 개선)',
-      'QueryDSL 최초 도입으로 Native 쿼리 70% 제거 · 컴파일 단계 쿼리 오류 사전 감지',
-      '운영 효율화를 위한 관리 서비스 CMS 구축 및 고객 요구사항 기반 지속적인 성능 고도화',
-    ],
-    detailParagraphs: [
-      '분산되어 있던 수기 자산 설계 프로세스를 전산화하여 이력 관리의 투명성과 데이터 정합성을 확보했습니다.',
-      '복잡한 비즈니스 로직을 체계적으로 모델링함과 동시에, **사내 최초로 QueryDSL 도입을 주도**하여 **Native 쿼리의 70%를 리팩토링**함으로써 시스템의 타입 안정성과 유지보수성을 획기적으로 높였습니다.',
-      '또한, JPA N+1 쿼리를 Fetch Join으로 해결하고, INSERT 병목은 **JPA IDENTITY 전략의 단건 INSERT 강제 한계**를 파악해 **JDBC Template Bulk Insert로 전환**하여 **배치 처리를 10초로 단축 (99% 개선)**하였습니다.',
-    ],
-    keyResponsibilities: [
-      {
-        result: '5인 팀(PL·선임·신입 2)으로 설계·개발, 운영 단계는 **단독 전담** — End-to-End 수행',
-      },
-      {
-        result: 'JPA N+1 Fetch Join 해결 + JDBC Bulk Insert 전환으로 **배치 처리 10초 단축 (99% 개선)**',
-        problem: '**14만 건 동기화 배치에서 N+1 쿼리로 2시간 소요**, 야간 배치 완료 전 업무 시작으로 데이터 정합성 이슈 반복',
-        analyze: '조회 측 N+1은 Fetch Join으로 해결. INSERT 측은 **JPA IDENTITY 전략이 영속성 컨텍스트 PK 확보를 위해 단건 INSERT를 강제하는 구조적 한계** → JDBC Template Bulk Insert로 전환',
-      },
-      {
-        result: '**QueryDSL 최초 도입**으로 타입 안정성 확보 및 **Native 쿼리 70% 제거** · 컴파일 단계 쿼리 오류 사전 감지',
-        problem: 'Native 쿼리 남용으로 컴파일 타임 검증 불가, 파라미터 오류가 런타임에서야 발견되는 유지보수 문제',
-        analyze: '팀의 초기 회의론 존재 → **조회 복잡도 높은 모듈을 선택해 파일럿 적용**, 타입 안정성·가독성 개선 효과를 직접 보여줘 설득 후 **지사 내 3개 프로젝트 도입**',
-      },
-      {
-        result: '폐쇄망 K8s 개발 클러스터·미들웨어 재구축 및 Jenkins·Helm 배포 자동화 파이프라인 구축',
-      },
-    ],
-    techStack: {
-      frontend: ['Vue.js', 'HTML', 'ES6'],
-      backend: ['Spring Boot', 'JPA', 'QueryDSL', 'MariaDB', 'Redis'],
-      infra: ['K8s', 'Docker', 'Jenkins', 'HashiCorp Vault', 'Harbor'],
-    },
-    gradientClass: 'from-indigo-900 via-indigo-800 to-blue-900',
-  },
-  {
-    id: 'kepco',
-    name: '한전 안전관리 플랫폼 · 자율안전 솔루션',
-    period: '2022.02 ~ 2023.10',
-    overviewDescription:
-      '한전과 함께 진행된 위험성 평가기반 자율안전 솔루션 개발에 참여하였습니다. 공사현장 메타데이터 관리, 보고서 생성, 실시간 스트리밍 연동 기능을 수행하였고, DB 설계, API 설계 및 구현까지 시스템 구축에 기여하였습니다.',
-    overviewContributions: [
-      'GIS 기반 대시보드 및 실시간 스트리밍 연동을 위한 백엔드 API 설계 및 대규모 메타데이터 DB 스키마 구축',
-      '서버 사이드 헤드리스 렌더링 기반 보고서 생성 API 서비스화로 모바일/웹 동일 품질의 보고서 제공 및 운영 효율성 제고',
-      'Tiles 프레임워크 도입으로 페이지 중복 코드 65% → 10% 절감 및 Jenkins CI/CD 파이프라인 구축으로 배포 빈도 7일 → 1일 단축',
-    ],
-    detailParagraphs: [
-      'GIS와 모빌리티 게이트웨이를 결합해 작업 현장을 실시간 관제하고, 산업재해를 예방하는 플랫폼을 구축했습니다.',
-      '한전의 작업 절차를 전산화하여 체계적인 메타데이터 관리 시스템을 수립하였으며, 수집된 데이터를 분석해 현장의 위험 요소를 사전에 식별함으로써 작업 안정성을 높였습니다.',
-      '풀스택 개발자로서 실시간 모니터링 대시보드와 자동 보고서 생성 엔진 등 핵심 기능을 전담 개발했습니다.',
-      '현장 데이터를 직관적으로 시각화하여 관제 효율을 극대화하였으며, 이를 통해 2022 BIXPO에서 솔루션 시연을 성공적으로 마무리하며 기술력을 입증했습니다.',
-    ],
-    keyResponsibilities: [
-      {
-        result: '현장 메타데이터 수집을 위한 현장 작업 관리페이지 및 관리자 페이지 기능 개발',
-      },
-      {
-        result: 'jsPDF를 활용한 보고서 생성 기능 구현, 서버사이드 헤드리스 렌더 API로 서비스화하여 앱에서도 동일 품질 PDF 제공',
-      },
-      {
-        result: 'Tiles 프레임워크 도입으로 **페이지당 중복 코드 65% → 10% 감소**, 신규 페이지 제작 리드타임 단축',
-        problem: 'JSP 화면마다 공통 헤더·푸터·메뉴를 반복 포함해 레이아웃 변경 시 전체 페이지를 수정해야 하는 구조',
-        analyze: 'JSP include 방식은 중복 제거 효과 제한적 → **Tiles 레이아웃 템플릿화로 전체 페이지 재사용 구조** 가능, 변경 지점 1곳으로 통일',
-      },
-      {
-        result: 'SI 폐쇄망 특성상 자체 구축 Jenkins 선택해 배포 자동화 파이프라인 구성, **배포 빈도 7일 → 1일 단축**',
-        problem: '수동 배포로 인한 휴먼에러와 7일 배포 주기로 핫픽스 적용에도 일주일 대기 필요',
-        analyze: 'SI 환경 폐쇄망·온프레미스 특성상 관리형 SaaS CI/CD 사용 불가 → **자체 구축 Jenkins 선택**',
-      },
-      {
-        result: '2022 BIXPO 기술 시연 주도 및 한전 연구과제 최종 평가 통과에 기여',
-      },
-    ],
-    techStack: {
-      frontend: ['HTML', 'ES6', 'CSS'],
-      backend: ['eGovFramework', 'Fast API', 'MyBatis', 'MySQL', 'JSP'],
-      infra: ['Docker', 'Jenkins'],
-    },
-    gradientClass: 'from-sky-700 via-blue-700 to-cyan-800',
-  },
 ]
 
 export const portfolioProfile = {
   name: '노성웅',
-  tagline: '"건강한 개발문화로 지속 가능한 안정성을 만듭니다."',
+  tagline: '"문제의 원인을 구조 레벨까지 파고들어 해결합니다."',
   role: 'Back-end Engineer',
   email: 'asdz453@gmail.com',
   phone: '010-8866-3354',
@@ -275,100 +238,77 @@ export const portfolioProfile = {
     {
       icon: '🔍',
       title: '가설 기반의 문제 해결',
-      description: '막연한 추측이 아닌 로그와 실행계획 분석을 통해 원인을 진단합니다.',
+      description: '막연한 추측이 아닌 실행계획 분석과 JPA 동작 이해로 원인을 진단합니다.',
     },
     {
-      icon: '🌱',
-      title: '지속 가능한 개발 문화',
-      description: '의사결정을 문서화하고 코드 리뷰를 통해 팀의 성장을 도모합니다.',
+      icon: '🧱',
+      title: '유지보수하기 쉬운 코드',
+      description: '만든 사람이 아니어도 읽고 이어가기 쉽도록 구현 방식을 표준화하고 명료하게 씁니다.',
     },
     {
-      icon: '💼',
-      title: '비즈니스 가치 중심',
-      description: '기술 자체보다 서비스 가용성과 비즈니스 임팩트를 최우선합니다.',
+      icon: '🛡️',
+      title: '안정성 우선주의',
+      description: '여러 시스템이 얽힌 흐름도 실패 지점마다 자원이 깨지지 않도록 구조로 설계합니다.',
     },
   ],
   keywords: [
     {
-      tag: '#성능_집착',
-      description: '0.1초의 응답 속도 개선이 고객 경험의 차이를 만든다고 믿습니다.',
+      tag: '#원인_추적',
+      description: '느린 이유를 코드와 실행계획까지 내려가 증상이 아닌 원인을 고칩니다.',
     },
     {
-      tag: '#기술_부채_해결사',
-      description: '동료가 읽기 좋은 명료한 코드로 협업 비용을 최소화합니다.',
+      tag: '#설계력',
+      description: '트랜잭션으로 묶이지 않는 흐름도 실패에 강한 구조로 설계합니다.',
     },
     {
-      tag: '#안정성_우선주의',
-      description: '대규모 트래픽에도 중단 없는 견고한 인프라를 설계합니다.',
+      tag: '#유지보수성',
+      description: '혼재된 방식을 통일해 남이 읽어도 이어가기 쉬운 코드를 만듭니다.',
     },
   ],
   introduction: [
-    'N+1 문제로 2시간이 걸리던 동기화를 10초로 단축하고, 130만 건 DB의 p95를 17초에서 3초로 개선했습니다. 지시받은 기능을 구현하는 것보다 시스템 병목을 먼저 발굴해 실행계획과 JPA 동작 원리로 근본 원인을 해결하는 방식으로 일해왔습니다.',
-    'RPMS, PPP Cloud처럼 요구사항 정제부터 설계·개발·운영까지 전 주기를 경험하면서, Self-Service API 전환으로 월 50건 수동 운영을 5건으로 줄이고 Saga 패턴으로 분산 환경의 데이터 정합성을 확보했습니다.',
-    '성과에 그치지 않고 팀이 지속 가능하도록 변화를 이끌었습니다. 초기 회의론을 파일럿으로 설득해 QueryDSL을 도입하고 Native 쿼리 70%를 제거했으며, 단위 테스트 문화 정착과 사내 스터디 운영으로 팀 전체의 유지보수 비용을 낮췄습니다.',
+    '문제를 만나면 표면이 아니라 원인을 봅니다. 14만 건 배치가 2시간 걸리던 원인을 JPA IDENTITY의 Bulk Insert 한계까지 파고들어 10초로 줄이고, 130만 건 조회가 특정 조건에서만 느려지던 원인을 실행계획에서 타입 불일치로 규명해 p95 17초를 3초로 개선했습니다.',
+    'PPP Cloud에서는 트랜잭션으로 묶을 수 없는 다단계 벤더 프로비저닝을 11개 예외 타입 기반 차등 롤백 구조로 설계하고, 상품 도메인별 특성에 맞춘 멀티테넌트 데이터 모델을 만들었습니다. RPMS에서는 공공 예산심사의 감사·심사 규정을 diff 기반 이력 관리와 Bean Validation Group으로 도메인 모델에 정확히 옮겼습니다.',
+    '좋은 해결은 한 번 고치고 끝나는 게 아니라 다시 안 생기는 구조로 남는 것이라 생각합니다. 혼재된 쿼리 방식을 QueryDSL로 통일해 Native 쿼리 70%를 제거하는 등, 당장 돌아가게 하기보다 오래 안정적으로 유지되는 시스템을 지향합니다.',
   ],
 }
 
 export const portfolioSideProjects: PortfolioSideProject[] = [
   {
     id: 'commerce',
-    name: '통합 커머스 프로젝트',
-    organization: '패스트캠퍼스 부트캠프',
-    period: '2025.07 ~ 2025.09',
+    name: 'InnerCircle 통합 커머스 (부트캠프)',
+    organization: '패스트캠퍼스 백엔드 부트캠프',
+    period: '2025.06 ~ 2025.09',
     overviewDescription:
-      '패스트캠퍼스 부트캠프를 통해 진행된 통합 커머스 구현 프로젝트입니다. 고효율, 확장성을 고려한 MSA 시스템 설계 및 인프라 구축과 JWT 기반 중앙 인증과 커머스 회원 기능 구현에 기여했습니다.',
+      '패스트캠퍼스 백엔드 부트캠프에서 진행한 고트래픽 통합 커머스 구현 프로젝트입니다. 5인 팀에서 인프라(AWS 기반 MSA·오토스케일링), CI/CD, 인증/인가, 회원 도메인을 담당했습니다.',
     overviewContributions: [
-      '대규모 트래픽 부하 분산을 위한 AWS ECS 기반 오토 스케일링 인프라 설계 및 구축',
-      '대규모 트래픽 대응을 위한 도메인 중심 MSA 설계 및 Service Discovery 기반 가용성 확보',
-      'API Gateway 기반 중앙인증 아키텍처 도입으로 서비스 간 결합도 완화',
+      'AWS ECS 기반 오토스케일링 MSA 인프라 설계 및 구축',
+      'API Gateway 중앙 인증(JWT 무상태) 및 토큰 버킷 기반 Rate Limiting 구현',
+      'GitHub Actions·AWS ECR 기반 CI/CD 파이프라인 및 Zipkin 분산 추적 도입',
     ],
     detailParagraphs: [
-      '대량 트래픽 환경에서도 안정적인 서비스를 제공하기 위해 상품, 주문, 결제 도메인을 **MSA 아키텍처**로 설계했습니다. 5인 팀에서 **인프라(AWS 기반 MSA·오토스케일링), CI/CD, 인증/인가, 회원 도메인을 담당**했습니다.',
-      '특히 **AWS ECS 기반의 Auto-scaling 구조**를 직접 설계하여, 급격한 트래픽 변동에도 서비스 가용성을 끊임 없이 유지할 수 있는 인프라 확장성을 확보했습니다.',
-      '분산 환경에서의 복잡한 인증 문제를 해결하고자 **API Gateway 중심의 JWT 무상태(Stateless) 인증 체계**를 수립했습니다. 이를 통해 서비스 간 결합도를 낮추고 수평적 확장이 용이한 구조를 완성했습니다.',
-      '단순 기능 구현을 넘어, 대량의 데이터 처리 시 발생할 수 있는 병목 현상을 사전에 고려하여 응답 속도와 데이터 정합성 사이의 최적의 균형을 맞춘 설계를 지향했습니다.',
+      '대량 트래픽 환경에서도 안정적인 서비스를 제공하기 위해 상품·주문·결제 도메인을 **MSA 아키텍처**로 설계했습니다. 5인 팀에서 인프라(AWS 기반 MSA·오토스케일링), CI/CD, 인증/인가, 회원 도메인을 담당했습니다.',
+      '**AWS ECS 기반 Auto-scaling 구조**를 직접 설계해 급격한 트래픽 변동에도 가용성을 유지하도록 했고, 분산 환경의 인증 문제는 **API Gateway 중심의 JWT 무상태(Stateless) 인증 체계**로 풀어 서비스 간 결합도를 낮췄습니다.',
+      'MSA 구조에서 스파이크 트래픽이 다운스트림 서비스 전체로 전파될 위험이 있어, API Gateway 레벨에서 **토큰 버킷 알고리즘 기반 Rate Limiting**을 구현했습니다. 슬라이딩 윈도우 대비 버스트 허용과 평균 제한을 동시에 제어할 수 있어 선택했습니다.',
     ],
     keyResponsibilities: [
       {
-        result: 'AWS ECS 기반 고가용성 MSA 인프라 아키텍처 설계 및 오토 스케일링 체계 구축',
+        result: 'AWS ECS 기반 고가용성 MSA 인프라 아키텍처 설계 및 오토스케일링 체계 구축',
       },
       {
-        result: 'GitHub Actions 및 AWS ECR 기반의 CI/CD 파이프라인 구축을 통한 배포 프로세스 자동화 및 인프라 운영 비용 최적화',
+        result: 'GitHub Actions·AWS ECR 기반 CI/CD 파이프라인 구축 및 Zipkin 분산 추적으로 호출 흐름 가시화',
       },
       {
-        result: '분산 추적 시스템(Zipkin) 도입으로 마이크로서비스 간 호출 흐름 가시화 및 장애 원인 식별/진단 효율성 제고',
+        result: 'JWT 무상태 인증 + API Gateway 중앙 인증 아키텍처로 서비스 간 결합도 완화',
       },
       {
-        result: 'JWT 무상태 인증 및 API Gateway 중앙 인증 아키텍처 적용으로 서비스 간 결합도 완화 및 확장 가능한 인증 체계 수립',
-      },
-      {
-        result: 'API Gateway **토큰 버킷 기반 Rate Limiting** 구현으로 스파이크 트래픽 대응 및 다운스트림 서비스 보호',
-        problem: 'MSA 구조에서 **스파이크 트래픽 발생 시 다운스트림 서비스 전체에 장애가 전파될 위험**',
-        analyze: 'API Gateway 레벨에서 **토큰 버킷 알고리즘** 적용 → 슬라이딩 윈도우 대비 버스트 허용과 평균 제한을 동시에 제어 가능하여 선택',
+        result: '**API Gateway 토큰 버킷 기반 Rate Limiting** 구현으로 스파이크 트래픽 대응 및 다운스트림 보호',
+        problem: 'MSA 구조에서 스파이크 트래픽 발생 시 다운스트림 서비스 전체로 장애가 전파될 위험',
+        analyze: 'API Gateway 레벨에서 토큰 버킷 알고리즘 적용 → 슬라이딩 윈도우 대비 버스트 허용과 평균 제한을 동시에 제어 가능',
       },
     ],
     techStack: {
-      backend: [
-        'Spring Boot',
-        'Spring Cloud',
-        'JPA',
-        'Gradle kts',
-        'JUnit5',
-        'Spring Security',
-        'Zipkin',
-        'PostgreSQL',
-      ],
-      infra: [
-        'AWS ECS',
-        'AWS ECR',
-        'Oracle Cloud',
-        'Docker',
-        'Github Actions',
-        'AWS S3',
-        'AWS CloudMap',
-        'Prometheus',
-        'Grafana',
-      ],
+      backend: ['Spring Boot', 'Spring Cloud', 'Spring Security', 'JPA', 'JUnit5', 'PostgreSQL', 'Zipkin'],
+      infra: ['AWS ECS', 'AWS ECR', 'Docker', 'GitHub Actions', 'AWS S3', 'AWS CloudMap', 'Prometheus', 'Grafana'],
     },
     screenshotSrcs: [
       '/portfolio_image/이너써클_MSA.png',
