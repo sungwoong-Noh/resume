@@ -20,7 +20,7 @@ export default function ResumeExperience() {
 
 function ExperienceBlock({ exp }: { exp: Experience }) {
   return (
-    <div className={exp.company === '오케스트로 클라우드' ? 'print:break-before-page' : undefined}>
+    <div className={exp.company === '주식회사 에이직스' ? 'print:break-before-page' : undefined}>
       {/* 회사 헤더 */}
       <div className="mb-4 exp-header">
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
