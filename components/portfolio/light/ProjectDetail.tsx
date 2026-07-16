@@ -26,7 +26,12 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
     <div className="print:break-inside-avoid">
       <div className={`h-1 w-full rounded-full bg-gradient-to-r ${project.gradientClass} mb-5`} />
       <div className="flex items-baseline justify-between mb-4">
-        <h3 className="text-xl font-bold text-gray-900">{project.name}</h3>
+        <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+          {project.name}
+          {project.employmentType && (
+            <span className="text-[10px] px-1.5 py-0.5 bg-gray-100 border border-gray-200 rounded text-gray-500 font-medium align-middle">{project.employmentType}</span>
+          )}
+        </h3>
         <span className="text-xs font-mono text-teal-600">{project.period}</span>
       </div>
 
