@@ -75,7 +75,6 @@ export const portfolioProjects: PortfolioProject[] = [
       backend: ['Spring Boot', 'JPA', 'QueryDSL', 'MariaDB', 'JUnit5'],
       infra: ['K8s', 'Jenkins', 'Citrix ADC', 'AhnLab TrusGuard', 'OpenStack'],
     },
-    screenshotSrc: '/portfolio_image/PPP_Saga.png',
     gradientClass: 'from-slate-700 via-slate-600 to-slate-800',
   },
   {
