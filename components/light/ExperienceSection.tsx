@@ -21,7 +21,7 @@ export default function ExperienceSection() {
                 <div className="text-right">
                   <p className="text-gray-500 font-mono text-sm">{exp.period}</p>
                   <span className="inline-block mt-1 px-3 py-0.5 bg-teal-50 border border-teal-200 rounded-full text-teal-700 text-xs print:hidden">
-                    {exp.duration}
+                    {exp.employmentType ? `${exp.employmentType} · ${exp.duration}` : exp.duration}
                   </span>
                 </div>
               </div>

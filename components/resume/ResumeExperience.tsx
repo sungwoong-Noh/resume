@@ -27,6 +27,9 @@ function ExperienceBlock({ exp }: { exp: Experience }) {
           <span className="text-lg font-bold text-gray-900">{exp.company}</span>
           <span className="text-gray-400 text-sm">|</span>
           <span className="text-gray-700 text-sm font-medium">{exp.position}</span>
+          {exp.employmentType && (
+            <span className="text-[10px] px-1.5 py-0.5 bg-gray-100 border border-gray-200 rounded text-gray-500 font-medium">{exp.employmentType}</span>
+          )}
           <span className="text-gray-400 text-xs font-mono ml-auto">{exp.period}</span>
         </div>
         <p className="text-xs text-gray-500 leading-relaxed">{exp.description.replace(/\\n/g, ' ')}</p>

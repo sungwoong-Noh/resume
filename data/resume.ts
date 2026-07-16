@@ -144,6 +144,8 @@ export type Experience = {
   position: string
   period: string
   duration: string
+  /** 고용 형태 뱃지 (예: '계약직'). 정규직이면 생략 */
+  employmentType?: string
   /** 이력서용 회사 소개 */
   description: string
   /** 경력기술서용 역할 요약 — 있으면 description 대신 표시 */
@@ -156,44 +158,6 @@ export type Experience = {
 }
 
 export const experiences: Experience[] = [
-  {
-    company: '플랜아이(PlanAI)',
-    position: 'Cloud Engineer',
-    period: '2026.02 ~ 2026.05',
-    duration: '3개월',
-    description: `기업과 공공기관에 클라우드 환경 구축·운영(MSP)을 제공하는 KT Cloud 파트너사로, 40개 이상 고객사의 클라우드 인프라를 운영합니다.`,
-    careerDescription: 'MSP 사업부 Cloud Engineer로, 40개 이상 고객사의 클라우드 인프라 모니터링 체계 구축·운영 자동화 및 WAF 차단 프로세스 반자동화 담당',
-    highlights: [
-      'WAF 유해 IP 차단 요청을 AI 에이전트(MCP)로 반자동화 · 기관별 예외 규칙 인코딩 + 사람 승인 게이트 설계',
-      '40개 고객사 Prometheus·Grafana 모니터링 구축 · VictoriaMetrics로 지표 보존 30일 → 1년',
-    ],
-    techStack: ['Prometheus', 'Grafana', 'VictoriaMetrics', 'Ansible', 'KT Cloud'],
-    projects: [
-      {
-        name: 'AI 에이전트(MCP) 기반 WAF 차단 요청 프로세스 반자동화',
-        period: '2026.02 ~ 2026.05',
-        hideNameInResume: true,
-        resumeContent: [
-          {
-            subtitle: 'AI 에이전트(MCP) 기반 WAF 차단 요청 프로세스 반자동화',
-            body: [
-              'WAF에서 유해 IP 이벤트가 발생할 때마다 담당자가 수동으로 메일을 확인하고 차단 요청을 작성해야 했는데, **기관마다 규칙이 달라 단순 자동화가 어려웠습니다**. 어떤 기관은 일본 IP는 차단하면 안 되고, 어떤 기관은 회신 시 특정 담당자를 참조에 넣어야 하며, 관리 업체도 여러 곳이라 기관에 맞는 업체로 보내야 했습니다.',
-              '**Gmail API·MCP 서버를 구성하고 Claude Code skill을 작성**해 기관별 예외 규칙을 지침에 인코딩했습니다. 명령 한 번이면 이벤트 메일을 파싱해 유해 IP를 추리고, 기관에 맞는 업체로 보낼 차단 요청 회신까지 작성합니다.',
-              '초기에는 AI가 담당 업체를 잘못 분류하거나 메일을 잘못 읽어 회신을 틀리는 경우가 있었습니다. 이 **실패 모드를 관측하고, 완전 자동 발송 대신 임시저장 → 사람 검토 → 발송하는 승인 게이트를 두는 구조**로 설계해 자동화 효율과 오발송 방지를 동시에 확보했습니다.',
-            ],
-            result: '반복 메일 확인·분류·작성 자동화 · 관측된 AI 실패 모드(오분류·오독)를 **사람 승인 게이트**로 차단 · 단독 구축 후 팀 전파',
-          },
-        ],
-        achievements: [
-          {
-            problem: 'WAF 유해 IP 차단 요청을 담당자가 수동으로 메일 확인·작성. **기관마다 예외 규칙**(특정 국가 IP 차단 금지, 회신 참조 대상, 담당 업체 상이)이 달라 단순 자동화 불가',
-            analyze: '**Gmail API·MCP + Claude Code skill**에 기관별 예외 규칙을 인코딩해 메일 파싱·유해 IP 추출·기관별 업체 회신 작성을 자동화. **관측된 AI 실패 모드(업체 오분류·메일 오독)를 근거로 임시저장 → 사람 검토 → 발송 승인 게이트를 설계**',
-            result: '반복 메일 처리 자동화 + 오발송 방지 · 단독 구축 후 팀 전파',
-          },
-        ],
-      },
-    ],
-  },
   {
     company: '오케스트로 클라우드',
     position: '선임연구원 · 클라우드 서비스 본부',
@@ -455,6 +419,26 @@ export const experiences: Experience[] = [
         ],
       },
     ],
+  },
+  {
+    company: '플랜아이(PlanAI)',
+    position: 'Cloud Engineer',
+    period: '2026.02 ~ 2026.05',
+    duration: '3개월',
+    employmentType: '계약직',
+    description: `기업·공공기관에 KT Cloud 기반 클라우드 인프라 구축·운영(MSP)을 제공하는 파트너사로, 40개 이상 고객사 인프라를 관리합니다.`,
+    careerDescription: 'KT Cloud MSP 파트너사(3개월 계약)에서 WAF 차단 프로세스 AI 반자동화 및 40개 고객사 모니터링 체계 구축 담당',
+    highlights: [
+      'WAF 유해 IP 차단 요청을 AI 에이전트(MCP)로 반자동화 · 기관별 예외 규칙 인코딩 + 사람 승인 게이트 설계',
+      '40개 고객사 Prometheus·Grafana 모니터링 구축 · VictoriaMetrics로 지표 보존 30일 → 1년',
+    ],
+    resumeParagraphs: [
+      'MSP 사업부에서 40개 이상 고객사 인프라 운영을 담당한 **3개월 계약직** 경험으로, 반복 운영 업무를 자동화·표준화하는 데 집중했습니다.',
+      'WAF 유해 IP 차단 요청 업무를 **Gmail API·MCP·Claude Code 기반으로 반자동화**했습니다. 기관마다 다른 예외 규칙(특정 국가 IP 차단 금지 등)을 AI 지침에 인코딩하고, AI 오분류를 관측해 **사람 승인 게이트**를 두는 구조로 설계했습니다.',
+      'Prometheus·Grafana 기반 모니터링 체계를 구축하고 **VictoriaMetrics로 지표 보존을 30일에서 1년으로** 늘렸습니다.',
+    ],
+    techStack: ['Gmail API', 'MCP', 'Claude Code', 'Prometheus', 'Grafana', 'VictoriaMetrics'],
+    projects: [],
   },
 ]
 
