@@ -117,6 +117,10 @@ export const portfolioProjects: PortfolioProject[] = [
     },
     gradientClass: 'from-indigo-900 via-indigo-800 to-blue-900',
   },
+]
+
+// 기타 경험 — 플래그십(PPP·RPMS) 대비 가볍게 표시
+export const portfolioOtherProjects: PortfolioProject[] = [
   {
     id: 'itsm',
     name: 'ITSM — 국정자원 자산 조회 성능 최적화',

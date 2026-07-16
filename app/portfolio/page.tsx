@@ -1,6 +1,7 @@
 import DocNav from '@/components/DocNav'
 import PortfolioHero from '@/components/portfolio/light/PortfolioHero'
 import ProjectDetail from '@/components/portfolio/light/ProjectDetail'
+import OtherProjects from '@/components/portfolio/light/OtherProjects'
 import SideProjectsSection from '@/components/portfolio/light/SideProjectsSection'
 import ContactFooter from '@/components/ContactFooter'
 
@@ -15,6 +16,7 @@ export default function PortfolioPage() {
       <DocNav />
       <PortfolioHero />
       <ProjectDetail />
+      <OtherProjects />
       <SideProjectsSection />
       <ContactFooter />
     </main>
