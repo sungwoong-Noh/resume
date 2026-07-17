@@ -4,7 +4,7 @@
 export default function RpmsDiagrams() {
   return (
     <div className="space-y-6 mb-8">
-      <figure className="rounded-xl border border-gray-200 bg-white p-4 print:p-2 max-w-xl mx-auto">
+      <figure className="rounded-xl border border-gray-200 bg-white p-4 print:p-2 max-w-lg mx-auto">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/portfolio_image/rpms_동기화.svg"
@@ -16,7 +16,7 @@ export default function RpmsDiagrams() {
         </figcaption>
       </figure>
 
-      <figure className="rounded-xl border border-gray-200 bg-white p-4 print:p-2 max-w-xl mx-auto">
+      <figure className="rounded-xl border border-gray-200 bg-white p-4 print:p-2 max-w-lg mx-auto">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/portfolio_image/rpms_변경이력.svg"
