@@ -3,8 +3,8 @@
 
 export default function PppDiagrams() {
   return (
-    <div className="space-y-6 mb-8">
-      <figure className="rounded-xl border border-gray-200 bg-white p-4 print:p-2 max-w-2xl mx-auto">
+    <div className="grid md:grid-cols-2 gap-4 mb-8 print:break-inside-avoid">
+      <figure className="rounded-xl border border-gray-200 bg-white p-4 print:p-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/portfolio_image/ppp_롤백.svg"
@@ -16,7 +16,7 @@ export default function PppDiagrams() {
         </figcaption>
       </figure>
 
-      <figure className="rounded-xl border border-gray-200 bg-white p-4 print:p-2 max-w-2xl mx-auto">
+      <figure className="rounded-xl border border-gray-200 bg-white p-4 print:p-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/portfolio_image/ppp_domain.svg"
