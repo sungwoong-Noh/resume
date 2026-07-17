@@ -1,7 +1,7 @@
 import { portfolioProfile } from '@/data/portfolio'
 
 export default function PortfolioHero() {
-  const { name, role, tagline, email, phone } = portfolioProfile
+  const { name, role, email, phone } = portfolioProfile
 
   return (
     <section className="bg-white py-10 px-6 print:py-6">
@@ -10,8 +10,7 @@ export default function PortfolioHero() {
           Portfolio
         </p>
         <h1 className="text-5xl font-bold text-gray-900 mb-2 print:text-4xl">{name}</h1>
-        <p className="text-teal-600 font-bold text-base mb-3">{role}</p>
-        <p className="text-sm text-gray-500 mb-5">{tagline}</p>
+        <p className="text-teal-600 font-bold text-base mb-5">{role}</p>
         <div className="flex gap-6 text-sm text-gray-500">
           <p>✉ {email}</p>
           <p>✆ {phone}</p>
