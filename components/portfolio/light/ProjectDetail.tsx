@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { portfolioProjects, type PortfolioProject, type PortfolioPARItem } from '@/data/portfolio'
 import { parseBold } from '@/lib/parseBold'
 import PppDiagrams from './PppDiagrams'
+import RpmsDiagrams from './RpmsDiagrams'
 
 export default function ProjectDetail() {
   return (
@@ -50,6 +51,7 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
       ))}
 
       {project.id === 'ppp-cloud' && <PppDiagrams />}
+      {project.id === 'rpms' && <RpmsDiagrams />}
 
       <div className="grid md:grid-cols-2 gap-8 print:gap-6">
         <div>
