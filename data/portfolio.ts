@@ -273,11 +273,11 @@ export const portfolioProfile = {
 export const portfolioSideProjects: PortfolioSideProject[] = [
   {
     id: 'commerce',
-    name: 'InnerCircle 통합 커머스 (부트캠프)',
-    organization: '패스트캠퍼스 백엔드 부트캠프',
+    name: 'InnerCircle 통합 커머스',
+    organization: '패스트캠퍼스 이너써클 백엔드 4기',
     period: '2025.06 ~ 2025.09',
     overviewDescription:
-      '패스트캠퍼스 백엔드 부트캠프에서 진행한 고트래픽 통합 커머스 구현 프로젝트입니다. 5인 팀에서 인프라(AWS 기반 MSA·오토스케일링), CI/CD, 인증/인가, 회원 도메인을 담당했습니다.',
+      '현업 멘토링 기반으로 진행한 고트래픽 통합 커머스 구현 프로젝트입니다. 5인 팀에서 인프라(AWS 기반 MSA·오토스케일링), CI/CD, 인증/인가, 회원 도메인을 담당했습니다.',
     overviewContributions: [
       'AWS ECS 기반 오토스케일링 MSA 인프라 설계 및 구축',
       'API Gateway 중앙 인증(JWT 무상태) 및 토큰 버킷 기반 Rate Limiting 구현',
