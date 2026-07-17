@@ -25,7 +25,7 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
   const { frontend, backend, infra } = project.techStack
 
   return (
-    <div className="print:break-inside-avoid">
+    <div>
       <div className={`h-1 w-full rounded-full bg-gradient-to-r ${project.gradientClass} mb-5`} />
       <div className="flex items-baseline justify-between mb-4">
         <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
@@ -53,7 +53,7 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
       {project.id === 'ppp-cloud' && <PppDiagrams />}
       {project.id === 'rpms' && <RpmsDiagrams />}
 
-      <div className="grid md:grid-cols-2 gap-8 print:gap-6">
+      <div className="grid md:grid-cols-2 gap-8 print:gap-6 print:break-inside-avoid">
         <div>
           <div className="space-y-3 mb-6">
             {project.detailParagraphs.map((para, i) => (
