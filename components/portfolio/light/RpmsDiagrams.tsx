@@ -7,7 +7,7 @@ export default function RpmsDiagrams() {
       <figure className="rounded-xl border border-gray-200 bg-white p-4 print:p-2 max-w-2xl mx-auto">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/portfolio_image/rpms_데이터동기화.svg"
+          src="/portfolio_image/rpms_동기화.svg"
           alt="RPMS 자산 동기화 성능 개선 — 건별 처리(2시간)에서 일괄 조회·HashMap 인메모리 비교·JDBC Bulk Insert(10초)로 전환"
           className="w-full h-auto"
         />
