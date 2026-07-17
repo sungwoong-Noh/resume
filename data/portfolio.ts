@@ -95,7 +95,7 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     keyResponsibilities: [
       {
-        result: '**배치 처리 2시간 → 10초 (99% 개선)** — HashMap 캐싱 + JDBC Bulk Insert 전환',
+        result: '**배치 처리 2시간 → 10초 (약 700배)** — HashMap 캐싱 + JDBC Bulk Insert 전환',
         problem: '연 2회 스케줄러 배치였으나 버튼 즉시 실행으로 기획 변경 후, 14만 건 처리에 2시간이 걸려 사용자가 결과를 볼 때까지 대기해야 하는 사실상 못 쓰는 구조',
         analyze: '건별 비교 조회를 전체 조회 + HashMap 인메모리 비교로 개선. INSERT 병목은 JPA IDENTITY 전략이 단건 INSERT를 강제하는 구조적 한계를 확인해 JDBC Template Bulk Insert로 전환',
       },

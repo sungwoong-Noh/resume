@@ -95,8 +95,8 @@ export type Achievement = {
 
 export const achievements: Achievement[] = [
   {
-    metric: '99',
-    unit: '%',
+    metric: '700',
+    unit: '배',
     description: '데이터 동기화 성능 개선',
     detail: '건별 조회를 HashMap 캐싱으로, JPA IDENTITY의 Bulk Insert 제약을 JDBC Bulk Insert로 해결 (14만 건 2시간 → 10초)',
   },
@@ -167,7 +167,7 @@ export const experiences: Experience[] = [
       '프라이빗·퍼블릭 클라우드부터 CSP까지 담당하는 B2B 클라우드 기업입니다. 국가정보자원관리원 공공 클라우드 사업에서 클라우드 네이티브 플랫폼을 개발·운영합니다.',
     careerDescription: '자산계획 시스템(RPMS) 5인 팀 개발 및 성능 최적화, CSP 멀티테넌트 네트워크 상품(PPP Cloud) 로드밸런서·포트포워딩 개발 및 다단계 프로비저닝 오케스트레이션 구조 설계 담당',
     highlights: [
-      '데이터 동기화 99% 개선 (2시간 → 10초) · JPA IDENTITY 구조 한계를 JDBC Bulk Insert로 해결',
+      '데이터 동기화 2시간 → 10초 (약 700배) · JPA IDENTITY 구조 한계를 JDBC Bulk Insert로 해결',
       '핵심 자산 조회 p95 82% 개선 (17초 → 3초) · 실행계획 분석으로 인덱스 무력화 원인 제거',
       '멀티벤더 프로비저닝을 11개 예외 타입 기반 차등 롤백 구조로 설계 · 실패 시 자원 고아 방지',
       '혼재된 쿼리 방식을 QueryDSL로 통일 · Native 쿼리 70% 제거로 유지보수성 개선',
@@ -239,7 +239,7 @@ export const experiences: Experience[] = [
               '첫째, 기존 데이터와 비교하는 로직이 건마다 조회하는 방식이라 쿼리가 과도하게 많았습니다. **전체 데이터를 한 번에 조회해 HashMap으로 캐싱하고 인메모리에서 비교**하는 방식으로 개선했습니다.',
               '둘째, **JPA IDENTITY 전략은 INSERT 시점에 DB에서 ID를 즉시 발급받아야 해 Bulk Insert가 불가능한 구조**였습니다. 이를 **JDBC Template 기반 Bulk Insert로 전환**해 두 병목을 함께 해결했습니다.',
             ],
-            result: '14만 건 처리 **2시간 → 10초** (99% 개선)',
+            result: '14만 건 처리 **2시간 → 10초** (약 700배)',
           },
           {
             subtitle: '예산심사 감사 요구사항을 반영한 도메인 규칙 설계',
@@ -264,7 +264,7 @@ export const experiences: Experience[] = [
           {
             problem: '원래 **연 2회 스케줄러 배치**였으나 **버튼 즉시 실행 방식으로 기획 변경** 후, 14만 건 처리에 **2시간**이 걸려 사용자가 버튼을 누르고 2시간 대기해야 하는 사실상 못 쓰는 구조',
             analyze: '기존 데이터와 비교하는 로직이 건마다 조회하는 방식이라 쿼리 과다. **전체 데이터를 한 번에 조회해 HashMap으로 캐싱하고 인메모리에서 비교**하는 방식으로 개선. 또한 **JPA IDENTITY 전략은 INSERT 시점에 DB에서 ID를 즉시 발급받아야 해 Bulk Insert가 불가능한 구조**임을 확인 → **JDBC Template 기반 Bulk Insert로 전환**해 두 병목 해결',
-            result: '14만 건 처리 **2시간 → 10초** (99% 개선)',
+            result: '14만 건 처리 **2시간 → 10초** (약 700배)',
           },
           {
             problem: '공공 예산심사 시스템이라 **감사 이력 추적**이 필요하고, **사업유형(신규·폐기 등)마다 심사 규정(요구 항목)이 다름**. 단순 구현 시 값 변경 없는 저장도 이력이 쌓여 노이즈가 되고, 모든 유형에 동일 검증을 걸면 폐기 자산에도 불필요한 스펙을 요구해 실무자 혼란',
