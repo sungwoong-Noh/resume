@@ -100,7 +100,7 @@ export const portfolioProjects: PortfolioProject[] = [
         analyze: '건별 비교 조회를 전체 조회 + HashMap 인메모리 비교로 개선. INSERT 병목은 JPA IDENTITY 전략이 단건 INSERT를 강제하는 구조적 한계를 확인해 JDBC Template Bulk Insert로 전환',
       },
       {
-        result: '**감사 요구·심사 규정을 도메인 모델·검증 구조로 정확히 반영** — 심사자·실무자 모두 신뢰할 수 있는 시스템 설계',
+        result: '**값 변경이 있을 때만 이력을 남겨** 심사자가 봐야 할 내역만 남도록 설계 · **사업유형별로 검증 규칙을 분리**해 실무자 입력 부담 축소',
         problem: '감사 대응상 변경 이력 추적이 필요하나 단순 적재 시 값 변경 없는 저장도 이력이 쌓여 노이즈. 또 사업유형마다 심사 규정(요구 항목)이 다른데 동일 검증을 걸면 폐기 자산에도 불필요한 스펙을 요구',
         analyze: '7종 자원을 필드 단위로 비교해 실제 변경 시에만 이력 적재(타입 차이 오탐 처리) + Bean Validation Group을 사업유형별로 분리해 런타임에 검증 규칙 분기',
       },
