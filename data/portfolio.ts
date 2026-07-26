@@ -86,7 +86,7 @@ export const portfolioProjects: PortfolioProject[] = [
     overviewContributions: [
       '14만 건 동기화 배치 2시간 → 10초 (HashMap 캐싱 + JDBC Bulk Insert)',
       '예산심사 감사 요구를 반영한 diff 기반 변경 이력 및 사업유형별 검증 규칙 설계',
-      '사내 최초 QueryDSL 도입으로 혼재된 쿼리 방식 통일 · Native 쿼리 70% 제거',
+      '사내 최초 QueryDSL 도입으로 혼재된 쿼리 방식 통일',
     ],
     detailParagraphs: [
       '5인 팀에서 핵심 기능인 자산 동기화 성능을 담당했습니다. 연 2회 스케줄러 배치였던 동기화가 "버튼 즉시 실행"으로 기획이 바뀌면서 14만 건 2시간이 병목으로 드러났고, 건별 비교 조회를 **HashMap 인메모리 비교**로, INSERT는 **JPA IDENTITY 전략이 Bulk Insert를 막는 한계**를 확인해 **JDBC Bulk Insert**로 전환해 10초로 줄였습니다.',
@@ -105,7 +105,7 @@ export const portfolioProjects: PortfolioProject[] = [
         analyze: '7종 자원을 필드 단위로 비교해 실제 변경 시에만 이력 적재(타입 차이 오탐 처리) + Bean Validation Group을 사업유형별로 분리해 런타임에 검증 규칙 분기',
       },
       {
-        result: '**사내 최초 QueryDSL 도입**으로 혼재된 쿼리 방식 통일 · **Native 쿼리 70% 제거** · 컴파일 단계 쿼리 오류 사전 감지',
+        result: '**사내 최초 QueryDSL 도입**으로 혼재된 쿼리 방식 통일 · 컴파일 단계 쿼리 오류 사전 감지',
         problem: 'Data JPA·Criteria API·Native Query 세 방식이 혼재해 유지보수 시 구현 방식 파악이 부담이고, Native Query는 오타가 런타임에야 발견됨',
         analyze: '팀의 초기 회의론을 자산 현황 모듈 파일럿으로 설득 → 타입 안정성·가독성 개선을 직접 시연 후 지사 내 3개 프로젝트로 확산',
       },
@@ -239,7 +239,7 @@ export const portfolioProfile = {
   introduction: [
     '문제를 만나면 표면이 아니라 원인을 봅니다. 14만 건 배치가 2시간 걸리던 원인을 JPA IDENTITY의 Bulk Insert 한계까지 파고들어 10초로 줄이고, 130만 건 조회가 특정 조건에서만 느려지던 원인을 실행계획에서 타입 불일치로 규명해 p95 17초를 3초로 개선했습니다.',
     'PPP Cloud에서는 트랜잭션으로 묶을 수 없는 다단계 벤더 프로비저닝을 11개 예외 타입 기반 차등 롤백 구조로 설계하고, 상품 도메인별 특성에 맞춘 멀티테넌트 데이터 모델을 만들었습니다. RPMS에서는 공공 예산심사의 감사·심사 규정을 diff 기반 이력 관리와 Bean Validation Group으로 도메인 모델에 정확히 옮겼습니다.',
-    '좋은 해결은 한 번 고치고 끝나는 게 아니라 다시 안 생기는 구조로 남는 것이라 생각합니다. 혼재된 쿼리 방식을 QueryDSL로 통일해 Native 쿼리 70%를 제거하는 등, 당장 돌아가게 하기보다 오래 안정적으로 유지되는 시스템을 지향합니다.',
+    '좋은 해결은 한 번 고치고 끝나는 게 아니라 다시 안 생기는 구조로 남는 것이라 생각합니다. 혼재된 쿼리 방식을 QueryDSL로 통일하는 등, 당장 돌아가게 하기보다 오래 안정적으로 유지되는 시스템을 지향합니다.',
   ],
 }
 

@@ -100,18 +100,6 @@ export const achievements: Achievement[] = [
     description: '데이터 동기화 성능 개선',
     detail: '건별 조회를 HashMap 캐싱으로, JPA IDENTITY의 Bulk Insert 제약을 JDBC Bulk Insert로 해결 (14만 건 2시간 → 10초)',
   },
-  {
-    metric: '82',
-    unit: '%',
-    description: 'DB 조회 성능 향상',
-    detail: '130만 건 Tibero DB · p95 17초 → 3초 (실행계획·인덱스 최적화)',
-  },
-  {
-    metric: '70',
-    unit: '%',
-    description: 'Native 쿼리 제거율',
-    detail: 'QueryDSL 지사 내 3개 프로젝트 도입 주도 · SQL 문자열 대신 타입 안전 Java 코드로 전환 · 런타임 SQL 오류 제거',
-  },
 ]
 
 // ─── Experience ───────────────────────────────────────────────
@@ -169,7 +157,7 @@ export const experiences: Experience[] = [
     highlights: [
       '데이터 동기화 2시간 → 10초 (약 700배) · JPA IDENTITY 구조 한계를 JDBC Bulk Insert로 해결',
       '멀티벤더 프로비저닝을 11개 예외 타입 기반 차등 롤백 구조로 설계 · 실패 시 자원 고아 방지',
-      '혼재된 쿼리 방식을 QueryDSL로 통일 · Native 쿼리 70% 제거로 유지보수성 개선',
+      '혼재된 쿼리 방식을 QueryDSL로 통일해 유지보수성 개선',
     ],
     techStack: [
       'Spring Boot', 'JPA', 'QueryDSL', 'Kubernetes', 'Vue 3',
@@ -250,13 +238,13 @@ export const experiences: Experience[] = [
             result: '값 변경이 있을 때만 이력을 남겨 심사자가 봐야 할 내역만 남도록 설계 · 사업유형별로 검증 규칙을 분리해 실무자 입력 부담 축소',
           },
           {
-            subtitle: '혼재된 쿼리 방식 통일로 유지보수성 개선 · Native 쿼리 70% 제거',
+            subtitle: '혼재된 쿼리 방식 통일로 유지보수성 개선',
             body: [
               '같은 프로젝트 안에서 쿼리 짜는 방식이 세 가지로 갈려 있었습니다. 단순 조회는 Data JPA, 조건이 복잡하면 Criteria API, 그보다 더 복잡하면 Native Query. 문제는 유지보수할 때였습니다. 같은 기능을 고치려 해도 **이게 어떤 방식으로 짜였는지부터 확인**해야 했고, Criteria API는 코드가 장황해 읽기 어려웠으며 Native Query는 문자열이라 **오타가 나도 런타임에야 터졌습니다.**',
               '세 방식을 하나로 통일하면 이 부담이 사라진다고 보고 **QueryDSL 도입을 제안**했습니다. QueryDSL은 **컴파일 단계에서 쿼리 오류를 잡을 수 있고, JPA 영속성 컨텍스트를 그대로 활용**할 수 있어 선택했습니다.',
               '팀에 회의적인 의견이 있어, 말로 설득하기보다 **자산 현황 모듈에 먼저 파일럿으로 적용해 직접 시연**했습니다. 효과가 눈에 보이자 받아들여졌고, 이후 지사 내 3개 프로젝트로 확대됐습니다.',
             ],
-            result: '**Native 쿼리 70% 제거** · 컴파일 단계에서 쿼리 오류 사전 감지 · 팀 전체 쿼리 방식 통일',
+            result: '컴파일 단계에서 쿼리 오류 사전 감지 · 팀 전체 쿼리 방식 통일',
           },
         ],
         achievements: [
@@ -273,7 +261,7 @@ export const experiences: Experience[] = [
           {
             problem: 'JPA를 사용하면서도 단순 조회는 Data JPA, 복잡한 조건은 Criteria API, 쿼리 자체가 복잡해지면 Native Query를 쓰는 방식이 혼재, **유지보수 시 어떤 방식으로 구현됐는지 파악하는 것 자체가 부담**',
             analyze: '**QueryDSL을 통해 세 가지 방식을 하나로 통일**할 수 있다고 판단해 도입 제안. Criteria API의 낮은 가독성과 Native Query의 런타임 오류 위험성을 해결하고자, **컴파일 단계에서 오류를 잡고 JPA 영속성 컨텍스트를 활용할 수 있는 QueryDSL 선택**. 팀 내 회의적인 의견에 대해 **자산 현황 모듈에 파일럿으로 선행 적용 후 시연하여 설득**, 이후 지사 내 3개 프로젝트로 도입 확대',
-            result: '**Native 쿼리 70% 제거** · 컴파일 단계에서 쿼리 오류 사전 감지 · 팀 전체 쿼리 방식 통일',
+            result: '컴파일 단계에서 쿼리 오류 사전 감지 · 팀 전체 쿼리 방식 통일',
           },
         ],
       },
