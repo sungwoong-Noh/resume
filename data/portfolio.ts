@@ -122,33 +122,6 @@ export const portfolioProjects: PortfolioProject[] = [
 // 기타 경험 — 플래그십(PPP·RPMS) 대비 가볍게 표시
 export const portfolioOtherProjects: PortfolioProject[] = [
   {
-    id: 'itsm',
-    name: 'ITSM — 국정자원 자산 조회 성능 최적화',
-    period: '2025.07 ~ 2026.02',
-    overviewDescription:
-      '국정자원 공무원들이 IT 자산을 조회·관리하는 백오피스 시스템(ITSM)입니다. 130만 건 규모의 자산을 다양한 조건으로 검색하는 조회 성능이 실무 효율에 직결되어, Tibero DB의 조회 병목을 실행계획 레벨에서 진단·해결했습니다.',
-    overviewContributions: [
-      '실행계획 분석으로 인덱스 무력화 근본 원인 규명',
-      'WHERE절 타입 정합성 수정으로 핵심 자산 조회 p95 17초 → 3초 (82% 개선)',
-    ],
-    detailParagraphs: [
-      '공무원들이 자산을 조회하는 기능에서 이상한 증상이 있었습니다. **ID로 검색하면 순식간에 나오는데, 관리번호나 상태 같은 조건을 하나 추가하면 응답이 급격히 느려졌습니다.** 130만 건 규모에서 p95가 17초까지 치솟아, 실무자들이 조건을 걸어 자산을 찾을 때마다 매번 십수 초씩 화면이 멈췄습니다.',
-      'ID 검색만 빠르다는 건 인덱스 자체는 정상인데 조건을 추가할 때만 안 탄다는 뜻이라, **실행계획을 떠서** 확인했습니다. 원인은 **WHERE절 컬럼 타입과 파라미터 타입 불일치**였습니다. 타입이 다르니 DB가 컬럼 쪽에 형변환을 걸었고, 그 순간 인덱스가 무력화돼 풀스캔으로 떨어지고 있었습니다. 타입 정합성을 맞춰 인덱스를 다시 타도록 수정해 p95를 17초에서 3초로 줄였습니다.',
-    ],
-    keyResponsibilities: [
-      {
-        result: '**핵심 자산 조회 p95 17초 → 3초 (82% 개선)** — 실행계획 분석으로 인덱스 무력화 원인 제거',
-        problem: 'ID 검색은 빠른데 조건 추가 시 급격히 느려지는 문제. 130만 건 규모에서 p95 17초로 현업 공무원 업무 지연 발생',
-        analyze: '실행계획 분석으로 WHERE절 컬럼 타입과 파라미터 타입 불일치가 컬럼 형변환을 유발해 인덱스를 무력화(풀스캔)시키는 근본 원인 확인 → 타입 정합성 수정',
-      },
-    ],
-    techStack: {
-      backend: ['Spring Boot', 'JPA', 'QueryDSL', 'Tibero', 'MyBatis'],
-      infra: ['K8s', 'Jenkins', 'JBoss'],
-    },
-    gradientClass: 'from-blue-900 via-blue-800 to-slate-800',
-  },
-  {
     id: 'kepco',
     name: '한전 위험성 평가기반 자율안전 솔루션',
     period: '2022.02 ~ 2023.10',
