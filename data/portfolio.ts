@@ -48,7 +48,7 @@ export const portfolioProjects: PortfolioProject[] = [
     ],
     detailParagraphs: [
       '백엔드 5인 팀에서 방화벽·로드밸런서(L4)·포트포워딩 상품을 담당했습니다. 운영자가 대신 처리하던 매니지드 방식을 고객 셀프서비스 API로 전환하면서, 서로 다른 벤더 장비를 순서대로 호출하는 **다단계 프로비저닝의 안정성**과 **멀티테넌트 데이터 모델**이라는 두 설계 과제를 풀었습니다. (문제·해결 상세는 아래 Key Responsibilities 참고)',
-      '특히 데이터 모델은 상품 특성에 맞춰 다르게 설계했습니다. 각 벤더 장비가 실시간 상태 조회 API를 제공해 DB가 장비 전체 상태를 복제할 필요가 없었고, 테넌트-자원 매핑에 필요한 최소 데이터만 저장하면 됐기에 단일 스키마 논리 격리를 택했습니다. **방화벽**은 Zone(테넌트)을 루트로 하는 FK 그래프로, zone_idx(Zone PK)를 경계 루트인 FireWallVs에만 두고 하위 엔티티는 상위로 조인해 테넌트를 식별하도록 정규화했습니다. **로드밸런서**는 LoadbalancerEntity에 zone_idx(DB 식별자)와 lb_partition(장비 Citrix의 Partition 이름)을 나란히 저장하는 비정규화로, DB 조회와 장비 API 호출에 각각 맞는 키를 바로 쓰게 했습니다. 여기에 DB는 FK 논리 격리, 물리 장비는 TrusGuard의 VS·Citrix의 Partition으로 테넌트별 물리 격리하는 **2단 구조**를 구성했습니다.',
+      '고객(테넌트)마다 독립된 환경을 보장해야 했는데, 방화벽과 로드밸런서는 격리 특성이 서로 달라 단일 방식으로 모델링하기 어려운 게 관건이었습니다. 각 벤더 장비가 실시간 상태 조회 API를 제공해 DB가 장비 전체 상태를 복제할 필요가 없었고, 테넌트-자원 매핑에 필요한 최소 데이터만 저장하면 됐기에 단일 스키마 논리 격리를 택했습니다. **방화벽**은 Zone(테넌트)을 루트로 하는 FK 그래프로, zone_idx(Zone PK)를 경계 루트인 FireWallVs에만 두고 하위 엔티티는 상위로 조인해 테넌트를 식별하도록 정규화했습니다. **로드밸런서**는 LoadbalancerEntity에 zone_idx(DB 식별자)와 lb_partition(장비 Citrix의 Partition 이름)을 나란히 저장하는 비정규화로, DB 조회와 장비 API 호출에 각각 맞는 키를 바로 쓰게 했습니다. 여기에 DB는 FK 논리 격리, 물리 장비는 TrusGuard의 VS·Citrix의 Partition으로 테넌트별 물리 격리하는 **2단 구조**를 구성했습니다.',
     ],
     keyResponsibilities: [
       {
