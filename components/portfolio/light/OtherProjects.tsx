@@ -28,11 +28,11 @@ function OtherProjectCard({ project }: { project: PortfolioProject }) {
   return (
     <div className="rounded-xl border border-gray-200 p-5 print:p-3">
       <div className={`h-1 w-full rounded-full bg-gradient-to-r ${project.gradientClass} mb-4`} />
-      <div className="flex items-baseline justify-between gap-2 mb-2">
-        <h3 className="text-base font-bold text-gray-900 flex items-center gap-2">
+      <div className="flex items-baseline justify-between gap-2 mb-2 flex-wrap">
+        <h3 className="text-base font-bold text-gray-900 flex items-center gap-2 flex-wrap min-w-0">
           {project.name}
           {project.employmentType && (
-            <span className="text-[10px] px-1.5 py-0.5 bg-gray-100 border border-gray-200 rounded text-gray-500 font-medium align-middle">
+            <span className="text-[10px] px-1.5 py-0.5 bg-gray-100 border border-gray-200 rounded text-gray-500 font-medium align-middle flex-shrink-0 whitespace-nowrap">
               {project.employmentType}
             </span>
           )}
