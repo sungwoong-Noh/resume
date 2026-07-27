@@ -170,7 +170,7 @@ export const portfolioOtherProjects: PortfolioProject[] = [
   },
   {
     id: 'planai',
-    name: 'MSP WAF 차단 프로세스 AI 반자동화',
+    name: 'MSP 반복 운영 자동화 — WAF AI 반자동화·모니터링 구축',
     period: '2026.02 ~ 2026.05',
     employmentType: '계약직',
     overviewDescription:
