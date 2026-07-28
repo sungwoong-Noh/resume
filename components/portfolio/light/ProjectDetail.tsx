@@ -8,7 +8,7 @@ export default function ProjectDetail() {
   return (
     <section className="bg-white py-10 px-6 print:py-6">
       <div className="max-w-5xl mx-auto">
-        <p className="text-xs font-mono tracking-widest text-teal-600 uppercase mb-8 pb-2 border-b border-gray-200 print:mb-4">
+        <p className="text-xs font-mono tracking-widest text-blue-600 uppercase mb-8 pb-2 border-b border-gray-200 print:mb-4">
           Project Detail
         </p>
         <div className="space-y-16 print:space-y-10">
@@ -34,7 +34,7 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
             <span className="text-[10px] px-1.5 py-0.5 bg-gray-100 border border-gray-200 rounded text-gray-500 font-medium align-middle">{project.employmentType}</span>
           )}
         </h3>
-        <span className="text-xs font-mono text-teal-600">{project.period}</span>
+        <span className="text-xs font-mono text-blue-600">{project.period}</span>
       </div>
 
       {(project.screenshotSrcs ?? (project.screenshotSrc ? [project.screenshotSrc] : [])).map((src, i) => (
@@ -61,7 +61,7 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
             ))}
           </div>
           <div>
-            <p className="text-xs font-mono tracking-widest text-teal-600 uppercase mb-3">
+            <p className="text-xs font-mono tracking-widest text-blue-600 uppercase mb-3">
               Tech Stack
             </p>
             <div className="space-y-2">
@@ -73,7 +73,7 @@ function ProjectDetailCard({ project }: { project: PortfolioProject }) {
         </div>
 
         <div>
-          <p className="text-xs font-mono tracking-widest text-teal-600 uppercase mb-5">
+          <p className="text-xs font-mono tracking-widest text-blue-600 uppercase mb-5">
             Key Responsibilities
           </p>
           <ul className="space-y-4">
@@ -94,7 +94,7 @@ function PARItem({ item }: { item: PortfolioPARItem }) {
   return (
     <li className="space-y-2">
       <div className="flex items-start gap-3">
-        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-teal-500 flex-shrink-0" />
+        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
         <span className="text-sm text-gray-800 font-medium leading-relaxed">{parseBold(item.result, 'font-semibold text-gray-900')}</span>
       </div>
       {hasPAR && (

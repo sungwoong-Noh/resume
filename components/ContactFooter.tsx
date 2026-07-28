@@ -24,7 +24,7 @@ export default function ContactFooter() {
             <polyline points="12 5 19 12 12 19" />
           </svg>
           <div className="flex-shrink-0">
-            <p className="text-sm text-teal-600 mb-0.5">함께 일할 기회를 기다립니다</p>
+            <p className="text-sm text-blue-600 mb-0.5">함께 일할 기회를 기다립니다</p>
             <h2 className="text-5xl font-bold text-gray-900 leading-tight">
               CONTACT
               <br />
@@ -34,17 +34,17 @@ export default function ContactFooter() {
         </div>
         <div className="flex flex-col items-end space-y-1 mt-4">
           <p className="text-sm text-gray-700">
-            <span className="font-bold text-teal-600 mr-3">Name.</span>
+            <span className="font-bold text-blue-600 mr-3">Name.</span>
             {name}
           </p>
           <p className="text-sm text-gray-700">
-            <span className="font-bold text-teal-600 mr-3">Email.</span>
-            <a href={`mailto:${email}`} className="!text-teal-600 underline underline-offset-2 hover:!text-teal-700">
+            <span className="font-bold text-blue-600 mr-3">Email.</span>
+            <a href={`mailto:${email}`} className="!text-blue-600 underline underline-offset-2 hover:!text-blue-700">
               {email}
             </a>
           </p>
           <p className="text-sm text-gray-700">
-            <span className="font-bold text-teal-600 mr-3">Phone.</span>
+            <span className="font-bold text-blue-600 mr-3">Phone.</span>
             {phone}
           </p>
         </div>

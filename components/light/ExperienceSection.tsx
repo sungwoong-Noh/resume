@@ -16,11 +16,11 @@ export default function ExperienceSection() {
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 border-b border-gray-100 print:p-4 print:pb-3">
                 <div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-1 print:text-lg">{exp.company}</h3>
-                  <p className="text-teal-600 font-medium print:text-sm">{exp.position}</p>
+                  <p className="text-blue-600 font-medium print:text-sm">{exp.position}</p>
                 </div>
                 <div className="text-right">
                   <p className="text-gray-500 font-mono text-sm">{exp.period}</p>
-                  <span className="inline-block mt-1 px-3 py-0.5 bg-teal-50 border border-teal-200 rounded-full text-teal-700 text-xs print:hidden">
+                  <span className="inline-block mt-1 px-3 py-0.5 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs print:hidden">
                     {exp.employmentType ? `${exp.employmentType} · ${exp.duration}` : exp.duration}
                   </span>
                 </div>
@@ -30,11 +30,11 @@ export default function ExperienceSection() {
                 <p className="text-gray-500 leading-relaxed">{exp.careerDescription ?? exp.description}</p>
 
                 <div>
-                  <h4 className="text-xs font-mono text-teal-600 uppercase tracking-widest mb-4">Key Achievements</h4>
+                  <h4 className="text-xs font-mono text-blue-600 uppercase tracking-widest mb-4">Key Achievements</h4>
                   <ul className="grid sm:grid-cols-2 gap-3">
                     {exp.highlights.map((h, j) => (
                       <li key={j} className="flex items-start gap-3">
-                        <span className="mt-1 w-1.5 h-1.5 rounded-full bg-teal-500 flex-shrink-0" />
+                        <span className="mt-1 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
                         <span className="text-sm text-gray-600">{h}</span>
                       </li>
                     ))}
@@ -42,7 +42,7 @@ export default function ExperienceSection() {
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-mono text-teal-600 uppercase tracking-widest mb-4">Projects</h4>
+                  <h4 className="text-xs font-mono text-blue-600 uppercase tracking-widest mb-4">Projects</h4>
                   <div className="space-y-4 print:space-y-2">
                     {exp.projects.map((proj, k) => (
                       <div key={k} className="rounded-xl bg-gray-100 p-5 print:p-3">

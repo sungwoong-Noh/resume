@@ -8,8 +8,8 @@ const levelLabel: Record<string, string> = {
 }
 
 const levelColor: Record<string, string> = {
-  expert: 'bg-teal-500 text-white font-semibold',
-  proficient: 'bg-teal-50 text-teal-700 border border-teal-200',
+  expert: 'bg-blue-500 text-white font-semibold',
+  proficient: 'bg-blue-50 text-blue-700 border border-blue-200',
   familiar: 'bg-gray-100 text-gray-500 border border-gray-200',
 }
 
@@ -20,10 +20,10 @@ export default function SkillsSection() {
         <SectionLabel>Skills</SectionLabel>
         <div className="flex gap-5 mb-8 text-xs text-gray-400 font-mono">
           <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-teal-500 inline-block" /> 주력
+            <span className="w-2 h-2 rounded-full bg-blue-500 inline-block" /> 주력
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-teal-300 inline-block" /> 활용
+            <span className="w-2 h-2 rounded-full bg-blue-300 inline-block" /> 활용
           </span>
           <span className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-gray-300 inline-block" /> 경험

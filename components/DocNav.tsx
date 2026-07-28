@@ -25,8 +25,8 @@ export default function DocNav() {
                 href={tab.href}
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
                   active
-                    ? 'bg-teal-50 !text-teal-700'
-                    : '!text-gray-500 hover:!text-teal-600 hover:bg-gray-50'
+                    ? 'bg-blue-50 !text-blue-700'
+                    : '!text-gray-500 hover:!text-blue-600 hover:bg-gray-50'
                 }`}
               >
                 {tab.label}

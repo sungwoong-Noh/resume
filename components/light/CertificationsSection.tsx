@@ -16,12 +16,12 @@ export default function CertificationsSection() {
                 <h3 className="font-bold text-gray-900">{c.name}</h3>
                 <span className="text-xs text-gray-400 font-mono flex-shrink-0">{c.period}</span>
               </div>
-              <p className="text-xs text-teal-600 font-mono mb-3">{c.organization}</p>
+              <p className="text-xs text-blue-600 font-mono mb-3">{c.organization}</p>
               <p className="text-sm text-gray-500 mb-4 leading-relaxed">{c.description}</p>
               <ul className="space-y-1.5">
                 {c.achievements.map((a, j) => (
                   <li key={j} className="flex items-start gap-2 text-sm text-gray-600">
-                    <span className="text-teal-500 flex-shrink-0 mt-0.5">→</span>
+                    <span className="text-blue-500 flex-shrink-0 mt-0.5">→</span>
                     <span>{a}</span>
                   </li>
                 ))}

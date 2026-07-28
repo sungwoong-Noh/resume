@@ -7,10 +7,10 @@ export default function SideProjectsSection() {
     <section className="bg-gray-50 py-10 px-6 print:py-6">
       <div className="max-w-5xl mx-auto">
         <div className="mb-8">
-          <p className="text-xs font-mono tracking-widest text-teal-600 uppercase mb-3">
+          <p className="text-xs font-mono tracking-widest text-blue-600 uppercase mb-3">
             Side Project
           </p>
-          <div className="w-12 h-px bg-teal-500" />
+          <div className="w-12 h-px bg-blue-500" />
         </div>
         <div className="space-y-10 print:space-y-8">
           {portfolioSideProjects.map((project) => (
@@ -59,7 +59,7 @@ function SideProjectCard({ project }: { project: PortfolioSideProject }) {
               {project.organization}
             </span>
           </div>
-          <p className="text-xs font-mono text-teal-600 mb-5">{project.period}</p>
+          <p className="text-xs font-mono text-blue-600 mb-5">{project.period}</p>
           <div className="space-y-3">
             {project.detailParagraphs.map((para, i) => (
               <p key={i} className="text-sm text-gray-600 leading-relaxed">
@@ -69,7 +69,7 @@ function SideProjectCard({ project }: { project: PortfolioSideProject }) {
           </div>
 
           <div className="mt-7">
-            <p className="text-xs font-mono tracking-widest text-teal-600 uppercase mb-3">
+            <p className="text-xs font-mono tracking-widest text-blue-600 uppercase mb-3">
               Tech Stack
             </p>
             <div className="space-y-2">
@@ -81,7 +81,7 @@ function SideProjectCard({ project }: { project: PortfolioSideProject }) {
         </div>
 
         <div>
-          <p className="text-xs font-mono tracking-widest text-teal-600 uppercase mb-5">
+          <p className="text-xs font-mono tracking-widest text-blue-600 uppercase mb-5">
             Key Responsibilities
           </p>
           <ul className="space-y-4">
@@ -102,7 +102,7 @@ function PARItem({ item }: { item: PortfolioPARItem }) {
   return (
     <li className="space-y-2">
       <div className="flex items-start gap-3">
-        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-teal-500 flex-shrink-0" />
+        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
         <span className="text-sm text-gray-800 font-medium leading-relaxed">{parseBold(item.result, 'font-semibold text-gray-900')}</span>
       </div>
       {hasPAR && (

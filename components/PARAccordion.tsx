@@ -6,13 +6,13 @@ export default function PARAccordion({ item }: { item: PARItem }) {
 
   return (
     <li className="flex flex-col gap-1 text-sm text-gray-500">
-      <div className="flex items-start gap-2">
-        <span className="text-teal-600 mt-0.5 flex-shrink-0">→</span>
+      <div className="flex items-start gap-2 max-w-[46ch]">
+        <span className="text-blue-600 font-mono font-semibold mt-0.5 flex-shrink-0">성과</span>
         <span className="text-gray-700">{parseBold(item.result, 'font-semibold text-gray-900')}</span>
       </div>
 
       {hasDetail && (
-        <div className="ml-5 mt-0.5 space-y-1 border-l border-gray-200 pl-3">
+        <div className="ml-5 mt-1 space-y-1.5 border-l border-gray-200 pl-3 max-w-[46ch]">
           {item.problem && (
             <p className="text-xs text-gray-500 leading-relaxed">
               <span className="text-amber-500 font-mono font-semibold mr-1.5">문제</span>
