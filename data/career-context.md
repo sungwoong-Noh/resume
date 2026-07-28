@@ -161,7 +161,7 @@ CSP 인프라 특성상 장비 자체는 이미 멀티테넌트 기능을 갖추
 
 *배경.* PPP Cloud의 네트워크 상품은 방화벽·로드밸런서 등 테넌트의 최전방 네트워크 장비를 전부 다루는 구조라, 이 설정 하나가 실패하면 테넌트 네트워크 자체가 구성되지 않아 방금 만든 VM에도 도달할 수 없었습니다. 그런데 벤더 장비마다 전달받은 스펙 문서와 실제 동작이 달랐습니다. 안랩 방화벽은 문서의 API 설정 필드명에 오타가 있었고, Citrix는 쿼리 파라미터를 독자적인 방식으로 인코딩해야 했습니다(이 IP_PORT 관련 사건이 위 "로드밸런서 참조 관리" 카드의 설계 동기이기도 함).
 
-*액션.* 사내엔 테스트 코드를 작성하는 문화 자체가 없었지만, 연동 기능을 개발할 때마다 이런 문제로 고치고 다시 배포하는 과정이 반복되자 사전 검증이 필요하다고 판단했습니다. `@SpringBootTest` + `@ActiveProfiles("test")` 구조로, `@MockBean`이나 WireMock/MockWebServer 같은 스텁 없이 실제 Spring Bean(`TrusGuardVsService`, `citrixAdminWebClient` 등)을 그대로 주입받아 실제 스테이징 장비(TrusGuard·Citrix L4·ACI·L3 스위치)를 직접 호출하도록 설계했습니다. `@BeforeEach`에서 실제 계정을 생성하고 `@AfterEach`에서 삭제하는 등, 각 테스트가 장비 위의 상태를 스스로 만들고 정리하도록 했습니다.
+*액션.* 벤더 장비 연동을 검증하는 테스트 문화는 없었지만, 연동 기능을 개발할 때마다 이런 문제로 고치고 다시 배포하는 과정이 반복되자 사전 검증이 필요하다고 판단했습니다. `@SpringBootTest` + `@ActiveProfiles("test")` 구조로, `@MockBean`이나 WireMock/MockWebServer 같은 스텁 없이 실제 Spring Bean(`TrusGuardVsService`, `citrixAdminWebClient` 등)을 그대로 주입받아 실제 스테이징 장비(TrusGuard·Citrix L4·ACI·L3 스위치)를 직접 호출하도록 설계했습니다. `@BeforeEach`에서 실제 계정을 생성하고 `@AfterEach`에서 삭제하는 등, 각 테스트가 장비 위의 상태를 스스로 만들고 정리하도록 했습니다.
 
 *결과.* 벤더별 스펙 불일치(필드명 오타, 독자 인코딩 등)를 배포 전에 잡아낼 수 있었고, 최전방 네트워크 설정 실패가 테넌트 전체 연결 장애로 번지는 상황을 사전에 막았습니다.
 
