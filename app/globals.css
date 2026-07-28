@@ -50,6 +50,11 @@ a {
   @apply bg-teal-400 rounded-full hover:bg-teal-500;
 }
 
+@page {
+  size: A4;
+  margin: 15mm 14mm;
+}
+
 @media print {
   * {
     transition: none !important;
@@ -60,6 +65,12 @@ a {
     print-color-adjust: exact !important;
     height: auto !important;
     min-height: unset !important;
+  }
+
+  /* A4 여백을 뺀 실제 인쇄 가능 폭이 화면 컨테이너보다 좁으므로,
+     화면용 줄 길이 제한(max-w-[…px])은 인쇄에서 풀어 페이지 폭을 그대로 쓴다 */
+  [class*="max-w-["] {
+    max-width: none !important;
   }
 
   /* 네비게이션, 버튼 숨김 */
