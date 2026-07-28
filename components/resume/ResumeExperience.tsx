@@ -115,7 +115,7 @@ function ProjectBlock({ project }: { project: Project }) {
 
 function ResumeContentBlock({ content, titleClass }: { content: ResumeContent; titleClass?: string }) {
   return (
-    <div>
+    <div className="resume-story-card">
       <h4 className={`mb-2 max-w-[560px] ${titleClass ?? 'text-sm font-bold text-gray-900'}`}>{content.subtitle}</h4>
       <div className="space-y-3 mb-3">
         {content.body.map((para, i) => (
@@ -137,7 +137,7 @@ function ResumeContentBlock({ content, titleClass }: { content: ResumeContent; t
 function AchievementItem({ item }: { item: PARItem }) {
   const hasContext = item.problem || item.analyze
   return (
-    <div>
+    <div className="resume-story-card">
       {hasContext && (
         <div className="space-y-3 mb-3">
           {item.problem && (

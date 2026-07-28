@@ -122,6 +122,12 @@ a {
     page-break-after: avoid;
   }
 
+  /* 이력서 성과 카드(배경-액션-결과): 문단 중간에서 페이지가 잘리지 않도록 통째로 유지 */
+  .resume-story-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
   /* 프로젝트 카드: 통째로 유지 */
   .rounded-xl {
     break-inside: avoid;
