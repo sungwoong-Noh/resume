@@ -32,7 +32,7 @@ function ExperienceBlock({ exp }: { exp: Experience }) {
           )}
           <span className="text-gray-400 text-xs font-mono ml-auto">{exp.period}</span>
         </div>
-        <p className="text-xs text-gray-500 leading-relaxed max-w-[640px]">{exp.description.replace(/\\n/g, ' ')}</p>
+        <p className="text-xs text-gray-500 leading-relaxed max-w-[760px]">{exp.description.replace(/\\n/g, ' ')}</p>
       </div>
 
       {/* 에이직스: 요약 단락 모드 */}
@@ -49,11 +49,11 @@ function SummaryMode({ exp }: { exp: Experience }) {
   return (
     <div className="space-y-2 ml-1">
       {exp.resumeParagraphs!.map((para, i) => (
-        <p key={i} className="text-sm text-gray-600 leading-relaxed max-w-[640px]">{parseBold(para, 'font-semibold text-gray-900')}</p>
+        <p key={i} className="text-sm text-gray-600 leading-relaxed max-w-[760px]">{parseBold(para, 'font-semibold text-gray-900')}</p>
       ))}
       <div className="mt-3 space-y-1.5">
         {exp.highlights.map((h, i) => (
-          <p key={i} className="text-sm text-gray-500 max-w-[640px]">
+          <p key={i} className="text-sm text-gray-500 max-w-[760px]">
             <span className="text-blue-600 mr-2">→</span>{parseBold(h, 'font-semibold text-gray-800')}
           </p>
         ))}
@@ -88,7 +88,7 @@ function ProjectBlock({ project }: { project: Project }) {
       <div>
         <h3 className="text-base font-bold text-blue-600 mb-2">{project.name}</h3>
         {project.serviceOverview && (
-          <p className="text-xs text-gray-500 leading-relaxed mb-4 ml-1 max-w-[640px]">{project.serviceOverview}</p>
+          <p className="text-xs text-gray-500 leading-relaxed mb-4 ml-1 max-w-[760px]">{project.serviceOverview}</p>
         )}
         <div className="space-y-6 ml-1">
           {project.resumeContent.map((rc, i) => (
@@ -102,7 +102,7 @@ function ProjectBlock({ project }: { project: Project }) {
     <div>
       <h3 className="text-base font-bold text-blue-600 mb-2">{project.name}</h3>
       {project.serviceOverview && (
-        <p className="text-xs text-gray-500 leading-relaxed mb-3 ml-1 max-w-[640px]">{project.serviceOverview}</p>
+        <p className="text-xs text-gray-500 leading-relaxed mb-3 ml-1 max-w-[760px]">{project.serviceOverview}</p>
       )}
       <div className="space-y-4 ml-1">
         {project.achievements.map((item, i) => (
@@ -116,15 +116,15 @@ function ProjectBlock({ project }: { project: Project }) {
 function ResumeContentBlock({ content, titleClass }: { content: ResumeContent; titleClass?: string }) {
   return (
     <div className="resume-story-card">
-      <h4 className={`mb-2 max-w-[560px] ${titleClass ?? 'text-sm font-bold text-gray-900'}`}>{content.subtitle}</h4>
+      <h4 className={`mb-2 max-w-[680px] ${titleClass ?? 'text-sm font-bold text-gray-900'}`}>{content.subtitle}</h4>
       <div className="space-y-3 mb-3">
         {content.body.map((para, i) => (
-          <p key={i} className="text-sm text-gray-600 leading-relaxed max-w-[640px]">{parseBold(para, 'font-semibold text-gray-900')}</p>
+          <p key={i} className="text-sm text-gray-600 leading-relaxed max-w-[760px]">{parseBold(para, 'font-semibold text-gray-900')}</p>
         ))}
       </div>
       <div className="space-y-1.5">
         {content.result.map((r, i) => (
-          <p key={i} className="text-sm text-gray-500 max-w-[640px]">
+          <p key={i} className="text-sm text-gray-500 max-w-[760px]">
             <span className="text-blue-600 mr-2">→</span>
             {parseBold(r, 'font-semibold text-gray-800')}
           </p>
@@ -141,14 +141,14 @@ function AchievementItem({ item }: { item: PARItem }) {
       {hasContext && (
         <div className="space-y-3 mb-3">
           {item.problem && (
-            <p className="text-sm text-gray-600 leading-relaxed max-w-[640px]">{parseBold(item.problem, 'font-semibold text-gray-900')}</p>
+            <p className="text-sm text-gray-600 leading-relaxed max-w-[760px]">{parseBold(item.problem, 'font-semibold text-gray-900')}</p>
           )}
           {item.analyze && (
-            <p className="text-sm text-gray-600 leading-relaxed max-w-[640px]">{parseBold(item.analyze, 'font-semibold text-gray-900')}</p>
+            <p className="text-sm text-gray-600 leading-relaxed max-w-[760px]">{parseBold(item.analyze, 'font-semibold text-gray-900')}</p>
           )}
         </div>
       )}
-      <p className="text-sm text-gray-500 max-w-[640px]">
+      <p className="text-sm text-gray-500 max-w-[760px]">
         {parseBold(item.result, 'font-semibold text-gray-800')}
       </p>
     </div>
