@@ -122,10 +122,14 @@ function ResumeContentBlock({ content, titleClass }: { content: ResumeContent; t
           <p key={i} className="text-sm text-gray-600 leading-relaxed">{parseBold(para, 'font-semibold text-gray-900')}</p>
         ))}
       </div>
-      <p className="text-sm text-gray-500">
-        <span className="text-teal-600 mr-2">→</span>
-        {parseBold(content.result, 'font-semibold text-gray-800')}
-      </p>
+      <div className="space-y-1">
+        {content.result.map((r, i) => (
+          <p key={i} className="text-sm text-gray-500">
+            <span className="text-teal-600 mr-2">→</span>
+            {parseBold(r, 'font-semibold text-gray-800')}
+          </p>
+        ))}
+      </div>
     </div>
   )
 }
