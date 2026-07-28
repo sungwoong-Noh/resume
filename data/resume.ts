@@ -157,7 +157,7 @@ export const experiences: Experience[] = [
     highlights: [
       '데이터 동기화 2시간 → 10초 (약 700배) · JPA IDENTITY 구조 한계를 JDBC Bulk Insert로 해결',
       '멀티벤더 프로비저닝을 Saga 패턴(11개 예외 타입 기반 차등 롤백)으로 설계 · 실패 시 자원 누수 방지',
-      '로드밸런서 공유 자원(Citrix Service)에 참조 카운팅 설계 · 중복 생성·조기 삭제 구조적 방지',
+      '실 장비 대상 통합 테스트로 벤더 스펙 불일치 배포 전 검증 · 테넌트 전체 연결 장애 사전 차단',
       '혼재된 쿼리 방식을 QueryDSL로 통일해 유지보수성 개선',
     ],
     techStack: [
