@@ -50,11 +50,6 @@ a {
   @apply bg-teal-400 rounded-full hover:bg-teal-500;
 }
 
-@page {
-  size: A4;
-  margin: 15mm 14mm;
-}
-
 @media print {
   * {
     transition: none !important;
