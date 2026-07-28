@@ -8,7 +8,7 @@ import ResumeEducation from '@/components/resume/ResumeEducation'
 import ContactFooter from '@/components/ContactFooter'
 
 export const metadata: Metadata = {
-  title: `${profile.name} | ${profile.title}`,
+  title: `경력기술서 | ${profile.name}`,
   description: profile.tagline,
 }
 

@@ -10,7 +10,7 @@ import EducationSection from '@/components/light/EducationSection'
 import ContactFooter from '@/components/ContactFooter'
 
 export const metadata: Metadata = {
-  title: `경력기술서 | ${profile.name}`,
+  title: `이력서 | ${profile.name}`,
   description: profile.tagline,
 }
 
