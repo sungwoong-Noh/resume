@@ -18,7 +18,7 @@ export default function CareerPage() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
       <DocNav />
-      <ResumeHeader showPhoto={false} />
+      <ResumeHeader />
       <ExperienceSection />
       <SkillsSection />
       <SideProjectsSection />
