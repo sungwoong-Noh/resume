@@ -27,7 +27,7 @@ export default function ExperienceSection() {
               </div>
 
               <div className="p-8 space-y-8 print:p-4 print:space-y-4">
-                <p className="text-gray-500 leading-relaxed">{exp.careerDescription ?? exp.description}</p>
+                <p className="text-gray-500 leading-relaxed max-w-[640px]">{exp.careerDescription ?? exp.description}</p>
 
                 <div>
                   <h4 className="text-xs font-mono text-blue-600 uppercase tracking-widest mb-4">Key Achievements</h4>
@@ -51,7 +51,7 @@ export default function ExperienceSection() {
                           <span className="text-xs text-gray-400 font-mono">{proj.period}</span>
                         </div>
                         {proj.serviceOverview && (
-                          <p className="text-xs text-gray-500 leading-relaxed mb-3">{proj.serviceOverview}</p>
+                          <p className="text-xs text-gray-500 leading-relaxed mb-3 max-w-[640px]">{proj.serviceOverview}</p>
                         )}
                         <ul className="space-y-2">
                           {proj.achievements.map((a, l) => (
