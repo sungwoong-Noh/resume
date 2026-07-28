@@ -6,8 +6,8 @@ export default function PARAccordion({ item }: { item: PARItem }) {
 
   return (
     <li className="flex flex-col gap-1 text-sm text-gray-500">
-      <div className="flex items-start gap-2 max-w-[640px]">
-        <span className="text-blue-600 font-mono font-semibold mt-0.5 flex-shrink-0">성과</span>
+      <div className="flex items-start gap-2.5 max-w-[640px]">
+        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
         <span className="text-gray-700">{parseBold(item.result, 'font-semibold text-gray-900')}</span>
       </div>
 
