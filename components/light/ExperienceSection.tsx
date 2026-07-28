@@ -1,6 +1,7 @@
 import { experiences } from '@/data/resume'
 import SectionLabel from './SectionLabel'
 import PARAccordion from '../PARAccordion'
+import { formatProjectDuration } from '@/lib/formatDuration'
 
 export default function ExperienceSection() {
   return (
@@ -48,7 +49,17 @@ export default function ExperienceSection() {
                       <div key={k} className="rounded-xl bg-gray-100 p-5 print:p-3">
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
                           <h5 className="font-semibold text-gray-800">{proj.name}</h5>
-                          <span className="text-xs text-gray-400 font-mono">{proj.period}</span>
+                          <span className="flex items-center gap-2 text-xs text-gray-400 font-mono flex-shrink-0">
+                            {proj.period}
+                            {formatProjectDuration(proj.period) && (
+                              <span className="px-1.5 py-0.5 rounded bg-blue-50 border border-blue-200 text-blue-700">
+                                {formatProjectDuration(proj.period)}
+                              </span>
+                            )}
+                            {proj.teamSize && (
+                              <span className="px-1.5 py-0.5 rounded bg-gray-200 text-gray-500">{proj.teamSize}</span>
+                            )}
+                          </span>
                         </div>
                         {proj.serviceOverview && (
                           <p className="text-xs text-gray-500 leading-relaxed mb-3 max-w-[640px]">{proj.serviceOverview}</p>

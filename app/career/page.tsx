@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { profile } from '@/data/resume'
 import DocNav from '@/components/DocNav'
 import ResumeHeader from '@/components/resume/ResumeHeader'
+import TopSkillsStrip from '@/components/light/TopSkillsStrip'
 import ExperienceSection from '@/components/light/ExperienceSection'
 import SkillsSection from '@/components/light/SkillsSection'
 import SideProjectsSection from '@/components/light/SideProjectsSection'
@@ -19,6 +20,7 @@ export default function CareerPage() {
     <main className="min-h-screen bg-white text-gray-900">
       <DocNav />
       <ResumeHeader showPhoto={false} />
+      <TopSkillsStrip />
       <ExperienceSection />
       <SkillsSection />
       <SideProjectsSection />

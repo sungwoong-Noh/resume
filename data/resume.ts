@@ -125,6 +125,8 @@ export type Project = {
   hideNameInResume?: boolean
   /** 서비스/도메인 배경 — 무슨 시스템인지·누가 쓰는지·규모. 프로젝트명 아래, 성과 앞에 표시 */
   serviceOverview?: string
+  /** 프로젝트 투입 인원 (예: '5인 팀') — 확인된 사실만 기재, 불확실하면 생략 */
+  teamSize?: string
 }
 
 export type Experience = {
@@ -168,6 +170,7 @@ export const experiences: Experience[] = [
       {
         name: 'CSP 멀티테넌트 네트워크 상품 개발 (PPP Cloud)',
         period: '2024.08 ~ 2025.06',
+        teamSize: '5인 팀',
         serviceOverview: '공공기관에 프라이빗 클라우드(AWS 같은 CSP)를 제공하는 플랫폼으로, 기관(테넌트)마다 격리된 네트워크 환경을 자동 프로비저닝합니다. 이 중 방화벽·로드밸런서(L4) 등 네트워크 상품을 담당했습니다.',
         resumeContent: [
           {
@@ -238,6 +241,7 @@ export const experiences: Experience[] = [
       {
         name: '자산계획 시스템(RPMS) 설계/개발',
         period: '2024.01 ~ 2025.06',
+        teamSize: '5인 팀',
         serviceOverview: '국가정보자원관리원의 IT 자산을 계획·관리하는 시스템입니다. 자산 현황이 최신·정확해야 예산심사에서 도입·폐기·교체 결정을 제대로 내릴 수 있어, 수십만 건 규모의 자산을 빠르게 동기화·조회하는 성능과 감사 대응을 위한 변경 이력 추적이 함께 요구됐습니다.',
         resumeContent: [
           {
