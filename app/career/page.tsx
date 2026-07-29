@@ -7,7 +7,6 @@ import SkillsSection from '@/components/light/SkillsSection'
 import SideProjectsSection from '@/components/light/SideProjectsSection'
 import CertificationsSection from '@/components/light/CertificationsSection'
 import EducationSection from '@/components/light/EducationSection'
-import ContactFooter from '@/components/ContactFooter'
 
 export const metadata: Metadata = {
   title: `경력기술서 | ${profile.name}`,
@@ -24,7 +23,6 @@ export default function CareerPage() {
       <SideProjectsSection />
       <CertificationsSection />
       <EducationSection />
-      <ContactFooter />
     </main>
   )
 }
