@@ -145,8 +145,6 @@ export type Experience = {
   highlights: string[]
   techStack: string[]
   projects: Project[]
-  /** 이력서 전용: 있으면 projects 대신 이 단락들을 표시 */
-  resumeParagraphs?: string[]
 }
 
 export const experiences: Experience[] = [
@@ -347,17 +345,16 @@ export const experiences: Experience[] = [
       'WAF 유해 IP 차단 요청을 AI 에이전트(MCP)로 반자동화 · 기관별 예외 규칙 인코딩 + 사람 승인 게이트 설계',
       '40개 고객사 Prometheus·Grafana 모니터링 구축 · VictoriaMetrics로 지표 보존 30일 → 1년',
     ],
-    resumeParagraphs: [
-      'MSP 사업부에서 40개 이상 고객사 인프라 운영을 담당한 **3개월 계약직** 경험으로, 반복 운영 업무를 자동화·표준화하는 데 집중했습니다.',
-      'WAF 유해 IP 차단 요청 업무를 **Gmail API·MCP·Claude Code 기반으로 반자동화**했습니다. 기관마다 다른 예외 규칙(특정 국가 IP 차단 금지 등)을 AI 지침에 인코딩하고, AI 오분류를 관측해 **사람 승인 게이트**를 두는 구조로 설계했습니다.',
-      'Prometheus·Grafana 기반 모니터링 체계를 구축하고 **VictoriaMetrics로 지표 보존을 30일에서 1년으로** 늘렸습니다.',
-    ],
     techStack: ['Gmail API', 'MCP', 'Claude Code', 'Prometheus', 'Grafana', 'VictoriaMetrics'],
     projects: [
       {
         name: 'WAF 유해 IP 차단 프로세스 AI 반자동화',
         period: '2026.02 ~ 2026.05',
         serviceOverview: 'WAF에서 유해 의심 IP 이벤트가 발생하면 관리 업체에 차단 요청 메일을 보내야 하는 업무로, 기존에는 담당자가 메일을 일일이 확인하고 수동으로 작성·발송했습니다.',
+        resumeBullets: [
+          '기관마다 다른 예외 규칙(국가별 차단 금지 등)을 **Gmail API·MCP + Claude Code skill**에 인코딩해 메일 확인·분류·작성 자동화',
+          'AI의 오분류·오독 실패 모드를 관측해 **임시저장 → 사람 검토 → 발송**하는 승인 게이트 설계, 단독 구축 후 팀 전파',
+        ],
         achievements: [
           {
             problem: '기관마다 예외 규칙(특정 국가 IP 차단 금지, 회신 시 특정 담당자 참조 필요, 담당 업체 상이 등)이 달라 **단순 자동화가 불가능**한 구조',
@@ -375,6 +372,10 @@ export const experiences: Experience[] = [
         name: 'MSP 고객사 모니터링 체계 구축',
         period: '2026.02 ~ 2026.05',
         serviceOverview: 'MSP로 관리하는 40개 고객사의 클라우드 인프라에 통합 모니터링 체계가 없어, 장애 감지와 월간 운영 보고서를 수작업으로 처리하던 환경이었습니다.',
+        resumeBullets: [
+          '**Prometheus + Grafana**로 40개 고객사 통합 모니터링 구축, **VictoriaMetrics** 도입으로 지표 보존 30일 → 1년',
+          'CMP 개발팀과 협의해 기존에 미활용 상태였던 **Prometheus 연동 보고서 기능**을 활성화, 월간 보고서 작성 시간 2시간 → 10분',
+        ],
         achievements: [
           {
             problem: '기존 KT Cloud Watch는 기본 지표를 **7일만 보존**하고 알람은 메일로만 왔으며, 40개 고객사를 한눈에 보는 통합 관제가 없어 **장애 사후 원인 추적이 불가능**',

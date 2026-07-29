@@ -35,29 +35,7 @@ function ExperienceBlock({ exp }: { exp: Experience }) {
         <p className="text-xs text-gray-500 leading-relaxed max-w-[760px]">{exp.description.replace(/\\n/g, ' ')}</p>
       </div>
 
-      {/* 에이직스: 요약 단락 모드 */}
-      {exp.resumeParagraphs ? (
-        <SummaryMode exp={exp} />
-      ) : (
-        <ProjectsMode projects={exp.projects} />
-      )}
-    </div>
-  )
-}
-
-function SummaryMode({ exp }: { exp: Experience }) {
-  return (
-    <div className="space-y-2 ml-1">
-      {exp.resumeParagraphs!.map((para, i) => (
-        <p key={i} className="text-sm text-gray-600 leading-relaxed max-w-[760px]">{parseBold(para, 'font-semibold text-gray-900')}</p>
-      ))}
-      <div className="mt-3 space-y-1.5">
-        {exp.highlights.map((h, i) => (
-          <p key={i} className="text-sm text-gray-500 max-w-[760px]">
-            <span className="text-blue-600 mr-2">→</span>{parseBold(h, 'font-semibold text-gray-800')}
-          </p>
-        ))}
-      </div>
+      <ProjectsMode projects={exp.projects} />
     </div>
   )
 }
