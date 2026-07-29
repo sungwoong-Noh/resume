@@ -209,6 +209,7 @@ export const experiences: Experience[] = [
           '자산 동기화 배치 **2시간 → 10초**(약 700배) 개선 — HashMap 인메모리 비교 + JDBC Bulk Insert 전환',
           '**diff 기반 변경 이력** 설계로 감사 요구사항을, **사업유형별 Bean Validation Group**으로 심사 규정을 도메인 모델에 반영',
           '혼재된 쿼리 방식을 **QueryDSL**로 통일해 컴파일 단계 오류 감지, 지사 내 3개 프로젝트로 확산',
+          'RPMS 히스토리를 유일하게 파악한 담당자로서 **패치 방향·일정·담당자 지정**을 전담, 클라이언트 시스템 교육·대응까지 병행',
         ],
         achievements: [
           {
