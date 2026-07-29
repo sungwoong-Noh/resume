@@ -73,6 +73,24 @@ function ProjectsMode({ projects }: { projects: Project[] }) {
 }
 
 function ProjectBlock({ project }: { project: Project }) {
+  if (project.resumeBullets) {
+    return (
+      <div>
+        <h3 className="text-base font-bold text-blue-600 mb-2">{project.name}</h3>
+        {project.serviceOverview && (
+          <p className="text-xs text-gray-500 leading-relaxed mb-3 ml-1 max-w-[760px]">{project.serviceOverview}</p>
+        )}
+        <div className="space-y-1.5 ml-1">
+          {project.resumeBullets.map((b, i) => (
+            <p key={i} className="text-sm text-gray-600 max-w-[760px]">
+              <span className="text-blue-600 mr-2">→</span>
+              {parseBold(b, 'font-semibold text-gray-900')}
+            </p>
+          ))}
+        </div>
+      </div>
+    )
+  }
   if (project.resumeContent) {
     // hideNameInResume: subtitle을 accent color로 직접 표시 (플랜아이처럼 계층 없는 경우)
     if (project.hideNameInResume) {
