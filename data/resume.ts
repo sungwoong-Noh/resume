@@ -250,6 +250,7 @@ export const experiences: Experience[] = [
       {
         name: '동구청 과학행사 신청 플랫폼',
         period: '2023.07 ~ 2023.10',
+        serviceOverview: '동구청에서 주최하는 과학행사의 온라인 신청·참가자 관리를 위한 플랫폼입니다. 시민이 직접 온라인으로 신청하고, 담당자는 신청 현황과 통계를 통합 관리합니다.',
         resumeBullets: [
           'eGovFramework 기반 3개월 내 풀스택 개발 및 안정적 런칭',
           '동시 신청 시 중복 가능성을 Redis 분산락·DB 비관적 락 대신 **Soft Reservation**(DB 제약 기반 임시 예약)으로 설계해 방지',
@@ -276,6 +277,7 @@ export const experiences: Experience[] = [
       {
         name: '충남도청 SMS 서비스 DB 이관',
         period: '2023.03 ~ 2023.05',
+        serviceOverview: '충남도청 SMS 발송 서비스의 노후 장비를 교체하며 데이터를 이관하는 프로젝트로, 1,000만 건 규모 발송 이력 데이터의 무결성 유지가 핵심 요구사항이었습니다.',
         resumeBullets: [
           'OS 설치 → 데이터 마이그레이션 → 장비 납품까지 전 과정 일괄 수행, **1,000만 건 대용량 데이터 무결성 100% 유지**',
           '페이지 이동마다 자동 실행되던 SMS 카운트 집계 쿼리를 버튼 클릭 시 조회로 변경해 **p95 5초 → 0.9초** 개선',
@@ -301,6 +303,7 @@ export const experiences: Experience[] = [
       {
         name: '한전 위험성 평가기반 자율안전 솔루션',
         period: '2022.02 ~ 2023.10',
+        serviceOverview: '한전 현장의 위험성 평가와 자율 안전관리를 지원하는 솔루션으로, GIS 기반 실시간 현장 모니터링과 메타데이터·보고서 관리 기능을 제공합니다.',
         resumeBullets: [
           'GIS 기반 실시간 모니터링 대시보드 및 메타데이터 관리 백엔드 개발',
           'Spring에서 실행 불가능한 jsPDF를 위해 **FastAPI 크롤링 서버**를 별도 구축해 모바일/웹 동일 품질 PDF 보고서 제공',
