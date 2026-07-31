@@ -6,6 +6,7 @@ import PrintButton from '@/components/PrintButton'
 
 const tabs = [
   { href: '/', label: '이력서' },
+  { href: '/resume-v2', label: '이력서(강의형)' },
   { href: '/portfolio', label: '포트폴리오' },
   { href: '/career', label: '경력기술서' },
 ]

@@ -1,7 +1,7 @@
 import { experiences, type Experience, type Project, type PARItem, type ResumeContent } from '@/data/resume'
 import { parseBold } from '@/lib/parseBold'
 
-export default function ResumeExperience() {
+export default function ResumeExperience({ compactCompanies }: { compactCompanies?: string[] } = {}) {
   return (
     <section className="bg-white py-6 px-6 print:py-4">
       <div className="max-w-4xl mx-auto">
@@ -10,7 +10,7 @@ export default function ResumeExperience() {
         </h2>
         <div className="space-y-[4.5rem] print:space-y-14">
           {experiences.map((exp) => (
-            <ExperienceBlock key={exp.company} exp={exp} />
+            <ExperienceBlock key={exp.company} exp={exp} compact={compactCompanies?.includes(exp.company)} />
           ))}
         </div>
       </div>
@@ -18,7 +18,7 @@ export default function ResumeExperience() {
   )
 }
 
-function ExperienceBlock({ exp }: { exp: Experience }) {
+function ExperienceBlock({ exp, compact }: { exp: Experience; compact?: boolean }) {
   return (
     <div>
       {/* 회사 헤더 */}
@@ -35,7 +35,20 @@ function ExperienceBlock({ exp }: { exp: Experience }) {
         <p className="text-xs text-gray-500 leading-relaxed max-w-[760px]">{exp.description.replace(/\\n/g, ' ')}</p>
       </div>
 
-      <ProjectsMode projects={exp.projects} />
+      {compact ? <CompactMode exp={exp} /> : <ProjectsMode projects={exp.projects} />}
+    </div>
+  )
+}
+
+function CompactMode({ exp }: { exp: Experience }) {
+  return (
+    <div className="space-y-1.5 ml-1">
+      {exp.highlights.map((h, i) => (
+        <p key={i} className="text-sm text-gray-600 max-w-[760px]">
+          <span className="text-blue-600 mr-2">→</span>
+          {parseBold(h, 'font-semibold text-gray-900')}
+        </p>
+      ))}
     </div>
   )
 }
