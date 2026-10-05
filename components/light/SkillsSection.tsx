@@ -1,62 +1,37 @@
 import { skillCategories } from '@/data/resume'
-import SectionLabel from './SectionLabel'
+import Section from '@/components/Section'
 
-const levelLabel: Record<string, string> = {
-  expert: '주력',
-  proficient: '활용',
-  familiar: '경험',
-}
-
-const levelColor: Record<string, string> = {
-  expert: 'bg-blue-500 text-white font-semibold',
-  proficient: 'bg-blue-50 text-blue-700 border border-blue-200',
-  familiar: 'bg-gray-100 text-gray-500 border border-gray-200',
+const levelClass: Record<string, string> = {
+  expert: 'font-[650] text-ink',
+  proficient: 'font-[450] text-ink2',
+  familiar: 'font-normal text-ink3',
 }
 
 export default function SkillsSection() {
   return (
-    <section className="py-20 px-6 bg-white">
-      <div className="max-w-4xl mx-auto">
-        <SectionLabel>Skills</SectionLabel>
-        <div className="flex gap-5 mb-8 text-xs text-gray-400 font-mono">
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-blue-500 inline-block" /> 주력
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-blue-300 inline-block" /> 활용
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-gray-300 inline-block" /> 경험
-          </span>
-        </div>
-        <div className="grid md:grid-cols-2 gap-5">
-          {skillCategories.map((cat, i) => (
-            <div
-              key={i}
-              className="rounded-2xl bg-gray-50 p-6 transition"
-            >
-              <h3 className="flex items-center gap-2 font-bold text-gray-800 mb-5">
-                <span>{cat.icon}</span> {cat.category}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {cat.skills.map((skill) => (
-                  <span
-                    key={skill.name}
-                    className={`px-2.5 py-1 rounded-lg text-xs ${
-                      skill.level ? levelColor[skill.level] : 'bg-gray-100 text-gray-500'
-                    }`}
-                  >
-                    {skill.level && (
-                      <span className="opacity-50 mr-1 text-[10px]">[{levelLabel[skill.level]}]</span>
-                    )}
-                    {skill.name}
-                  </span>
-                ))}
-              </div>
+    <Section title="기술 스택">
+      <div className="flex flex-col gap-3">
+        {skillCategories.map((cat) => (
+          <div key={cat.category} className="flex flex-wrap gap-x-3 gap-y-2">
+            <span className="flex-[0_0_108px] font-mono text-xs text-ink3 pt-1">{cat.category}</span>
+            <div className="flex-1 flex flex-wrap gap-1.5 min-w-[200px]">
+              {cat.skills.map((skill) => (
+                <span
+                  key={skill.name}
+                  className={`text-[13px] px-[9px] py-1 rounded border border-line ${levelClass[skill.level ?? 'familiar']}`}
+                >
+                  {skill.name}
+                </span>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </section>
+      <div className="flex gap-4 mt-4 text-xs text-ink3">
+        <span className="font-[650] text-ink">주력</span>
+        <span className="text-ink2">활용</span>
+        <span>경험</span>
+      </div>
+    </Section>
   )
 }

@@ -1,91 +1,61 @@
 import { experiences } from '@/data/resume'
-import SectionLabel from './SectionLabel'
+import Section from '@/components/Section'
 import PARAccordion from '../PARAccordion'
 import { formatProjectDuration } from '@/lib/formatDuration'
 
 export default function ExperienceSection() {
   return (
-    <section className="py-10 px-6 bg-white print:py-4">
-      <div className="max-w-4xl mx-auto">
-        <SectionLabel>Experience</SectionLabel>
-        <div className="space-y-8 print:space-y-4">
-          {experiences.map((exp, i) => (
-            <div
-              key={i}
-              className="rounded-2xl bg-gray-50 overflow-hidden transition"
-            >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 border-b border-gray-100 print:p-4 print:pb-3">
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-1 print:text-lg">{exp.company}</h3>
-                  <p className="text-blue-600 font-medium print:text-sm">{exp.position}</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-gray-500 font-mono text-sm">{exp.period}</p>
-                  <span className="inline-block mt-1 px-3 py-0.5 bg-blue-50 border border-blue-200 rounded-full text-blue-700 text-xs print:hidden">
-                    {exp.employmentType ? `${exp.employmentType} · ${exp.duration}` : exp.duration}
+    <Section title="경력">
+      <div className="flex flex-col gap-12">
+        {experiences.map((exp, i) => (
+          <div key={i}>
+            <div data-keep-next className="flex flex-wrap items-baseline justify-between gap-x-3">
+              <h3 className="text-xl font-bold tracking-[-0.01em] text-ink">{exp.company}</h3>
+              <span className="font-mono text-xs text-ink3">
+                {exp.period} · {exp.employmentType ? `${exp.employmentType} · ${exp.duration}` : exp.duration}
+              </span>
+            </div>
+            <p className="text-sm font-medium text-ink2 mt-1">{exp.position}</p>
+            <p className="text-[13.5px] leading-[1.65] text-ink3 mt-2">{exp.careerDescription ?? exp.description}</p>
+
+            <h4 className="font-mono text-xs text-ink3 mt-6 mb-2">Key Achievements</h4>
+            <ul className="flex flex-col gap-1">
+              {exp.highlights.map((h, j) => (
+                <li key={j} className="flex gap-2 text-[14.5px] leading-[1.7] text-ink2">
+                  <span className="text-ink3 flex-shrink-0">—</span>
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
+
+            <h4 className="font-mono text-xs text-ink3 mt-6">Projects</h4>
+            {exp.projects.map((proj, k) => (
+              <div key={k} className="border-t border-dashed border-line pt-[18px] mt-[18px]">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-3">
+                  <h5 className="text-base font-[650] leading-[1.45] text-ink">{proj.name}</h5>
+                  <span className="font-mono text-xs text-ink3">
+                    {[proj.period, formatProjectDuration(proj.period), proj.teamSize].filter(Boolean).join(' · ')}
                   </span>
                 </div>
-              </div>
-
-              <div className="p-8 space-y-8 print:p-4 print:space-y-4">
-                <p className="text-gray-500 leading-relaxed max-w-[760px]">{exp.careerDescription ?? exp.description}</p>
-
-                <div>
-                  <h4 className="text-xs font-mono text-blue-600 uppercase tracking-widest mb-4">Key Achievements</h4>
-                  <ul className="grid sm:grid-cols-2 gap-3">
-                    {exp.highlights.map((h, j) => (
-                      <li key={j} className="flex items-start gap-3">
-                        <span className="mt-1 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
-                        <span className="text-sm text-gray-600">{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-xs font-mono text-blue-600 uppercase tracking-widest mb-4">Projects</h4>
-                  <div className="space-y-4 print:space-y-2">
-                    {exp.projects.map((proj, k) => (
-                      <div key={k} className="rounded-xl bg-gray-100 p-5 print:p-3">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
-                          <h5 className="font-semibold text-gray-800">{proj.name}</h5>
-                          <span className="flex items-center gap-2 text-xs text-gray-400 font-mono flex-shrink-0">
-                            {proj.period}
-                            {formatProjectDuration(proj.period) && (
-                              <span className="px-1.5 py-0.5 rounded bg-blue-50 border border-blue-200 text-blue-700">
-                                {formatProjectDuration(proj.period)}
-                              </span>
-                            )}
-                            {proj.teamSize && (
-                              <span className="px-1.5 py-0.5 rounded bg-gray-200 text-gray-500">{proj.teamSize}</span>
-                            )}
-                          </span>
-                        </div>
-                        {proj.serviceOverview && (
-                          <p className="text-xs text-gray-500 leading-relaxed mb-3 max-w-[760px]">{proj.serviceOverview}</p>
-                        )}
-                        <ul className="space-y-2">
-                          {proj.achievements.map((a, l) => (
-                            <PARAccordion key={l} item={a} />
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {exp.techStack.map((t) => (
-                    <span key={t} className="px-2.5 py-1 rounded-md bg-gray-100 text-gray-500 text-xs font-mono border border-gray-200">
-                      {t}
-                    </span>
+                {proj.serviceOverview && (
+                  <p className="text-[13.5px] leading-[1.65] text-ink3 mt-2">{proj.serviceOverview}</p>
+                )}
+                <ul className="flex flex-col gap-2 mt-3">
+                  {proj.achievements.map((a, l) => (
+                    <PARAccordion key={l} item={a} />
                   ))}
-                </div>
+                </ul>
               </div>
+            ))}
+
+            <div className="flex flex-wrap gap-1.5 mt-5">
+              {exp.techStack.map((t) => (
+                <span key={t} className="text-xs px-2 py-0.5 rounded border border-line text-ink3 font-mono">{t}</span>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </section>
+    </Section>
   )
 }

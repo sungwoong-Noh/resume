@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<script src="portfolio-data.js"></script>
+<style>
+:root{--bg:#FAF9F6;--surface:#FFFFFF;--ink:#1C1B19;--ink2:#46443F;--ink3:#6F6C65;--line:#E4E1DA;--accent:oklch(0.5 0.13 255);--accentSoft:oklch(0.95 0.025 255);--accentInk:#FFFFFF}
+html[data-theme="dark"]{--bg:#141412;--surface:#1C1B19;--ink:#EDEBE6;--ink2:#C2BFB8;--ink3:#8F8C85;--line:#302E2B;--accent:oklch(0.76 0.11 255);--accentSoft:oklch(0.3 0.05 255);--accentInk:#141412}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+button{font-family:inherit}
+@media print{
+html,html[data-theme="dark"]{--bg:#FFFFFF;--surface:#FFFFFF;--ink:#1C1B19;--ink2:#46443F;--ink3:#6F6C65;--line:#E4E1DA;--accent:oklch(0.5 0.13 255);--accentSoft:oklch(0.95 0.025 255);--accentInk:#FFFFFF}
+[data-noprint]{display:none !important}
+[data-avoid]{break-inside:avoid}
+}
+</style>
+</helmet>
+<div style="min-height:100vh;background:var(--bg);color:var(--ink)">
+  <div data-noprint="1" style="position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)">
+    <div style="max-width:880px;margin:0 auto;padding:10px 32px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:16px">
+        <button onClick="{{ goList }}" style="border:0;background:transparent;padding:0;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink3)">portfolio / {{ owner.nameEn }}</button>
+        <a href="Resume A - 문서형.dc.html" style="font-size:13px;color:var(--ink2)">이력서 보기 ↗</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button onClick="{{ toggleDark }}" style="border:1px solid var(--line);background:transparent;color:var(--ink2);border-radius:6px;padding:6px 12px;font-size:13px;cursor:pointer">{{ darkLabel }}</button>
+        <button onClick="{{ doPrint }}" style="border:1px solid var(--ink);background:var(--ink);color:var(--bg);border-radius:6px;padding:6px 12px;font-size:13px;cursor:pointer;font-weight:600">PDF 저장</button>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+    <main style="max-width:880px;margin:0 auto;padding:72px 32px 96px;display:flex;flex-direction:column;gap:56px">
+      <header style="display:flex;flex-direction:column;gap:20px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:0.02em">{{ owner.title }} · 케이스 스터디 {{ caseCount }}편</div>
+        <h1 style="margin:0;font-size:44px;line-height:1.1;font-weight:700;letter-spacing:-0.02em">문제를 푼 과정</h1>
+        <p style="margin:0;font-size:19px;line-height:1.5;color:var(--ink2);font-weight:500;max-width:620px;text-wrap:pretty">{{ intro }}</p>
+      </header>
+      <section style="display:flex;flex-wrap:wrap;gap:16px 32px;border-top:1px solid var(--line);padding-top:24px">
+        <h2 style="flex:0 0 140px;margin:0;font-size:15px;font-weight:700">케이스</h2>
+        <div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column">
+          <sc-for list="{{ cards }}" as="c" hint-placeholder-count="3">
+            <button onClick="{{ c.open }}" style="text-align:left;cursor:pointer;background:transparent;border:0;border-bottom:1px dashed var(--line);padding:22px 0;display:flex;flex-wrap:wrap;gap:12px 32px;align-items:flex-start;color:var(--ink)">
+              <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:8px">
+                <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink3)">{{ c.num }} · {{ c.org }} · {{ c.period }}</span>
+                <span style="font-size:19px;font-weight:700;letter-spacing:-0.01em;line-height:1.4">{{ c.title }}</span>
+                <span style="font-size:14.5px;line-height:1.7;color:var(--ink2);text-wrap:pretty"><sc-for list="{{ c.lead }}" as="s"><sc-if value="{{ s.b }}" hint-placeholder-val="{{ false }}"><strong style="font-weight:650;color:var(--ink)">{{ s.t }}</strong></sc-if><sc-if value="{{ s.n }}" hint-placeholder-val="{{ true }}"><span>{{ s.t }}</span></sc-if></sc-for></span>
+                <span style="font-size:13px;font-weight:600;color:var(--accent);padding-top:2px">케이스 읽기 →</span>
+              </div>
+              <div style="flex:0 0 150px;display:flex;flex-direction:column;gap:6px">
+                <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap">
+                  <span style="font-size:14px;color:var(--ink3)">{{ c.metric.before }} →</span>
+                  <span style="font-size:26px;font-weight:700;letter-spacing:-0.02em;color:var(--accent)">{{ c.metric.after }}</span>
+                </div>
+                <span style="font-size:13px;line-height:1.5;color:var(--ink2)">{{ c.metric.label }}</span>
+              </div>
+            </button>
+          </sc-for>
+        </div>
+      </section>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+    <main style="max-width:880px;margin:0 auto;padding:64px 32px 96px;display:flex;flex-direction:column;gap:56px">
+      <header style="display:flex;flex-direction:column;gap:18px">
+        <button data-noprint="1" onClick="{{ goList }}" style="align-self:flex-start;border:0;background:transparent;padding:0;cursor:pointer;font-size:13px;color:var(--ink3)">← 전체 케이스</button>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:0.02em">케이스 {{ c.num }} · {{ c.org }}</div>
+        <h1 style="margin:0;font-size:40px;line-height:1.2;font-weight:700;letter-spacing:-0.02em;text-wrap:balance">{{ c.title }}</h1>
+        <div style="display:flex;flex-wrap:wrap;gap:6px 22px;font-size:13.5px">
+          <div style="display:flex;gap:8px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink3)">기간</span><span>{{ c.period }}</span></div>
+          <div style="display:flex;gap:8px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink3)">역할</span><span>{{ c.role }}</span></div>
+          <div style="display:flex;gap:8px;align-items:baseline"><span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink3)">기술</span><span style="color:var(--ink2)">{{ c.tagLine }}</span></div>
+        </div>
+      </header>
+
+      <section data-avoid="1" style="display:flex;flex-wrap:wrap;gap:16px 32px;border-top:1px solid var(--line);padding-top:24px">
+        <h2 style="flex:0 0 140px;margin:0;font-size:15px;font-weight:700">요약</h2>
+        <div style="flex:1 1 520px;min-width:0;display:flex;flex-wrap:wrap;gap:20px 32px">
+          <ul style="flex:1 1 340px;margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px">
+            <sc-for list="{{ c.summary }}" as="line" hint-placeholder-count="3">
+              <li style="display:flex;gap:10px;font-size:15.5px;line-height:1.7;color:var(--ink2)"><span style="color:var(--ink3);flex:0 0 auto">—</span><span style="text-wrap:pretty"><sc-for list="{{ line.segs }}" as="s"><sc-if value="{{ s.b }}" hint-placeholder-val="{{ false }}"><strong style="font-weight:650;color:var(--ink)">{{ s.t }}</strong></sc-if><sc-if value="{{ s.n }}" hint-placeholder-val="{{ true }}"><span>{{ s.t }}</span></sc-if></sc-for></span></li>
+            </sc-for>
+          </ul>
+          <div style="flex:0 0 150px;display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap">
+              <span style="font-size:14px;color:var(--ink3)">{{ c.metric.before }} →</span>
+              <span style="font-size:26px;font-weight:700;letter-spacing:-0.02em;color:var(--accent)">{{ c.metric.after }}</span>
+            </div>
+            <span style="font-size:13px;line-height:1.5;color:var(--ink2)">{{ c.metric.label }}</span>
+          </div>
+        </div>
+      </section>
+
+      <section data-avoid="1" style="display:flex;flex-wrap:wrap;gap:16px 32px;border-top:1px solid var(--line);padding-top:24px">
+        <h2 style="flex:0 0 140px;margin:0;font-size:15px;font-weight:700">배경과 제약</h2>
+        <div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ c.context }}" as="r" hint-placeholder-count="4">
+            <div style="display:flex;flex-wrap:wrap;gap:4px 20px;align-items:baseline">
+              <span style="flex:0 0 100px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink3)">{{ r.k }}</span>
+              <span style="flex:1 1 320px;font-size:14.5px;line-height:1.65;color:var(--ink2)">{{ r.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section data-avoid="1" style="display:flex;flex-wrap:wrap;gap:16px 32px;border-top:1px solid var(--line);padding-top:24px">
+        <h2 style="flex:0 0 140px;margin:0;font-size:15px;font-weight:700">문제</h2>
+        <div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:12px">
+          <p style="margin:0;font-size:15.5px;line-height:1.75;color:var(--ink2);text-wrap:pretty"><sc-for list="{{ c.problem }}" as="s"><sc-if value="{{ s.b }}" hint-placeholder-val="{{ false }}"><strong style="font-weight:650;color:var(--ink)">{{ s.t }}</strong></sc-if><sc-if value="{{ s.n }}" hint-placeholder-val="{{ true }}"><span>{{ s.t }}</span></sc-if></sc-for></p>
+          <div style="display:flex;gap:10px;align-items:baseline;font-size:13.5px"><span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink3)">측정 기준</span><span style="color:var(--ink)">{{ c.measure }}</span></div>
+        </div>
+      </section>
+
+      <section style="display:flex;flex-wrap:wrap;gap:16px 32px;border-top:1px solid var(--line);padding-top:24px">
+        <h2 style="flex:0 0 140px;margin:0;font-size:15px;font-weight:700">대안 비교</h2>
+        <div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column">
+          <sc-for list="{{ c.alternatives }}" as="a" hint-placeholder-count="3">
+            <div data-avoid="1" style="display:flex;flex-direction:column;gap:8px;padding:16px 0;border-bottom:1px dashed var(--line)">
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                <span style="font-size:15px;font-weight:650;color:{{ a.nameColor }}">{{ a.name }}</span>
+                <span style="font-size:11.5px;font-weight:600;color:{{ a.verdictColor }};background:{{ a.verdictBg }};border:1px solid {{ a.verdictBorder }};border-radius:3px;padding:1px 6px">{{ a.verdict }}</span>
+              </div>
+              <div style="display:flex;gap:12px;font-size:13.5px;line-height:1.65"><span style="flex:0 0 72px;font-weight:600;color:var(--ink3)">장점</span><span style="flex:1;min-width:0;color:var(--ink2)">{{ a.pros }}</span></div>
+              <div style="display:flex;gap:12px;font-size:13.5px;line-height:1.65"><span style="flex:0 0 72px;font-weight:600;color:var(--ink3)">{{ a.consLabel }}</span><span style="flex:1;min-width:0;color:var(--ink2)"><sc-for list="{{ a.cons }}" as="s"><sc-if value="{{ s.b }}" hint-placeholder-val="{{ false }}"><strong style="font-weight:650;color:var(--ink)">{{ s.t }}</strong></sc-if><sc-if value="{{ s.n }}" hint-placeholder-val="{{ true }}"><span>{{ s.t }}</span></sc-if></sc-for></span></div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section data-avoid="1" style="display:flex;flex-wrap:wrap;gap:16px 32px;border-top:1px solid var(--line);padding-top:24px">
+        <div style="flex:0 0 140px;display:flex;flex-direction:column;gap:6px">
+          <h2 style="margin:0;font-size:15px;font-weight:700">설계</h2>
+          <span style="font-size:12px;line-height:1.5;color:var(--ink3)">{{ c.flowTitle }}</span>
+        </div>
+        <div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 20px">
+          <sc-for list="{{ c.flow }}" as="f" hint-placeholder-count="5">
+            <div style="display:flex;gap:16px;align-items:stretch">
+              <div style="flex:0 0 22px;display:flex;flex-direction:column;align-items:center">
+                <span style="flex:0 0 12px;width:1px;background:{{ f.lineTop }}"></span>
+                <span style="flex:0 0 auto;width:22px;height:22px;border-radius:50%;border:1px solid {{ f.dotBorder }};background:{{ f.dotBg }};color:{{ f.dotFg }};font-family:'JetBrains Mono',monospace;font-size:11px;display:flex;align-items:center;justify-content:center;box-sizing:border-box">{{ f.n }}</span>
+                <span style="flex:1;width:1px;background:{{ f.lineBottom }}"></span>
+              </div>
+              <div style="flex:1;min-width:0;display:flex;flex-wrap:wrap;gap:2px 16px;align-items:baseline;padding:13px 0">
+                <span style="font-size:14.5px;font-weight:600;color:var(--ink)">{{ f.label }}</span>
+                <span style="font-size:13px;color:var(--ink3)">{{ f.note }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section data-avoid="1" style="display:flex;flex-wrap:wrap;gap:16px 32px;border-top:1px solid var(--line);padding-top:24px">
+        <h2 style="flex:0 0 140px;margin:0;font-size:15px;font-weight:700">결과</h2>
+        <div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:20px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px">
+            <sc-for list="{{ c.results }}" as="r" hint-placeholder-count="1">
+              <div style="display:flex;flex-direction:column;gap:6px">
+                <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap">
+                  <span style="font-size:14px;color:var(--ink3)">{{ r.before }} →</span>
+                  <span style="font-size:26px;font-weight:700;letter-spacing:-0.02em;color:var(--accent)">{{ r.after }}</span>
+                </div>
+                <span style="font-size:13px;line-height:1.5;color:var(--ink2)">{{ r.label }}</span>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink3)">{{ r.note }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px">
+            <sc-for list="{{ c.outcomes }}" as="o">
+              <li style="display:flex;gap:10px;font-size:14.5px;line-height:1.7;color:var(--ink2)"><span style="color:var(--ink3);flex:0 0 auto">—</span><span><sc-for list="{{ o.segs }}" as="s"><sc-if value="{{ s.b }}" hint-placeholder-val="{{ false }}"><strong style="font-weight:650;color:var(--ink)">{{ s.t }}</strong></sc-if><sc-if value="{{ s.n }}" hint-placeholder-val="{{ true }}"><span>{{ s.t }}</span></sc-if></sc-for></span></li>
+            </sc-for>
+          </ul>
+        </div>
+      </section>
+
+      <section data-avoid="1" style="display:flex;flex-wrap:wrap;gap:16px 32px;border-top:1px solid var(--line);padding-top:24px">
+        <h2 style="flex:0 0 140px;margin:0;font-size:15px;font-weight:700">회고</h2>
+        <div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:14px">
+          <sc-if value="{{ c.hasRetro }}" hint-placeholder-val="{{ false }}">
+            <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px">
+              <sc-for list="{{ c.retro }}" as="o"><li style="display:flex;gap:10px;font-size:14.5px;line-height:1.7;color:var(--ink2)"><span style="color:var(--ink3)">—</span><span>{{ o }}</span></li></sc-for>
+            </ul>
+          </sc-if>
+          <sc-if value="{{ c.noRetro }}" hint-placeholder-val="{{ true }}">
+            <div data-noprint="1" style="border:1px dashed var(--line);border-radius:6px;padding:16px 18px;display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:14px;font-weight:600;color:var(--ink2)">직접 작성할 자리</span>
+              <span style="font-size:13px;line-height:1.6;color:var(--ink3)">다시 한다면 바꿀 점, 아쉬웠던 트레이드오프, 운영하며 알게 된 점 — portfolio-data.js의 retro에 2~3줄</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{ c.hasLinks }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex;flex-wrap:wrap;gap:12px">
+              <sc-for list="{{ c.links }}" as="l"><a href="{{ l.href }}" style="font-family:'JetBrains Mono',monospace;font-size:12px">{{ l.label }} ↗</a></sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </section>
+
+      <nav data-noprint="1" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px">
+        <div style="flex:1 1 240px">
+          <sc-if value="{{ prev }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ prev.open }}" style="text-align:left;cursor:pointer;background:transparent;border:0;padding:0;display:flex;flex-direction:column;gap:4px;color:var(--ink)">
+              <span style="font-size:12px;color:var(--ink3)">← 이전 케이스</span>
+              <span style="font-size:14.5px;font-weight:600">{{ prev.title }}</span>
+            </button>
+          </sc-if>
+        </div>
+        <div style="flex:1 1 240px;display:flex;justify-content:flex-end">
+          <sc-if value="{{ next }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ next.open }}" style="text-align:right;cursor:pointer;background:transparent;border:0;padding:0;display:flex;flex-direction:column;align-items:flex-end;gap:4px;color:var(--ink)">
+              <span style="font-size:12px;color:var(--ink3)">다음 케이스 →</span>
+              <span style="font-size:14.5px;font-weight:600">{{ next.title }}</span>
+            </button>
+          </sc-if>
+        </div>
+      </nav>
+    </main>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light'|'dark'&quot;}}">
+class Component extends DCLogic {
+  state = { data: window.PORTFOLIO_DATA || null, id: null, dark: false };
+  themeKey = 'resume-a-theme';
+  componentDidMount() {
+    if (!this.state.data) this._t = setInterval(() => { if (window.PORTFOLIO_DATA) { clearInterval(this._t); this.setState({ data: window.PORTFOLIO_DATA }); } }, 50);
+    let saved = null; try { saved = localStorage.getItem(this.themeKey); } catch (e) {}
+    const dark = saved ? saved === 'dark' : (this.props.defaultTheme ?? 'light') === 'dark';
+    this.applyTheme(dark);
+    this._hash = () => this.setState({ id: (location.hash || '').slice(1) || null });
+    window.addEventListener('hashchange', this._hash);
+    this.setState({ dark, id: (location.hash || '').slice(1) || null });
+  }
+  componentWillUnmount() { clearInterval(this._t); window.removeEventListener('hashchange', this._hash); }
+  applyTheme(d) { document.documentElement.setAttribute('data-theme', d ? 'dark' : 'light'); }
+  go(id) { history.replaceState(null, '', id ? '#' + id : location.pathname + location.search); this.setState({ id }); window.scrollTo(0, 0); }
+  segs(s) { return String(s || '').split(/(\*\*[^*]+\*\*)/).filter(Boolean).map(p => p.startsWith('**') ? { t: p.slice(2, -2), b: true, n: false } : { t: p, b: false, n: true }); }
+  renderVals() {
+    const d = this.state.data, st = this.state;
+    const base = {
+      darkLabel: st.dark ? '라이트 모드' : '다크 모드',
+      toggleDark: () => { const dark = !this.state.dark; this.applyTheme(dark); try { localStorage.setItem(this.themeKey, dark ? 'dark' : 'light'); } catch (e) {} this.setState({ dark }); },
+      doPrint: () => window.print(), goList: () => this.go(null),
+    };
+    if (!d) return { ...base, owner: {}, isList: true, isDetail: false, cards: [], c: {} };
+    const pad = i => String(i + 1).padStart(2, '0');
+    const cases = d.cases.map((c, i) => ({ ...c, num: pad(i), open: () => this.go(c.id) }));
+    const idx = cases.findIndex(c => c.id === st.id);
+    const cur = cases[idx];
+    let c = {};
+    if (cur) {
+      const n = cur.flow.length;
+      c = {
+        ...cur, tagLine: cur.tags.join(' · '),
+        summary: cur.summary.map(t => ({ segs: this.segs(t) })),
+        context: cur.context.map(([k, v]) => ({ k, v })),
+        problem: this.segs(cur.problem),
+        alternatives: cur.alternatives.map(a => ({ ...a, cons: this.segs(a.cons), consLabel: a.chosen ? '트레이드오프' : '제외 이유',
+          verdict: a.chosen ? '선택' : '제외', nameColor: a.chosen ? 'var(--ink)' : 'var(--ink2)',
+          verdictColor: a.chosen ? 'var(--accentInk)' : 'var(--ink3)', verdictBg: a.chosen ? 'var(--accent)' : 'transparent', verdictBorder: a.chosen ? 'var(--accent)' : 'var(--line)' })),
+        flow: cur.flow.map((f, i) => { const last = i === n - 1; return { ...f, n: i + 1,
+          lineTop: i === 0 ? 'transparent' : 'var(--line)', lineBottom: last ? 'transparent' : 'var(--line)',
+          dotBorder: last ? 'var(--accent)' : 'var(--line)', dotBg: last ? 'var(--accent)' : 'var(--bg)', dotFg: last ? 'var(--accentInk)' : 'var(--ink3)' }; }),
+        outcomes: (cur.outcomes || []).map(o => ({ segs: this.segs(o) })),
+        hasRetro: cur.retro.length > 0, noRetro: cur.retro.length === 0, hasLinks: cur.links.length > 0,
+      };
+    }
+    return {
+      ...base, owner: d.owner, intro: d.intro, caseCount: cases.length,
+      isList: !cur, isDetail: !!cur,
+      cards: cases.map(x => ({ ...x, lead: this.segs(x.summary[x.summary.length - 1]) })),
+      c, prev: idx > 0 ? cases[idx - 1] : null, next: idx >= 0 && idx < cases.length - 1 ? cases[idx + 1] : null,
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -12,3 +12,16 @@ export function formatProjectDuration(period: string): string | null {
   const remainder = months % 12
   return remainder === 0 ? `${years}년` : `${years}년 ${remainder}개월`
 }
+
+/** "2024.08 ~ 2025.06" → 월 인덱스(year*12+month-1) 구간. 끝이 없으면 시작과 같다. 형식이 안 맞으면 null. */
+export function parsePeriod(period: string): { start: number; end: number } | null {
+  const m = period.match(/(\d{4})\.(\d{1,2})(?:\s*~\s*(\d{4})\.(\d{1,2}))?/)
+  if (!m) return null
+  const start = Number(m[1]) * 12 + Number(m[2]) - 1
+  const end = m[3] ? Number(m[3]) * 12 + Number(m[4]) - 1 : start
+  return { start, end }
+}
+
+/** 시작일 내림차순 정렬용 비교 함수 */
+export const byStartDesc = (a: { period: string }, b: { period: string }) =>
+  (parsePeriod(b.period)?.start ?? 0) - (parsePeriod(a.period)?.start ?? 0)

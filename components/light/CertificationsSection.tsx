@@ -1,35 +1,29 @@
 import { certifications } from '@/data/resume'
-import SectionLabel from './SectionLabel'
+import Section from '@/components/Section'
 
 export default function CertificationsSection() {
   return (
-    <section className="py-20 px-6 bg-white">
-      <div className="max-w-4xl mx-auto">
-        <SectionLabel>Education Programs</SectionLabel>
-        <div className="grid md:grid-cols-2 gap-5">
-          {certifications.map((c, i) => (
-            <div
-              key={i}
-              className="rounded-2xl bg-gray-50 p-6 transition"
-            >
-              <div className="flex items-start justify-between gap-3 mb-1">
-                <h3 className="font-bold text-gray-900">{c.name}</h3>
-                <span className="text-xs text-gray-400 font-mono flex-shrink-0">{c.period}</span>
-              </div>
-              <p className="text-xs text-blue-600 font-mono mb-3">{c.organization}</p>
-              <p className="text-sm text-gray-500 mb-4 leading-relaxed">{c.description}</p>
-              <ul className="space-y-1.5">
-                {c.achievements.map((a, j) => (
-                  <li key={j} className="flex items-start gap-2 text-sm text-gray-600">
-                    <span className="text-blue-500 flex-shrink-0 mt-0.5">→</span>
-                    <span>{a}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+    <Section title="교육·자격">
+      {certifications.map((c, i) => (
+        <div key={i} data-avoid-break className={i > 0 ? 'border-t border-dashed border-line pt-[18px] mt-[18px]' : ''}>
+          <div className="flex flex-wrap items-baseline justify-between gap-x-3">
+            <h3 className="text-base font-[650] text-ink">{c.name}</h3>
+            <span className="font-mono text-xs text-ink3">{c.period}</span>
+          </div>
+          <p className="font-mono text-xs text-ink3 mt-0.5">{c.organization}</p>
+          <p className="text-[13.5px] leading-[1.65] text-ink3 mt-2">{c.description}</p>
+          {c.achievements.length > 0 && (
+            <ul className="flex flex-col gap-1 mt-2">
+              {c.achievements.map((a, j) => (
+                <li key={j} className="flex gap-2 text-[14.5px] leading-[1.7] text-ink2">
+                  <span className="text-ink3 flex-shrink-0">—</span>
+                  <span>{a}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-      </div>
-    </section>
+      ))}
+    </Section>
   )
 }

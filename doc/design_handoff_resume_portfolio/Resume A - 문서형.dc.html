@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<script src="resume-data.js"></script>
+<style>
+:root{--bg:#FAF9F6;--surface:#FFFFFF;--ink:#1C1B19;--ink2:#46443F;--ink3:#6F6C65;--line:#E4E1DA;--accent:oklch(0.5 0.13 255);--accentSoft:oklch(0.95 0.025 255);--accentInk:#FFFFFF}
+html[data-theme="dark"]{--bg:#141412;--surface:#1C1B19;--ink:#EDEBE6;--ink2:#C2BFB8;--ink3:#8F8C85;--line:#302E2B;--accent:oklch(0.76 0.11 255);--accentSoft:oklch(0.3 0.05 255);--accentInk:#141412}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;-webkit-font-smoothing:antialiased;word-break:keep-all}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+button{font-family:inherit}
+@media print{
+html,html[data-theme="dark"]{--bg:#FFFFFF;--surface:#FFFFFF;--ink:#1C1B19;--ink2:#46443F;--ink3:#6F6C65;--line:#E4E1DA;--accent:oklch(0.5 0.13 255);--accentSoft:oklch(0.95 0.025 255);--accentInk:#FFFFFF}
+[data-noprint]{display:none !important}
+[data-avoid]{break-inside:avoid}
+[data-main]{padding-top:0 !important}
+}
+</style>
+</helmet>
+<div style="min-height:100vh;background:var(--bg);color:var(--ink)">
+  <div data-noprint="1" style="position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)">
+    <div style="max-width:880px;margin:0 auto;padding:10px 32px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink3)">resume / {{ profile.nameEn }}</span>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <div style="display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden">
+          <button onClick="{{ setDetail }}" style="border:0;padding:6px 12px;font-size:13px;cursor:pointer;background:{{ tabDetail.bg }};color:{{ tabDetail.fg }}">상세</button>
+          <button onClick="{{ setTimeline }}" style="border:0;padding:6px 12px;font-size:13px;cursor:pointer;background:{{ tabTimeline.bg }};color:{{ tabTimeline.fg }}">타임라인</button>
+        </div>
+        <button onClick="{{ toggleDark }}" style="border:1px solid var(--line);background:transparent;color:var(--ink2);border-radius:6px;padding:6px 12px;font-size:13px;cursor:pointer">{{ darkLabel }}</button>
+        <button onClick="{{ doPrint }}" style="border:1px solid var(--ink);background:var(--ink);color:var(--bg);border-radius:6px;padding:6px 12px;font-size:13px;cursor:pointer;font-weight:600">PDF 저장</button>
+      </div>
+    </div>
+  </div>
+
+  <main data-main="1" style="max-width:880px;margin:0 auto;padding:72px 32px 96px;display:flex;flex-direction:column;gap:56px">
+    <header style="display:flex;flex-direction:column;gap:20px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:0.02em">{{ profile.title }} · {{ profile.years }}년차</div>
+      <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+        <h1 style="margin:0;font-size:44px;line-height:1.1;font-weight:700;letter-spacing:-0.02em">{{ profile.name }}</h1>
+        <span style="font-size:18px;color:var(--ink3)">{{ profile.nameEn }}</span>
+      </div>
+      <p style="margin:0;font-size:19px;line-height:1.5;color:var(--ink2);font-weight:500">{{ profile.tagline }}</p>
+      <div style="display:flex;flex-direction:column;gap:6px;max-width:680px">
+        <sc-for list="{{ intro }}" as="para" hint-placeholder-count="4">
+          <p style="margin:0;font-size:15.5px;line-height:1.75;color:var(--ink2);text-wrap:pretty"><sc-for list="{{ para.segs }}" as="s"><sc-if value="{{ s.b }}" hint-placeholder-val="{{ false }}"><strong style="font-weight:650;color:var(--ink)">{{ s.t }}</strong></sc-if><sc-if value="{{ s.n }}" hint-placeholder-val="{{ true }}"><span>{{ s.t }}</span></sc-if></sc-for></p>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px 22px;padding-top:4px">
+        <sc-for list="{{ contacts }}" as="c" hint-placeholder-count="6">
+          <div style="display:flex;gap:8px;align-items:baseline;font-size:13.5px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink3)">{{ c.label }}</span>
+            <a href="{{ c.href }}" style="color:var(--ink)">{{ c.value }}</a>
+          </div>
+        </sc-for>
+      </div>
+    </header>
+
+    <section data-avoid="1" style="display:flex;flex-wrap:wrap;gap:16px 32px;border-top:1px solid var(--line);padding-top:24px">
+      <h2 style="flex:0 0 140px;margin:0;font-size:15px;font-weight:700">핵심 성과</h2>
+      <div style="flex:1 1 520px;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px">
+        <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;align-items:baseline;gap:6px;flex-wrap:wrap">
+              <span style="font-size:14px;color:var(--ink3)">{{ m.before }} →</span>
+              <span style="font-size:26px;font-weight:700;letter-spacing:-0.02em;color:var(--accent)">{{ m.after }}</span>
+            </div>
+            <div style="font-size:13px;line-height:1.5;color:var(--ink2)">{{ m.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="display:flex;flex-wrap:wrap;gap:16px 32px;border-top:1px solid var(--line);padding-top:24px">
+      <div style="flex:0 0 140px;display:flex;flex-direction:column;gap:6px">
+        <h2 style="margin:0;font-size:15px;font-weight:700">기술 스택</h2>
+        <span data-noprint="1" style="font-size:12px;line-height:1.5;color:var(--ink3)">클릭하면 관련 프로젝트만 강조</span>
+      </div>
+      <div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:14px">
+        <sc-for list="{{ skillCats }}" as="cat" hint-placeholder-count="4">
+          <div style="display:flex;flex-wrap:wrap;gap:8px 16px;align-items:flex-start">
+            <span style="flex:0 0 108px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink3);padding-top:6px">{{ cat.category }}</span>
+            <div style="flex:1 1 300px;display:flex;flex-wrap:wrap;gap:6px">
+              <sc-for list="{{ cat.chips }}" as="k">
+                <button onClick="{{ k.onClick }}" style="border:1px solid {{ k.border }};background:{{ k.bg }};color:{{ k.fg }};font-weight:{{ k.w }};border-radius:4px;padding:4px 9px;font-size:13px;cursor:pointer;line-height:1.4">{{ k.name }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--ink3)">
+          <span><strong style="color:var(--ink);font-weight:650">굵게</strong> 주력 · <span style="color:var(--ink2)">보통</span> 실무 사용 · 흐리게 경험</span>
+          <sc-if value="{{ hasFilter }}" hint-placeholder-val="{{ false }}">
+            <span data-noprint="1" style="display:flex;gap:8px;align-items:center;color:var(--accent)">{{ filterNote }}<button onClick="{{ clearFilter }}" style="border:0;background:transparent;color:var(--ink3);cursor:pointer;font-size:12px;text-decoration:underline;padding:0">해제</button></span>
+          </sc-if>
+        </div>
+      </div>
+    </section>
+
+    <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ true }}">
+      <section style="display:flex;flex-wrap:wrap;gap:16px 32px;border-top:1px solid var(--line);padding-top:24px">
+        <h2 style="flex:0 0 140px;margin:0;font-size:15px;font-weight:700">경력 <span style="font-weight:400;color:var(--ink3)">{{ profile.years }}년</span></h2>
+        <div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:48px">
+          <sc-for list="{{ exps }}" as="e" hint-placeholder-count="3">
+            <article style="display:flex;flex-direction:column;gap:20px">
+              <div data-avoid="1" style="display:flex;flex-direction:column;gap:6px">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px 16px;flex-wrap:wrap">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <h3 style="margin:0;font-size:20px;font-weight:700;letter-spacing:-0.01em">{{ e.company }}</h3>
+                    <sc-if value="{{ e.badge }}" hint-placeholder-val="{{ false }}"><span style="font-size:11.5px;color:var(--ink2);border:1px solid var(--line);border-radius:3px;padding:1px 6px">{{ e.employmentType }}</span></sc-if>
+                  </div>
+                  <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink3)">{{ e.period }} · {{ e.duration }}</span>
+                </div>
+                <div style="font-size:14px;color:var(--ink2);font-weight:500">{{ e.position }}</div>
+                <p style="margin:0;font-size:13.5px;line-height:1.65;color:var(--ink3);text-wrap:pretty">{{ e.description }}</p>
+              </div>
+              <sc-for list="{{ e.projects }}" as="p" hint-placeholder-count="2">
+                <div style="display:flex;flex-direction:column;gap:10px;padding-top:18px;border-top:1px dashed var(--line);opacity:{{ p.op }};transition:opacity .2s">
+                  <div data-avoid="1" style="display:flex;flex-direction:column;gap:4px">
+                    <h4 style="margin:0;font-size:16px;font-weight:650;line-height:1.45">{{ p.name }}</h4>
+                    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink3)">{{ p.meta }}</span>
+                  </div>
+                  <p style="margin:0;font-size:13.5px;line-height:1.65;color:var(--ink3);text-wrap:pretty">{{ p.overview }}</p>
+                  <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px">
+                    <sc-for list="{{ p.bullets }}" as="b" hint-placeholder-count="3">
+                      <li style="display:flex;gap:10px;font-size:14.5px;line-height:1.7;color:var(--ink2)"><span style="color:var(--ink3);flex:0 0 auto">—</span><span style="text-wrap:pretty"><sc-for list="{{ b.segs }}" as="s"><sc-if value="{{ s.b }}" hint-placeholder-val="{{ false }}"><strong style="font-weight:650;color:var(--ink)">{{ s.t }}</strong></sc-if><sc-if value="{{ s.n }}" hint-placeholder-val="{{ true }}"><span>{{ s.t }}</span></sc-if></sc-for></span></li>
+                    </sc-for>
+                  </ul>
+                  <sc-if value="{{ p.hasPar }}" hint-placeholder-val="{{ true }}">
+                    <button data-noprint="1" onClick="{{ p.toggle }}" style="align-self:flex-start;border:0;background:transparent;color:var(--accent);font-size:13px;font-weight:600;cursor:pointer;padding:2px 0">{{ p.toggleLabel }}</button>
+                  </sc-if>
+                  <sc-if value="{{ p.open }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 20px">
+                      <sc-for list="{{ p.par }}" as="a">
+                        <div data-avoid="1" style="display:flex;flex-direction:column;gap:8px;padding-bottom:12px;border-bottom:1px solid var(--line)">
+                          <div style="font-size:14px;font-weight:650">{{ a.title }}</div>
+                          <sc-for list="{{ a.rows }}" as="r">
+                            <div style="display:flex;gap:12px;font-size:13.5px;line-height:1.65">
+                              <span style="flex:0 0 32px;font-weight:600;color:{{ r.color }}">{{ r.label }}</span>
+                              <span style="flex:1;min-width:0;color:var(--ink2);text-wrap:pretty"><sc-for list="{{ r.segs }}" as="s"><sc-if value="{{ s.b }}" hint-placeholder-val="{{ false }}"><strong style="font-weight:650;color:var(--ink)">{{ s.t }}</strong></sc-if><sc-if value="{{ s.n }}" hint-placeholder-val="{{ true }}"><span>{{ s.t }}</span></sc-if></sc-for></span>
+                            </div>
+                          </sc-for>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </article>
+          </sc-for>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isTimeline }}" hint-placeholder-val="{{ false }}">
+      <section style="display:flex;flex-wrap:wrap;gap:16px 32px;border-top:1px solid var(--line);padding-top:24px">
+        <h2 style="flex:0 0 140px;margin:0;font-size:15px;font-weight:700">경력 타임라인</h2>
+        <div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:4px">
+          <div style="display:flex;gap:12px">
+            <div style="flex:0 0 200px"></div>
+            <div style="flex:1;position:relative;height:20px;border-bottom:1px solid var(--line)">
+              <sc-for list="{{ tl.ticks }}" as="t">
+                <span style="position:absolute;left:{{ t.left }};top:0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink3);transform:translateX(-50%)">{{ t.label }}</span>
+              </sc-for>
+            </div>
+          </div>
+          <sc-for list="{{ tl.rows }}" as="row" hint-placeholder-count="8">
+            <div style="display:flex;gap:12px;align-items:center;min-height:32px;border-top:{{ row.divider }};padding-top:{{ row.pad }}">
+              <div style="flex:0 0 200px;min-width:0;display:flex;flex-direction:column">
+                <span style="font-size:{{ row.fs }};font-weight:{{ row.fw }};color:{{ row.color }};padding-left:{{ row.indent }};white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ row.label }}</span>
+              </div>
+              <div style="flex:1;position:relative;height:14px">
+                <sc-for list="{{ tl.ticks }}" as="t"><span style="position:absolute;left:{{ t.left }};top:-9px;bottom:-9px;width:1px;background:var(--line)"></span></sc-for>
+                <div title="{{ row.period }}" style="position:absolute;left:{{ row.left }};width:{{ row.width }};top:{{ row.top }};height:{{ row.h }};background:{{ row.bg }};border-radius:3px;opacity:{{ row.op }}"></div>
+              </div>
+            </div>
+          </sc-for>
+          <div style="font-size:12px;color:var(--ink3);padding-top:10px">막대에 마우스를 올리면 기간이 표시됩니다. 상세 내용은 ‘상세’ 보기에서.</div>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ showSide }}" hint-placeholder-val="{{ true }}">
+      <section style="display:flex;flex-wrap:wrap;gap:16px 32px;border-top:1px solid var(--line);padding-top:24px">
+        <h2 style="flex:0 0 140px;margin:0;font-size:15px;font-weight:700">개인·교육 프로젝트</h2>
+        <div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:28px">
+          <sc-for list="{{ sides }}" as="p" hint-placeholder-count="2">
+            <div data-avoid="1" style="display:flex;flex-direction:column;gap:8px;opacity:{{ p.op }};transition:opacity .2s">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px 16px;flex-wrap:wrap">
+                <h4 style="margin:0;font-size:16px;font-weight:650">{{ p.name }}</h4>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink3)">{{ p.period }}</span>
+              </div>
+              <span style="font-size:13px;color:var(--ink3)">{{ p.org }} — {{ p.description }}</span>
+              <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px">
+                <sc-for list="{{ p.bulletSegs }}" as="b">
+                  <li style="display:flex;gap:10px;font-size:14px;line-height:1.7;color:var(--ink2)"><span style="color:var(--ink3)">—</span><span><sc-for list="{{ b.segs }}" as="s"><sc-if value="{{ s.b }}" hint-placeholder-val="{{ false }}"><strong style="font-weight:650;color:var(--ink)">{{ s.t }}</strong></sc-if><sc-if value="{{ s.n }}" hint-placeholder-val="{{ true }}"><span>{{ s.t }}</span></sc-if></sc-for></span></li>
+                </sc-for>
+              </ul>
+              <a href="{{ p.url }}" style="font-family:'JetBrains Mono',monospace;font-size:12px">{{ p.urlLabel }} ↗</a>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </sc-if>
+
+    <section data-avoid="1" style="display:flex;flex-wrap:wrap;gap:16px 32px;border-top:1px solid var(--line);padding-top:24px">
+      <h2 style="flex:0 0 140px;margin:0;font-size:15px;font-weight:700">학력 · 자격</h2>
+      <div style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:14px">
+        <sc-for list="{{ eduRows }}" as="r" hint-placeholder-count="3">
+          <div style="display:flex;gap:8px 20px;flex-wrap:wrap;align-items:baseline">
+            <span style="flex:0 0 150px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink3)">{{ r.period }}</span>
+            <div style="flex:1 1 280px;display:flex;flex-direction:column;gap:2px">
+              <span style="font-size:14.5px;font-weight:600">{{ r.title }}</span>
+              <span style="font-size:13px;line-height:1.55;color:var(--ink3)">{{ r.sub }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <footer style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px;font-size:13px;color:var(--ink3)">
+      <span>{{ profile.name }} · {{ profile.title }}</span>
+      <a href="mailto:asdz453@gmail.com">asdz453@gmail.com</a>
+    </footer>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light'|'dark'&quot;},&quot;expandAll&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showSideProjects&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { data: window.RESUME_DATA || null, view: 'detail', dark: false, filter: null, open: {} };
+  themeKey = 'resume-a-theme';
+  componentDidMount() {
+    if (!this.state.data) this._t = setInterval(() => { if (window.RESUME_DATA) { clearInterval(this._t); this.setState({ data: window.RESUME_DATA }); } }, 50);
+    let saved = null; try { saved = localStorage.getItem(this.themeKey); } catch (e) {}
+    const dark = saved ? saved === 'dark' : (this.props.defaultTheme ?? 'light') === 'dark';
+    this.setState({ dark }); this.applyTheme(dark);
+  }
+  componentWillUnmount() { clearInterval(this._t); }
+  applyTheme(d) { document.documentElement.setAttribute('data-theme', d ? 'dark' : 'light'); }
+  segs(s) { return String(s || '').split(/(\*\*[^*]+\*\*)/).filter(Boolean).map(p => p.startsWith('**') ? { t: p.slice(2, -2), b: true, n: false } : { t: p, b: false, n: true }); }
+  ym(s, i) { const m = [...String(s).matchAll(/(\d{4})\.(\d{2})/g)]; const x = m[i] || m[0]; return x ? +x[1] * 12 + (+x[2] - 1) : 0; }
+  renderVals() {
+    const d = this.state.data, f = this.state.filter, st = this.state;
+    const tab = on => ({ bg: on ? 'var(--ink)' : 'transparent', fg: on ? 'var(--bg)' : 'var(--ink2)' });
+    const base = {
+      isDetail: st.view === 'detail', isTimeline: st.view === 'timeline',
+      tabDetail: tab(st.view === 'detail'), tabTimeline: tab(st.view === 'timeline'),
+      setDetail: () => this.setState({ view: 'detail' }), setTimeline: () => this.setState({ view: 'timeline' }),
+      darkLabel: st.dark ? '라이트 모드' : '다크 모드',
+      toggleDark: () => { const dark = !this.state.dark; this.applyTheme(dark); try { localStorage.setItem(this.themeKey, dark ? 'dark' : 'light'); } catch (e) {} this.setState({ dark }); },
+      doPrint: () => window.print(),
+      clearFilter: () => this.setState({ filter: null }),
+      showSide: this.props.showSideProjects ?? true,
+    };
+    if (!d) return { ...base, profile: {}, intro: [], contacts: [], metrics: [], skillCats: [], exps: [], sides: [], eduRows: [], tl: { ticks: [], rows: [] }, hasFilter: false };
+    const hit = tags => !f || (tags || []).includes(f);
+    const expandAll = this.props.expandAll ?? false;
+    const exps = [...d.experiences].sort((a, b) => this.ym(b.period, 0) - this.ym(a.period, 0));
+    let count = 0;
+    const expVals = exps.map((e, ei) => ({
+      ...e, badge: !!e.employmentType,
+      projects: e.projects.map((p, pi) => {
+        const key = e.company + pi, open = st.open[key] ?? expandAll;
+        if (f && hit(p.tags)) count++;
+        return {
+          ...p, meta: [p.period, p.teamSize].filter(Boolean).join(' · '),
+          bullets: p.bullets.map(b => ({ segs: this.segs(b) })),
+          par: (p.par || []).map(a => ({ title: a.title, rows: [['문제', a.p, 'var(--ink3)'], ['해결', a.s, 'var(--ink)'], ['성과', a.r, 'var(--accent)']].filter(r => r[1]).map(r => ({ label: r[0], color: r[2], segs: this.segs(r[1]) })) })),
+          hasPar: (p.par || []).length > 0, open,
+          toggleLabel: open ? '문제 · 해결 · 성과 접기 ↑' : `문제 · 해결 · 성과 보기 (${(p.par || []).length}) ↓`,
+          toggle: () => this.setState(s => ({ open: { ...s.open, [key]: !open } })),
+          op: hit(p.tags) ? 1 : 0.25,
+        };
+      })
+    }));
+    const sides = d.sideProjects.map(p => { if (f && hit(p.tags)) count++; return { ...p, bulletSegs: p.bullets.map(b => ({ segs: this.segs(b) })), op: hit(p.tags) ? 1 : 0.25 }; });
+    const lv = { expert: [650, 'var(--ink)'], proficient: [450, 'var(--ink2)'], familiar: [400, 'var(--ink3)'] };
+    const skillCats = d.skills.map(c => ({ category: c.category, chips: c.items.map(([name, level]) => {
+      const on = f === name;
+      return { name, w: lv[level][0], fg: on ? 'var(--accentInk)' : lv[level][1], bg: on ? 'var(--accent)' : 'transparent', border: on ? 'var(--accent)' : 'var(--line)', onClick: () => this.setState({ filter: on ? null : name }) };
+    }) }));
+    // timeline
+    const all = exps.flatMap(e => [e, ...e.projects]);
+    const min = Math.min(...all.map(x => this.ym(x.period, 0))), max = Math.max(...all.map(x => this.ym(x.period, 1))) + 1;
+    const pct = v => ((v - min) / (max - min) * 100).toFixed(2) + '%';
+    const ticks = []; for (let y = Math.ceil(min / 12); y * 12 <= max; y++) ticks.push({ left: pct(y * 12), label: String(y) });
+    const rows = [];
+    [...exps].reverse().forEach((e, i) => {
+      const s = this.ym(e.period, 0), en = this.ym(e.period, 1) + 1;
+      rows.push({ label: e.company, period: e.period, fs: '14px', fw: 650, color: 'var(--ink)', indent: '0', left: pct(s), width: pct(min + Math.max(en - s, 1)), top: '2px', h: '10px', bg: 'var(--ink)', op: 1, divider: i ? '1px solid var(--line)' : '0', pad: i ? '8px' : '0' });
+      e.projects.forEach(p => { const ps = this.ym(p.period, 0), pe = this.ym(p.period, 1) + 1;
+        rows.push({ label: p.name, period: p.period, fs: '12.5px', fw: 400, color: 'var(--ink2)', indent: '12px', left: pct(ps), width: pct(min + Math.max(pe - ps, 1)), top: '4px', h: '6px', bg: 'var(--accent)', op: hit(p.tags) ? 1 : 0.2, divider: '0', pad: '0' }); });
+    });
+    return {
+      ...base, profile: d.profile, intro: d.profile.intro.map(t => ({ segs: this.segs(t) })), contacts: d.contacts, metrics: d.metrics,
+      skillCats, exps: expVals, sides, eduRows: [...d.certifications, ...d.education].sort((a, b) => this.ym(b.period, 0) - this.ym(a.period, 0)),
+      tl: { ticks, rows }, hasFilter: !!f, filterNote: f ? `‘${f}’ 관련 프로젝트 ${count}개` : '',
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,4 +1,5 @@
 import DocNav from '@/components/DocNav'
+import { Page } from '@/components/Section'
 import PortfolioHero from '@/components/portfolio/light/PortfolioHero'
 import ProjectDetail from '@/components/portfolio/light/ProjectDetail'
 import OtherProjects from '@/components/portfolio/light/OtherProjects'
@@ -12,13 +13,15 @@ export const metadata = {
 
 export default function PortfolioPage() {
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen">
       <DocNav />
-      <PortfolioHero />
-      <ProjectDetail />
-      <OtherProjects />
-      <SideProjectsSection />
-      <ContactFooter />
+      <Page>
+        <PortfolioHero />
+        <ProjectDetail />
+        <OtherProjects />
+        <SideProjectsSection />
+        <ContactFooter />
+      </Page>
     </main>
   )
 }

@@ -1,12 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-inter: 'Inter', sans-serif;
-  --font-playfair: 'Playfair Display', serif;
+  --bg: #FAF9F6;
+  --surface: #FFFFFF;
+  --ink: #1C1B19;
+  --ink2: #46443F;
+  --ink3: #6F6C65;
+  --line: #E4E1DA;
+  --accent: #2F5FA8;
+  --accent: oklch(0.5 0.13 255);
+  --accentSoft: #EBF0F8;
+  --accentSoft: oklch(0.95 0.025 255);
+  --accentInk: #FFFFFF;
+}
+
+html[data-theme="dark"] {
+  --bg: #141412;
+  --surface: #1C1B19;
+  --ink: #EDEBE6;
+  --ink2: #C2BFB8;
+  --ink3: #8F8C85;
+  --line: #302E2B;
+  --accent: #8FB4F0;
+  --accent: oklch(0.76 0.11 255);
+  --accentSoft: #2A3550;
+  --accentSoft: oklch(0.3 0.05 255);
+  --accentInk: #141412;
+  color-scheme: dark;
 }
 
 html {
@@ -14,43 +38,45 @@ html {
 }
 
 body {
-  font-family: var(--font-inter);
+  background: var(--bg);
+  color: var(--ink2);
+  word-break: keep-all;
+  -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-inter);
+p {
+  text-wrap: pretty;
 }
 
-/* Smooth transitions */
-* {
-  @apply transition-colors duration-200;
-}
-
-/* Link styles */
 a {
-  @apply text-teal-600 hover:text-teal-700 transition-colors;
+  color: inherit;
+  text-underline-offset: 3px;
 }
 
-/* Selection color */
+a:hover {
+  text-decoration: underline;
+}
+
 ::selection {
-  @apply bg-teal-200 text-gray-900;
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-gray-100;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-teal-400 rounded-full hover:bg-teal-500;
+  background: var(--accentSoft);
+  color: var(--ink);
 }
 
 @media print {
+  /* 다크 모드에서 인쇄해도 항상 light 토큰 */
+  :root, html[data-theme="dark"] {
+    --bg: #FFFFFF;
+    --surface: #FFFFFF;
+    --ink: #1C1B19;
+    --ink2: #46443F;
+    --ink3: #6F6C65;
+    --line: #E4E1DA;
+    --accent: #2F5FA8;
+    --accentSoft: #EBF0F8;
+    --accentInk: #FFFFFF;
+    color-scheme: light;
+  }
+
   * {
     transition: none !important;
   }
@@ -62,92 +88,23 @@ a {
     min-height: unset !important;
   }
 
-  /* A4 여백을 뺀 실제 인쇄 가능 폭이 화면 컨테이너보다 좁으므로,
-     화면용 줄 길이 제한(max-w-[…px])은 인쇄에서 풀어 페이지 폭을 그대로 쓴다 */
+  /* A4 인쇄 폭이 화면 컨테이너보다 좁으므로 줄 길이 제한은 인쇄에서 푼다 */
   [class*="max-w-["] {
     max-width: none !important;
   }
 
-  /* 네비게이션, 버튼 숨김 */
-  nav,
-  .no-print,
-  .print\:hidden,
-  .blur-3xl,
-  .blur-2xl {
+  [data-noprint],
+  .print\:hidden {
     display: none !important;
   }
 
-  /* 섹션 여백 통일 */
-  section {
-    padding-top: 0.75rem !important;
-    padding-bottom: 0.75rem !important;
-  }
-
-  header {
-    padding-top: 1.5rem !important;
-    padding-bottom: 1rem !important;
-  }
-
-  /* 이력서/경력기술서 첫 페이지 상단 공백 */
-  .resume-header {
-    padding-top: 4rem !important;
-    padding-bottom: 1rem !important;
-  }
-
-  /* 연락처 푸터: 여백 축소 + 통째로 유지(쪼개짐/빈 페이지 방지) */
-  .contact-footer {
-    padding-top: 1.5rem !important;
-    padding-bottom: 1rem !important;
+  [data-avoid-break] {
     break-inside: avoid;
     page-break-inside: avoid;
   }
 
-  /* 섹션 레이블 여백 축소 + 다음 요소와 분리 방지 */
-  p[class*="tracking-widest"] {
-    margin-bottom: 0.5rem !important;
+  [data-keep-next] {
     break-after: avoid;
     page-break-after: avoid;
   }
-
-  /* 회사 카드: 내부에서 자연스럽게 페이지 넘어가도록 허용 */
-  .rounded-2xl {
-    break-inside: auto;
-    page-break-inside: auto;
-    overflow: visible !important;
-  }
-
-  /* 회사 헤더 다음 페이지 break 방지 */
-  .rounded-2xl > div:first-child {
-    break-after: avoid;
-    page-break-after: avoid;
-  }
-
-  /* 경력 섹션 회사 헤더: 헤더만 남고 본문이 다음 페이지로 넘어가는 현상 방지 */
-  .exp-header {
-    break-after: avoid;
-    page-break-after: avoid;
-  }
-
-  /* 이력서 성과 카드(배경-액션-결과): 문단 중간에서 페이지가 잘리지 않도록 통째로 유지 */
-  .resume-story-card {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
-  /* 프로젝트 카드: 통째로 유지 */
-  .rounded-xl {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-
-  /* 다크 버전 → 흰 배경 */
-  .bg-gray-950 { background-color: #ffffff !important; }
-  .bg-gray-900 { background-color: #f9fafb !important; }
-  .bg-gray-800 { background-color: #f3f4f6 !important; }
-  .bg-gray-700 { background-color: #e5e7eb !important; }
-  .text-white  { color: #111827 !important; }
-  .text-gray-100, .text-gray-200 { color: #1f2937 !important; }
-  .text-gray-300, .text-gray-400 { color: #4b5563 !important; }
-  .text-gray-500, .text-gray-600 { color: #6b7280 !important; }
-  .border-gray-700, .border-gray-800 { border-color: #d1d5db !important; }
 }

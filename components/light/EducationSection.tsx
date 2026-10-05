@@ -1,28 +1,18 @@
 import { educations } from '@/data/resume'
-import SectionLabel from './SectionLabel'
+import Section from '@/components/Section'
 
 export default function EducationSection() {
   return (
-    <section className="py-20 px-6 bg-white">
-      <div className="max-w-4xl mx-auto">
-        <SectionLabel>Education</SectionLabel>
-        <div className="space-y-4">
-          {educations.map((edu, i) => (
-            <div
-              key={i}
-              className="rounded-2xl bg-gray-50 p-6 transition"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-1">{edu.school}</h3>
-                  <p className="text-sm text-gray-500">{edu.degree} · {edu.major}</p>
-                </div>
-                <span className="text-xs text-gray-400 font-mono flex-shrink-0">{edu.period}</span>
-              </div>
-            </div>
-          ))}
+    <Section title="학력">
+      {educations.map((edu, i) => (
+        <div key={i} className="flex flex-wrap gap-x-4">
+          <span className="flex-[0_0_150px] font-mono text-xs text-ink3 pt-1">{edu.period}</span>
+          <div className="flex-1 min-w-[200px]">
+            <span className="text-[14.5px] font-semibold text-ink">{edu.school}</span>
+            <span className="text-[13px] text-ink3 ml-2">{edu.degree} · {edu.major}</span>
+          </div>
         </div>
-      </div>
-    </section>
+      ))}
+    </Section>
   )
 }

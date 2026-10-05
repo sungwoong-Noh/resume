@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
+import { JetBrains_Mono } from 'next/font/google'
 import './globals.css'
+
+const mono = JetBrains_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-mono' })
 
 export const metadata: Metadata = {
   title: '노성웅 | 백엔드 개발자',
@@ -13,14 +16,20 @@ export const metadata: Metadata = {
   },
 }
 
+// 첫 페인트 전에 저장된 테마를 적용해 깜빡임(FOUC) 방지
+const themeScript = `try{if(localStorage.getItem('resume-a-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}`
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="ko">
-      <body className="bg-white text-gray-900">{children}</body>
+    <html lang="ko" className={mono.variable} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="bg-bg text-ink2 font-sans">{children}</body>
     </html>
   )
 }

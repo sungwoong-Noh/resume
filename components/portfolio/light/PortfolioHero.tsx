@@ -4,18 +4,20 @@ export default function PortfolioHero() {
   const { name, role, email, phone } = portfolioProfile
 
   return (
-    <section className="bg-white py-10 px-6 print:py-6">
-      <div className="max-w-5xl mx-auto">
-        <p className="text-xs font-mono tracking-widest text-blue-600 uppercase mb-3">
-          Portfolio
-        </p>
-        <h1 className="text-5xl font-bold text-gray-900 mb-2 print:text-4xl">{name}</h1>
-        <p className="text-blue-600 font-bold text-base mb-5">{role}</p>
-        <div className="flex gap-6 text-sm text-gray-500">
-          <p>✉ {email}</p>
-          <p>✆ {phone}</p>
-        </div>
+    <header>
+      <p className="font-mono text-[13px] tracking-[0.02em] text-accent">Portfolio</p>
+      <h1 className="text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-ink mt-3">{name}</h1>
+      <p className="text-[19px] font-medium leading-normal text-ink2 mt-4">{role}</p>
+      <div className="flex flex-wrap gap-x-[22px] gap-y-2 mt-4">
+        <span className="flex items-baseline gap-1.5">
+          <span className="font-mono text-[11.5px] text-ink3">Email</span>
+          <a href={`mailto:${email}`} className="text-[13.5px] text-ink">{email}</a>
+        </span>
+        <span className="flex items-baseline gap-1.5">
+          <span className="font-mono text-[11.5px] text-ink3">Phone</span>
+          <span className="text-[13.5px] text-ink">{phone}</span>
+        </span>
       </div>
-    </section>
+    </header>
   )
 }

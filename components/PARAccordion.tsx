@@ -5,24 +5,24 @@ export default function PARAccordion({ item }: { item: PARItem }) {
   const hasDetail = !!(item.problem || item.analyze)
 
   return (
-    <li className="flex flex-col gap-1 text-sm text-gray-500">
-      <div className="flex items-start gap-2.5 max-w-[760px]">
-        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
-        <span className="text-gray-700">{parseBold(item.result, 'font-semibold text-gray-900')}</span>
+    <li data-avoid-break className="flex flex-col gap-1 text-[14.5px] leading-[1.7]">
+      <div className="flex items-start gap-2">
+        <span className="text-ink3 flex-shrink-0">—</span>
+        <span className="text-ink2">{parseBold(item.result, 'font-[650] text-ink')}</span>
       </div>
 
       {hasDetail && (
-        <div className="ml-5 mt-1 space-y-1.5 border-l border-gray-200 pl-3 max-w-[760px]">
+        <div className="ml-5 mt-1 space-y-1.5 border-l border-line pl-3">
           {item.problem && (
-            <p className="text-xs text-gray-500 leading-relaxed">
-              <span className="text-amber-500 font-mono font-semibold mr-1.5">문제</span>
-              {parseBold(item.problem, 'font-semibold text-gray-700')}
+            <p className="text-[13px] text-ink3 leading-[1.65]">
+              <span className="text-ink3 font-semibold mr-1.5">문제</span>
+              {parseBold(item.problem, 'font-[650] text-ink2')}
             </p>
           )}
           {item.analyze && (
-            <p className="text-xs text-gray-500 leading-relaxed">
-              <span className="text-sky-500 font-mono font-semibold mr-1.5">분석</span>
-              {parseBold(item.analyze, 'font-semibold text-gray-700')}
+            <p className="text-[13px] text-ink3 leading-[1.65]">
+              <span className="text-ink font-semibold mr-1.5">분석</span>
+              {parseBold(item.analyze, 'font-[650] text-ink2')}
             </p>
           )}
         </div>
