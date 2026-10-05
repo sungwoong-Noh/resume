@@ -122,7 +122,7 @@ export const portfolioProjects: PortfolioProject[] = [
     techStack: {
       frontend: ['Vue.js', 'ES6'],
       backend: ['Spring Boot', 'JPA', 'QueryDSL', 'Bean Validation', 'MariaDB', 'Redis'],
-      infra: ['K8s', 'Docker', 'Jenkins', 'HashiCorp Vault', 'Harbor'],
+      infra: ['K8s', 'Docker', 'Jenkins', 'Harbor'],
     },
     gradientClass: 'from-indigo-900 via-indigo-800 to-blue-900',
   },

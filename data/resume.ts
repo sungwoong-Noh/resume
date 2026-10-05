@@ -102,6 +102,16 @@ export const achievements: Achievement[] = [
   },
 ]
 
+// ─── Metrics (이력서 핵심 성과 — 본문에 이미 있는 실측 수치만) ─────
+export type Metric = { before: string; after: string; label: string }
+
+export const metrics: Metric[] = [
+  { before: '2시간', after: '10초', label: '자산 동기화 배치 · 14만 건' },
+  { before: '7일', after: '1일', label: '배포 주기 · Jenkins 파이프라인' },
+  { before: '5초', after: '0.9초', label: 'p95 응답 · SMS 서비스' },
+  { before: '30일', after: '1년', label: '지표 보존 · 40개 고객사' },
+]
+
 // ─── Experience ───────────────────────────────────────────────
 export type PARItem = {
   result: string       // 헤드라인 — 항상 표시
@@ -129,6 +139,8 @@ export type Project = {
   teamSize?: string
   /** 이력서 전용 압축 성과 불릿(한 줄씩). 있으면 resumeContent보다 우선해 렌더링 */
   resumeBullets?: string[]
+  /** 기술 스택 필터용 — skillCategories 이름과 정확히 일치해야 매칭됨 */
+  tags?: string[]
 }
 
 export type Experience = {
@@ -169,6 +181,7 @@ export const experiences: Experience[] = [
     projects: [
       {
         name: 'CSP 멀티테넌트 네트워크 상품 개발 (PPP Cloud)',
+        tags: ['Java', 'Spring Boot', 'JPA / Hibernate', 'RESTful API', 'Kubernetes', 'Vue 3', 'Jenkins', 'TypeScript'],
         period: '2024.08 ~ 2025.06',
         teamSize: '5인 팀',
         serviceOverview: '공공기관에 프라이빗 클라우드(AWS 같은 CSP)를 제공하는 플랫폼으로, 기관(테넌트)마다 격리된 네트워크 환경을 자동 프로비저닝합니다. 이 중 방화벽·로드밸런서(L4) 등 네트워크 상품을 담당했습니다.',
@@ -202,6 +215,7 @@ export const experiences: Experience[] = [
       },
       {
         name: '자산계획 시스템(RPMS) 설계/개발',
+        tags: ['Java', 'Spring Boot', 'JPA / Hibernate', 'QueryDSL', 'Tibero', 'MariaDB / MySQL', 'Vue 3', 'TanStack Query', 'Ant Design', 'Harbor', 'Helm'],
         period: '2024.01 ~ 2025.06',
         teamSize: '5인 팀',
         serviceOverview: '국가정보자원관리원의 IT 자산을 계획·관리하는 시스템입니다. 자산 현황이 최신·정확해야 예산심사에서 도입·폐기·교체 결정을 제대로 내릴 수 있어, 수십만 건 규모의 자산을 빠르게 동기화·조회하는 성능과 감사 대응을 위한 변경 이력 추적이 함께 요구됐습니다.',
@@ -249,6 +263,7 @@ export const experiences: Experience[] = [
     projects: [
       {
         name: '동구청 과학행사 신청 플랫폼',
+        tags: ['Java', 'eGovFramework', 'MyBatis', 'MariaDB / MySQL', 'jQuery', 'Spring Security', 'ES6+'],
         period: '2023.07 ~ 2023.10',
         serviceOverview: '동구청에서 주최하는 과학행사의 온라인 신청·참가자 관리를 위한 플랫폼입니다. 시민이 직접 온라인으로 신청하고, 담당자는 신청 현황과 통계를 통합 관리합니다.',
         resumeBullets: [
@@ -276,6 +291,7 @@ export const experiences: Experience[] = [
       },
       {
         name: '충남도청 SMS 서비스 DB 이관',
+        tags: ['MariaDB / MySQL', 'ES6+'],
         period: '2023.03 ~ 2023.05',
         serviceOverview: '충남도청 SMS 발송 서비스가 노후 장비로 인해 지속적으로 다운되는 문제가 있었습니다. 이를 교체하며 데이터를 이관하는 프로젝트로, 1,000만 건 규모 발송 이력 데이터의 무결성 유지가 핵심 요구사항이었습니다.',
         resumeBullets: [
@@ -302,6 +318,7 @@ export const experiences: Experience[] = [
       },
       {
         name: '한전 위험성 평가기반 자율안전 솔루션',
+        tags: ['Java', 'eGovFramework', 'MyBatis', 'MariaDB / MySQL', 'Jenkins', 'Docker', 'jQuery', 'ES6+'],
         period: '2022.02 ~ 2023.10',
         serviceOverview: '한전 현장의 위험성 평가와 자율 안전관리를 지원하는 솔루션으로, GIS 기반 실시간 현장 모니터링과 메타데이터·보고서 관리 기능을 제공합니다.',
         resumeBullets: [
@@ -353,6 +370,7 @@ export const experiences: Experience[] = [
     projects: [
       {
         name: 'WAF 유해 IP 차단 프로세스 AI 반자동화',
+        tags: ['KT Cloud', 'Ansible'],
         period: '2026.02 ~ 2026.05',
         serviceOverview: 'WAF에서 유해 의심 IP 이벤트가 발생하면 관리 업체에 차단 요청 메일을 보내야 하는 업무로, 기존에는 담당자가 메일을 일일이 확인하고 수동으로 작성·발송했습니다.',
         resumeBullets: [
@@ -374,6 +392,7 @@ export const experiences: Experience[] = [
       },
       {
         name: 'MSP 고객사 모니터링 체계 구축',
+        tags: ['Prometheus', 'Grafana', 'VictoriaMetrics', 'KT Cloud', 'Ansible'],
         period: '2026.02 ~ 2026.05',
         serviceOverview: 'MSP로 관리하는 40개 고객사의 클라우드 인프라에 통합 모니터링 체계가 없어, 장애 감지와 월간 운영 보고서를 수작업으로 처리하던 환경이었습니다.',
         resumeBullets: [
@@ -456,7 +475,6 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Jenkins', level: 'expert' },
       { name: 'GitHub Actions', level: 'proficient' },
       { name: 'Harbor', level: 'familiar' },
-      { name: 'HashiCorp Vault', level: 'familiar' },
       { name: 'Helm', level: 'familiar' },
     ],
   },
@@ -536,11 +554,14 @@ export type SideProject = {
   achievements: PARItem[]
   techStack: string[]
   url?: string
+  /** 기술 스택 필터용 — skillCategories 이름과 정확히 일치해야 매칭됨 */
+  tags?: string[]
 }
 
 export const sideProjects: SideProject[] = [
   {
     name: 'InnerCircle Commerce 프로젝트',
+    tags: ['Java', 'Spring Boot', 'Spring Cloud', 'JPA / Hibernate', 'PostgreSQL', 'AWS ECS / ECR', 'AWS CloudMap / ALB', 'GitHub Actions', 'Zipkin', 'Grafana', 'Redis'],
     period: '2025.07 ~ 2025.09',
     organization: '패스트캠퍼스',
     description:
@@ -567,6 +588,7 @@ export const sideProjects: SideProject[] = [
   },
   {
     name: 'TechGate — 검색엔진 스터디',
+    tags: ['Spring Boot', 'MariaDB / MySQL', 'Redis', 'Elasticsearch', 'Docker', 'Grafana', 'Prometheus', 'k6'],
     period: '2025.09 ~ 2025.10',
     organization: '개인 프로젝트',
     description:
