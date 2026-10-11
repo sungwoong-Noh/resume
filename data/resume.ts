@@ -161,6 +161,34 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
+    company: '투비스텍',
+    position: '과장',
+    period: '2026.08 ~ 현재',
+    duration: '재직 중',
+    description:
+      '금융·커머스 SI 사업을 수행하는 IT 기업으로, 하나은행 사업을 주로 수행하며 은행 전문을 관리하는 게이트웨이 솔루션을 개발합니다.',
+    highlights: [],
+    techStack: ['Java', 'DevOn MDD', 'xFrame5', 'JflowDi', 'Oracle', 'JavaScript', 'ecams'],
+    projects: [
+      {
+        name: '하나은행 베트남 해외송금 2.0 고도화 (NAPAS 연계)',
+        period: '2026.08 ~ 현재',
+        tags: ['Java', 'DevOn MDD', 'xFrame5', 'JflowDi', 'Oracle', 'ES6+', 'ecams'],
+        serviceOverview: '하나은행 글로벌사업부의 베트남 해외송금 서비스로, 베트남 결제망 기관 NAPAS와 연계해 송금을 처리합니다. NAPAS가 2.0으로 업그레이드하면서 NAPAS와 하나은행 코어뱅킹 사이에 게이트웨이 제품이 새로 들어왔고, 이에 맞춘 대응 개발 사업에서 송금 배치 기능을 전담 개발하고 있습니다.',
+        achievements: [
+          {
+            problem: '기존 대사는 하나은행이 양측 성공·실패 내역을 먼저 비교해 불일치 내역을 NAPAS에 보내고, NAPAS가 다시 비교해 회신하면 또 비교하는 **왕복 구조**. 2.0에서는 양측이 각자 내역을 게이트웨이에 보내면 **게이트웨이가 대사를 처리**하는 구조로 바뀜',
+            result: '해외송금 성공·실패 내역을 **대사 파일**로 생성해 게이트웨이로 전달하는 **대사 배치** 개발',
+          },
+          {
+            problem: '기존 1.0에는 상태조회 기능이 없어, 송금이 실패해도 무엇이 문제인지 파악할 수 없는 구조',
+            result: 'NAPAS 연계 상태를 확인하는 **Indicator 배치** 개발: 송금 실패 내역을 찾아 재시도하고 기관과의 통신 상태를 점검',
+          },
+        ],
+      },
+    ],
+  },
+  {
     company: '오케스트로 클라우드',
     position: '선임연구원 · 클라우드 서비스 본부',
     period: '2023.10 ~ 2026.02',
@@ -446,6 +474,9 @@ export const skillCategories: SkillCategory[] = [
       { name: 'eGovFramework', level: 'proficient' },
       { name: 'MyBatis', level: 'proficient' },
       { name: 'PostgreSQL', level: 'familiar' },
+      { name: 'Oracle', level: 'familiar' },
+      { name: 'DevOn MDD', level: 'familiar' },
+      { name: 'JflowDi', level: 'familiar' },
     ],
   },
   {
@@ -476,6 +507,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'GitHub Actions', level: 'proficient' },
       { name: 'Harbor', level: 'familiar' },
       { name: 'Helm', level: 'familiar' },
+      { name: 'ecams', level: 'familiar' },
     ],
   },
   {
@@ -489,6 +521,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Ant Design', level: 'proficient' },
       { name: 'ES6+', level: 'proficient' },
       { name: 'jQuery', level: 'familiar' },
+      { name: 'xFrame5', level: 'familiar' },
     ],
   },
 ]
