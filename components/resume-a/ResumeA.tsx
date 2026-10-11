@@ -293,7 +293,7 @@ function ProjectBlock({ project: p, dim, isOpen, onToggle }: {
       <h4 className="text-base font-[650] leading-[1.45] text-ink">{p.name}</h4>
       <p className="font-mono text-xs text-ink3 mt-0.5">{meta}</p>
       {p.serviceOverview && <p className="text-[13.5px] leading-[1.65] text-ink3 mt-2">{p.serviceOverview}</p>}
-      {p.resumeBullets && <Bullets items={p.resumeBullets} />}
+      <Bullets items={p.resumeBullets ?? p.achievements.map((a) => a.result)} />
 
       {par.length > 0 && (
         <>

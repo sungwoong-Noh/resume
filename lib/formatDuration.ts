@@ -14,11 +14,12 @@ export function formatProjectDuration(period: string): string | null {
 }
 
 /** "2024.08 ~ 2025.06" → 월 인덱스(year*12+month-1) 구간. 끝이 없으면 시작과 같다. 형식이 안 맞으면 null. */
-export function parsePeriod(period: string): { start: number; end: number } | null {
-  const m = period.match(/(\d{4})\.(\d{1,2})(?:\s*~\s*(\d{4})\.(\d{1,2}))?/)
+export function parsePeriod(period: string, now = new Date()): { start: number; end: number } | null {
+  const m = period.match(/(\d{4})\.(\d{1,2})(?:\s*~\s*(?:(\d{4})\.(\d{1,2})|(현재)))?/)
   if (!m) return null
   const start = Number(m[1]) * 12 + Number(m[2]) - 1
-  const end = m[3] ? Number(m[3]) * 12 + Number(m[4]) - 1 : start
+  // ponytail: '현재'는 빌드 시점 월 기준(정적 export), 재배포해야 타임라인 막대가 늘어남
+  const end = m[3] ? Number(m[3]) * 12 + Number(m[4]) - 1 : m[5] ? now.getFullYear() * 12 + now.getMonth() : start
   return { start, end }
 }
 

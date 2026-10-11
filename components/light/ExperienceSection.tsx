@@ -18,7 +18,7 @@ export default function ExperienceSection() {
             <p className="text-sm font-medium text-ink2 mt-1">{exp.position}</p>
             <p className="text-[13.5px] leading-[1.65] text-ink3 mt-2">{exp.careerDescription ?? exp.description}</p>
 
-            <h4 className="font-mono text-xs text-ink3 mt-6 mb-2">Key Achievements</h4>
+            {exp.highlights.length > 0 && <h4 className="font-mono text-xs text-ink3 mt-6 mb-2">Key Achievements</h4>}
             <ul className="flex flex-col gap-1">
               {exp.highlights.map((h, j) => (
                 <li key={j} className="flex gap-2 text-[14.5px] leading-[1.7] text-ink2">
@@ -28,7 +28,7 @@ export default function ExperienceSection() {
               ))}
             </ul>
 
-            <h4 className="font-mono text-xs text-ink3 mt-6">Projects</h4>
+            {exp.projects.length > 0 && <h4 className="font-mono text-xs text-ink3 mt-6">Projects</h4>}
             {exp.projects.map((proj, k) => (
               <div key={k} className="border-t border-dashed border-line pt-[18px] mt-[18px]">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-3">
